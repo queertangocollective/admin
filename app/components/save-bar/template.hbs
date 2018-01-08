@@ -1,0 +1,18 @@
+<div class='save-bar'>
+  <div class='frame'>
+    <header>
+      <h2>
+        {{yield}}
+      </h2>
+      {{f.submit}}
+    </header>
+  </div>
+  <hr>
+  {{#if (hasBlock 'inverse')}}
+    <nav>
+      <div class='frame'>
+        {{yield to='inverse'}}
+      </div>
+    </nav>
+  {{/if}}
+</div>

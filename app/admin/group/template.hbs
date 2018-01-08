@@ -1,0 +1,22 @@
+{{#if (equals model session.currentGroup)}}
+  {{title "My Group"}}
+{{else}}
+  {{title model.name}}
+{{/if}}
+<section id="group">
+  {{#form-for model onsubmit=(route-action 'save') as |f|}}
+    {{f.text 'name'}}
+    {{#f.select 'currentLocale' options=locales as |locale|}}
+      {{locale.label}}
+    {{else}}
+      Select your locale
+    {{/f.select}}
+    {{f.text 'apiKey' readonly=true}}
+    {{f.text 'hostname' label=(concat "Hostname " (icon 'help-solid' id='hostname-info'))
+             autocomplete=currentHostname}}
+    {{#tool-tip for='hostname-info'}}
+      The hostname of this website is "{{currentHostname}}".<br><br>
+      This is used to create links in emails that are sent.
+    {{/tool-tip}}
+  {{/form-for}}
+</section>

@@ -1,0 +1,45 @@
+nav {
+  margin-bottom: 1rem;
+}
+
+#people {
+  .name {
+    width: 50%;
+  }
+  .email {
+    width: 50%;
+  }
+}
+
+#locations {
+  .name {
+    width: 30%;
+  }
+  .addressLine {
+    width: 40%;
+  }
+  .city {
+    width: 20%;
+  }
+  .region-code {
+    width: 10%;
+  }
+}
+
+#ledger {
+  .description {
+    width: 25%;
+  }
+  .paidBy {
+    width: 20%;
+  }
+  .paidAt {
+    width: 20%;
+  }
+  .amountPaid {
+    width: 18%;
+  }
+  .amountOwed {
+    width: 17%;
+  }
+}

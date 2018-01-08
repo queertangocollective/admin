@@ -1,0 +1,7 @@
+{{dialog-box (component 'login-dialog'
+    authorizors=(hash
+      facebook=(route-action 'loginWithFacebook')
+      google=(route-action 'loginWithGoogle')
+    )
+  )
+  ondismiss=(route-action 'visitHomepage')}}

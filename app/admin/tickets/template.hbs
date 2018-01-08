@@ -1,0 +1,25 @@
+{{title 'Tickets'}}
+{{remember-document-scroll key='tickets'}}
+
+<div id="tickets">
+  <header>
+    {{search-field query=q onquery=(action (mut q)) placeholder="Tickets"}}
+  </header>
+  <nav>
+    <button type='submit' onclick={{action (mut isAdding) true}}>
+      {{icon "ticket"}} Add Ticket
+    </button>
+    {{#if isAdding}}
+      {{dialog-box (component 'new-ticket-dialog'
+          onsubmit=(route-action 'createTicket'))
+        ondismiss=(action (mut isAdding) false)}}
+    {{/if}}
+  </nav>
+  {{#sortable-list load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='ticket' as |l|}}
+    {{#l.item 'description' as |item|}}
+      {{item.description}}
+    {{else}}
+      Description
+    {{/l.item}}
+  {{/sortable-list}}
+</div>

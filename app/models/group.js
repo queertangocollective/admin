@@ -1,0 +1,12 @@
+import DS from 'ember-data';
+
+const { attr, belongsTo, hasMany } = DS;
+
+export default DS.Model.extend({
+  name: attr('string'),
+  apiKey: attr('string'),
+  email: attr('string'),
+  hostname: attr('string'),
+  timezone: attr('string'),
+  locale: attr('string')
+});

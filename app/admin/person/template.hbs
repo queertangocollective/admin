@@ -1,0 +1,29 @@
+{{title model.name}}
+<br>
+<section id="person">
+  {{#form-for model onsubmit=(route-action 'save') as |f|}}
+    {{#f.save-bar}}
+      {{#link-to "admin.people"}}People{{/link-to}}
+    {{else}}
+      <a href="mailto:{{model.email}}">
+        {{icon "email-solid"}} Email
+      </a>
+      {{#action-link action=(action (mut isDeleting) true)}}
+        {{icon "cancel-solid"}} Delete
+      {{/action-link}}
+      {{#if isDeleting}}
+        {{dialog-box (component 'delete-dialog'
+            model=model
+            onsubmit=(route-action 'deleteRecord' model))
+          ondismiss=(action (mut isDeleting) false)}}
+      {{/if}}
+    {{/f.save-bar}}
+    <div class="frame">
+      {{f.text 'name'}}
+      {{f.text 'email'}}
+      {{f.text 'url'}}
+      {{f.editor 'bio' rows=5}}
+      {{f.photos 'photos'}}
+    </div>
+  {{/form-for}}
+</section>

@@ -1,0 +1,13 @@
+{{#form-for onsubmit=(action 'submit') as |f|}}
+  <header>{{icon 'ticket-solid'}} Add Ticket</header>
+  <div class="body">
+    {{f.text 'description'}}
+    {{f.currency 'cost'}}
+    {{f.datetime 'validFrom'}}
+    {{f.datetime 'validTo'}}
+  </div>
+  <footer>
+    {{f.submit 'Add Location'}}
+    <button type='reset' onclick={{dismiss}}>Cancel</button>
+  </footer>
+{{/form-for}}

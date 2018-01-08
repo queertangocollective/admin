@@ -1,0 +1,140 @@
+.text-editor {
+  border: 2px solid $black;
+  position: relative;
+  margin-bottom: 1em;
+
+  .__mobiledoc-editor {
+    font-family: 'Libre Baskerville', Baskerville;
+    color: $black;
+
+    & > div {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+  .dialog-box & {
+    border-color: $white;
+
+    .__mobiledoc-editor {
+      color: $white;
+    }
+
+    nav {
+      border-color: $white;
+    }
+  }
+
+  .link-editor {
+    .pop-over-container {
+      @extend .flex-row;
+    }
+
+    input {
+      width: 20rem;
+    }
+
+    button {
+      padding: 0;
+      width: 2rem;
+      height: 2rem;
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+
+        path {
+          fill: $white;
+        }
+      }
+    }
+  }
+
+  nav {
+    background: $black;
+    height: 30px;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    position: sticky;
+    top: 58px;
+    z-index: 2;
+
+    button, label {
+      margin: 0;
+      display: inline-block;
+      padding: 0 0.5em;
+      height: 30px;
+      cursor: pointer;
+      outline: none;
+
+      &:hover {
+        background: $soot;
+      }
+
+      svg {
+        transition: all 120ms;
+        fill: $white;
+        width: 30px;
+        height: 30px;
+      }
+
+      &.active {
+        background: $white;
+
+        path {
+          fill: $black;
+        }
+
+        &:hover {
+          background: $cloudy;
+        }
+      }
+    }
+  }
+
+  .mini-form {
+    position: sticky;
+    top: 88px;
+    z-index: 2;
+    background: $white;
+  }
+
+  .__mobiledoc-editor {
+    margin: 0;
+    padding: 0.5em;
+    min-height: 2em;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  blockquote {
+    position: relative;
+    margin: 1em 0;
+    border-left: 0;
+    color: $black;
+
+    &:before {
+      position: absolute;
+      content: "“";
+      font-size: 2em;
+      color: $soot;
+      left: 0em;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .text-editor {
+    font-size: 1.2rem;
+    p {
+      font-size: 1.2rem;
+    }
+  }
+}

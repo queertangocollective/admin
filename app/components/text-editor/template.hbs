@@ -1,0 +1,60 @@
+{{#file-dropzone name=(concat name '-img') as |dropzone|}}
+  <nav>
+    {{#text-editor/markup-button for='strong' title='Bold' id=inputId editor=this onclick=(action 'toggleMarkup')}}
+      {{icon 'bold'}}
+    {{/text-editor/markup-button~}}
+
+    {{#text-editor/markup-button for='em' title='Italicize' id=inputId editor=this onclick=(action 'toggleMarkup')}}
+      {{icon 'italic'}}
+    {{/text-editor/markup-button~}}
+
+    {{#text-editor/markup-button for='u' title='Underline' id=inputId editor=this onclick=(action 'toggleMarkup')}}
+      {{icon 'underline'}}
+    {{/text-editor/markup-button~}}
+
+    {{#text-editor/section-button for='blockquote' title='Quote' id=inputId editor=this onclick=(action 'toggleSection')}}
+      {{icon 'quote'}}
+    {{/text-editor/section-button~}}
+
+    {{#text-editor/markup-button for='a' hint='isLink' title='Link' id=inputId editor=this onclick=(action 'openForm' 'addLink')}}
+      {{icon 'link'}}
+    {{else}}
+      {{icon 'unlink'}}
+    {{/text-editor/markup-button~}}
+
+    {{#if onupload}}
+      {{#file-upload name=(concat name '-img') id=(concat inputId '-img') onfileadd=(action 'upload' editor.editor)}}
+        {{icon 'img'}}
+      {{/file-upload~}}
+      {{#tool-tip for=(concat inputId '-img')}}
+        Add Image
+      {{/tool-tip~}}
+    {{/if}}
+
+    {{#text-editor/markup-button for='youtube' title='Embed Youtube Video' id=inputId editor=this onclick=(action 'openForm' 'addYoutubeEmbed')}}
+      {{icon 'youtube'}}
+    {{/text-editor/markup-button}}
+  </nav>
+  {{#if form}}
+    {{text-editor/mini-form editor=this form=form onsubmit=(action form.actionName) oncancel=(action (mut form) null) class='mini-form'}}
+  {{/if}}
+  <div class="mobiledoc-editor__editor-wrapper">
+    <div class="mobiledoc-editor__editor"></div>
+  </div>
+{{/file-dropzone}}
+
+{{#each componentCards as |card|}}
+  {{#ember-wormhole to=card.destinationElementId}}
+    {{component card.cardName
+      editor=editor
+      postModel=card.postModel
+      cardName=card.cardName
+      payload=card.payload
+      env=card.env
+      options=card.options
+      editCard=(action card.env.edit)
+      saveCard=(action card.env.save)
+      cancelCard=(action card.env.cancel)
+      removeCard=(action card.env.remove)}}
+  {{/ember-wormhole}}
+{{/each}}

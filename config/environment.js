@@ -1,11 +1,16 @@
-/* jshint node: true */
+/* eslint-env node */
+'use strict';
 
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     modulePrefix: 'queertangocollective',
-    environment: environment,
+    environment,
     rootURL: '/',
     locationType: 'auto',
+    API_KEY: 'bf4e9986efd08ff4247da3cd55f827d1',
+    API_HOST: 'http://localhost:3000',
+    ZIP_API_KEY: 'js-UgjzTROXe9B7ac3ruujT6W4TqAIwT86OppnihcfwlRDw4HYycisiewcE7Va03hOt',
+    GOOGLE_MAPS_API_KEY: 'AIzaSyCEXiB9AwC377Dhmbni6tRWGnfjHvhTQcE',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -14,6 +19,23 @@ module.exports = function(environment) {
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
         Date: false
+      }
+    },
+
+    torii: {
+      // a 'session' property will be injected on routes and controllers
+      sessionServiceName: 'session',
+      providers: {
+        'facebook-oauth2': {
+          apiKey: '1515089595488289',
+          scope: 'email',
+          redirectUri: 'http://localhost:4200/torii/redirect.html'
+        },
+        'google-oauth2': {
+          apiKey: '725704560328-rnn4p5lieg6uqvuj7qjaen8o8asrr79m.apps.googleusercontent.com',
+          scope: 'email',
+          redirectUri: 'http://localhost:4200/torii/redirect.html'
+        }
       }
     },
 

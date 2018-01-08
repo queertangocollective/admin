@@ -1,0 +1,11 @@
+<header>Add a Person</header>
+<div class="grid">
+  <fieldset>
+    <label for='person[name]'>Name</label>
+    {{text-field value=name onchange=(action (mut name))}}
+  </fieldset>
+</div>
+<footer>
+  <button type='submit' onclick={{action onsubmit}}>Add</button>
+  <button type='reset' onclick={{action dismiss}}>Cancel</button>
+</footer>

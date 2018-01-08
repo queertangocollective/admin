@@ -1,0 +1,25 @@
+.save-bar {
+  background: $white;
+  padding-top: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin-bottom: 1rem;
+
+  hr {
+    padding-top: 0.5rem;
+    margin: 0;
+  }
+
+  nav {
+    background: $black;
+
+    a, & {
+      color: $white;
+    }
+
+    path {
+      fill: $white;
+    }
+  }
+}

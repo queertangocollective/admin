@@ -1,0 +1,44 @@
+{{title "Locations"}}
+{{remember-document-scroll key='locations'}}
+
+<div id="locations">
+  <div class="frame">
+    <header>
+      <h2>
+        {{search-field query=q onquery=(action (mut q)) placeholder="Locations"}}
+      </h2>
+    </header>
+    <nav>
+      <button type='submit' onclick={{action (mut isAdding) true}}>
+        {{icon "location-solid"}} Add Location
+      </button>
+      {{#if isAdding}}
+        {{dialog-box (component 'new-location-dialog'
+            onsubmit=(route-action 'createLocation'))
+          ondismiss=(action (mut isAdding) false)}}
+      {{/if}}
+    </nav>
+  </div>
+  {{#sortable-list rows=model.model load=(route-action 'load') total=model.meta.page.total sort=sort icon='location' as |l|}}
+    {{#l.item 'name' as |item|}}
+      {{#link-to 'admin.location' item}}{{item.name}}{{/link-to}}
+    {{else}}
+      Name
+    {{/l.item}}
+    {{#l.item 'addressLine' as |item|}}
+      {{item.addressLine}}
+    {{else}}
+      Address
+    {{/l.item}}
+    {{#l.item 'city' as |item|}}
+      {{item.city}}
+    {{else}}
+      City
+    {{/l.item}}
+    {{#l.item 'regionCode' as |item|}}
+      {{item.regionCode}}
+    {{else}}
+      State
+    {{/l.item}}
+  {{/sortable-list}}
+</div>
