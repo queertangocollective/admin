@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
     <title>alert</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="alert" fill="#050505">
-            <path d="M10.5,6.49710104 C10.5,5.67027497 11.1657972,5 12,5 C12.8284271,5 13.5,5.67165598 13.5,6.49710104 L13.5,13.502899 C13.5,14.329725 12.8342028,15 12,15 C11.1715729,15 10.5,14.328344 10.5,13.502899 L10.5,6.49710104 Z M12,19 C11.1715729,19 10.5,18.3284271 10.5,17.5 C10.5,16.6715729 11.1715729,16 12,16 C12.8284271,16 13.5,16.6715729 13.5,17.5 C13.5,18.3284271 12.8284271,19 12,19 Z" id="Combined-Shape"></path>
+        <g id="alert" fill="#010101">
+            <path d="M9,3 C9.55228475,3 10,3.44771525 10,4 L10,11 C10,11.5522847 9.55228475,12 9,12 C8.44771525,12 8,11.5522847 8,11 L8,4 C8,3.44771525 8.44771525,3 9,3 Z M9,15 C8.44771525,15 8,14.5522847 8,14 C8,13.4477153 8.44771525,13 9,13 C9.55228475,13 10,13.4477153 10,14 C10,14.5522847 9.55228475,15 9,15 Z" id="Combined-Shape"></path>
         </g>
     </g>
 </svg>
