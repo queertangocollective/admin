@@ -8,5 +8,6 @@ export default DS.Model.extend({
   biography: attr('string'),
   role: attr('string'),
   published: attr('boolean'),
-  website: attr('string')
+  website: attr('string'),
+  authorizations: hasMany('authorization')
 });

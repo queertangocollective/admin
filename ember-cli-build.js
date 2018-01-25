@@ -8,8 +8,8 @@ module.exports = function(defaults) {
     svgJar: {
       strategy: 'inline',
       sourceDirs: [
-        'node_modules/@queertangocollective/ui/public/assets/images/icons/',
-        'public/assets/images/icons/'
+        'node_modules/@queertangocollective/ui/public/assets/images/icons',
+        'public/assets/images/icons'
       ],
       inline: {
         copypastaGen: (assetId) => `{{icon '${assetId}'}}`

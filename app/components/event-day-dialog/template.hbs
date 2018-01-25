@@ -1,0 +1,11 @@
+<div class='body'>
+  {{#each events as |event|}}
+    {{#if (is-same-day event.startsAt day.moment)}}
+      {{event.title}}
+      {{l 'time' event.startsAt}} - {{l 'time' event.endsAt}}
+    {{/if}}
+  {{/each}}
+</div>
+<footer>
+  <button type='reset' onclick={{dismiss}}>Close</button>
+</footer>

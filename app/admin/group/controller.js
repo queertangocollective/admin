@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { get, computed } from '@ember/object';
 
-const { computed, get } = Ember;
-
-export default Ember.Controller.extend({
+export default Controller.extend({
   locales: [{
     label: '🇺🇸 English',
     code: 'en-US'
@@ -10,15 +9,19 @@ export default Ember.Controller.extend({
     label: '🇦🇷 Spanish',
     code: 'es-AR'
   }],
-  currentLocale: computed('locale', {
+
+  locale: computed('model.locale', {
     get() {
-      return get(this, 'locales').findBy('code', get(this, 'locale'));
+      console.log(get(this, 'model.locale'));
+      return get(this, 'locales').findBy('code', get(this, 'model.locale'));
     },
     set(_, locale) {
-      set(this, 'locale', locale.code);
+      console.log(get(this, 'model.locale'));
+      set(this, 'model.locale', locale.code);
       return locale;
     }
   }),
+
   currentHostname: computed({
     get() {
       return window.location.host;

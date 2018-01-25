@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { get, computed } from '@ember/object';
 import Restricted from 'torii/routing/authenticated-route-mixin';
+import { singularize } from 'ember-inflector';
 
-const { computed, get } = Ember;
-const { singularize } = Ember.String;
-
-export default Ember.Route.extend(Restricted, {
+export default Route.extend(Restricted, {
 
   queryParams: {
     sort: {
@@ -31,7 +30,8 @@ export default Ember.Route.extend(Restricted, {
       },
       filter: {
         text: params.q
-      }
+      },
+      include: get(this, 'include')
     }).then(function (results) {
       return {
         model: results,

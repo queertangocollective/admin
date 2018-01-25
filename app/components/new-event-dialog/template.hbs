@@ -1,0 +1,17 @@
+{{#form-for onsubmit=(action 'submit') as |f|}}
+  <header>{{icon 'calendar'}} Add Event</header>
+  <div class="body">
+    <div class='grid-column'>
+      {{f.text 'title'}}
+      <div class='grid-row'>
+        {{f.datetime 'startsAt'}}
+        {{f.datetime 'endsAt' autocomplete=f.changeset.startsAt}}
+      </div>
+      {{f.editor 'description'}}
+    </div>
+  </div>
+  <footer>
+    {{f.submit 'Add Event'}}
+    <button type='reset' onclick={{dismiss}}>Cancel</button>
+  </footer>
+{{/form-for}}

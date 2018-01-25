@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import { set, get } from '@ember/object';
+import { isBlank } from '@ember/utils';
 import Resource from '../../routes/resource';
 import method from 'ember-service-methods/inject';
-
-const { get, set, isBlank } = Ember;
 
 export default Resource.extend({
 

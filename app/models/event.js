@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import { isPresent } from '@ember/utils';
 import DS from 'ember-data';
 import moment from 'moment';
 
-const { get, computed, isPresent } = Ember;
 const { attr, belongsTo, hasMany } = DS;
 
 export default DS.Model.extend({
@@ -11,5 +11,6 @@ export default DS.Model.extend({
   venue: belongsTo('venue'),
   startsAt: attr('date'),
   endsAt: attr('date'),
-  level: attr('string')
+  level: attr('string'),
+  guests: hasMany('guest')
 });

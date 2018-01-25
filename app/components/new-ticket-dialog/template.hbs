@@ -1,13 +1,18 @@
 {{#form-for onsubmit=(action 'submit') as |f|}}
-  <header>{{icon 'ticket-solid'}} Add Ticket</header>
-  <div class="body">
+  <header>{{icon 'ticket'}} Add Ticket</header>
+  <div class="body grid-column">
     {{f.text 'description'}}
-    {{f.currency 'cost'}}
-    {{f.datetime 'validFrom'}}
-    {{f.datetime 'validTo'}}
+    <div class='grid-row'>
+      {{f.currency 'cost'}}
+      {{f.number 'quantity'}}
+    </div>
+    <div class='grid-row'>
+      {{f.datetime 'validFrom'}}
+      {{f.datetime 'validTo'}}
+    </div>
   </div>
   <footer>
-    {{f.submit 'Add Location'}}
+    {{f.submit 'Add Ticket'}}
     <button type='reset' onclick={{dismiss}}>Cancel</button>
   </footer>
 {{/form-for}}

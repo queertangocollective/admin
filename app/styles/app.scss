@@ -1,5 +1,21 @@
+$white: #FFFFFF;
+$heather: #CCCCCC;
+$grey: #424242;
+$black: #050505;
+$error: #E63200;
+$accent: #4240FF;
+
+header {
+  margin-bottom: 1rem;
+}
 nav {
   margin-bottom: 1rem;
+}
+
+body {
+  padding: 0 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 #people {
@@ -13,16 +29,25 @@ nav {
 
 #locations {
   .name {
-    width: 30%;
-  }
-  .addressLine {
     width: 40%;
   }
-  .city {
-    width: 20%;
+
+  .address-line {
+    width: 30%;
   }
+
+  .city {
+    width: 16%;
+  }
+
   .region-code {
-    width: 10%;
+    width: 14%;
+  }
+
+  li .region-code {
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    font-variant-caps: all-small-caps;
   }
 }
 
@@ -30,16 +55,173 @@ nav {
   .description {
     width: 25%;
   }
-  .paidBy {
+  .paid-by {
     width: 20%;
   }
-  .paidAt {
+  .paid-at {
     width: 20%;
   }
-  .amountPaid {
+  .amount-paid {
     width: 18%;
   }
-  .amountOwed {
+  .amount-owed {
     width: 17%;
+  }
+}
+
+#events > header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  grid-column-gap: 0.5rem;
+}
+
+.event-planner {
+  height: 100%;
+  box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+  border-radius: 4px;
+  padding: 0.5rem;
+
+  .ember-power-calendar {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+  }
+
+  .ember-power-calendar-nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    line-height: 2rem;
+  }
+
+  .ember-power-calendar-nav-control--previous svg {
+    transform: rotateY(180deg);
+  }
+
+  button.ember-power-calendar-nav-control svg {
+    width: 1.125rem;
+    padding-right: 0;
+  }
+
+  .ember-power-calendar-days {
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+
+  .ember-power-calendar-row {
+    display: grid;
+    grid-template-columns: repeat(7, calc(100% / 7));
+  }
+
+  .ember-power-calendar-day-grid {
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(3rem, 1fr));
+
+    & > * {
+      border: 0 solid $heather;
+      border-width: 0 0 1px 0;
+
+      &:first-child {
+        border-width: 1px 0;
+      }
+    }
+  }
+
+  .ember-power-calendar-day {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    appearance: none;
+    background: $white;
+    border: 0 solid $heather;
+    border-width: 0 1px 0 0;
+
+    &:first-child {
+      border-width: 0 1px 0 1px;
+    }
+
+    .number {
+      position: absolute;
+      top: 0.1rem;
+      left: 0.1rem;
+      padding: 0.4rem;
+      width: 1.75rem;
+      height: 1.75rem;
+      line-height: 1rem;
+      text-align: center;
+    }
+
+    ul {
+      position: absolute;
+      top: 2rem;
+      bottom: 0;
+      left: 0.25rem;
+      right: 0.25rem;
+    }
+
+    li {
+      border-radius: 4px;
+      padding: 0.25rem 0;
+      max-width: 100%;
+      background: $black;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    a {
+      text-decoration: none;
+      color: $white;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .ember-power-calendar-day--today {
+    .number {
+      background: $accent;
+      color: $white;
+      border-radius: 0.875rem;
+    }
+
+    a {
+      background: $accent;
+    }
+  }
+}
+
+.ember-application > div {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+}
+
+#authorizations {
+  header {
+    line-height: 1rem;
+  }
+  ol .avatar {
+    position: relative;
+    height: 1.8rem;
+    overflow: visible;
+
+    img {
+      position: absolute;
+      top: -.5rem;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 1rem;
+    }
+  }
+
+  .avatar {
+    width: 3rem;
+  }
+  .email {
+    width: calc(60% - 1rem);
+  }
+  .provider {
+    width: calc(40% - 2rem);
   }
 }

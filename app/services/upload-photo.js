@@ -1,9 +1,7 @@
-import Ember from 'ember';
+import Service, { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
-import fetch from 'ember-network/fetch';
+import fetch from 'fetch';
 import config from '../config/environment';
-
-const { inject: { service } } = Ember;
 
 function getDimensions(src) {
   return new RSVP.Promise(function (resolve) {
@@ -18,7 +16,7 @@ function getDimensions(src) {
   });
 }
 
-export default Ember.Service.extend({
+export default Service.extend({
   store: service(),
 
   execute(file, options={}) {

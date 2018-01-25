@@ -19,17 +19,17 @@
   </nav>
   {{#sortable-list  load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='edit' as |l|}}
     {{#l.item 'title' as |item|}}
-      {{item.title}}
+      {{#link-to 'admin.post' item}}{{item.title}}{{/link-to}}
     {{else}}
       Title
     {{/l.item}}
     {{#l.item 'written-by' as |item|}}
-      {{item.writtenBy}}
+      {{item.authors}}
     {{else}}
       Written By
     {{/l.item}}
     {{#l.item 'published-at' as |item|}}
-      {{format-date item.publishedAt timeZone=session.currentGroup.timezone hour='numeric' minute='numeric'}}
+      {{l 'date' item.publishedAt}}
     {{else}}
       Published At
     {{/l.item}}

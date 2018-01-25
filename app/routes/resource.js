@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import Restricted from 'torii/routing/authenticated-route-mixin';
 import method from 'ember-service-methods/inject';
+import { pluralize } from 'ember-inflector';
 
-const { pluralize } = Ember.String;
-
-export default Ember.Route.extend(Restricted, {
+export default Route.extend(Restricted, {
 
   model(params) {
     let segments = this.routeName.split('.');
@@ -30,6 +29,10 @@ export default Ember.Route.extend(Restricted, {
 
     save(model, changes) {
       return this.save(model, changes);
+    },
+
+    flash(...params) {
+      this.flash(...params);
     },
 
     accessDenied() {

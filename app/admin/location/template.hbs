@@ -2,29 +2,32 @@
 {{remember-document-scroll key=(concat 'location/' model.id)}}
 
 <section id="location">
-  {{#form-for model onsubmit=(route-action 'save') as |f|}}
-    {{#confirm-button onsubmit=(route-action 'deleteRecord' model)}}
-      {{icon "cancel"}} Delete Location
-    {{else}}
-      Are you sure?
-    {{/confirm-button}}
-    {{f.submit 'Save'}}
-    <div class='frame'>
-      <div class="flex-row half">
-        <div>
-          {{f.photo 'photo' name=(concat 'location/' model.id)}}
-          {{g-map latitude=model.latitude longitude=model.longitude}}
-        </div>
-        <div>
-          {{f.text 'name'}}
-          {{f.text 'website'}}
-          {{f.textarea 'address' rows=2}}
-          {{f.text 'postalCode' onblur=(route-action 'hydrateLocation' f)}}
-          <div class="flex-row half collapse-none">
-            {{f.text 'city'}}
-            {{f.text 'regionCode'}}
-          </div>
-        </div>
+  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' (concat 'Saved ' model.name)) as |f|}}
+    <nav class='row'>
+      {{#confirm-button onsubmit=(route-action 'deleteRecord' model)}}
+        {{icon "cancel"}} Delete Location
+      {{else}}
+        Are you sure?
+      {{/confirm-button}}
+      <button type='submit' onclick={{action (mut isShowingMap) true}}>
+        {{icon 'location'}} View Map
+      </button>
+
+      {{#if isShowingMap}}
+        {{dialog-box (component 'map-dialog'
+            latitude=model.latitude
+            longitude=model.longitude)
+          ondismiss=(action (mut isShowingMap) false)}}
+      {{/if}}
+    </nav>
+    <div class='grid-column'>
+      {{f.text 'name'}}
+      {{f.text 'website'}}
+      {{f.textarea 'address' rows=2}}
+      {{f.text 'postalCode' onblur=(route-action 'hydrateLocation' f)}}
+      <div class='grid-row'>
+        {{f.text 'city'}}
+        {{f.text 'regionCode'}}
       </div>
     </div>
   {{/form-for}}

@@ -7,7 +7,7 @@ module.exports = function(environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
-    API_KEY: 'bf4e9986efd08ff4247da3cd55f827d1',
+    API_KEY: 'c0af655443ad20ed921dfe41049a58c5',
     API_HOST: 'http://localhost:3000',
     ZIP_API_KEY: 'js-UgjzTROXe9B7ac3ruujT6W4TqAIwT86OppnihcfwlRDw4HYycisiewcE7Va03hOt',
     GOOGLE_MAPS_API_KEY: 'AIzaSyCEXiB9AwC377Dhmbni6tRWGnfjHvhTQcE',
@@ -62,6 +62,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.autoboot = false;
   }
 
   if (environment === 'production') {

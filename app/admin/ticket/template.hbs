@@ -1,0 +1,25 @@
+{{title model.description}}
+{{remember-document-scroll key=(concat 'ticket/' model.id)}}
+
+<section id="ticket">
+  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' (concat 'Saved ' model.description)) as |f|}}
+    <nav class='row'>
+      {{#confirm-button onsubmit=(route-action 'deleteRecord' model)}}
+        {{icon "trash"}}
+      {{else}}
+        Are you sure?
+      {{/confirm-button}}
+    </nav>
+    <div class='grid-column'>
+      {{f.text 'description'}}
+      <div class='grid-row'>
+        {{f.currency 'cost'}}
+        {{f.number 'quantity'}}
+      </div>
+      <div class='grid-row'>
+        {{f.datetime 'validFrom'}}
+        {{f.datetime 'validTo'}}
+      </div>
+    </div>
+  {{/form-for}}
+</section>

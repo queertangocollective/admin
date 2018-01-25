@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { set, get } from '@ember/object';
+import { isBlank } from '@ember/utils';
 import method from 'ember-service-methods/inject';
 
-const { get, set, isBlank } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['new-location-dialog'],
 
   getLocationFromPostalCode: method(),

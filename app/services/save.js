@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 import RSVP from 'rsvp';
 import method from 'ember-service-methods/inject';
 
-export default Ember.Service.extend({
+export default Service.extend({
 
   uploadPhoto: method(),
 

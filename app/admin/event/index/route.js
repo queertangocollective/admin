@@ -5,49 +5,30 @@ export default Resource.extend({
 
   createLocation: method(),
 
-  createTeacher: method(),
+  createPerson: method(),
 
   actions: {
     save(model, changes) {
-      if (changes.coverPhotos) {
-        changes.photos = changes.coverPhotos.map(function (photo) {
-          if (photo.blob) {
-            photo.data = { tags: ['cover-photo'] };
-          }
-          return photo;
-        });
-        delete changes.coverPhotos;
-      }
-
-      if (model.constructor.modelName === 'discount') {
-        changes.currency = 'USD';
-      }
-
       return this.save(model, changes);
     },
     delete(model) {
       return model.deleteRecord();
     },
-    createTeacher(session, params) {
-      return this.createTeacher(params).then(function (teacher) {
-        session.set('teacher', teacher);
+    createPerson(guest, params) {
+      return this.createPerson(params).then(function (person) {
+        guest.set('person', person);
       });
     },
-    createLocation(session, params) {
+    createLocation(venue, params) {
       return this.createLocation(params).then(function (location) {
-        session.set('location', location);
+        venue.set('location', location);
       });
     },
-    addSession(event) {
-      let session = this.store.createRecord('session', { event });
-      this.store.createRecord('guest', { session });
-      return session;
+    addVenue(event) {
+      return this.store.createRecord('venue', { event });
     },
-    addGuest(session) {
-      return this.store.createRecord('guest', { session });
-    },
-    addDiscount(event) {
-      return this.store.createRecord('discount', { event });
+    addGuest(event) {
+      return this.store.createRecord('guest', { event });
     }
   }
 });

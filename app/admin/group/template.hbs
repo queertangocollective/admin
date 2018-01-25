@@ -6,13 +6,18 @@
 <section id="group">
   {{#form-for model onsubmit=(route-action 'save') as |f|}}
     {{f.text 'name'}}
-    {{#f.select 'currentLocale' options=locales as |locale|}}
-      {{locale.label}}
+    {{#f.select 'locale' options=locales gravity='s' as |locale|}}
+      {{icon 'check'}} {{locale.label}}
     {{else}}
       Select your locale
     {{/f.select}}
-    {{f.text 'apiKey' readonly=true}}
-    {{f.text 'hostname' label=(concat "Hostname " (icon 'help-solid' id='hostname-info'))
+    <label for='api-key'>API Key</label>
+    {{#copy-field inputId='api-key' value=model.apiKey}}
+      Copy API Key
+    {{else}}
+      Copied
+    {{/copy-field}}
+    {{f.text 'hostname' label=(concat "Hostname " (icon 'help' id='hostname-info'))
              autocomplete=currentHostname}}
     {{#tool-tip for='hostname-info'}}
       The hostname of this website is "{{currentHostname}}".<br><br>

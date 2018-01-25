@@ -1,28 +1,38 @@
 {{title model.name}}
-<br>
 <section id="person">
-  {{#form-for model onsubmit=(route-action 'save') as |f|}}
-    {{#f.save-bar}}
-      {{#link-to "admin.people"}}People{{/link-to}}
-    {{else}}
-      <a href="mailto:{{model.email}}">
-        {{icon "email-solid"}} Email
+  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' (concat 'Saved ' model.name)) as |f|}}
+    <nav class='row'>
+      {{#confirm-button onsubmit=(route-action 'deleteRecord' model)}}
+        {{icon "trash"}}
+      {{else}}
+        Are you sure?
+      {{/confirm-button}}
+      {{f.submit 'Save'}}
+      <a class='submit-button' href="mailto:{{model.email}}">
+        {{icon "email"}} Email
       </a>
-      {{#action-link action=(action (mut isDeleting) true)}}
-        {{icon "cancel-solid"}} Delete
-      {{/action-link}}
-      {{#if isDeleting}}
-        {{dialog-box (component 'delete-dialog'
-            model=model
-            onsubmit=(route-action 'deleteRecord' model))
-          ondismiss=(action (mut isDeleting) false)}}
+
+      <button type='submit' onclick={{action (mut isAddingLogin) true}}>
+        {{icon 'key'}}
+        {{#if model.authorizations.length}}
+          Manage Logins
+        {{else}}
+          Add Login
+        {{/if}}
+      </button>
+      {{#if isAddingLogin}}
+        {{dialog-box (component 'new-login-dialog'
+            logins=model.authorizations
+            onsubmit=(route-action 'addLogin'))
+          ondismiss=(action (mut isAddingLogin) false)}}
       {{/if}}
-    {{/f.save-bar}}
-    <div class="frame">
+    </nav>
+
+    <div class='grid-column'>
       {{f.text 'name'}}
       {{f.text 'email'}}
-      {{f.text 'url'}}
-      {{f.editor 'bio' rows=5}}
+      {{f.text 'website'}}
+      {{f.editor 'biography' rows=5}}
       {{f.photos 'photos'}}
     </div>
   {{/form-for}}

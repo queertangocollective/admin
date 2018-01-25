@@ -1,7 +1,5 @@
-import Ember from 'ember';
+import { set } from '@ember/object';
 import Resource from '../../routes/resource';
-
-const { set } = Ember;
 
 export default Resource.extend({
   actions: {
@@ -20,10 +18,12 @@ export default Resource.extend({
     },
     publish(model) {
       set(model, 'published', true);
+      set(model, 'publishedAt', new Date());
       return model.save();
     },
     unpublish(model) {
       set(model, 'published', false);
+      set(model, 'publishedAt', null);
       return model.save();
     }
   }

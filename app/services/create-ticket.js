@@ -1,6 +1,5 @@
 import Service, { inject as service } from '@ember/service';
 import { get } from '@ember/object';
-import method from 'ember-service-methods/inject';
 
 export default Service.extend({
 

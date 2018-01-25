@@ -1,15 +1,13 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import method from 'ember-service-methods/inject';
 
-export default Ember.Route.extend({
+export default Route.extend({
 
   uploadPhoto: method(),
 
   actions: {
     addPhoto(model, file) {
-      return this.uploadPhoto(file, {
-        post: model
-      });
+      return this.uploadPhoto(file);
     }
   }
 });

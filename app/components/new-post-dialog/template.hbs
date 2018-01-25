@@ -1,0 +1,11 @@
+{{#form-for onsubmit=(action 'submit') as |f|}}
+  <header>{{icon 'edit'}} Draft Post</header>
+  <div class='body grid-column'>
+    {{f.text 'title'}}
+    {{f.editor 'body'}}
+  </div>
+  <footer>
+    {{f.submit 'Create Post'}}
+    <button type='reset' onclick={{dismiss}}>Cancel</button>
+  </footer>
+{{/form-for}}

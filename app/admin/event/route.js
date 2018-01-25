@@ -1,7 +1,5 @@
-import Ember from 'ember';
+import { set } from '@ember/object';
 import Resource from '../../routes/resource';
-
-const { set } = Ember;
 
 export default Resource.extend({
   actions: {

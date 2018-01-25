@@ -1,0 +1,15 @@
+{{#form-for data onsubmit=(action 'submit') as |f|}}
+  <header>{{icon 'love'}} Add Donation</header>
+  <div class="body grid-column">
+    {{f.autocomplete 'paidBy' onquery=(action onquery 'people')}}
+    <div class='grid-row'>
+      {{f.currency 'amountPaid'}}
+      {{f.date 'paidAt'}}
+    </div>
+    {{f.editor 'notes'}}
+  </div>
+  <footer>
+    {{f.submit 'Add Donation'}}
+    <button type='reset' onclick={{dismiss}}>Cancel</button>
+  </footer>
+{{/form-for}}

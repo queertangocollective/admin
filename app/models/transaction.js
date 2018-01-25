@@ -5,13 +5,13 @@ const { attr, belongsTo } = DS;
 export default DS.Model.extend({
   description: attr('string'),
   paidAt: attr('date'),
-  paidBy: attr('string'),
+  paidBy: belongsTo('person'),
   receipt: belongsTo('photo'),
   amountPaid: attr('number'),
   amountOwed: attr('number'),
   currency: attr('string'),
   paymentMethod: attr('string'),
-  paymentProcesssorUrl: attr('string'),
+  paymentProcessorUrl: attr('string'),
   notes: attr('string'),
   ticket: belongsTo('ticket')
 });

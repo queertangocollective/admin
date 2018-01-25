@@ -1,0 +1,33 @@
+{{#form-for onsubmit=(action 'submit') as |f|}}
+  <header>{{icon 'key'}}{{#if logins.length}}Manage Logins{{else}}Add Login{{/if}}</header>
+  <div class='body' id='authorizations'>
+    {{#if logins.length}}
+      {{#sortable-list rows=logins as |l|}}
+        {{#l.item 'avatar' as |login|}}
+          <img src="{{login.avatar}}" alt="{{login.email}}"/>
+        {{/l.item}}
+        {{#l.item 'email' as |login|}}
+          {{login.email}}
+        {{else}}
+          Email
+        {{/l.item}}
+        {{#l.item 'provider' as |login|}}
+          {{login.provider}}
+        {{else}}
+          Provider
+        {{/l.item}}
+      {{/sortable-list}}
+    {{else}}
+      <div class="grid-row">
+        {{f.text 'email'}}
+        {{#f.select 'role' options=(list 'staff' 'teacher') gravity='s' as |option|}}
+          {{option}}
+        {{/f.select}}
+      </div>
+    {{/if}}
+  </div>
+  <footer>
+    {{f.submit 'Add Login'}}
+    <button type='reset' onclick={{dismiss}}>Cancel</button>
+  </footer>
+{{/form-for}}

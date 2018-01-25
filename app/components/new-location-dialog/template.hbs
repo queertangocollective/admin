@@ -1,14 +1,12 @@
 {{#file-dropzone name='new-location-photo'}}
   {{#form-for onsubmit=(action 'submit') as |f|}}
-    <header>{{icon 'location-solid'}} Add Location</header>
-    <div class="body">
+    <header>{{icon 'location'}} Add Location</header>
+    <div class='body grid-column'>
       {{f.text 'name'}}
       {{f.text 'website'}}
       {{f.textarea 'address' rows=2}}
-      <div class="flex-row half collapse-none">
-        {{f.text 'postalCode' onblur=(action 'hydrateLocation' f)}}
-      </div>
-      <div class="flex-row half collapse-none">
+      {{f.text 'postalCode' onblur=(action 'hydrateLocation' f)}}
+      <div class='grid-row'>
         {{f.text 'city'}}
         {{f.text 'regionCode'}}
       </div>

@@ -116,39 +116,4 @@
   .number + ul {
     top: 1.5rem;
   }
-
-  .time {
-    position: absolute;
-    top: 3rem;
-    bottom: 0;
-    width: 100%;
-    overflow-y: auto;
-
-    ul, ol {
-      height: 1440px;
-    }
-    ul li {
-      position: absolute;
-      width: 90%;
-      left: 10%;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      line-height: 1.5em;
-    }
-  }
-
-  .timeline {
-    ul li {
-      transition: all 120ms ease-in-out;
-      background: $black;
-      color: $white;
-      padding: 1rem;
-    }
-
-    ol li {
-      border-bottom: 1px dashed $heather;
-      height: 60px;
-    }
-  }
 }
