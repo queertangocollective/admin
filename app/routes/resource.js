@@ -24,7 +24,8 @@ export default Route.extend(Restricted, {
     error() {
       let segments = this.routeName.split('.');
       let modelName = segments.pop();
-      this.replaceWith(`${segments.join('.')}.${pluralize(modelName)}`);
+      segments.push(pluralize(modelName));
+      this.replaceWith(segments.join('.'));
     },
 
     save(model, changes) {
@@ -45,7 +46,7 @@ export default Route.extend(Restricted, {
           timeout: 5000
         });
         let [, modelName] = this.routeName.split('.');
-        this.replaceWith(`admin.${pluralize(modelName)}`);
+        this.replaceWith(`${pluralize(modelName)}`);
       });
     }
   }

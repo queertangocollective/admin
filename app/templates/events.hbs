@@ -1,0 +1,44 @@
+{{title 'Events'}}
+{{remember-document-scroll key='events'}}
+
+<section id="events">
+  <header>
+    {{search-field query=q onquery=(action (mut q)) placeholder="Events"}}
+    {{#link-to (query-params as='list') class='button'}}
+      {{icon 'list'}} List
+    {{/link-to}}
+    {{#link-to (query-params as='calendar') class='button'}}
+      {{icon 'calendar'}} Calendar
+    {{/link-to}}
+  </header>
+  <nav class='row'>
+    <button type='submit' onclick={{action (mut isAdding) true}}>
+      {{icon "calendar"}} Add Event
+    </button>
+    {{#if isAdding}}
+      {{dialog-box (component 'new-event-dialog'
+          onsubmit=(route-action 'createEvent'))
+        ondismiss=(action (mut isAdding) false)}}
+    {{/if}}
+  </nav>
+  {{#if (equals as 'list')}}
+    {{#sortable-list load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='calendar' as |l|}}
+      {{#l.item 'title' as |item|}}
+        {{#link-to 'event' item}}{{item.title}}{{/link-to}}
+      {{else}}
+        Title
+      {{/l.item}}
+      {{#l.item 'startsAt' '-endsAt' as |item|}}
+        {{l 'date' item.startsAt}} - {{l 'date' item.endsAt}}
+      {{else}}
+        Date
+      {{/l.item}}
+    {{else}}
+      No Events found
+    {{/sortable-list}}
+  {{else}}
+    {{#event-planner events=model.model oncreate=(route-action 'createEvent') onquery=(route-action 'query') onselect=(action (mut eventDay)) as |event|}}
+      {{#link-to 'event' event}}{{event.title}}{{/link-to}}
+    {{/event-planner}}
+  {{/if}}
+</section>

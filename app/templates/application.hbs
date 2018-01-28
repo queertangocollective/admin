@@ -1,0 +1,20 @@
+{{head-layout}}
+{{#if session}}
+  {{title session.currentGroup.name}}
+  <nav>
+    {{#link-to 'group' session.currentGroup}}My Group{{/link-to}}
+    {{#link-to 'posts'}}Posts{{/link-to}}
+    {{#link-to 'events'}}Events{{/link-to}}
+    {{#link-to 'tickets'}}Tickets{{/link-to}}
+    {{#link-to 'ledger'}}Ledger{{/link-to}}
+    {{#link-to 'people'}}People{{/link-to}}
+    {{#link-to 'locations'}}Locations{{/link-to}}
+    {{#submit-button onsubmit=(route-action 'logout')}}
+      Logout
+    {{/submit-button}}
+  </nav>
+{{/if}}
+{{outlet}}
+
+{{snack-bar}}
+{{dialog-box}}

@@ -3,7 +3,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'queertangocollective',
+    modulePrefix: '@queertangocollective/admin',
     environment,
     rootURL: '/',
     locationType: 'auto',

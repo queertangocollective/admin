@@ -1,8 +1,8 @@
 {
-  "name": "queertangocollective",
+  "name": "@queertangocollective/admin",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for queertangocollective goes here",
+  "description": "Administration for queertangocollective.org",
   "license": "MIT",
   "author": "",
   "directories": {

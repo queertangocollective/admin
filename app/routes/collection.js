@@ -16,8 +16,7 @@ export default Route.extend(Restricted, {
 
   modelName: computed({
     get() {
-      let [, modelName] = this.routeName.split('.');
-      return singularize(modelName);
+      return singularize(this.routeName);
     }
   }),
 

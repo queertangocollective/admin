@@ -1,0 +1,30 @@
+{{remember-document-scroll key=(concat 'event/' model.id '/edit')}}
+
+<section id="event-edit">
+  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' (concat 'Saved ' model.title)) as |f|}}
+    <nav class='row'>
+      {{#link-to 'event.photos' class='submit-button'}}
+        {{icon "photo"}} Photos
+      {{/link-to}}
+      {{#confirm-button onsubmit=(route-action 'deleteRecord' model)}}
+        {{icon "trash"}} Delete Event
+      {{/confirm-button}}
+    </nav>
+    <div class='grid-column'>
+      {{f.text 'title'}}
+      <div class='grid-row'>
+        {{f.datetime 'startsAt'}}
+        {{f.datetime 'endsAt' autocomplete=f.changeset.startsAt}}
+      </div>
+      {{#f.form-for 'guests' class='grid-row' as |g|}}
+        {{g.autocomplete 'person' onquery=(route-action 'query' 'person') key='name'}}
+        {{g.text 'role'}}
+      {{/f.form-for}}
+      {{f.editor 'description'}}
+      {{#f.form-for 'venue' class='grid-row' as |g|}}
+        {{g.autocomplete 'location' onquery=(route-action 'query' 'location') key='name'}}
+        {{g.text 'extendedAddress'}}
+      {{/f.form-for}}
+    </div>
+  {{/form-for}}
+</section>

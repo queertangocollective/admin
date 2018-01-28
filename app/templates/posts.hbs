@@ -1,0 +1,42 @@
+{{title 'Posts'}}
+{{remember-document-scroll key='posts'}}
+
+<div id="posts">
+  <header>
+    <h2>
+      {{search-field query=q onquery=(action (mut q)) placeholder="Posts"}}
+    </h2>
+  </header>
+  <nav>
+    <button type='submit' onclick={{action (mut isAdding) true}}>
+      {{icon "edit"}} Draft Post
+    </button>
+    {{#if isAdding}}
+      {{dialog-box (component 'new-post-dialog'
+          onsubmit=(route-action 'createPost'))
+        ondismiss=(action (mut isAdding) false)}}
+    {{/if}}
+  </nav>
+  {{#sortable-list  load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='edit' as |l|}}
+    {{#l.item 'title' as |item|}}
+      {{#link-to 'post' item}}{{item.title}}{{/link-to}}
+    {{else}}
+      Title
+    {{/l.item}}
+    {{#l.item 'written-by' as |item|}}
+      {{item.authors}}
+    {{else}}
+      Written By
+    {{/l.item}}
+    {{#l.item 'published-at' as |item|}}
+      {{l 'date' item.publishedAt}}
+    {{else}}
+      Published At
+    {{/l.item}}
+  {{else}}
+    <div class='no-items'>
+      No posts found
+    </div>
+  {{/sortable-list}}
+
+</div>
