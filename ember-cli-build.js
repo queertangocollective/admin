@@ -5,6 +5,21 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
+    origin: 'https://admin.queertangocollective.org',
+    autoprefixer: {
+      browsers: ['last 2 versions'],
+      cascade: false
+    },
+    sri: {
+      enabled: true,
+      crossorigin: 'anonymous'
+    },
+    fingerprint: {
+      prepend: 'https://builds.queertangocollective.org/admin/'
+    },
+    sassOptions: {
+      includePaths: ['app/styles', 'node_modules/@queertangocollective/ui/addon/styles']
+    },
     svgJar: {
       strategy: 'inline',
       sourceDirs: [
@@ -14,7 +29,7 @@ module.exports = function(defaults) {
       inline: {
         copypastaGen: (assetId) => `{{icon '${assetId}'}}`
       }
-    },
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated

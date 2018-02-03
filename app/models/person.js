@@ -9,5 +9,6 @@ export default DS.Model.extend({
   role: attr('string'),
   published: attr('boolean'),
   website: attr('string'),
-  authorizations: hasMany('authorization')
+  authorizations: hasMany('authorization'),
+  group: belongsTo('group')
 });

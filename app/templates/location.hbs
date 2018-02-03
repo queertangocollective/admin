@@ -2,7 +2,7 @@
 {{remember-document-scroll key=(concat 'location/' model.id)}}
 
 <section id="location">
-  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' (concat 'Saved ' model.name)) as |f|}}
+  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' 'Saved ' model.name) as |f|}}
     <nav class='row'>
       {{#confirm-button onsubmit=(route-action 'deleteRecord' model)}}
         {{icon "cancel"}} Delete Location

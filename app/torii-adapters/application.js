@@ -24,8 +24,13 @@ export default EmberObject.extend({
     }).then((json) => {
       return RSVP.all([
         get(this, 'store').find('person', json.data.attributes['person-id']),
-        get(this, 'store').find('authorization', json.data.attributes['authorization-id']),
-        get(this, 'store').peekAll('group').get('firstObject')
+        get(this, 'store').find('authorization', json.data.attributes['authorization-id'])
+      ]);
+    }).then(function ([person, authorization]) {
+      return RSVP.all([
+        person,
+        authorization,
+        person.get('group')
       ]);
     }).then(function ([person, authorization, group]) {
       return {

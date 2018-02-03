@@ -1,13 +1,12 @@
 {{title model.name}}
 <section id="person">
-  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' (concat 'Saved ' model.name)) as |f|}}
+  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' 'Saved ' model.name) as |f|}}
     <nav class='row'>
       {{#confirm-button onsubmit=(route-action 'deleteRecord' model)}}
         {{icon "trash"}}
       {{else}}
         Are you sure?
       {{/confirm-button}}
-      {{f.submit 'Save'}}
       <a class='submit-button' href="mailto:{{model.email}}">
         {{icon "email"}} Email
       </a>

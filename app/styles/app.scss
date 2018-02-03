@@ -1,9 +1,4 @@
-$white: #FFFFFF;
-$heather: #CCCCCC;
-$grey: #424242;
-$black: #050505;
-$error: #E63200;
-$accent: #4240FF;
+@import '@queertangocollective/ui';
 
 header {
   margin-bottom: 1rem;
@@ -110,7 +105,7 @@ body {
 
   .ember-power-calendar-row {
     display: grid;
-    grid-template-columns: repeat(7, calc(100% / 7));
+    grid-template-columns: repeat(7, calc(100vh / 7));
   }
 
   .ember-power-calendar-day-grid {

@@ -2,7 +2,7 @@
 {{remember-document-scroll key=(concat 'expense/' model.id)}}
 
 <section id="transaction">
-  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' (concat 'Saved ' model.description)) as |f|}}
+  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' 'Saved ' model.description) as |f|}}
     <nav class='row'>
       {{#if model.paymentProcesssorUrl}}
         <a href="{{model.paymentProcesssorUrl}}" target="__blank" rel="nofollow noreferrer" class="submit-button">

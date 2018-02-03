@@ -66,7 +66,12 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.API_HOST = 'https://api.queertangocollective.org';
+    ENV.API_KEY = 'c40599e3112d27cf6d35127d2b9e4eae';
+    ENV.ZIP_API_KEY = 'js-TNJWbVTaBV26fbIyFuKZRZ97SER4f1J9Er8XoiVpT67xN2bea5uOVXgebNFHHMFz';
+    ENV.GOOGLE_MAPS_API_KEY = 'AIzaSyBRoseyODw0jyZi4lcw-rSsQmmYu0l7go0';
+    ENV.torii.providers['facebook-oauth2'].redirectUri = 'https://admin.queertangocollective.org/torii/redirect.html';
+    ENV.torii.providers['google-oauth2'].redirectUri = 'https://admin.queertangocollective.org/torii/redirect.html';
   }
 
   return ENV;

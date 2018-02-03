@@ -19,7 +19,7 @@ export default Service.extend({
     let uploadedFiles = [];
     RSVP.all(
       attachments.filterBy('kind', 'hasMany').filter(function ({ key }) {
-        return changes.hasOwnProperty(key);
+        return changes[key] !== undefined;
       }).map(({ key, options: { inverse } }) => {
         let changed = changes[key];
         delete changes[key];
@@ -70,7 +70,7 @@ export default Service.extend({
 
     return RSVP.all(
       attachments.filterBy('kind', 'belongsTo').filter(function ({ key }) {
-        return changes.hasOwnProperty(key);
+        return changes[key] !== undefined;
       }).map(({ key }) => {
         return model.get(key).then((old) => {
           let changed = changes[key];

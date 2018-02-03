@@ -29,11 +29,15 @@ export default Route.extend(Restricted, {
     },
 
     save(model, changes) {
+      console.log(changes);
       return this.save(model, changes);
     },
 
     flash(...params) {
-      this.flash(...params);
+      params.pop();
+      this.flash(params.join(''), {
+        timeout: 2500
+      });
     },
 
     accessDenied() {

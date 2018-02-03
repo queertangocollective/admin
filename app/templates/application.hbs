@@ -1,5 +1,5 @@
 {{head-layout}}
-{{#if session}}
+{{#if session.isAuthenticated}}
   {{title session.currentGroup.name}}
   <nav>
     {{#link-to 'group' session.currentGroup}}My Group{{/link-to}}

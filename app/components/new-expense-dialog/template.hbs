@@ -6,7 +6,7 @@
       {{f.currency 'amountOwed'}}
       {{f.date 'paidAt'}}
     </div>
-    {{f.autocomplete 'paidBy' key='name' onquery=(action onquery 'people')}}
+    {{f.autocomplete 'paidBy' key='name' onquery=(action onquery 'person')}}
     {{f.editor 'notes'}}
   </div>
   <footer>
