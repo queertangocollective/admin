@@ -3,6 +3,13 @@ import { get } from '@ember/object';
 import Authenticatable from 'torii/routing/application-route-mixin';
 
 export default Route.extend(Authenticatable, {
+
+  afterModel() {
+    if (!this.session.get('isAuthenticated')) {
+      this.replaceWith('login');
+    }
+  },
+
   actions: {
     query(modelName, filter) {
       return this.store.query(modelName, {
