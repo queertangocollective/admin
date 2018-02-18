@@ -4,7 +4,7 @@ import { isBlank } from '@ember/utils';
 import method from 'ember-service-methods/inject';
 
 export default Component.extend({
-  classNames: ['new-location-dialog'],
+  tagName: '',
 
   getLocationFromPostalCode: method(),
 
