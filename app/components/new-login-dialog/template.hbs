@@ -2,9 +2,11 @@
   <header>{{icon 'key'}}{{#if logins.length}}Manage Logins{{else}}Add Login{{/if}}</header>
   <div class='body' id='authorizations'>
     {{#if logins.length}}
-      {{#sortable-list rows=logins as |l|}}
+      {{#tabular-list rows=logins as |l|}}
         {{#l.item 'avatar' as |login|}}
-          <img src="{{login.avatar}}" alt="{{login.email}}"/>
+          {{#if login.avatar}}
+            <img src="{{login.avatar}}" alt="{{login.email}}"/>
+          {{/if}}
         {{/l.item}}
         {{#l.item 'email' as |login|}}
           {{login.email}}
@@ -16,14 +18,13 @@
         {{else}}
           Provider
         {{/l.item}}
-      {{/sortable-list}}
-    {{else}}
-      <div class="grid-row">
-        {{f.text 'email'}}
-        {{#f.select 'role' options=(list 'staff' 'teacher') gravity='s' as |option|}}
-          {{option}}
-        {{/f.select}}
-      </div>
+      {{/tabular-list}}
+      {{#unless isFormOpen}}
+        <button type='submit' onclick={{action (mut isFormOpen) true}}>{{icon 'add'}} Add Login</button>
+      {{/unless}}
+    {{/if}}
+    {{#if isFormOpen}}
+      {{f.text 'email'}}
     {{/if}}
   </div>
   <footer>

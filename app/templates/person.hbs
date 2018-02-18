@@ -22,7 +22,7 @@
       {{#if isAddingLogin}}
         {{dialog-box (component 'new-login-dialog'
             logins=model.authorizations
-            onsubmit=(route-action 'addLogin'))
+            onsubmit=(route-action 'addLogin' model))
           ondismiss=(action (mut isAddingLogin) false)}}
       {{/if}}
     </nav>
