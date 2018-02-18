@@ -14,7 +14,6 @@ export default Component.extend({
 
   actions: {
     submit(model, changes) {
-      changes.description = changes.paidBy;
       return get(this, 'onsubmit')(Object.assign(changes, model)).then(get(this, 'dismiss'));
     }
   }
