@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { get, computed } from '@ember/object';
+import { get, set, computed } from '@ember/object';
 
 export default Controller.extend({
   locales: [{
@@ -12,11 +12,9 @@ export default Controller.extend({
 
   locale: computed('model.locale', {
     get() {
-      console.log(get(this, 'model.locale'));
       return get(this, 'locales').findBy('code', get(this, 'model.locale'));
     },
     set(_, locale) {
-      console.log(get(this, 'model.locale'));
       set(this, 'model.locale', locale.code);
       return locale;
     }
