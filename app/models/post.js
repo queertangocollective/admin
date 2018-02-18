@@ -1,4 +1,3 @@
-import { computed, get } from '@ember/object';
 import DS from 'ember-data';
 
 const { attr, hasMany } = DS;

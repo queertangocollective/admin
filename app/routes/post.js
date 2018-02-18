@@ -1,5 +1,6 @@
 import { set } from '@ember/object';
 import Resource from './resource';
+import method from 'ember-service-methods/inject';
 
 export default Resource.extend({
   uploadPhoto: method(),

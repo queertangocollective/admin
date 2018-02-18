@@ -1,5 +1,4 @@
 import Route from '@ember/routing/route';
-import { get } from '@ember/object';
 import Authenticatable from 'torii/routing/application-route-mixin';
 
 export default Route.extend(Authenticatable, {

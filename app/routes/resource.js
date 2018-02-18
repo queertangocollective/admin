@@ -29,7 +29,6 @@ export default Route.extend(Restricted, {
     },
 
     save(model, changes) {
-      console.log(changes);
       return this.save(model, changes);
     },
 

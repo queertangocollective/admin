@@ -1,7 +1,4 @@
-import { get } from '@ember/object';
-import { isPresent } from '@ember/utils';
 import DS from 'ember-data';
-import moment from 'moment';
 
 const { attr, belongsTo, hasMany } = DS;
 
