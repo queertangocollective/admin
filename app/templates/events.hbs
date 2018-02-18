@@ -4,11 +4,11 @@
 <section id="events">
   <header>
     {{search-field query=q onquery=(action (mut q)) placeholder="Events"}}
-    {{#link-to (query-params as='list') class='button'}}
-      {{icon 'list'}} List
+    {{#link-to (query-params as='list') class='button icon'}}
+      {{icon 'list'}}{{#if (media '(min-width: 500px)')}} List{{/if}}
     {{/link-to}}
-    {{#link-to (query-params as='calendar') class='button'}}
-      {{icon 'calendar'}} Calendar
+    {{#link-to (query-params as='calendar') class='button icon'}}
+      {{icon 'calendar'}}{{#if (media '(min-width: 500px)')}} Calendar{{/if}}
     {{/link-to}}
   </header>
   <nav class='row'>
@@ -17,7 +17,8 @@
     </button>
     {{#if isAdding}}
       {{dialog-box (component 'new-event-dialog'
-          onsubmit=(route-action 'createEvent'))
+          onsubmit=(route-action 'createEvent')
+          onquery=(route-action 'query'))
         ondismiss=(action (mut isAdding) false)}}
     {{/if}}
   </nav>
@@ -29,7 +30,7 @@
         Title
       {{/l.item}}
       {{#l.item 'startsAt' '-endsAt' as |item|}}
-        {{l 'date' item.startsAt}} - {{l 'date' item.endsAt}}
+        {{{format-date-range item.startsAt item.endsAt}}}
       {{else}}
         Date
       {{/l.item}}

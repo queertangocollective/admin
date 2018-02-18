@@ -1,18 +1,19 @@
 {{head-layout}}
 {{#if session.isAuthenticated}}
   {{title session.currentGroup.name}}
-  <nav>
+  {{#navigation-bar}}
     {{#link-to 'group' session.currentGroup}}My Group{{/link-to}}
-    {{#link-to 'posts'}}Posts{{/link-to}}
-    {{#link-to 'events'}}Events{{/link-to}}
-    {{#link-to 'tickets'}}Tickets{{/link-to}}
-    {{#link-to 'ledger'}}Ledger{{/link-to}}
-    {{#link-to 'people'}}People{{/link-to}}
-    {{#link-to 'locations'}}Locations{{/link-to}}
+    {{#link-to 'posts' current-when='post posts'}}Posts{{/link-to}}
+    {{#link-to 'events' current-when='event events'}}Events{{/link-to}}
+    {{#link-to 'tickets' current-when='ticket tickets'}}Tickets{{/link-to}}
+    {{#link-to 'ledger' current-when='transaction ledger'}}Ledger{{/link-to}}
+    {{#link-to 'people' current-when='person people'}}People{{/link-to}}
+    {{#link-to 'locations' current-when='location locations'}}Locations{{/link-to}}
+    <span></span>
     {{#submit-button onsubmit=(route-action 'logout')}}
       Logout
     {{/submit-button}}
-  </nav>
+  {{/navigation-bar}}
 {{/if}}
 {{outlet}}
 
