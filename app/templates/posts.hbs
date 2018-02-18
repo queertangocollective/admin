@@ -17,7 +17,7 @@
         ondismiss=(action (mut isAdding) false)}}
     {{/if}}
   </nav>
-  {{#sortable-list  load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='edit' as |l|}}
+  {{#sortable-list rows=model.model load=(route-action 'load') total=model.meta.page.total sort=sort as |l|}}
     {{#l.item 'title' as |item|}}
       {{#link-to 'post' item}}{{item.title}}{{/link-to}}
     {{else}}

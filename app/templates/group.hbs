@@ -4,24 +4,17 @@
   {{title model.name}}
 {{/if}}
 <section id="group">
-  {{#form-for model onsubmit=(route-action 'save') as |f|}}
+  {{#form-for model onsubmit=(route-action 'save') class='grid-column' as |f|}}
     {{f.text 'name'}}
-    {{#f.select 'locale' options=locales gravity='s' as |locale|}}
-      {{icon 'check'}} {{locale.label}}
-    {{else}}
-      Select your locale
-    {{/f.select}}
-    <label for='api-key'>API Key</label>
-    {{#copy-field inputId='api-key' value=model.apiKey}}
-      Copy API Key
-    {{else}}
-      Copied
-    {{/copy-field}}
     {{f.text 'hostname' label=(concat "Hostname " (icon 'help' id='hostname-info'))
              autocomplete=currentHostname}}
     {{#tool-tip for='hostname-info'}}
-      The hostname of this website is "{{currentHostname}}".<br><br>
+      The hostname of this website is "{{currentHostname}}".<br>
       This is used to create links in emails that are sent.
     {{/tool-tip}}
+
+    {{#each builds as |build|}}
+      {{build.liveAt}}
+    {{/each}}
   {{/form-for}}
 </section>
