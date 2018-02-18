@@ -7,7 +7,22 @@
         {{f.datetime 'startsAt'}}
         {{f.datetime 'endsAt' autocomplete=f.changeset.startsAt}}
       </div>
+      <div>
+        <label>
+          {{check-box value=repeats onchange=(action (mut repeats))}}
+          Repeats
+        </label>
+        {{#liquid-if repeats}}
+          <div class='grid-row'>
+            {{number-field value=repetition onchange=(action (mut repetition))}}
+            {{#single-select gravity='s' value=frequency onchange=(action (mut frequency)) options=(list 'weeks' 'days' 'months') as |option|}}
+              {{option}}
+            {{/single-select}}
+          </div>
+        {{/liquid-if}}
+      </div>
       {{f.editor 'description'}}
+      {{f.autocomplete 'venue' key='name' onquery=(action onquery 'location')}}
     </div>
   </div>
   <footer>
