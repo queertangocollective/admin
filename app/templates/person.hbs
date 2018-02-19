@@ -11,14 +11,17 @@
         {{icon "email"}} Email
       </a>
 
-      <button type='submit' onclick={{action (mut isAddingLogin) true}}>
-        {{icon 'key'}}
-        {{#if model.authorizations.length}}
-          Manage Logins
+      {{#if model.authorizations.length}}
+        <button type='submit' onclick={{action (mut isAddingLogin) true}}>
+          {{icon 'key'}} Manage Logins
+        </button>
+      {{else}}
+        {{#create-button 'email' onsubmit=(route-action 'addLogin' model) placeholder='Enter email' value=model.email}}
+          {{icon 'add'}} Add Login
         {{else}}
-          Add Login
-        {{/if}}
-      </button>
+          {{icon 'add'}}
+        {{/create-button}}
+      {{/if}}
       {{#if isAddingLogin}}
         {{dialog-box (component 'new-login-dialog'
             logins=model.authorizations

@@ -19,16 +19,14 @@
           Provider
         {{/l.item}}
       {{/tabular-list}}
-      {{#unless isFormOpen}}
-        <button type='submit' onclick={{action (mut isFormOpen) true}}>{{icon 'add'}} Add Login</button>
-      {{/unless}}
     {{/if}}
-    {{#if isFormOpen}}
-      {{f.text 'email'}}
-    {{/if}}
+    {{#create-button 'email' onsubmit=(action 'submit') placeholder='Enter email'}}
+      {{icon "add"}} Add Login
+    {{else}}
+      {{icon "add"}}
+    {{/create-button}}
   </div>
   <footer>
-    {{f.submit 'Add Login'}}
-    <button type='reset' onclick={{dismiss}}>Cancel</button>
+    <button type='reset' onclick={{dismiss}}>Close</button>
   </footer>
 {{/form-for}}
