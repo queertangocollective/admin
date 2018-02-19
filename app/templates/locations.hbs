@@ -3,7 +3,7 @@
 
 <section id="locations">
   <header>
-    {{search-field query=q onquery=(action (mut q)) placeholder="Locations"}}
+    {{search-field query=q onquery=(action (mut q)) placeholder="Search locations by name, address, or city"}}
   </header>
   <nav>
     <button type='submit' onclick={{action (mut isAdding) true}}>

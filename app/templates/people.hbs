@@ -2,7 +2,7 @@
 
 <section id="people">
   <header>
-    {{search-field query=q onquery=(action (mut q)) placeholder="People"}}
+    {{search-field query=q onquery=(action (mut q)) placeholder="Search people by name or email"}}
   </header>
   <nav>
     <button type='submit' onclick={{action (mut isAdding) true}}>

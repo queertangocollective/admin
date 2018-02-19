@@ -2,7 +2,7 @@
 
 <div id="ledger">
   <header>
-    {{search-field query=q onquery=(action (mut q)) placeholder="Ledger"}}
+    {{search-field query=q onquery=(action (mut q)) placeholder="Search ledger by description or paid by"}}
     {{balance-bar balance=model.meta.balance credit=model.meta.credit debit=model.meta.debit}}
   </header>
   <nav class='row'>

@@ -3,7 +3,7 @@
 
 <section id="events">
   <header>
-    {{search-field query=q onquery=(action (mut q)) placeholder="Events"}}
+    {{search-field query=q onquery=(action (mut q)) placeholder="Search events by title"}}
     {{#link-to (query-params as='list') class='button icon'}}
       {{icon 'list'}}{{#if (media '(min-width: 500px)')}} List{{/if}}
     {{/link-to}}
