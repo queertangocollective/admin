@@ -22,4 +22,20 @@
       </div>
     </div>
   {{/form-for}}
+  <br>
+  {{#tabular-list as |l|}}
+    {{#l.item 'paidBy' as |item|}}
+      {{item.name}}
+    {{else}}
+      Name
+    {{/l.item}}
+    {{#l.item 'paymentAmount' as |item|}}
+      {{item.paymentAmount}}
+    {{else}}
+      Paid
+    {{/l.item}}
+  {{/tabular-list}}
+  <button type='submit'>
+    {{icon 'add'}} Add Payment
+  </button>
 </section>
