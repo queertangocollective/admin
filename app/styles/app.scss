@@ -226,12 +226,11 @@ body {
   }
   ol .avatar {
     position: relative;
-    height: 1.8rem;
-    overflow: visible;
+    height: 100%;
 
     img {
       position: absolute;
-      top: -.5rem;
+      top: calc(50% - 1rem);
       width: 2rem;
       height: 2rem;
       border-radius: 1rem;
