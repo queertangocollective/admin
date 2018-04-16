@@ -8,12 +8,6 @@ export default Resource.extend({
   createPerson: method(),
 
   actions: {
-    save(model, changes) {
-      return this.save(model, changes);
-    },
-    delete(model) {
-      return model.deleteRecord();
-    },
     createPerson(guest, params) {
       return this.createPerson(params).then(function (person) {
         guest.set('person', person);

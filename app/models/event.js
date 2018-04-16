@@ -9,5 +9,6 @@ export default DS.Model.extend({
   startsAt: attr('date'),
   endsAt: attr('date'),
   level: attr('string'),
-  guests: hasMany('guest')
+  guests: hasMany('guest'),
+  tickets: hasMany('ticket')
 });
