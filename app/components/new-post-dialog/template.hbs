@@ -2,6 +2,7 @@
   <header>{{icon 'edit'}} Draft Post</header>
   <div class='body grid-column'>
     {{f.text 'title'}}
+    {{f.text 'slug' autocomplete=(if f.changeset.title (concat year '/' (dasherize f.changeset.title)))}}
     {{f.editor 'body'}}
   </div>
   <footer>
