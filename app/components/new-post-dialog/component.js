@@ -1,8 +1,12 @@
 import Component from '@ember/component';
-import { get } from '@ember/object';
+import { computed, get } from '@ember/object';
 
 export default Component.extend({
   classNames: ['new-post-dialog'],
+
+  year: computed(function () {
+    return new Date().getFullYear();
+  }),
 
   actions: {
     submit(model, changes) {
