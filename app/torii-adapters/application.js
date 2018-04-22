@@ -30,7 +30,7 @@ export default EmberObject.extend({
       return RSVP.all([
         person,
         authorization,
-        person.get('group')
+        authorization.get('group')
       ]);
     }).then(function ([person, authorization, group]) {
       return {
