@@ -1,9 +1,10 @@
-import { set } from '@ember/object';
+import { set, get } from '@ember/object';
 import Resource from './resource';
 import method from 'ember-service-methods/inject';
 
 export default Resource.extend({
   uploadPhoto: method(),
+  open: method(),
 
   actions: {
     addPhoto(model, file) {
@@ -32,6 +33,21 @@ export default Resource.extend({
       set(model, 'published', false);
       set(model, 'publishedAt', null);
       return model.save();
+    },
+    findOrCreateTicket(FindTicketDialog) {
+      return this.open(FindTicketDialog).then((ticket) => {
+        return {
+          id: get(ticket, 'id'),
+          callToAction: 'Sign Up'
+        };
+      });
+    },
+    findOrCreateEvent(FindEventDialog) {
+      return this.open(FindEventDialog).then((events) => {
+        return {
+          events: events.mapBy('id')
+        };
+      });
     }
   }
 });

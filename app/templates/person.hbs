@@ -7,9 +7,11 @@
       {{else}}
         Are you sure?
       {{/confirm-button}}
-      <a class='submit-button' href="mailto:{{model.email}}">
-        {{icon "email"}} Email
-      </a>
+      {{#if model.email}}
+        <a class='submit-button' href="mailto:{{model.email}}">
+          {{icon "email"}} Email
+        </a>
+      {{/if}}
 
       {{#if model.authorizations.length}}
         <button type='submit' onclick={{action (mut isAddingLogin) true}}>

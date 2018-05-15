@@ -1,0 +1,25 @@
+<header>{{icon 'ticket'}} Add Ticket</header>
+<div class="body grid-column">
+  {{search-field query=q onquery=(action 'query') placeholder="Search events by title"}}
+  {{#tabular-list rows=results as |l|}}
+    {{#l.item 'checkbox' as |item|}}
+      {{check-box value=(contains selection item) onchange=(action 'select' item)}}
+    {{else}}
+      {{check-box value=areAllSelected onchange=(action 'toggleSelectAll')}}
+    {{/l.item}}
+    {{#l.item 'title' as |item|}}
+      <span onclick={{action 'select' item}}>{{item.title}}</span>
+    {{else}}
+      Name
+    {{/l.item}}
+    {{#l.item 'date' as |item|}}
+      {{{format-date-range item.startsAt item.endsAt}}}
+    {{else}}
+      Date
+    {{/l.item}}
+  {{/tabular-list}}
+</div>
+<footer>
+  <button type='submit' onclick={{action onsubmit selection}}>Add Events</button>
+  <button type='reset' onclick={{action dismiss}}>Cancel</button>
+</footer>

@@ -1,4 +1,5 @@
 @import '@queertangocollective/ui';
+@import './find-ticket-dialog/style';
 
 $green: #00D925;
 $red: #FF0052;
@@ -80,6 +81,9 @@ body {
   .title {
     width: 60%;
   }
+  .event-planner {
+    height: 100vh;
+  }
   .date {
     width: 40%;
   }
@@ -97,8 +101,12 @@ body {
   }
 }
 
+.__mobiledoc-card .event-planner {
+  height: 400px;
+  width: 400px;
+}
+
 .event-planner {
-  height: 100vh;
   box-shadow: 0 1px 2px 1px rgba($black, 0.20);
   border-radius: 4px;
   padding: 0.5rem;

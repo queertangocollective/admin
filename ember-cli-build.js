@@ -17,7 +17,11 @@ module.exports = function(defaults) {
       prepend: 'https://builds.queertangocollective.org/admin/'
     },
     sassOptions: {
-      includePaths: ['app/styles', 'node_modules/@queertangocollective/ui/addon/styles']
+      includePaths: [
+        'app/styles',
+        'app/components',
+        'node_modules/@queertangocollective/ui/addon/styles'
+      ]
     },
     svgJar: {
       strategy: 'inline',

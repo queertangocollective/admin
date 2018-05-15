@@ -10,18 +10,34 @@
       {{/confirm-button}}
       {{#if model.published}}
         {{#submit-button onsubmit=(route-action 'unpublish' model)}}
-          {{icon "cancel"}} Unpublish
+          {{icon "eye-closed"}} Unpublish
         {{/submit-button}}
       {{else}}
         {{#submit-button onsubmit=(route-action 'publish' model)}}
-          {{icon "check"}} Publish
+          {{icon "eye"}} Publish
         {{/submit-button}}
       {{/if}}
     </nav>
     <div class="grid-column">
       {{f.text 'title'}}
       {{f.text 'slug'}}
-      {{f.editor 'body' rows=6 onupload=(route-action 'addPhoto' model)}}
+      {{f.editor 'body' rows=6
+        onupload=(route-action 'addPhoto' model) embeds=(list
+          (hash type='ticket'
+                label='Add Ticket'
+                icon='ticket'
+                onembed=(route-action 'findOrCreateTicket'
+                  (component 'find-ticket-dialog')
+                )
+          )
+          (hash type='calendar'
+                label='Add Calendar'
+                icon='calendar'
+                onembed=(route-action 'findOrCreateEvent'
+                  (component 'find-event-dialog')
+                )
+          )
+        )}}
     </div>
   {{/form-for}}
 </section>
