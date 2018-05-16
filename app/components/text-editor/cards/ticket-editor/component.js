@@ -13,8 +13,6 @@ export default Component.extend({
     });
   },
 
-  nothing() {},
-
   submit(payload, changes) {
     payload = Object.assign({}, payload);
     Object.assign(payload, changes);
