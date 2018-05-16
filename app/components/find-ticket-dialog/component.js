@@ -9,13 +9,13 @@ export default Component.extend({
   q: '',
 
   query() {
-    return this.get('store').query('ticket', {
-      sort: this.get('sort'),
+    return this.store.query('ticket', {
+      sort: this.sort,
       page: {
         limit: 50
       },
       filter: {
-        text: this.get('q')
+        text: this.q
       }
     }).then((results) => {
       this.set('results', results);

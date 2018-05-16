@@ -6,7 +6,7 @@ export default Component.extend({
   actions: {
     submit(_, changes) {
       changes.role = 'staff';
-      return get(this, 'onsubmit')(changes);
+      return this.onsubmit(changes);
     }
   }
 });

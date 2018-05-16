@@ -8,9 +8,9 @@ export default Component.extend({
 
   actions: {
     submit(model, changes) {
-      if (get(this, 'repeats')) {
-        let repetition = get(this, 'repetition');
-        let frequency = get(this, 'frequency');
+      if (this.repeats) {
+        let repetition = this.repetition;
+        let frequency = this.frequency;
         let events = [changes];
         while (--repetition) {
           let event = events[events.length - 1];
@@ -21,9 +21,9 @@ export default Component.extend({
           });
         }
 
-        return all(events.map(event => get(this, 'onsubmit')(event))).then(get(this, 'dismiss'));
+        return all(events.map(event => this.onsubmit(event))).then(this.dismiss);
       }
-      return get(this, 'onsubmit')(changes).then(get(this, 'dismiss'));
+      return this.onsubmit(changes).then(this.dismiss);
     }
   }
 });

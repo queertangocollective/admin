@@ -6,7 +6,7 @@ export default Component.extend({
 
   actions: {
     submit(model, changes) {
-      return get(this, 'onsubmit')(changes).then(get(this, 'dismiss'));
+      return this.onsubmit(changes).then(this.dismiss);
     }
   }
 });

@@ -21,7 +21,7 @@ export default Route.extend(Restricted, {
   }),
 
   query (params) {
-    return this.store.query(get(this, 'modelName'), {
+    return this.store.query(this.modelName, {
       sort: params.sort,
       page: {
         limit: 50,
@@ -30,7 +30,7 @@ export default Route.extend(Restricted, {
       filter: {
         text: params.q
       },
-      include: get(this, 'include')
+      include: this.include
     }).then(function (results) {
       return {
         model: results,

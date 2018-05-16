@@ -9,7 +9,7 @@ export default Service.extend({
   uploadPhoto: method(),
 
   execute(attributes) {
-    let location = get(this, 'store').createRecord('location', attributes);
+    let location = this.store.createRecord('location', attributes);
     return location.save().then((location) => {
       if (attributes.photo) {
         return this.uploadPhoto(attributes.photo).then((photo) => {

@@ -10,13 +10,13 @@ export default Component.extend({
   q: '',
 
   query() {
-    return this.get('store').query('event', {
-      sort: this.get('sort'),
+    return this.store.query('event', {
+      sort: this.sort,
       page: {
         limit: 50
       },
       filter: {
-        text: this.get('q')
+        text: this.q
       }
     }).then((results) => {
       this.set('results', results);
@@ -31,8 +31,8 @@ export default Component.extend({
   },
 
   areAllSelected: computed('selection', 'results', function () {
-    return this.get('results').every((item) => {
-      return this.get('selection').indexOf(item) !== -1;
+    return this.results.every((item) => {
+      return this.selection.indexOf(item) !== -1;
     });
   }),
 
@@ -42,7 +42,7 @@ export default Component.extend({
       this.query();
     },
     select(item) {
-      let selection = this.get('selection').slice();
+      let selection = this.selection.slice();
       let index = selection.indexOf(item);
       if (index === -1) {
         selection.push(item);
@@ -52,10 +52,10 @@ export default Component.extend({
       this.set('selection', selection);
     },
     toggleSelectAll() {
-      if (this.get('areAllSelected')) {
+      if (this.areAllSelected) {
         this.set('selection', []);
       } else {
-        this.set('selection', this.get('results').toArray());
+        this.set('selection', this.results.toArray());
       }
     }
   }

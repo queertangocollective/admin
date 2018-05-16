@@ -17,7 +17,7 @@ export default DS.Model.extend({
 
   address: computed('addressLine', 'extendedAddress', {
     get() {
-      return [get(this, 'addressLine'), get(this, 'extendedAddress')].compact().join('\n');
+      return [this.addressLine, this.extendedAddress].compact().join('\n');
     },
     set(_, value) {
       let [addressLine, ...extendedAddress] = (value || '').split('\n');

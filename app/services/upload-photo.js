@@ -20,7 +20,7 @@ export default Service.extend({
   store: service(),
 
   execute(file, options={}) {
-    let photo = this.get('store').createRecord('photo', Object.assign({
+    let photo = this.store.createRecord('photo', Object.assign({
       filesize: file.get('size'),
       filename: file.get('name'),
       file

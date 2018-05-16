@@ -12,7 +12,7 @@ export default Controller.extend({
 
   locale: computed('model.locale', {
     get() {
-      return get(this, 'locales').findBy('code', get(this, 'model.locale'));
+      return this.locales.findBy('code', get(this, 'model.locale'));
     },
     set(_, locale) {
       set(this, 'model.locale', locale.code);

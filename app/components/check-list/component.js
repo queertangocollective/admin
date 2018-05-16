@@ -9,20 +9,20 @@ export default Component.extend({
 
   actions: {
     toggle (item) {
-      if (get(this, 'readonly')) { return; }
+      if (this.readonly) { return; }
 
       if (typeof item === 'string' &&
           item.match(/^\d+$/g)) {
         item = parseInt(item, 10);
       }
 
-      let value = (get(this, 'value') || []).slice();
+      let value = (this.value || []).slice();
       if (value.indexOf(item) === -1) {
         value.push(item);
       } else {
         value.removeObject(item);
       }
-      get(this, 'onchange')(value);
+      this.onchange(value);
     }
   }
 });

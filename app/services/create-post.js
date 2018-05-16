@@ -6,6 +6,6 @@ export default Service.extend({
   store: service(),
 
   execute(attributes) {
-    return get(this, 'store').createRecord('post', attributes).save();
+    return this.store.createRecord('post', attributes).save();
   }
 });

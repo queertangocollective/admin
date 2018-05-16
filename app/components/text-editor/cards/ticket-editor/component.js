@@ -7,7 +7,7 @@ export default Component.extend({
 
   init() {
     this._super();
-    this.get('store').findRecord('ticket', this.get('payload.ticketId')).then((ticket) => {
+    this.store.findRecord('ticket', this.get('payload.ticketId')).then((ticket) => {
       if (this.isDestroyed) return;
       this.set('ticket', ticket);
     });

@@ -9,7 +9,7 @@ export default Service.extend({
   uploadPhoto: method(),
 
   execute(attributes) {
-    let transaction = get(this, 'store').createRecord('transaction', attributes);
+    let transaction = this.store.createRecord('transaction', attributes);
     return transaction.save().then((transaction) => {
       if (attributes.receipt) {
         return this.uploadPhoto(attributes.receipt).then((photo) => {
