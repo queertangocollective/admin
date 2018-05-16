@@ -10,7 +10,7 @@
     {{#l.item 'title' as |item|}}
       <span onclick={{action 'select' item}}>{{item.title}}</span>
     {{else}}
-      Name
+      Title
     {{/l.item}}
     {{#l.item 'date' as |item|}}
       {{{format-date-range item.startsAt item.endsAt}}}

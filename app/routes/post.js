@@ -37,7 +37,7 @@ export default Resource.extend({
     findOrCreateTicket(FindTicketDialog) {
       return this.open(FindTicketDialog).then((ticket) => {
         return {
-          id: get(ticket, 'id'),
+          ticketId: get(ticket, 'id'),
           callToAction: 'Sign Up'
         };
       });
@@ -45,7 +45,7 @@ export default Resource.extend({
     findOrCreateEvent(FindEventDialog) {
       return this.open(FindEventDialog).then((events) => {
         return {
-          events: events.mapBy('id')
+          eventIds: events.mapBy('id')
         };
       });
     }

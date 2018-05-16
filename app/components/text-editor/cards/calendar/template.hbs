@@ -1,3 +1,16 @@
 {{#event-planner events=events as |event|}}
   {{event.title}}
 {{/event-planner}}
+
+{{#tabular-list rows=events as |l|}}
+  {{#l.item 'title' as |item|}}
+    {{item.title}}
+  {{else}}
+    Title
+  {{/l.item}}
+  {{#l.item 'date' as |item|}}
+    {{{format-date-range item.startsAt item.endsAt}}}
+  {{else}}
+    Date
+  {{/l.item}}
+{{/tabular-list}}

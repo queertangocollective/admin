@@ -101,6 +101,53 @@ body {
   }
 }
 
+.text-editor nav {
+  max-width: calc(100vw - 40px);
+  overflow: scroll;
+
+  button, label {
+    min-width: 2.5rem;
+  }
+}
+
+.__mobiledoc-card .ticket-editor {
+  width: 400px;
+  max-width: calc(100vw - 60px);
+  border: 1px solid $heather;
+  border-radius: 4px;
+  padding: 0;
+  overflow: hidden;
+
+  h4 {
+    background: $black;
+    padding: 1rem;
+    color: $white;
+
+    svg {
+      height: 1.5rem;
+      width: 1.5rem;
+      float: left;
+      margin-right: 1rem;
+    }
+
+    path {
+      fill: $white;
+    }
+
+    a {
+      color: $white;
+    }
+
+    span {
+      float: right;
+    }
+  }
+
+  form {
+    padding: 1rem;
+  }
+}
+
 .__mobiledoc-card .event-planner {
   height: 400px;
   width: 400px;
