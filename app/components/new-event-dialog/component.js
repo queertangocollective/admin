@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { get } from '@ember/object';
 import { all } from 'rsvp';
 import moment from 'moment';
 

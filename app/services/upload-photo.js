@@ -50,7 +50,7 @@ export default Service.extend({
         width,
         height,
         file: null,
-        url: response.headers.Location
+        url: response.headers.location || response.headers.Location
       });
       return photo.save();
     });

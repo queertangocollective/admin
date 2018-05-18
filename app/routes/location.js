@@ -1,4 +1,4 @@
-import { set, get } from '@ember/object';
+import { set } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import Resource from './resource';
 import method from 'ember-service-methods/inject';
@@ -9,10 +9,10 @@ export default Resource.extend({
 
   actions: {
     hydrateLocation({ changeset }) {
-      if (!isBlank(get(changeset, 'postalCode'))) {
-        this.getLocationFromPostalCode(get(changeset, 'postalCode')).then(function (data) {
-          if (get(changeset, 'city') !== data.city ||
-              get(changeset, 'regionCode') !== data.state) {
+      if (!isBlank(changeset.postalCode)) {
+        this.getLocationFromPostalCode(changeset.postalCode).then(function (data) {
+          if (changeset.city !== data.city ||
+              changeset.regionCode !== data.state) {
             set(changeset, 'city', data.city);
             set(changeset, 'regionCode', data.state);
           }

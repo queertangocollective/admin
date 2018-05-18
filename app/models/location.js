@@ -1,4 +1,4 @@
-import { get, set, computed } from '@ember/object';
+import { set, computed } from '@ember/object';
 import DS from 'ember-data';
 
 const { attr, belongsTo } = DS;
