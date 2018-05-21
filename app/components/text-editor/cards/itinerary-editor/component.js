@@ -7,10 +7,17 @@ export default Component.extend({
   init() {
     this._super();
     RSVP.all(
-      this.get('payload.events').map(id => this.store.findRecord('event', id))
+      this.payload.eventIds.map(id => this.store.findRecord('event', id))
     ).then((events) => {
       if (this.isDestroyed) return;
       this.set('events', events);
     });
+  },
+  actions: {
+    save(events) {
+      let payload = Object.assign({}, this.payload);
+      Object.assign(payload, { eventIds: events.mapBy('id') });
+      this.saveCard(payload);
+    }
   }
 });

@@ -7,7 +7,7 @@
     {{else}}
     {{/l.item}}
     {{#l.item 'description' as |item|}}
-      <span onclick={{action (mut selected) item}}>{{item.description}}</span>
+      {{item.description}}
     {{else}}
       Description
     {{/l.item}}

@@ -4,6 +4,6 @@ import Model from './application';
 const { belongsTo } = DS;
 
 export default Model.extend({
-  person: belongsTo('person'),
-  post: belongsTo('post')
+  event: belongsTo('event'),
+  ticket: belongsTo('ticket')
 });

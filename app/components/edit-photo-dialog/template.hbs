@@ -1,0 +1,20 @@
+{{#form-for payload onsubmit=(action submit) as |f|}}
+  <header>{{icon 'photo'}} Edit Photo</header>
+  <div class="body grid-column">
+    {{#f.buttons 'align' as |b|}}
+      {{#b.option 'left'}}{{icon 'align-left'}} Left{{/b.option}}
+      {{#b.option 'center'}}{{icon 'align-center'}} Center{{/b.option}}
+      {{#b.option 'right'}}{{icon 'align-right'}} Right{{/b.option}}
+    {{/f.buttons}}
+    {{#f.buttons 'size' as |b|}}
+      {{#b.option 'small'}}{{icon 'small'}} Small{{/b.option}}
+      {{#b.option 'medium'}}{{icon 'large'}} Medium{{/b.option}}
+      {{#b.option 'large'}}{{icon 'full-bleed'}} Large{{/b.option}}
+    {{/f.buttons}}
+    {{f.text 'caption'}}
+  </div>
+  <footer>
+    {{f.submit 'Save'}}
+    <button type='reset' onclick={{dismiss}}>Cancel</button>
+  </footer>
+{{/form-for}}

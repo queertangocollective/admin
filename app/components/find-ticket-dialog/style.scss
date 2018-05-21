@@ -1,4 +1,14 @@
 .find-ticket-dialog {
+  .tabular-list {
+    header, ol {
+      width: 28rem;
+      max-width: calc(100vw - 4rem);
+    }
+  }
+  header, ol li {
+    padding-left: 0;
+  }
+
   ol li span {
     vertical-align: top;
   }

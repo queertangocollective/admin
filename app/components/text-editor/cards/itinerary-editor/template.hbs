@@ -1,0 +1,5 @@
+{{text-editor/cards/itinerary payload=payload editCard=editCard}}
+{{dialog-box (component 'find-event-dialog'
+    selection=events
+    onsubmit=(action 'save'))
+  ondismiss=(action cancelCard)}}

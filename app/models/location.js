@@ -1,9 +1,10 @@
 import { set, computed } from '@ember/object';
 import DS from 'ember-data';
+import Model from './application';
 
 const { attr, belongsTo } = DS;
 
-export default DS.Model.extend({
+export default Model.extend({
   photo: belongsTo('photo'),
   name: attr('string'),
   website: attr('string'),

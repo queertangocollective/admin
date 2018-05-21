@@ -3,11 +3,8 @@
 
 {{#file-dropzone name=(concat 'post/' model.id '/photo/new')}}
 <section id="post-edit">
-  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' (concat 'Saved ' model.title)) as |f|}}
-    <nav class='row'>
-      {{#confirm-button onsubmit=(route-action 'deleteRecord' model)}}
-        {{icon "trash"}} Delete Post
-      {{/confirm-button}}
+  {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
+    {{#f.nav ondelete=(route-action 'deleteRecord')}}
       {{#if model.published}}
         {{#submit-button onsubmit=(route-action 'unpublish' model)}}
           {{icon "eye-closed"}} Unpublish
@@ -17,7 +14,7 @@
           {{icon "eye"}} Publish
         {{/submit-button}}
       {{/if}}
-    </nav>
+    {{/f.nav}}
     <div class="grid-column">
       {{f.text 'title'}}
       {{f.text 'slug'}}
@@ -30,9 +27,9 @@
                   (component 'find-ticket-dialog')
                 )
           )
-          (hash type='calendar'
-                label='Add Calendar'
-                icon='calendar'
+          (hash type='itinerary'
+                label='Add Itinerary'
+                icon='list'
                 onembed=(route-action 'findOrCreateEvent'
                   (component 'find-event-dialog')
                 )

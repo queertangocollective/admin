@@ -2,13 +2,8 @@
 {{remember-document-scroll key=(concat 'location/' model.id)}}
 
 <section id="location">
-  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' 'Saved ' model.name) as |f|}}
-    <nav class='row'>
-      {{#confirm-button onsubmit=(route-action 'deleteRecord' model)}}
-        {{icon "cancel"}} Delete Location
-      {{else}}
-        Are you sure?
-      {{/confirm-button}}
+  {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
+    {{#f.nav ondelete=(route-action 'deleteRecord')}}
       <button type='submit' onclick={{action (mut isShowingMap) true}}>
         {{icon 'location'}} View Map
       </button>
@@ -19,7 +14,7 @@
             longitude=model.longitude)
           ondismiss=(action (mut isShowingMap) false)}}
       {{/if}}
-    </nav>
+    {{/f.nav}}
     <div class='grid-column'>
       {{f.text 'name'}}
       {{f.text 'website'}}
@@ -29,6 +24,11 @@
         {{f.text 'city'}}
         {{f.text 'regionCode'}}
       </div>
+      {{#f.upload 'photo' as |photo|}}
+        <img src="{{photo.url}}">
+      {{else}}
+        Upload Photo
+      {{/f.upload}}
     </div>
   {{/form-for}}
 </section>

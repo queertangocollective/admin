@@ -1,5 +1,6 @@
 @import '@queertangocollective/ui';
 @import './find-ticket-dialog/style';
+@import './find-event-dialog/style';
 
 $green: #00D925;
 $red: #FF0052;
@@ -110,48 +111,11 @@ body {
   }
 }
 
-.__mobiledoc-card .ticket-editor {
-  width: 400px;
-  max-width: calc(100vw - 60px);
-  border: 1px solid $heather;
-  border-radius: 4px;
-  padding: 0;
-  overflow: hidden;
-
-  h4 {
-    background: $black;
-    padding: 1rem;
-    color: $white;
-
-    svg {
-      height: 1.5rem;
-      width: 1.5rem;
-      float: left;
-      margin-right: 1rem;
-    }
-
-    path {
-      fill: $white;
-    }
-
-    a {
-      color: $white;
-    }
-
-    span {
-      float: right;
-    }
-  }
-
-  form {
-    padding: 1rem;
-  }
-}
-
 .__mobiledoc-card .event-planner {
   height: 400px;
   width: 400px;
 }
+
 
 .event-planner {
   box-shadow: 0 1px 2px 1px rgba($black, 0.20);

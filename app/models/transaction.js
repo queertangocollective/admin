@@ -1,8 +1,9 @@
 import DS from 'ember-data';
+import Model from './application';
 
 const { attr, belongsTo } = DS;
 
-export default DS.Model.extend({
+export default Model.extend({
   description: attr('string'),
   paidAt: attr('date'),
   paidBy: belongsTo('person'),

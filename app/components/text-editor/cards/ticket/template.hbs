@@ -1,1 +1,3 @@
-<button type='submit' onclick={{action editCard}}>{{payload.callToAction}}</button>
+{{#animated-beacon group=(concat "ticket-" payload.ticketId)}}
+  <button type='submit' onclick={{action editCard}}>{{payload.callToAction}}</button>
+{{/animated-beacon}}

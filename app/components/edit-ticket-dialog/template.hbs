@@ -1,0 +1,10 @@
+{{#form-for payload onsubmit=(action submit) as |f|}}
+  <header>{{icon 'ticket'}} {{#link-to 'ticket' ticket target='__blank'}}{{ticket.description}}{{/link-to}} <span>{{l 'currency' ticket.cost currency=ticket.currency}}</span></header>
+  <div class="body grid-column">
+    {{f.text 'callToAction'}}
+  </div>
+  <footer>
+    {{f.submit 'Save'}}
+    <button type='reset' onclick={{dismiss}}>Cancel</button>
+  </footer>
+{{/form-for}}

@@ -1,8 +1,10 @@
 import DS from 'ember-data';
+import Model from './application';
+import { computed } from '@ember/object';
 
 const { attr, hasMany } = DS;
 
-export default DS.Model.extend({
+export default Model.extend({
   description: attr('string'),
   sku: attr('string'),
   cost: attr('number'),
@@ -10,5 +12,8 @@ export default DS.Model.extend({
   currency: attr('string'),
   validFrom: attr('date'),
   validTo: attr('date'),
-  events: hasMany('event')
+  ticketedEvents: hasMany('ticketed-event'),
+  events: computed('ticketedEvents.@each.events', function () {
+    return this.get('ticketedEvents').mapBy('event');
+  })
 });

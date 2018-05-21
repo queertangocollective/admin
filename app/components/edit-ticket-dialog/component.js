@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   store: service(),
-  classNames: ['ticket-editor'],
+  classNames: ['edit-ticket-dialog'],
 
   init() {
     this._super();
@@ -16,6 +16,6 @@ export default Component.extend({
   submit(payload, changes) {
     payload = Object.assign({}, payload);
     Object.assign(payload, changes);
-    this.saveCard(payload);
+    this.onsubmit(payload);
   }
 });

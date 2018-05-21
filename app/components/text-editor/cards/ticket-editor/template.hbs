@@ -1,6 +1,6 @@
-<h4>{{icon 'ticket'}} {{#link-to 'ticket' ticket target='__blank'}}{{ticket.description}}{{/link-to}} <span>{{l 'currency' ticket.cost currency=ticket.currency}}</span></h4>
-{{#form-for payload onsubmit=(action submit) as |f|}}
-  {{f.text 'callToAction'}}
-  {{f.submit 'Save'}}
-  <button type='reset' onclick={{action cancelCard}}>Cancel</button>
-{{/form-for}}
+{{text-editor/cards/ticket payload=payload editCard=editCard}}
+{{dialog-box (component 'edit-ticket-dialog'
+    payload=payload
+    onsubmit=(action saveCard))
+  group=(concat 'ticket-' payload.ticketId)
+  ondismiss=(action cancelCard)}}

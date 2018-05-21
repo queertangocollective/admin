@@ -1,8 +1,4 @@
-{{#event-planner events=events as |event|}}
-  {{event.title}}
-{{/event-planner}}
-
-{{#tabular-list rows=events as |l|}}
+{{#tabular-list rows=events click=editCard as |l|}}
   {{#l.item 'title' as |item|}}
     {{item.title}}
   {{else}}

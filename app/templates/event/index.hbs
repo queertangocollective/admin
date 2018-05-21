@@ -2,16 +2,11 @@
 
 <section id="event-edit">
   {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' 'Saved ' model.title) as |f|}}
-    <nav class='row'>
+    {{#f.nav ondelete=(route-action 'deleteRecord')}}
       {{#link-to 'event.photos' class='submit-button'}}
         {{icon "photo"}} Photos
       {{/link-to}}
-      {{#confirm-button onsubmit=(route-action 'deleteRecord' model)}}
-        {{icon "trash"}}
-      {{else}}
-        Are you sure?
-      {{/confirm-button}}
-    </nav>
+    {{/f.nav}}
     <div class='grid-column'>
       {{f.text 'title'}}
       <div class='grid-row'>

@@ -1,15 +1,24 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { fadeIn, fadeOut } from 'ember-animated/motions/opacity';
 
 export default Component.extend({
-  classNames: ['find-ticket-dialog'],
+  classNames: ['find-event-dialog'],
   store: service(),
 
-  sort: 'description',
+  sort: '-endsAt',
   q: '',
+  isLoading: true,
+
+  *fade({ insertedSprites, removedSprites }) {
+    insertedSprites.map(fadeIn);
+    removedSprites.map(fadeOut);
+    yield;
+  },
 
   query() {
+    this.set('isLoading', true);
     return this.store.query('event', {
       sort: this.sort,
       page: {
@@ -19,6 +28,7 @@ export default Component.extend({
         text: this.q
       }
     }).then((results) => {
+      this.set('isLoading', false);
       this.set('results', results);
     });
   },
@@ -27,11 +37,20 @@ export default Component.extend({
     this._super();
     this.query();
     this.set('results', []);
-    this.set('selection', []);
+    if (this.selection == null) {
+      this.set('selection', []);
+    }
+    if (this.disabled) {
+      this.set('disabledIds', this.disabled.mapBy('id'));
+    } else {
+      this.set('disabledIds', []);
+    }
   },
 
   areAllSelected: computed('selection', 'results', function () {
-    return this.results.every((item) => {
+    return this.results.filter((item) => {
+      return this.disabledIds.indexOf(item.id) === -1;
+    }).every((item) => {
       return this.selection.indexOf(item) !== -1;
     });
   }),
@@ -47,7 +66,7 @@ export default Component.extend({
       if (index === -1) {
         selection.push(item);
       } else {
-        selection = selection.splice(index, 1);
+        selection.splice(index, 1);
       }
       this.set('selection', selection);
     },
@@ -55,8 +74,17 @@ export default Component.extend({
       if (this.areAllSelected) {
         this.set('selection', []);
       } else {
-        this.set('selection', this.results.toArray());
+        this.set('selection', this.results.toArray().filter((result) => {
+          return this.disabledIds.indexOf(result.id) === -1;
+        }));
       }
+    },
+    submit(selection) {
+      return this.onsubmit(selection).then(() => {
+        if (this.dismiss) {
+          this.dismiss();
+        }
+      })
     }
   }
 });
