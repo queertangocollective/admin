@@ -11,5 +11,7 @@ export default Model.extend({
   email: attr('string'),
   hostname: attr('string'),
   timezone: attr('string'),
-  locale: attr('string')
+  locale: attr('string'),
+  stripePublishableKey: attr('string'),
+  stripeSecretKey: attr('string')
 });

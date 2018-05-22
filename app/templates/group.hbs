@@ -4,7 +4,9 @@
   {{title model.name}}
 {{/if}}
 <section id="group">
-  {{#form-for model onsubmit=(route-action 'save') class='grid-column' as |f|}}
+  {{#form-for model autosave=true onsubmit=(route-action 'save') class='grid-column' as |f|}}
+    {{#f.nav}}
+    {{/f.nav}}
     {{f.text 'name'}}
     {{f.text 'hostname' label=(concat "Hostname " (icon 'help' id='hostname-info'))
              autocomplete=currentHostname}}
@@ -13,6 +15,8 @@
       This is used to create links in emails that are sent.
     {{/tool-tip}}
 
+    {{f.text 'stripePublishableKey'}}
+    {{f.text 'stripeSecretKey'}}
     {{#each builds as |build|}}
       {{build.liveAt}}
     {{/each}}
