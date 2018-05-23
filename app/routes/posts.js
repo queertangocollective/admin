@@ -5,7 +5,10 @@ export default Collection.extend({
 
   createPost: method(),
 
-  filters: ['q', 'pinned'],
+  filters: {
+    q: 'text',
+    pinned: 'pinned'
+  },
 
   queryParams: {
     sort: {

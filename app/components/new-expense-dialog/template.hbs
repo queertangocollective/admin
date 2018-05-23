@@ -7,7 +7,7 @@
       {{f.date 'paidAt'}}
     </div>
     {{f.autocomplete 'paidBy' key='name' onquery=(action onquery 'person')}}
-    {{f.editor 'notes'}}
+    {{f.editor 'notes' markup=(list 'bold' 'italic' 'underline' 'emoji')}}
   </div>
   <footer>
     {{f.submit 'Add Expense'}}

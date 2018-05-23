@@ -5,6 +5,10 @@ import { singularize } from 'ember-inflector';
 
 export default Route.extend(Restricted, {
 
+  filters: {
+    q: 'text'
+  },
+
   queryParams: {
     sort: {
       refreshModel: true
@@ -27,9 +31,9 @@ export default Route.extend(Restricted, {
         limit: 50,
         offset: params.offset
       },
-      filter: this.filters.reduce((filters, param) => {
+      filter: Object.keys(this.filters).reduce((filters, param) => {
         let value = params[param];
-        let key = param === 'q' ? 'text' : param;
+        let key = this.filters[param];
         if (value !== '' && value != null) {
           filters[key] = value;
         }

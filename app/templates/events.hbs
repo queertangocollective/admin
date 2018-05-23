@@ -15,6 +15,8 @@
     <button type='submit' onclick={{action (mut isAdding) true}}>
       {{icon "calendar"}} Add Event
     </button>
+    {{check-box inputId='upcoming' value=upcoming onchange=(route-action 'filterUpcoming')}}
+    <label for='upcoming'>Show Only Upcoming</label>
     {{#if isAdding}}
       {{dialog-box (component 'new-event-dialog'
           onsubmit=(route-action 'createEvent')
