@@ -12,16 +12,19 @@
           {{icon 'key'}} Manage Logins
         </button>
       {{else}}
-        {{#create-button 'email' onsubmit=(route-action 'addLogin' model) placeholder='Enter email' value=model.email}}
-          {{icon 'add'}} Add Login
-        {{else}}
-          {{icon 'add'}}
-        {{/create-button}}
+        {{#animated-container}}
+          {{#create-button 'email' onsubmit=(route-action 'addLogin' model) placeholder='Enter email' value=model.email}}
+            {{icon 'add'}} Add Login
+          {{else}}
+            {{icon 'add'}}
+          {{/create-button}}
+        {{/animated-container}}
       {{/if}}
       {{#if isAddingLogin}}
         {{dialog-box (component 'new-login-dialog'
             logins=model.authorizations
-            onsubmit=(route-action 'addLogin' model))
+            oncreate=(route-action 'addLogin' model)
+            ondelete=(route-action 'deleteLogin'))
           ondismiss=(action (mut isAddingLogin) false)}}
       {{/if}}
     {{/f.nav}}

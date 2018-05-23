@@ -1,32 +1,38 @@
-{{#form-for onsubmit=(action 'submit') as |f|}}
-  <header>{{icon 'key'}}{{#if logins.length}}Manage Logins{{else}}Add Login{{/if}}</header>
-  <div class='body' id='authorizations'>
-    {{#if logins.length}}
-      {{#tabular-list rows=logins as |l|}}
-        {{#l.item 'avatar' as |login|}}
-          {{#if login.avatar}}
-            <img src="{{login.avatar}}" alt="{{login.email}}"/>
-          {{/if}}
-        {{/l.item}}
-        {{#l.item 'email' as |login|}}
-          {{login.email}}
+<header>{{icon 'key'}}{{#if logins.length}}Manage Logins{{else}}Add Login{{/if}}</header>
+<div class='body' id='authorizations'>
+  {{#if logins.length}}
+    {{#tabular-list rows=logins as |l|}}
+      {{#l.item 'avatar' as |login|}}
+        {{#if login.avatar}}
+          <img src="{{login.avatar}}" alt="{{login.email}}"/>
+        {{/if}}
+      {{/l.item}}
+      {{#l.item 'email' as |login|}}
+        {{login.email}}
+      {{else}}
+        Email
+      {{/l.item}}
+      {{#l.item 'provider' as |login|}}
+        {{login.provider}}
+      {{else}}
+        Provider
+      {{/l.item}}
+      {{#l.item 'delete' as |login|}}
+        {{#confirm-button class='icon' onsubmit=(action ondelete login)}}
+          {{icon 'trash'}}
         {{else}}
-          Email
-        {{/l.item}}
-        {{#l.item 'provider' as |login|}}
-          {{login.provider}}
-        {{else}}
-          Provider
-        {{/l.item}}
-      {{/tabular-list}}
-    {{/if}}
-    {{#create-button 'email' onsubmit=(action 'submit') placeholder='Enter email'}}
-      {{icon "add"}} Add Login
-    {{else}}
-      {{icon "add"}}
-    {{/create-button}}
-  </div>
-  <footer>
-    <button type='reset' onclick={{dismiss}}>Close</button>
-  </footer>
-{{/form-for}}
+          {{icon 'check'}}
+        {{/confirm-button}}
+      {{/l.item}}
+    {{/tabular-list}}
+  {{/if}}
+  {{#create-button 'email' type='email' onsubmit=(action oncreate) placeholder='Enter email'}}
+    {{icon "add"}} Add Login
+  {{else}}
+    {{icon "add"}}
+  {{/create-button}}
+  <br>
+</div>
+<footer>
+  <button type='reset' onclick={{dismiss}}>Close</button>
+</footer>

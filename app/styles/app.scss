@@ -103,7 +103,7 @@ body {
 }
 
 .text-editor nav {
-  max-width: calc(100vw - 40px);
+  max-width: calc(100vw - 32px);
   overflow: scroll;
 
   button, label {
@@ -239,6 +239,10 @@ body {
   min-height: 100vh;
 }
 
+nav .create-button {
+  margin: 0;
+}
+
 #authorizations {
   header {
     line-height: 1rem;
@@ -253,6 +257,8 @@ body {
       width: 2rem;
       height: 2rem;
       border-radius: 1rem;
+      background: $heather;
+      overflow: hidden;
     }
   }
 
@@ -260,10 +266,19 @@ body {
     width: 3rem;
   }
   .email {
-    width: calc(60% - 1rem);
+    width: calc(60% - 2rem);
   }
   .provider {
-    width: calc(40% - 2rem);
+    width: calc(40% - 4rem);
+  }
+  .delete {
+    position: relative;
+    top: -0.75rem;
+    overflow: visible;
+
+    button {
+      padding: 0.5rem 0.75rem;
+    }
   }
 }
 
