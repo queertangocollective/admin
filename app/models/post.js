@@ -10,5 +10,5 @@ export default Model.extend({
   pinned: attr('boolean'),
   published: attr('boolean'),
   publishedAt: attr('date'),
-  writtenBy: hasMany('author')
+  writtenBy: hasMany('person')
 });

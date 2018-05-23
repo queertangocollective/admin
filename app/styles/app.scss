@@ -91,14 +91,45 @@ body {
 }
 
 #posts {
-  .title {
-    width: 30%;
+  header .pinned {
+    display: inline-block;
   }
-  .written-by {
-    width: 40%;
+
+  .pinned {
+    width: 2rem;
+
+    button {
+      -webkit-appearance: none;
+              appearance: none;
+      background: $white;
+      border: 0;
+      padding: 0;
+
+      &:hover .pin path {
+        fill: $black;
+      }
+    }
+
+    .pin {
+      position: relative;
+      top: 0.25rem;
+
+      path {
+        transition: all 120ms;
+      }
+    }
+    .pin path {
+      fill: $heather;
+    }
+    .pin.active path {
+      fill: $accent;
+    }
+  }
+  .title {
+    width: 50%;
   }
   .published-at {
-    width: 30%;
+    width: calc(50% - 2rem);
   }
 }
 

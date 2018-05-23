@@ -11,6 +11,11 @@
     <button type='submit' onclick={{action (mut isAdding) true}}>
       {{icon "edit"}} Draft Post
     </button>
+    {{check-box inputId='pinned' value=pinned onchange=(route-action 'filterPinned')}}
+    <label for='pinned'>
+      {{icon 'pin'}} Show Pinned
+    </label>
+
     {{#if isAdding}}
       {{dialog-box (component 'new-post-dialog'
           onsubmit=(route-action 'createPost'))
@@ -18,15 +23,15 @@
     {{/if}}
   </nav>
   {{#sortable-list rows=model.model load=(route-action 'load') total=model.meta.page.total sort=sort as |l|}}
+    {{#l.item 'pinned' sortable=false as |item|}}
+      <button onclick={{route-action 'pin' item (not item.pinned)}}>{{icon 'pin' class=(if item.pinned 'pin active' 'pin')}}</button>
+    {{else~}}
+      <span class='pinned'>&nbsp;</span>
+    {{~/l.item}}
     {{#l.item 'title' as |item|}}
       {{#link-to 'post' item}}{{item.title}}{{/link-to}}
     {{else}}
       Title
-    {{/l.item}}
-    {{#l.item 'written-by' as |item|}}
-      {{item.authors}}
-    {{else}}
-      Written By
     {{/l.item}}
     {{#l.item 'published-at' as |item|}}
       {{l 'date' item.publishedAt}}

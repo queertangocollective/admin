@@ -1,6 +1,6 @@
 {{title model.name}}
 <section id="person">
-  {{#form-for model autosave=true onsubmit=(route-action 'save') onsaved=(route-action 'flash' 'Saved ' model.name) as |f|}}
+  {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
     {{#f.nav ondelete=(route-action 'deleteRecord')}}
       {{#if model.email}}
         <a class='submit-button' href="mailto:{{model.email}}">

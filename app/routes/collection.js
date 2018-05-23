@@ -20,16 +20,21 @@ export default Route.extend(Restricted, {
     }
   }),
 
-  query (params) {
+  query(params) {
     return this.store.query(this.modelName, {
       sort: params.sort,
       page: {
         limit: 50,
         offset: params.offset
       },
-      filter: {
-        text: params.q
-      },
+      filter: this.filters.reduce((filters, param) => {
+        let value = params[param];
+        let key = param === 'q' ? 'text' : param;
+        if (value !== '' && value != null) {
+          filters[key] = value;
+        }
+        return filters;
+      }, {}),
       include: this.include
     }).then(function (results) {
       return {
