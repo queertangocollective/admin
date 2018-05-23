@@ -313,6 +313,37 @@ nav .create-button {
   }
 }
 
+.sortable-list {
+  max-width: calc(100vw - 2rem);
+}
+
+#tickets {
+  header .is-active {
+    display: inline-block;
+  }
+
+  .is-active {
+    width: 2rem;
+
+    .icon {
+      border-radius: 1rem;
+      width: 1rem;
+      height: 1rem;
+      background: $heather;
+
+      &.active {
+        background: $green;
+      }
+    }
+  }
+  .description {
+    width: 50%;
+  }
+  .cost {
+    width: 5rem;
+  }
+}
+
 .balance-bar {
   height: 2rem;
   border-radius: 4px;
