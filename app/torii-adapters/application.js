@@ -13,6 +13,7 @@ export default EmberObject.extend({
     if (token == null) {
       return reject();
     }
+
     return fetch(config.API_HOST + '/authorization_sessions', {
       headers: {
         'Api-Key': config.API_KEY,
@@ -20,7 +21,11 @@ export default EmberObject.extend({
         'Content-Type': 'application/vnd.api+json'
       }
     }).then((response) => {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("You've been logged out");
+      }
     }).then((json) => {
       return RSVP.all([
         get(this, 'store').find('person', json.data.attributes['person-id']),
@@ -54,7 +59,11 @@ export default EmberObject.extend({
         'redirect-uri': data.redirectUri
       })
     }).then((response) => {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("There's no login using that email");
+      }
     }).then((json) => {
       localStorage.setItem('qtc-token', json.data.attributes['access-token']);
       return RSVP.all([

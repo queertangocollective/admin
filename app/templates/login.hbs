@@ -1,7 +1,19 @@
-{{dialog-box (component 'login-dialog'
-    authorizors=(hash
-      facebook=(route-action 'loginWithFacebook')
-      google=(route-action 'loginWithGoogle')
-    )
-  )
-  ondismiss=(route-action 'visitHomepage')}}
+<section id="login">
+  <img src="/assets/images/black-logo.png" alt="Queer Tango Collective" class="logo" />
+  <h4>Login</h4>
+  {{#animated-container}}
+    {{#animated-if error duration=200}}
+      <div class="error">
+        {{error.message}}
+      </div>
+    {{/animated-if}}
+  {{/animated-container}}
+  <button type='submit' onclick={{route-action 'loginWithFacebook'}}>{{icon 'facebook'}} Login with Facebook</button>
+  <br>
+  <button type='submit' onclick={{route-action 'loginWithGoogle'}}>{{icon 'google'}} Login with Google</button>
+  {{#create-button 'email' type='email' onsubmit=(route-action 'sendMagicLink')}}
+    {{icon 'email'}} Send me a login link
+  {{else}}
+    {{icon 'arrow'}}
+  {{/create-button}}
+</section>

@@ -6,6 +6,23 @@ $green: #00D925;
 $red: #FF0052;
 $yellow: #FFF500;
 
+.logo {
+  position: absolute;
+  top: -1.5rem;
+  left: -1.5rem;
+  max-width: 100%;
+  height: 10rem;
+  pointer-events: none;
+}
+
+.error {
+  background: $red;
+  color: $white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
 header {
   margin-bottom: 1rem;
 }
@@ -18,6 +35,36 @@ body {
   padding: 0 1rem;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+h4 {
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  font-variant-caps: all-small-caps;
+  border-bottom: 2px solid $black;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
+#login {
+  margin: 9rem auto 0;
+  max-width: 25rem;
+  width: 100%;
+
+  & > button {
+    width: 100%;
+    display: flex;
+    align-content: space-around;
+  }
+
+  .create-button button:not(.icon) {
+    width: 100%;
+  }
+
+  footer {
+    display: flex;
+    margin-top: 1rem;
+  }
 }
 
 #people {

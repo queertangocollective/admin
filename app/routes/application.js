@@ -1,7 +1,10 @@
 import Route from '@ember/routing/route';
 import Authenticatable from 'torii/routing/application-route-mixin';
+import method from 'ember-service-methods/inject';
 
 export default Route.extend(Authenticatable, {
+
+  flash: method(),
 
   afterModel() {
     if (!this.session.get('isAuthenticated')) {
@@ -18,7 +21,7 @@ export default Route.extend(Authenticatable, {
 
     logout() {
       return this.session.close().then(() => {
-        this.transitionTo('/');
+        this.transitionTo('login');
         this.flash('Logged out successfully.', {
           timeout: 5000
         });
