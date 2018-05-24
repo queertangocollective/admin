@@ -5,9 +5,11 @@ import { singularize } from 'ember-inflector';
 
 export default Route.extend(Restricted, {
 
+  /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
   filters: {
     q: 'text'
   },
+  /* eslint-enable ember/avoid-leaking-state-in-ember-objects */
 
   queryParams: {
     sort: {

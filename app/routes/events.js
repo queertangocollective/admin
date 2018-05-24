@@ -2,10 +2,12 @@ import Collection from './collection';
 
 export default Collection.extend({
 
+  /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
   filters: {
     q: 'text',
     upcoming: 'upcoming'
   },
+  /* eslint-enable ember/avoid-leaking-state-in-ember-objects */
 
   queryParams: {
     sort: {

@@ -5,10 +5,12 @@ export default Collection.extend({
 
   createPost: method(),
 
+  /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
   filters: {
     q: 'text',
     pinned: 'pinned'
   },
+  /* eslint-enable ember/avoid-leaking-state-in-ember-objects */
 
   queryParams: {
     sort: {
