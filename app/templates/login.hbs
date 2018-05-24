@@ -11,7 +11,7 @@
   <button type='submit' onclick={{route-action 'loginWithFacebook'}}>{{icon 'facebook'}} Login with Facebook</button>
   <br>
   <button type='submit' onclick={{route-action 'loginWithGoogle'}}>{{icon 'google'}} Login with Google</button>
-  {{#create-button 'email' type='email' onsubmit=(route-action 'sendMagicLink')}}
+  {{#create-button 'email' type='email' placeholder='Enter email' onsubmit=(route-action 'sendMagicLink')}}
     {{icon 'email'}} Send me a login link
   {{else}}
     {{icon 'arrow'}}

@@ -26,7 +26,6 @@ export default Route.extend({
 
   actions: {
     sendMagicLink({ email }) {
-      debugger;
       return fetch(config.API_HOST + '/authorization_sessions', {
         method: 'POST',
         headers: {
