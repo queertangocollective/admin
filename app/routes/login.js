@@ -18,6 +18,11 @@ export default Route.extend({
 
       return this.session.fetch().then(() => {
         this.replaceWith('index');
+      }, () => {
+        this.flash('The login link has expired', {
+          timeout: 5000
+        });
+        return;
       });
     } else if (this.session.get('isAuthenticated')) {
       this.replaceWith('index');
