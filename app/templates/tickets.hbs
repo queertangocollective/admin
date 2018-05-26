@@ -19,7 +19,7 @@
   </nav>
   {{#sortable-list load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='ticket' as |l|}}
     {{#l.item 'is-active' sortable=false as |item|}}
-      <span class="icon {{if item.isActive 'active'}}"></span>
+      <span class="status {{if item.isActive 'active'}}"></span>
     {{else}}
       <span class='is-active'>&nbsp;</span>
     {{~/l.item}}

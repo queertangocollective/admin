@@ -6,19 +6,17 @@
 <section id="group">
   {{#form-for model autosave=true onsubmit=(route-action 'save') class='grid-column' as |f|}}
     {{#f.nav}}
+      <button type='submit' onclick={{action (mut isShowingBuilds) true}}>
+        {{icon 'love'}} See Updates
+      </button>
+      {{#if isShowingBuilds}}
+        {{dialog-box (component 'manage-builds-dialog' builds=model.builds)
+          ondismiss=(action (mut isShowingBuilds) false)}}
+      {{/if}}
     {{/f.nav}}
     {{f.text 'name'}}
-    {{f.text 'hostname' label=(concat "Hostname " (icon 'help' id='hostname-info'))
-             autocomplete=currentHostname}}
-    {{#tool-tip for='hostname-info'}}
-      The hostname of this website is "{{currentHostname}}".<br>
-      This is used to create links in emails that are sent.
-    {{/tool-tip}}
-
+    {{f.text 'hostname' label="Hostname" autocomplete=currentHostname}}
     {{f.text 'stripePublishableKey'}}
     {{f.text 'stripeSecretKey'}}
-    {{#each builds as |build|}}
-      {{build.liveAt}}
-    {{/each}}
   {{/form-for}}
 </section>

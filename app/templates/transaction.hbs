@@ -17,6 +17,9 @@
       </div>
       {{f.datetime 'paidAt'}}
       {{f.autocomplete 'paidBy' key='name' onquery=(route-action 'query' 'person')}}
+      {{#if model.paidBy}}
+        {{#link-to 'person' model.paidBy}}&rarr; {{model.paidBy.name}}{{/link-to}}
+      {{/if}}
       {{f.currency 'amountOwed'}}
       {{f.editor 'notes' rows=3 markup=(list 'bold' 'italic' 'underline' 'emoji')}}
     </div>

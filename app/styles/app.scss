@@ -364,6 +364,17 @@ nav .create-button {
   max-width: calc(100vw - 2rem);
 }
 
+.status {
+  border-radius: 1rem;
+  width: 1rem;
+  height: 1rem;
+  background: $heather;
+
+  &.active {
+    background: $green;
+  }
+}
+
 #tickets {
   header .is-active {
     display: inline-block;
@@ -371,17 +382,6 @@ nav .create-button {
 
   .is-active {
     width: 2rem;
-
-    .icon {
-      border-radius: 1rem;
-      width: 1rem;
-      height: 1rem;
-      background: $heather;
-
-      &.active {
-        background: $green;
-      }
-    }
   }
   .description {
     width: 50%;
