@@ -5,20 +5,23 @@
       max-width: calc(100vw - 4rem);
     }
   }
-  header, ol li {
-    padding-left: 0;
-  }
 
   ol li span {
     vertical-align: top;
   }
   .deployed-by {
-    width: calc(50% - 20px);
+    width: calc(40% - 20px);
   }
   .live-at {
-    width: calc(50% - 100px);
+    width: calc(60% - 100px);
   }
   .changes {
     width: 120px;
+  }
+
+  .status {
+    position: relative;
+    top: 0.65rem;
+    margin-right: 0.25rem;
   }
 }
