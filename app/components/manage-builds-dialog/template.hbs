@@ -6,15 +6,15 @@
     {{else}}
       Updated by
     {{/l.item}}
-    {{#l.item 'changes' as |build|}}
-      <a href="{{build.gitUrl}}" target="__blank">View Changes</a>
-    {{else}}
-      Changes
-    {{/l.item}}
     {{#l.item 'liveAt' as |build|}}
       <span class="status {{if build.live 'active'}}"></span> {{l 'date' build.liveAt}}
     {{else}}
       Active Since
+    {{/l.item}}
+    {{#l.item 'changes' as |build|}}
+      <a href="{{build.gitUrl}}/commit/{{build.gitSha}}" target="__blank">View Changes</a>
+    {{else}}
+      Changes
     {{/l.item}}
   {{else}}
     No updates yet!

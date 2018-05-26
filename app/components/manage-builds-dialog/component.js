@@ -6,7 +6,7 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this.builds.then((builds) => {
-      this.set('rows', rows);
+      this.set('rows', builds.sortBy('createdAt').reverse());
     });
   }
 });

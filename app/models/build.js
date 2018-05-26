@@ -4,7 +4,7 @@ import Model from './application';
 const { belongsTo, attr } = DS;
 
 export default Model.extend({
-  deployedBy: belongsTo('person'),
+  deployedBy: attr('string'),
   gitSha: attr('string'),
   gitUrl: attr('string'),
   notes: attr('string'),
