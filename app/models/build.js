@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import Model from './application';
 
-const { belongsTo, attr } = DS;
+const { attr } = DS;
 
 export default Model.extend({
   deployedBy: attr('string'),

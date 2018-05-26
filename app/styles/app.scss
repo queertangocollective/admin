@@ -38,6 +38,12 @@ body {
   margin: 0 auto;
 }
 
+@media (max-width: 500px) {
+  .sortable-list li span {
+    max-width: calc(100vw - 4rem);
+  }
+}
+
 h4 {
   font-weight: 600;
   letter-spacing: 0.1rem;
