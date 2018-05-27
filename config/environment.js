@@ -71,6 +71,7 @@ module.exports = function(environment) {
     ENV.GOOGLE_MAPS_API_KEY = 'AIzaSyBRoseyODw0jyZi4lcw-rSsQmmYu0l7go0';
     ENV.torii.providers['facebook-oauth2'].redirectUri = 'https://admin.queertangocollective.org/torii/redirect.html';
     ENV.torii.providers['google-oauth2'].redirectUri = 'https://admin.queertangocollective.org/torii/redirect.html';
+    ENV.SENTRY_DSN = 'https://90fd196af750400aac4cd69d642589c5@sentry.io/293902';
   }
 
   return ENV;
