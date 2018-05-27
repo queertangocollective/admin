@@ -9,6 +9,10 @@ module.exports = function(defaults) {
       browsers: ['last 2 versions'],
       cascade: false
     },
+    sourcemaps: {
+      enabled: true,
+      extensions: ['js']
+    },
     sri: {
       enabled: true,
       crossorigin: 'anonymous'
