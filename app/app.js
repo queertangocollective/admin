@@ -5,7 +5,9 @@ import loadInitializers from 'ember-load-initializers';
 import config from './config/environment';
 
 if (config.SENTRY_DSN) {
-  Raven.config(config.SENTRY_DSN)
+  Raven.config(config.SENTRY_DSN, {
+      release: config.VERSION
+    })
     .addPlugin(Raven.Plugins.Ember, Ember)
     .install();
 }
