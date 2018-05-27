@@ -9,6 +9,9 @@
         {{#submit-button onsubmit=(route-action 'unpublish' model)}}
           {{icon "eye-closed"}} Unpublish
         {{/submit-button}}
+        <a href="{{session.currentGroup.url}}/{{model.slug}}" target="__blank" class="submit-button">
+          {{icon "export"}} View Live
+        </a>
       {{else}}
         {{#submit-button onsubmit=(route-action 'publish' model)}}
           {{icon "eye"}} Publish
