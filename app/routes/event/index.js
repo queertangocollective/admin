@@ -7,6 +7,16 @@ export default Resource.extend({
 
   createPerson: method(),
 
+  afterModel(model) {
+    return model.get('venue').then((venue) => {
+      if (venue == null) {
+        model.set('venue', this.store.createRecord('venue', {
+          event: model
+        }));
+      }
+    });
+  },
+
   actions: {
     createPerson(guest, params) {
       return this.createPerson(params).then(function (person) {
@@ -18,11 +28,13 @@ export default Resource.extend({
         venue.set('location', location);
       });
     },
-    addVenue(event) {
-      return this.store.createRecord('venue', { event });
-    },
     addGuest(event) {
       return this.store.createRecord('guest', { event });
+    },
+    saveVenue(venue, changes) {
+      return this.save(venue, changes).then(() => {
+        return this.save(this.currentModel, { venue });
+      });
     }
   }
 });

@@ -17,13 +17,8 @@
         ondismiss=(action (mut isAdding) false)}}
     {{/if}}
   </nav>
-  {{#sortable-list load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='ticket' as |l|}}
-    {{#l.item 'is-active' sortable=false as |item|}}
-      <span class="status {{if item.isActive 'active'}}"></span>
-    {{else}}
-      <span class='is-active'>&nbsp;</span>
-    {{~/l.item}}
-    {{#l.item 'description' as |item|}}
+  {{#sortable-list load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='ticket' as |l item|}}
+    {{#l.item 'description' class=(if item.isActive 'active' 'inactive') as |item|}}
       {{#link-to 'ticket' item}}{{item.description}}{{/link-to}}
     {{else}}
       Description

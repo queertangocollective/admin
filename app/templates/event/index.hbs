@@ -18,10 +18,18 @@
         {{g.text 'role'}}
       {{/f.form-for}}
       {{f.editor 'description'}}
-      {{#f.form-for 'venue' class='grid-row' as |g|}}
-        {{g.autocomplete 'location' onquery=(route-action 'query' 'location') key='name'}}
-        {{g.text 'extendedAddress'}}
-      {{/f.form-for}}
     </div>
+
+    {{#form-for model.guests autosave=true class='grid-row' onsubmit=(route-action 'saveVenue') as |g|}}
+      {{g.autocomplete 'person' onquery=(route-action 'query' 'person') key='name' label='Guest'}}
+      {{g.text 'role'}}
+    {{else}}
+      <button onclick={{route-action 'addGuest'}}>{{icon 'person'}} Add Guest</button>
+    {{/form-for}}
+  {{/form-for}}
+  <br>
+  {{#form-for model.venue autosave=true class='grid-row' onsubmit=(route-action 'saveVenue') as |f|}}
+    {{f.autocomplete 'location' onquery=(route-action 'query' 'location') key='name'}}
+    {{f.text 'extendedAddress'}}
   {{/form-for}}
 </section>

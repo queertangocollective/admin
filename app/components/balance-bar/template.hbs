@@ -1,8 +1,12 @@
-<div class="balance-bar grid-row {{if (gt balance.amount 10000) 'positive' (if (gt balance.amount 0) 'low' 'negative')}}">
-  <div onclick={{action (mut showCalculations) (and (gt credit.amount 0) (lt debit.amount 0) (not showCalculations))}}>
+{{#animated-container class=(concat "balance-bar grid-row " (if (gt balance.amount 10000) 'positive' (if (gt balance.amount 0) 'low' 'negative')))
+  click=(action (mut isShowingCalculations) (not isShowingCalculations))}}
+  <div>
     Balance {{l 'currency' balance.amount currency=balance.currency}}
   </div>
-  {{#liquid-if showCalculations}}
-    {{l 'currency' credit.amount currency=credit.currency}} + {{l 'currency' debit.amount currency=debit.currency}} = {{l 'currency' balance.amount currency=balance.currency}}
-  {{/liquid-if}}
-</div>
+
+  {{#animated-if isShowingCalculations duration=200}}
+    <div>
+      {{l 'currency' credit.amount currency=credit.currency}} + {{l 'currency' debit.amount currency=debit.currency}} = {{l 'currency' balance.amount currency=balance.currency}}
+    </div>
+  {{/animated-if}}
+{{/animated-container}}

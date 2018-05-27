@@ -38,12 +38,6 @@ body {
   margin: 0 auto;
 }
 
-@media (max-width: 500px) {
-  .sortable-list li span {
-    max-width: calc(100vw - 4rem);
-  }
-}
-
 h4 {
   font-weight: 600;
   letter-spacing: 0.1rem;
@@ -120,6 +114,28 @@ h4 {
   }
   .amount-paid {
     width: 18%;
+
+    &.iou:before {
+      background: $yellow;
+    }
+
+    &.debit:before {
+      background: $red;
+    }
+
+    &.credit:before {
+      background: $green;
+    }
+
+    &:before {
+      content: ' ';
+      position: absolute;
+      left: 2px;
+      width: 6px;
+      top: 2px;
+      bottom: 2px;
+      border-radius: 3px;
+    }
   }
   .amount-owed {
     width: 17%;
@@ -369,6 +385,10 @@ nav .create-button {
 
 .sortable-list {
   max-width: calc(100vw - 2rem);
+
+  li {
+    position: relative;
+  }
 }
 
 .status {
@@ -392,6 +412,24 @@ nav .create-button {
   }
   .description {
     width: 50%;
+
+    &.active:before {
+      background: $green;
+    }
+
+    &.inactive:before {
+      background: $heather;
+    }
+
+    &:before {
+      content: ' ';
+      position: absolute;
+      left: 2px;
+      width: 6px;
+      top: 2px;
+      bottom: 2px;
+      border-radius: 3px;
+    }
   }
   .cost {
     width: 5rem;
@@ -399,11 +437,11 @@ nav .create-button {
 }
 
 .balance-bar {
-  height: 2rem;
   border-radius: 4px;
-  box-shadow: 0 2px 4px 2px rgba($black, 0.20);
   padding: 0.5rem;
   margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
 
   &.positive {
     background: $green;
