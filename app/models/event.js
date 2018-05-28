@@ -11,5 +11,6 @@ export default Model.extend({
   endsAt: attr('date'),
   level: attr('string'),
   guests: hasMany('guest'),
-  ticketedEvents: hasMany('ticketed-event')
+  ticketedEvents: hasMany('ticketed-event'),
+  ticketStubs: hasMany('ticket-stubs')
 });

@@ -3,6 +3,9 @@
 <section id="event-edit">
   {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
     {{#f.nav ondelete=(route-action 'deleteRecord')}}
+      {{#link-to 'event.ledger' class='submit-button'}}
+        {{icon "person"}} Attendance
+      {{/link-to}}
       {{#link-to 'event.photos' class='submit-button'}}
         {{icon "photo"}} Photos
       {{/link-to}}

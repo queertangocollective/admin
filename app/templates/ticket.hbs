@@ -13,9 +13,16 @@
             onsubmit=(route-action 'createTicketedEvents' model))
           ondismiss=(action (mut isAddingEvents) false)}}
       {{/if}}
-      <button type='submit' onclick={{action (mut isAddingStub) true}}>
-        {{icon 'person'}} Add Attendee
+      <button type='submit' onclick={{action (mut isAddingPayment) true}}>
+        {{icon 'ticket'}} Add Purchase
       </button>
+      {{#if isAddingPayment}}
+        {{dialog-box (component 'add-purchase-dialog'
+            ticket=model
+            stubs=model.ticketStubs
+            onsubmit=(route-action 'createPayment' model))
+          ondismiss=(action (mut isAddingPayment) false)}}
+      {{/if}}
     {{/f.nav}}
     <div class='grid-column'>
       {{f.text 'description'}}
@@ -38,6 +45,23 @@
         {{l 'date' item.startsAt}}
       {{else}}
         Date
+      {{/l.item}}
+    {{/tabular-list}}
+    {{#tabular-list rows=model.ticketStubs as |l|}}
+      {{#l.item 'name' as |item|}}
+       {{#link-to 'person' item.person}}{{item.person.name}}{{/link-to}}
+      {{else}}
+        Name
+      {{/l.item}}
+      {{#l.item 'event' as |item|}}
+        {{#link-to 'event' item.event}}{{item.event.title}}{{/link-to}}
+      {{else}}
+        Event
+      {{/l.item}}
+      {{#l.item 'transaction' as |item|}}
+        {{#link-to 'transaction' item.purchase}}{{item.purchase.id}}{{/link-to}}
+      {{else}}
+        Payment
       {{/l.item}}
     {{/tabular-list}}
   {{/form-for}}

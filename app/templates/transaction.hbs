@@ -4,8 +4,8 @@
 <section id="transaction">
   {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
     {{#f.nav ondelete=(route-action 'deleteRecord')}}
-      {{#if model.paymentProcesssorUrl}}
-        <a href="{{model.paymentProcesssorUrl}}" target="__blank" rel="nofollow noreferrer" class="submit-button">
+      {{#if model.paymentProcessorUrl}}
+        <a href="{{model.paymentProcessorUrl}}" target="__blank" rel="nofollow noreferrer" class="submit-button">
           {{icon "coin"}} View Charge
         </a>
       {{/if}}

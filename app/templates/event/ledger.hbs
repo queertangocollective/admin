@@ -1,0 +1,5 @@
+<section id="ledger">
+  {{#each model.ticketStubs as |stub|}}
+    {{stub.person.name}} / {{stub.attended}}
+  {{/each}}
+</section>
