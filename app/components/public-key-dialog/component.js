@@ -6,7 +6,7 @@ export default Component.extend({
 
   actions: {
     submit(model, changes) {
-      if (changes.key.indexOf('RSA PRIVATE KEY')) {
+      if (changes.key.indexOf('RSA PRIVATE KEY') !== -1) {
         return RSVP.reject('Use you public key instead of your private key.');
       }
       return this.oncreate(changes).then(this.dismiss);
