@@ -1,0 +1,44 @@
+{{#form-for onsubmit=(action 'submit') as |f|}}
+  <header>{{icon 'key'}}{{#if logins.length}}Manage Deploy Keys{{else}}Add Deploy Key{{/if}}</header>
+  <div class='body' id='public-keys'>
+    {{#if publicKeys.length}}
+      {{#tabular-list rows=publicKeys as |l|}}
+        {{#l.item 'name' as |key|}}
+          {{key.name}}
+        {{else}}
+          Name
+        {{/l.item}}
+        {{#l.item 'fingerprint' as |key|}}
+          {{key.fingerprint}}
+        {{else}}
+          Fingerprint
+        {{/l.item}}
+        {{#l.item 'lastUsedAt' as |key|}}
+          {{l 'date' key.lastUsedAt}}
+        {{else}}
+          Last Used At
+        {{/l.item}}
+        {{#l.item 'delete' as |key|}}
+          {{#confirm-button class='icon' onsubmit=(action ondelete key)}}
+            {{icon 'trash'}}
+          {{else}}
+            {{icon 'check'}}
+          {{/confirm-button}}
+        {{/l.item}}
+      {{/tabular-list}}
+    {{/if}}
+    <br>
+    {{#if isAdding}}
+      {{f.text 'name'}}
+      {{f.textarea 'key' rows=5}}
+    {{else}}
+      <button type='submit' onclick={{action (mut isAdding) true}}>{{icon 'add'}} Add Deploy Key</button>
+    {{/if}}
+  </div>
+  <footer>
+    {{#if isAdding}}
+      {{f.submit 'Add Deploy Key'}}
+    {{/if}}
+    <button type='reset' onclick={{dismiss}}>Close</button>
+  </footer>
+{{/form-for}}

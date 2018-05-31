@@ -21,6 +21,18 @@ export default Resource.extend({
       return RSVP.all([model.save(), this.currentModel.save()]).then(() => {
         this.currentModel.authorizations.removeObject(model);
       });
+    },
+    addPublicKey(attributes) {
+      let publicKey = this.store.createRecord('public-key', attributes);
+      return publicKey.save().then(() => {
+        this.currentModel.publicKeys.pushObject(publicKey);
+      });
+    },
+    deletePublicKey(model) {
+      model.deleteRecord();
+      return model.save().then(() => {
+        this.currentModel.publicKeys.removeObject(model);
+      });
     }
   }
 });

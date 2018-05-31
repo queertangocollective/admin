@@ -11,5 +11,6 @@ export default Model.extend({
   published: attr('boolean'),
   website: attr('string'),
   authorizations: hasMany('authorization'),
-  group: belongsTo('group')
+  group: belongsTo('group'),
+  publicKeys: hasMany('public-key')
 });
