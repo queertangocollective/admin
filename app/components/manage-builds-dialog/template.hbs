@@ -2,7 +2,7 @@
 <div class="body grid-column">
   {{#tabular-list rows=rows as |l|}}
     {{#l.item 'deployedBy' as |build|}}
-      {{build.deployedBy}}
+      {{#link-to 'person' build.deployedBy}}{{build.deployedBy.name}}{{/link-to}}
     {{else}}
       Updated by
     {{/l.item}}

@@ -1,10 +1,10 @@
 import DS from 'ember-data';
 import Model from './application';
 
-const { attr } = DS;
+const { attr, belongsTo } = DS;
 
 export default Model.extend({
-  deployedBy: attr('string'),
+  deployedBy: belongsTo('person'),
   gitSha: attr('string'),
   gitUrl: attr('string'),
   notes: attr('string'),
