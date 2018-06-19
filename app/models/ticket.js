@@ -15,6 +15,7 @@ export default Model.extend({
   validTo: attr('date'),
   ticketedEvents: hasMany('ticketed-event'),
   ticketStubs: hasMany('ticket-stubs'),
+  purchases: hasMany('transaction'),
   events: computed('ticketedEvents.@each.events', function () {
     return this.get('ticketedEvents').mapBy('event');
   }),

@@ -1,31 +1,25 @@
 {{title "Ledger"}}
 
 <div id="ledger">
-  <header>
+  <header class="container">
     {{search-field query=q onquery=(action (mut q)) placeholder="Search ledger by description or paid by"}}
-    {{balance-bar balance=model.meta.balance credit=model.meta.credit debit=model.meta.debit}}
-  </header>
-  <nav class='row'>
-    <button type='submit' onclick={{action (mut isDonating) true}}>
-      {{icon "love"}} Add Donation
-    </button>
-    <button type='submit' onclick={{action (mut isExpensing) true}}>
-      {{icon "coin"}} Add Expense
-    </button>
-    {{#if isExpensing}}
-      {{dialog-box (component 'new-expense-dialog'
+    <nav class='row'>
+      {{#dialog-button (component 'new-donation-dialog'
+            onquery=(route-action 'query')
+            onsubmit=(route-action 'createTransaction')) group='add-donation'}}
+        {{icon "love"}} Add Donation
+      {{/dialog-button}}
+      {{#dialog-button (component 'new-expense-dialog'
           person=session.currentPerson
           onquery=(route-action 'query')
-          onsubmit=(route-action 'createTransaction'))
-        ondismiss=(action (mut isExpensing) false)}}
-    {{/if}}
-    {{#if isDonating}}
-      {{dialog-box (component 'new-donation-dialog'
-          onquery=(route-action 'query')
-          onsubmit=(route-action 'createTransaction'))
-        ondismiss=(action (mut isDonating) false)}}
-    {{/if}}
-  </nav>
+          onsubmit=(route-action 'createTransaction')) group='add-expense'}}
+        {{icon "coin"}} Add Expense
+      {{/dialog-button}}
+    </nav>
+  </header>
+
+  {{balance-bar balance=model.meta.balance credit=model.meta.credit debit=model.meta.debit}}
+
   {{#sortable-list rows=model.model total=model.meta.page.total load=(route-action 'load') sort=sort icon='piggy-bank' as |list item|}}
     {{#list.item 'description' as |item|}}
       {{#link-to 'transaction' item}}{{item.description}}{{/link-to}}

@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import Model from './application';
 
-const { attr, belongsTo } = DS;
+const { attr, belongsTo, hasMany } = DS;
 
 export default Model.extend({
   description: attr('string'),
@@ -14,5 +14,5 @@ export default Model.extend({
   paymentMethod: attr('string'),
   paymentProcessorUrl: attr('string'),
   notes: attr('string'),
-  ticket: belongsTo('ticket')
+  ticketStubs: hasMany('ticket-stub')
 });

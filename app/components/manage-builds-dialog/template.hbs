@@ -1,13 +1,13 @@
 <header>{{icon 'love'}} Updates</header>
 <div class="body grid-column">
-  {{#tabular-list rows=rows as |l|}}
-    {{#l.item 'deployedBy' as |build|}}
+  {{#tabular-list rows=rows as |l item|}}
+    {{#l.item 'deployedBy' class=(if item.live 'active' 'inactive') as |build|}}
       {{#link-to 'person' build.deployedBy}}{{build.deployedBy.name}}{{/link-to}}
     {{else}}
       Updated by
     {{/l.item}}
     {{#l.item 'liveAt' as |build|}}
-      <span class="status {{if build.live 'active'}}"></span> {{l 'date' build.liveAt}}
+      {{l 'date' build.liveAt}}
     {{else}}
       Active Since
     {{/l.item}}

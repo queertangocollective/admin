@@ -1,13 +1,12 @@
-<nav class="ember-power-calendar-nav">
-  {{#if onCenterChange}}
-    <button type="submit" class="ember-power-calendar-nav-control ember-power-calendar-nav-control--previous" onclick={{action calendar.actions.moveCenter -1 'month' calendar}}>{{icon 'chevron'}}</button>
-  {{/if}}
+<nav class="ember-power-calendar-nav" id="event-planner">
   {{#if hasBlock}}
     {{yield calendar}}
   {{else}}
-    {{moment-format calendar.center 'MMMM YYYY' locale=calendar.locale}}
-  {{/if}}
-  {{#if onCenterChange}}
-    <button type="submit" class="ember-power-calendar-nav-control ember-power-calendar-nav-control--next" onclick={{action calendar.actions.moveCenter 1 'month' calendar}}>{{icon 'chevron'}}</button>
+    {{#select-field options=months value=(moment-format calendar.center "MMMM") onchange=(action jumpTo 'month' calendar) as |option|}}
+      {{option}}
+    {{/select-field}}
+    {{#select-field options=years value=(moment-format calendar.center "YYYY") onchange=(action jumpTo 'year' calendar) as |option|}}
+      {{option}}
+    {{/select-field}}
   {{/if}}
 </nav>

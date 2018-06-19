@@ -1,0 +1,16 @@
+{{#form-for model onsubmit=(action 'submit') as |f|}}
+  <header>{{icon 'stripe'}} Update Stripe</header>
+  <div class='body grid-column'>
+    {{f.text 'stripePublishableKey'}}
+    {{#f.password 'stripeSecretKey'}}
+      Show Secret Key
+    {{else}}
+      Hide Secret Key
+    {{/f.password}}
+    {{f.textarea 'appleDeveloperMerchantidDomainAssociation' rows=5 label='Apple Pay Certificate'}}
+  </div>
+  <footer>
+    {{f.submit 'Save'}}
+    <button type='reset' onclick={{dismiss}}>Close</button>
+  </footer>
+{{/form-for}}

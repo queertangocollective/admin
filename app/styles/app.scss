@@ -7,6 +7,42 @@ $green: #00D925;
 $red: #FF0052;
 $yellow: #FFF500;
 
+section,
+section.container {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid $black;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 0.5rem 0;
+}
+
+:not(.text-editor) p {
+  margin: 1rem 0;
+}
+
+#home .sortable-list {
+  margin-bottom: 0;
+}
+
+#home .item {
+  grid-template-columns: 2fr 1fr;
+}
+
+p ul li {
+  list-style: disc;
+  margin-left: 1rem;
+  margin: 0.5rem 0 0.5rem 1rem;
+}
+
 .logo {
   position: absolute;
   top: -1.5rem;
@@ -24,17 +60,15 @@ $yellow: #FFF500;
   margin-bottom: 1rem;
 }
 
-header {
+header nav {
+  margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-header + nav {
-  margin-bottom: 1rem;
-}
-
-body {
+.container {
   padding: 0 1rem;
-  max-width: 1000px;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -68,53 +102,58 @@ h4 {
   }
 }
 
-#people {
-  .name {
-    width: 50%;
-  }
-  .email {
-    width: 50%;
+#people .item {
+  grid-template-columns: 1fr 1fr;
+  &.mobile {
+    grid-template-columns: 1fr;
   }
 }
 
 
-#locations {
-  .name {
-    width: 40%;
-  }
-
-  .address-line {
-    width: 30%;
-  }
-
-  .city {
-    width: 16%;
-  }
-
-  .region-code {
-    width: 14%;
-  }
-
-  li .region-code {
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-    font-variant-caps: all-small-caps;
+#locations .item {
+  grid-template-columns: 40% 30% 16% 14%;
+  &.mobile {
+    grid-template-columns: auto auto 1fr;
+    .name {
+      grid-column: span 3;
+      overflow: hidden;
+      max-width: calc(100vw - 2rem);
+    }
+    .city:after {
+      content: ',';
+    }
+    .city, .region-code {
+      padding-left: 0.4rem;
+    }
   }
 }
 
-#ledger {
-  .description {
-    width: 25%;
+#locations li .region-code {
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  font-variant-caps: all-small-caps;
+}
+
+#ledger .item {
+  grid-template-columns: 25% 20% 20% 18% 17%;
+
+  &.mobile {
+    grid-template-columns: auto 1fr auto;
+
+    .paid-by {
+      grid-column: span 2;
+      text-align: right;
+      padding-left: 0.5rem;
+    }
+    .amount-paid {
+      text-align: right;
+    }
+    .amount-owed {
+      overflow: hidden;
+    }
   }
-  .paid-by {
-    width: 20%;
-  }
-  .paid-at {
-    width: 20%;
-  }
+
   .amount-paid {
-    width: 18%;
-
     &.iou:before {
       background: $yellow;
     }
@@ -130,34 +169,71 @@ h4 {
     &:before {
       content: ' ';
       position: absolute;
-      left: 2px;
+      left: 0px;
       width: 6px;
-      top: 2px;
-      bottom: 2px;
-      border-radius: 3px;
+      top: 0px;
+      bottom: 0px;
     }
-  }
-  .amount-owed {
-    width: 17%;
   }
 }
 
-#events > header {
+#events > header > div {
   display: grid;
   grid-template-columns: 1fr auto auto;
   grid-column-gap: 0.5rem;
 }
 
-#events {
-  .title {
-    width: 60%;
+#events .event-planner {
+  height: 100vh;
+}
+
+.bulk-actions {
+  background: $grey;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  .container {
+    padding: 1rem;
   }
-  .event-planner {
-    height: 100vh;
+}
+
+.bulk-actions + .sortable-list header {
+  transition: all 250ms;
+}
+
+.bulk-actions.open + .sortable-list header {
+  top: 4rem;
+}
+
+#events .item {
+  grid-template-columns: 2rem 60% 40%;
+  
+  .checkbox, .check-box {
+    overflow: visible;
   }
-  .date {
-    width: 40%;
+
+  &.mobile {
+    grid-template-columns: 2rem 1fr;
+
+    .starts-at {
+      grid-column: span 2;
+      margin-left: 2rem;
+    }
   }
+}
+
+label.submit-button {
+  @extend a.submit-button;
+
+  svg {
+    padding-left: 0 !important;
+    padding-right: 0.5rem;
+  }
+}
+
+figcaption {
+  font-size: 0.8rem;
 }
 
 #posts {
@@ -195,11 +271,34 @@ h4 {
       fill: $accent;
     }
   }
-  .title {
-    width: 50%;
+
+  li .item:not(.mobile) .channel-name > span {
+    display: inline;
   }
-  .published-at {
-    width: calc(50% - 2rem);
+
+  li .channel-name > span {
+    color: $white;
+    background: $black;
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .item {
+    grid-template-columns: 2rem 1fr 1fr 1fr;
+    
+    &.mobile {
+      grid-template-columns: 2rem 1fr;
+
+      .channel-name {
+        margin-left: 2rem;
+        grid-column: span 2;
+      }
+
+      .published-at {
+        margin-left: 2rem;
+        grid-column: span 2;
+      }
+    }
   }
 }
 
@@ -219,22 +318,35 @@ h4 {
 
 
 .event-planner {
-  box-shadow: 0 1px 2px 1px rgba($black, 0.20);
-  border-radius: 4px;
-  padding: 0.5rem;
   margin-bottom: 2rem;
 
   .ember-power-calendar {
     display: grid;
     grid-template-rows: auto 1fr;
     height: 100%;
+    max-height: 800px;
   }
 
   .ember-power-calendar-nav {
-    display: flex;
     width: 100%;
-    justify-content: space-between;
-    line-height: 2rem;
+    max-width: 800px;
+  }
+
+  select {
+    @extend .serif;
+    display: inline-block;
+    line-height: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    width: auto;
+    background: $white;
+    appearance: none;
+    color: $black;
+    box-shadow: none;
+
+    &:hover {
+      box-shadow: none;
+    }
   }
 
   .ember-power-calendar-nav-control--previous svg {
@@ -253,7 +365,21 @@ h4 {
 
   .ember-power-calendar-row {
     display: grid;
-    grid-template-columns: repeat(7, calc(100% / 7));
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .ember-power-calendar-weekday {
+    @extend .smcp;
+    border: 1px solid $heather;
+    border-width: 1px 1px 0 0;
+    padding: 0.25rem 0.5rem;
+
+    &:first-child {
+      border-width: 1px 1px 0 1px;
+    }
+    &:last-child {
+      border-width: 1px 1px 0 0;
+    }
   }
 
   .ember-power-calendar-day-grid {
@@ -340,7 +466,20 @@ h4 {
   min-height: 100vh;
 }
 
-nav .create-button {
+.purchases .item {
+  grid-template-columns: 2fr 2fr 1fr;
+
+  &.mobile {
+    grid-template-columns: 1fr 2rem;
+
+    .paid-by-name {
+      grid-column: span 2;
+    }
+  }
+}
+
+nav .create-button,
+.dialog-box .create-button {
   margin: 0;
 }
 
@@ -354,7 +493,7 @@ nav .create-button {
 
     img {
       position: absolute;
-      top: calc(50% - 1rem);
+      top: calc(50% - 1.25rem);
       width: 2rem;
       height: 2rem;
       border-radius: 1rem;
@@ -363,15 +502,31 @@ nav .create-button {
     }
   }
 
-  .avatar {
-    width: 3rem;
+  .item {
+    grid-template-columns: 3rem 1fr 1fr 3rem;
+
+    &.mobile {
+      grid-template-columns: 3rem 1fr 3rem;
+
+      .avatar {
+        overflow: visible;
+        top: 1rem;
+      }
+      .email {
+        grid-column: span 2;
+      }
+      .provider {
+        margin-left: 3rem;
+        grid-column: span 2;
+      }
+      .delete {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+    }
   }
-  .email {
-    width: calc(60% - 2rem);
-  }
-  .provider {
-    width: calc(40% - 4rem);
-  }
+
   .delete {
     position: relative;
     top: -0.75rem;
@@ -383,12 +538,43 @@ nav .create-button {
   }
 }
 
-.sortable-list {
-  max-width: calc(100vw - 2rem);
+#public-keys {
+  .item {
+    grid-template-columns: 1fr 1fr 1fr 3rem;
 
-  li {
-    position: relative;
+    &.mobile {
+      grid-template-columns: 1fr 4rem;
+
+      .name,
+      .last-used-at {
+        grid-column: span 2;
+      }
+      .delete {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+    }
   }
+
+  .delete {
+    position: relative;
+    top: -0.75rem;
+    overflow: visible;
+
+    button {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+}
+
+.sortable-list header > .item,
+.sortable-list ol li > .item {
+  max-width: calc(800px - 2rem);
+}
+
+.sortable-list ol li {
+  position: relative;
 }
 
 .status {
@@ -402,6 +588,33 @@ nav .create-button {
   }
 }
 
+#ticket {
+  .events .item {
+    grid-template-columns: 1fr 1fr;
+  }
+  .payments .item {
+    grid-template-columns: 1fr 1fr 10rem;
+  }
+}
+
+.stubs {
+  .item {
+    grid-template-columns: 2rem 1fr 1fr 1fr;
+  }
+  .attended {
+    text-overflow: clip;
+    padding-left: 5px;
+    width: 35px;
+    position: relative;
+    top: 2px;
+
+    span {
+      overflow: visible;
+      text-overflow: inherit;
+    }
+  }
+}
+
 #tickets {
   header .is-active {
     display: inline-block;
@@ -410,9 +623,20 @@ nav .create-button {
   .is-active {
     width: 2rem;
   }
-  .description {
-    width: 50%;
 
+  .item {
+    grid-template-columns: 1fr 5rem 5rem;
+
+    &.mobile {
+      grid-template-columns: 1fr 5rem;
+
+      .cost {
+        text-align: right;
+      }
+    }
+  }
+
+  .description {
     &.active:before {
       background: $green;
     }
@@ -424,24 +648,29 @@ nav .create-button {
     &:before {
       content: ' ';
       position: absolute;
-      left: 2px;
+      left: 0px;
       width: 6px;
-      top: 2px;
-      bottom: 2px;
-      border-radius: 3px;
+      top: 0px;
+      bottom: 0px;
     }
-  }
-  .cost {
-    width: 5rem;
   }
 }
 
+#ledger .balance-bar {
+  position: sticky;
+  top: 0;
+  margin-top: 1rem;
+  z-index: 2;
+}
+
 .balance-bar {
-  border-radius: 4px;
-  padding: 0.5rem;
-  margin: 1rem 0;
+  padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
+
+  .container > div {
+    width: 100%;
+  }
 
   &.positive {
     background: $green;
@@ -456,5 +685,9 @@ nav .create-button {
   &.negative {
     background: $red;
     color: $white;
+  }
+
+  & + .sortable-list header {
+    top: 2rem;
   }
 }

@@ -1,5 +1,4 @@
-{{#animated-container class=(concat "balance-bar grid-row " (if (gt balance.amount 10000) 'positive' (if (gt balance.amount 0) 'low' 'negative')))
-  click=(action (mut isShowingCalculations) (not isShowingCalculations))}}
+{{#animated-container class="container" click=(action (mut isShowingCalculations) (not isShowingCalculations))}}
   <div>
     Balance {{l 'currency' balance.amount currency=balance.currency}}
   </div>

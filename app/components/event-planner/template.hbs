@@ -8,10 +8,8 @@
       {{day.number}}
     </span>
     <ul>
-      {{#each events as |event|}}
-        {{#if (is-same-day event.startsAt day.moment)}}
-          <li>{{yield event}}</li>
-        {{/if}}
+      {{#each (get eventsByDay day.number) as |event|}}
+        <li>{{yield event}}</li>
       {{/each}}
     </ul>
   {{/calendar.days}}

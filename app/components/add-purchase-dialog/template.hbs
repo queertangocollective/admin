@@ -1,0 +1,20 @@
+{{#form-for model onsubmit=(action 'submit') as |f|}}
+  <header>{{icon 'coin'}} Add Purchase</header>
+  <div class='body grid-column'>
+    {{#f.buttons 'paymentMethod' as |b|}}
+      {{#b.option 'cash'}}{{icon 'coin'}} Cash{{/b.option}}
+      {{#b.option 'stripe'}}{{icon 'stripe'}} Stripe{{/b.option}}
+      {{#b.option 'free'}}{{icon 'love'}} Free{{/b.option}}
+    {{/f.buttons}}
+    {{f.autocomplete 'paidBy' key='name' onquery=(route-action 'query' 'person')}}
+    {{#if (equals f.changeset.paymentMethod 'cash')}}
+      {{f.currency 'amountPaid'}}
+    {{else if (equals f.changeset.paymentMethod 'stripe')}}
+      Stripe elements here
+    {{/if}}
+  </div>
+  <footer>
+    {{f.submit 'Add Purchase'}}
+    <button type='reset' onclick={{dismiss}}>Cancel</button>
+  </footer>
+{{/form-for}}

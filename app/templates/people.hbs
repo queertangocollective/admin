@@ -1,16 +1,16 @@
 {{title "People"}}
 
 <section id="people">
-  <header>
+  <header class="container">
     {{search-field query=q onquery=(action (mut q)) placeholder="Search people by name or email"}}
+    <nav>
+      {{#create-button 'name' onsubmit=(route-action 'createPerson') placeholder='Enter name'}}
+        {{icon "person"}} Add Person
+      {{else}}
+        {{icon "arrow"}}
+      {{/create-button}}
+    </nav>
   </header>
-  <nav>
-    {{#create-button 'name' onsubmit=(route-action 'createPerson') placeholder='Enter name'}}
-      {{icon "person"}} Add Person
-    {{else}}
-      {{icon "arrow"}}
-    {{/create-button}}
-  </nav>
   {{#sortable-list rows=model.model total=model.meta.page.total sort=sort load=(route-action 'load') as |l|}}
     {{#l.item 'name' as |item|}}
       {{#link-to 'person' item~}}

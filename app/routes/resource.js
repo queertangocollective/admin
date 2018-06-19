@@ -49,6 +49,9 @@ export default Route.extend(Restricted, {
           timeout: 5000
         });
         let [, modelName] = this.routeName.split('.');
+        if (modelName === 'index') {
+          modelName = this.routeName.split('.')[0];
+        }
         this.replaceWith(`${pluralize(modelName)}`);
       });
     }

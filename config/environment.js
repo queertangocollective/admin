@@ -11,6 +11,9 @@ module.exports = function(environment) {
     ZIP_API_KEY: 'js-UgjzTROXe9B7ac3ruujT6W4TqAIwT86OppnihcfwlRDw4HYycisiewcE7Va03hOt',
     VERSION: '{{build.id}}',
     GOOGLE_MAPS_API_KEY: 'AIzaSyCEXiB9AwC377Dhmbni6tRWGnfjHvhTQcE',
+    moment: {
+      includeTimezone: 'all'
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

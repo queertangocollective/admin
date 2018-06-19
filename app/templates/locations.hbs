@@ -2,33 +2,28 @@
 {{remember-document-scroll key='locations'}}
 
 <section id="locations">
-  <header>
+  <header class="container">
     {{search-field query=q onquery=(action (mut q)) placeholder="Search locations by name, address, or city"}}
+    <nav>
+      {{#dialog-button (component 'new-location-dialog' onsubmit=(route-action 'createLocation')) group='add-location'}}
+        {{icon "location"}} Add Location
+      {{/dialog-button}}
+    </nav>
   </header>
-  <nav>
-    <button type='submit' onclick={{action (mut isAdding) true}}>
-      {{icon "location"}} Add Location
-    </button>
-    {{#if isAdding}}
-      {{dialog-box (component 'new-location-dialog'
-          onsubmit=(route-action 'createLocation'))
-        ondismiss=(action (mut isAdding) false)}}
-    {{/if}}
-  </nav>
   {{#sortable-list rows=model.model load=(route-action 'load') total=model.meta.page.total sort=sort icon='location' as |l|}}
     {{#l.item 'name' as |item|}}
       {{#link-to 'location' item}}{{item.name}}{{/link-to}}
     {{else}}
       Name
     {{/l.item}}
-    {{#l.item 'addressLine' as |item|}}
+    {{#l.item 'addressLine' as |item|~}}
       {{item.addressLine}}
-    {{else}}
+    {{~else}}
       Address
     {{/l.item}}
-    {{#l.item 'city' as |item|}}
+    {{#l.item 'city' as |item|~}}
       {{item.city}}
-    {{else}}
+    {{~else}}
       City
     {{/l.item}}
     {{#l.item 'regionCode' as |item|}}

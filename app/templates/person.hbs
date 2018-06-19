@@ -1,5 +1,5 @@
 {{title model.name}}
-<section id="person">
+<section id="person" class="container">
   {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
     {{#f.nav ondelete=(route-action 'deleteRecord')}}
       {{#if model.email}}
@@ -8,9 +8,12 @@
         </a>
       {{/if}} 
       {{#if model.authorizations.length}}
-        <button type='submit' onclick={{action (mut isAddingLogin) true}}>
+        {{#dialog-button (component 'new-login-dialog'
+            logins=model.authorizations
+            oncreate=(route-action 'addLogin' model)
+            ondelete=(route-action 'deleteLogin')) group='new-login'}}
           {{icon 'lock'}} Manage Logins
-        </button>
+        {{/dialog-button}}
       {{else}}
         {{#animated-container}}
           {{#create-button 'email' onsubmit=(route-action 'addLogin' model) placeholder='Enter email' value=model.email}}
@@ -21,23 +24,12 @@
         {{/animated-container}}
       {{/if}}
       {{#if (equals model.role 'staff')}}
-        <button type='submit' onclick={{action (mut isAddingPublicKey) true}}>
-          {{icon 'key'}} Add Deploy Key
-        </button>
-      {{/if}}
-      {{#if isAddingLogin}}
-        {{dialog-box (component 'new-login-dialog'
-            logins=model.authorizations
-            oncreate=(route-action 'addLogin' model)
-            ondelete=(route-action 'deleteLogin'))
-          ondismiss=(action (mut isAddingLogin) false)}}
-      {{/if}}
-      {{#if isAddingPublicKey}}
-        {{dialog-box (component 'public-key-dialog'
+        {{#dialog-button (component 'public-key-dialog'
             publicKeys=model.publicKeys
             oncreate=(route-action 'addPublicKey')
-            ondelete=(route-action 'deletePublicKey'))
-          ondismiss=(action (mut isAddingPublicKey) false)}}
+            ondelete=(route-action 'deletePublicKey')) group='new-public-key'}}
+          {{icon 'key'}} Add Deploy Key
+        {{/dialog-button}}
       {{/if}}
     {{/f.nav}}
     <div class='grid-column'>

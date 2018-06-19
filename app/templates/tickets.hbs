@@ -2,21 +2,15 @@
 {{remember-document-scroll key='tickets'}}
 
 <section id="tickets">
-  <header>
-    <h2>
-      {{search-field query=q onquery=(action (mut q)) placeholder="Search tickets by description"}}
-    </h2>
+  <header class="container">
+    {{search-field query=q onquery=(action (mut q)) placeholder="Search tickets by description"}}
+    <nav>
+      {{#dialog-button (component 'new-ticket-dialog' onsubmit=(route-action 'createTicket')) group='new-ticket'}}
+        {{icon "ticket"}} Add Ticket
+      {{/dialog-button}}
+    </nav>
   </header>
-  <nav>
-    <button type='submit' onclick={{action (mut isAdding) true}}>
-      {{icon "ticket"}} Add Ticket
-    </button>
-    {{#if isAdding}}
-      {{dialog-box (component 'new-ticket-dialog'
-          onsubmit=(route-action 'createTicket'))
-        ondismiss=(action (mut isAdding) false)}}
-    {{/if}}
-  </nav>
+
   {{#sortable-list load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='ticket' as |l item|}}
     {{#l.item 'description' class=(if item.isActive 'active' 'inactive') as |item|}}
       {{#link-to 'ticket' item}}{{item.description}}{{/link-to}}
@@ -28,8 +22,8 @@
     {{else}}
       Cost
     {{/l.item}}
-    {{#l.item 'numberSold' as |item|}}
-      {{item.numberSold}}
+    {{#l.item 'ticketStubs.count' as |item|}}
+      {{item.ticketStubs.length}}
     {{else}}
       # Sold
     {{/l.item}}

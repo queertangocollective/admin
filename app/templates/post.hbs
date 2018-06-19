@@ -2,7 +2,7 @@
 {{title model.title}}
 
 {{#file-dropzone name=(concat 'post/' model.id '/photo/new')}}
-<section id="post-edit">
+<section id="post-edit" class="container">
   {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
     {{#f.nav ondelete=(route-action 'deleteRecord')}}
       {{#if model.published}}
@@ -20,24 +20,12 @@
     {{/f.nav}}
     <div class="grid-column">
       {{f.text 'title'}}
-      {{f.text 'slug'}}
-      {{f.editor 'body' rows=6
-        onupload=(route-action 'addPhoto' model) embeds=(list
-          (hash type='ticket'
-                label='Add Ticket'
-                icon='ticket'
-                onembed=(route-action 'findOrCreateTicket'
-                  (component 'find-ticket-dialog')
-                )
-          )
-          (hash type='itinerary'
-                label='Add Itinerary'
-                icon='list'
-                onembed=(route-action 'findOrCreateEvent'
-                  (component 'find-event-dialog')
-                )
-          )
-        )}}
+      <div class='grid-row'>
+        {{f.autocomplete 'channel' label='Section' key='name' onquery=(route-action 'query' 'channel')}}
+        {{f.text 'slug'}}
+      </div>
+      {{f.editor 'body' rows=6 onembed=(route-action 'embed' (component 'add-embed-dialog' onupload=(route-action 'addPhoto')))
+          embeds=(list 'ticket' 'itinerary' 'photo' 'youtube')}}
     </div>
   {{/form-for}}
 </section>

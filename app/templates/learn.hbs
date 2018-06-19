@@ -1,0 +1,14 @@
+<section id="help" class="container">
+  <h2>👋 Hello, {{session.currentPerson.name}}</h2>
+  <p>This website is designed to make it easy to create a beautiful website that helps manage the ins and outs of running dance groups. Over time, you'll get new tools at your disposal that will make various parts of managing a group easier.</p>
+  <p>There are a bunch links up top ☝️ that go to pages where you can create
+    <ul>
+      <li>{{#link-to 'posts'}}Posts{{/link-to}}, a place for you to write extended information about upcoming events, projects, blog posts, whatever! Posts are the way for you to get all of your information out on your website, <a href="{{session.currentGroup.url}}">{{session.currentGroup.hostname}}</a>.</li>
+      <li>{{#link-to 'events'}}Events{{/link-to}} are all the events that are being run by your group. They are individual events, so if you want to create a series, you can, but they will show up individually.</li>
+      <li>{{#link-to 'tickets'}}Tickets{{/link-to}} help keep track of people who are attending events. By adding a ticket to a post, people can checkout online, or you can check them out directly through this website by adding a payment in a ticket page.</li>
+      <li>The {{#link-to 'ledger'}}ledger{{/link-to}} is where expenses and profits are kept track of. Payments from <a href="https://stripe.com">Stripe</a> are automatically included in the ledger to make it easy! You can also add payments / donations made in cash.</li>
+      <li>{{#link-to 'people'}}People{{/link-to}} are all of the people in your group. This includes, teacher, members, staff, developers, etc. People are automatically created from new orders. If you need to give someone access to this page. </li>
+
+    </ul>
+  </p>
+</section>

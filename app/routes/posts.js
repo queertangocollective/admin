@@ -14,12 +14,15 @@ export default Collection.extend({
 
   queryParams: {
     sort: {
+      replace: true,
       refreshModel: true
     },
     q: {
+      replace: true,
       refreshModel: true
     },
     pinned: {
+      replace: true,
       refreshModel: true
     }
   },

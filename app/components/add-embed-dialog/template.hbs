@@ -1,0 +1,25 @@
+<header>{{icon 'add'}} Add Embed</header>
+<div class="body container">
+  <div class="grid-column">
+    <br>
+    <div class="grid-row">
+      {{#dialog-button (component 'find-event-dialog' onsubmit=(action 'addItinerary')) group='itinerary'}}
+        {{icon 'calendar'}} Add Itinerary
+      {{/dialog-button}}
+      {{#dialog-button (component 'find-ticket-dialog' onsubmit=(action 'addTicket')) group='ticket'}}
+        {{icon 'ticket'}} Add Ticket
+      {{/dialog-button}}
+    </div>
+    <div class="grid-row">
+      {{#file-upload class='submit-button' onfileadd=(action 'addPhoto') name="embeds"}}
+        {{icon 'photo'}} Add Photo
+      {{/file-upload}}
+      {{#create-button 'url' type='url' onsubmit=(action 'addYoutubeVideo') placeholder='Enter URL'}}
+        {{icon 'youtube'}} Add Youtube Video
+      {{else}}
+        {{icon 'check'}}
+      {{/create-button}}
+    </div>
+    <br>
+  </div>
+</div>

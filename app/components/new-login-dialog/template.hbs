@@ -1,11 +1,13 @@
 <header>{{icon 'lock'}}{{#if logins.length}}Manage Logins{{else}}Add Login{{/if}}</header>
 <div class='body' id='authorizations'>
   {{#if logins.length}}
-    {{#tabular-list rows=logins as |l|}}
-      {{#l.item 'avatar' as |login|}}
+    {{#sortable-list rows=sortableLogins sort=sort onsort=(action (mut sort)) as |l|}}
+      {{#l.item 'avatar' sortable=false as |login|}}
         {{#if login.avatar}}
           <img src="{{login.avatar}}" alt="{{login.email}}"/>
         {{/if}}
+      {{else}}
+        &nbsp;
       {{/l.item}}
       {{#l.item 'email' as |login|}}
         {{login.email}}
@@ -17,21 +19,22 @@
       {{else}}
         Provider
       {{/l.item}}
-      {{#l.item 'delete' as |login|}}
+      {{#l.item 'delete' sortable=false as |login|}}
         {{#confirm-button class='icon' onsubmit=(action ondelete login)}}
           {{icon 'trash'}}
         {{else}}
           {{icon 'check'}}
         {{/confirm-button}}
       {{/l.item}}
-    {{/tabular-list}}
+    {{/sortable-list}}
   {{/if}}
-  {{#create-button 'email' type='email' onsubmit=(action oncreate) placeholder='Enter email'}}
-    {{icon "add"}} Add Login
-  {{else}}
-    {{icon "add"}}
-  {{/create-button}}
-  <br>
+  <div class="container">
+    {{#create-button 'email' type='email' onsubmit=(action oncreate) placeholder='Enter email'}}
+      {{icon "add"}} Add Login
+    {{else}}
+      {{icon "add"}}
+    {{/create-button}}
+  </div>
 </div>
 <footer>
   <button type='reset' onclick={{dismiss}}>Close</button>

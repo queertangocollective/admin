@@ -1,8 +1,12 @@
 import Component from '@ember/component';
 import RSVP from 'rsvp';
+import sort from '../../computed/sort';
 
 export default Component.extend({
   classNames: ['deploy-key-dialog'],
+
+  sort: 'name',
+  sortedPublicKeys: sort('publicKeys', 'sort'),
 
   actions: {
     submit(model, changes) {

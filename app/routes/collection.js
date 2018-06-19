@@ -13,9 +13,11 @@ export default Route.extend(Restricted, {
 
   queryParams: {
     sort: {
+      replace: true,
       refreshModel: true
     },
     q: {
+      replace: true,
       refreshModel: true
     }
   },

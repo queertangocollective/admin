@@ -1,5 +1,35 @@
-<section id="ledger">
-  {{#each model.ticketStubs as |stub|}}
-    {{stub.person.name}} / {{stub.attended}}
-  {{/each}}
+<section id="event">
+  <header class="container">
+    {{#link-to 'events'}}Events{{/link-to}} > {{#link-to 'event.index' model.event}}{{model.event.title}}{{/link-to}} > Attendance
+    {{search-field query=q onquery=(action (mut q)) placeholder='Search by name'}}
+    <nav>
+      {{#dialog-button (component 'add-purchase-dialog' ticket=model onsubmit=(route-action 'createPurchase' model)) group='add-purchase'}}
+        {{icon 'add'}} Add Attendee
+      {{/dialog-button}}
+    </nav>
+  </header>
+  {{#sortable-list class='stubs' rows=model.model load=(route-action 'load') total=model.meta.page.total sort=sort icon='person' as |l|}}
+    {{#l.item 'attended' sortable=false as |item|}}
+      {{check-box value=item.attended onchange=(action 'updateAttendance' item (not item.attended))}}
+    {{else}}
+      &nbsp;
+    {{/l.item}}
+    {{#l.item 'person.name' as |item|}}
+      {{item.person.name}}
+    {{else}}
+      Name
+    {{/l.item}}
+    {{#l.item 'person.email' as |item|}}
+      {{item.person.email}}
+    {{else}}
+      Email
+    {{/l.item}}
+    {{#l.item 'purchase.amountPaid' as |item|}}
+      {{l 'currency' item.purchase.amountPaid}}
+    {{else}}
+      Paid
+    {{/l.item}}
+  {{else}}
+    No Attendees
+  {{/sortable-list}}
 </section>

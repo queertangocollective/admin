@@ -5,6 +5,7 @@ import Model from './application';
 const { attr, belongsTo, hasMany } = DS;
 
 export default Model.extend({
+  appleDeveloperMerchantidDomainAssociation: attr('string'),
   name: attr('string'),
   apiKey: attr('string'),
   builds: hasMany('build'),
@@ -15,6 +16,7 @@ export default Model.extend({
   locale: attr('string'),
   stripePublishableKey: attr('string'),
   stripeSecretKey: attr('string'),
+  channels: hasMany('channel'),
 
   url: computed('hostname', function() {
     if (this.hostname.indexOf('localhost') === 0) {

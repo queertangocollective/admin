@@ -15,8 +15,10 @@ export default Component.extend({
           let event = events[events.length - 1];
           events.push({
             title: event.title,
+            description: event.description,
             startsAt: moment(event.startsAt).add(1, frequency).toDate(),
-            endsAt: moment(event.endsAt).add(1, frequency).toDate()
+            endsAt: moment(event.endsAt).add(1, frequency).toDate(),
+            venue: Object.assign({}, changes.venue)
           });
         }
 

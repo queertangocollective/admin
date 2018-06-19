@@ -1,19 +1,12 @@
 {{title model.name}}
 {{remember-document-scroll key=(concat 'location/' model.id)}}
 
-<section id="location">
+<section id="location" class="container">
   {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
     {{#f.nav ondelete=(route-action 'deleteRecord')}}
-      <button type='submit' onclick={{action (mut isShowingMap) true}}>
+      {{#dialog-button (component 'map-dialog' latitude=model.latitude longitude=model.longitude) group='map'}}
         {{icon 'location'}} View Map
-      </button>
-
-      {{#if isShowingMap}}
-        {{dialog-box (component 'map-dialog'
-            latitude=model.latitude
-            longitude=model.longitude)
-          ondismiss=(action (mut isShowingMap) false)}}
-      {{/if}}
+      {{/dialog-button}}
     {{/f.nav}}
     <div class='grid-column'>
       {{f.text 'name'}}

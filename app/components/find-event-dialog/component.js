@@ -28,6 +28,7 @@ export default Component.extend({
         text: this.q
       }
     }).then((results) => {
+      if (this.isDestroyed) return;
       this.set('isLoading', false);
       this.set('results', results);
     });
@@ -80,11 +81,7 @@ export default Component.extend({
       }
     },
     submit(selection) {
-      return this.onsubmit(selection).then(() => {
-        if (this.dismiss) {
-          this.dismiss();
-        }
-      })
+      return this.onsubmit(selection);
     }
   }
 });

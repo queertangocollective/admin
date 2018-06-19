@@ -4,6 +4,9 @@ import RSVP from 'rsvp';
 export default Resource.extend({
 
   actions: {
+    createPurchase() {
+
+    },
     createTicketedEvents(ticket, events) {
       return RSVP.all(events.map((event) => {
         let ticketedEvent = this.store.createRecord('ticketed-event', {

@@ -1,0 +1,40 @@
+{{remember-document-scroll key=(concat 'ticket/' model.id)}}
+
+<section id="ticket">
+  {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
+    <div class='container'>
+      {{#f.nav ondelete=(route-action 'deleteRecord') class="container"}}
+        {{#dialog-button (component 'find-event-dialog' disabled=model.events onsubmit=(route-action 'createTicketedEvents' model)) group='add-event'}}
+          {{icon 'add'}} Add Events
+        {{/dialog-button}}
+        {{#link-to 'ticket.purchases' model class='submit-button'}}
+          {{icon 'coin'}} Payments
+        {{/link-to}}
+      {{/f.nav}}
+    </div>
+    <div class='grid-column container'>
+      {{f.text 'description'}}
+      <div class='grid-row'>
+        {{f.currency 'cost'}}
+        {{f.number 'quantity'}}
+      </div>
+      <div class='grid-row'>
+        {{f.datetime 'validFrom'}}
+        {{f.datetime 'validTo'}}
+      </div>
+    </div>
+    <br>
+    {{#sortable-list class='events' rows=events onsort=(action (mut sortEventsBy)) sort=sortEventsBy as |l|}}
+      {{#l.item 'title' as |item|}}
+        {{item.title}}
+      {{else}}
+        Title
+      {{/l.item}}
+      {{#l.item 'startsAt' as |item|}}
+        {{l 'date' item.startsAt}}
+      {{else}}
+        Date
+      {{/l.item}}
+    {{/sortable-list}}
+  {{/form-for}}
+</section>

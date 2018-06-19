@@ -2,30 +2,47 @@
 {{remember-document-scroll key='events'}}
 
 <section id="events">
-  <header>
-    {{search-field query=q onquery=(action (mut q)) placeholder="Search events by title"}}
-    {{#link-to (query-params as='list') class='button icon'}}
-      {{icon 'list'}}{{#if (media '(min-width: 500px)')}} List{{/if}}
-    {{/link-to}}
-    {{#link-to (query-params as='calendar') class='button icon'}}
-      {{icon 'calendar'}}{{#if (media '(min-width: 500px)')}} Calendar{{/if}}
-    {{/link-to}}
+  <header class="container">
+    <div>
+      {{search-field query=q onquery=(action (mut q)) placeholder="Search events by title"}}
+      {{#link-to (query-params as='list') class='button icon'}}
+        {{icon 'list'}}{{#if (media '(min-width: 500px)')}} List{{/if}}
+      {{/link-to}}
+      {{#link-to (query-params as='calendar') class='button icon'}}
+        {{icon 'calendar'}}{{#if (media '(min-width: 500px)')}} Calendar{{/if}}
+      {{/link-to}}
+    </div>
+    <nav class='row'>
+      {{#dialog-button (component 'new-event-dialog' onsubmit=(route-action 'createEvent') onquery=(route-action 'query')) group='add-event'}}
+        {{icon "calendar"}} Add Event
+      {{/dialog-button}}
+      {{check-box inputId='upcoming' value=upcoming onchange=(route-action 'filterUpcoming')}}
+      <label for='upcoming'>Show Only Upcoming</label>
+    </nav>
   </header>
-  <nav class='row'>
-    <button type='submit' onclick={{action (mut isAdding) true}}>
-      {{icon "calendar"}} Add Event
-    </button>
-    {{check-box inputId='upcoming' value=upcoming onchange=(route-action 'filterUpcoming')}}
-    <label for='upcoming'>Show Only Upcoming</label>
-    {{#if isAdding}}
-      {{dialog-box (component 'new-event-dialog'
-          onsubmit=(route-action 'createEvent')
-          onquery=(route-action 'query'))
-        ondismiss=(action (mut isAdding) false)}}
-    {{/if}}
-  </nav>
   {{#if (equals as 'list')}}
+    {{#animated-container class=(concat 'bulk-actions ' (if selection.length 'open'))}}
+      {{#animated-if selection.length use=fadeIn duration=250}}
+        <div class='container row'>
+          {{#submit-button onsubmit=(route-action 'createTicket' (component 'new-ticket-dialog') selection)}}
+            {{icon 'ticket'}} Create Ticket
+          {{/submit-button}}
+          {{#submit-button onsubmit=(route-action 'deleteAll' selection)}}
+            {{icon 'trash'}} Delete Selected
+          {{/submit-button}}
+          <button type="reset" onclick={{action 'clearSelection'}}>
+            {{icon 'cancel'}} Clear Selection
+          </button>
+        </div>
+      {{/animated-if}}
+    {{/animated-container}}
+    
     {{#sortable-list load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='calendar' as |l|}}
+      {{#l.item 'checkbox' sortable=false as |item|}}
+        {{check-box value=(contains selection item) onchange=(action 'select' item)}}
+      {{else}}
+        {{check-box value=areAllSelected onchange=(action 'toggleSelectAll')}}
+      {{/l.item}}
       {{#l.item 'title' as |item|}}
         {{#link-to 'event' item}}{{item.title}}{{/link-to}}
       {{else}}
@@ -40,7 +57,7 @@
       No Events found
     {{/sortable-list}}
   {{else}}
-    {{#event-planner events=model.model oncreate=(route-action 'createEvent') onquery=(route-action 'query') onselect=(action (mut eventDay)) as |event|}}
+    {{#event-planner class='container' events=model.model oncreate=(route-action 'createEvent') onquery=(route-action 'query') onselect=(action (mut eventDay)) as |event|}}
       {{#link-to 'event' event}}{{event.title}}{{/link-to}}
     {{/event-planner}}
   {{/if}}

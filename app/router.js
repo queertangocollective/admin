@@ -6,6 +6,7 @@ export default Router.extend({
   rootURL: config.rootURL
 }).map(function () {
   this.route('login');
+  this.route('learn');
 
   this.route('posts');
   this.route('post', { path: '/posts/:post_id' });
@@ -17,7 +18,9 @@ export default Router.extend({
   });
 
   this.route('tickets');
-  this.route('ticket', { path: '/tickets/:ticket_id' });
+  this.route('ticket', { path: '/tickets/:ticket_id' }, function () {
+    this.route('purchases');
+  });
 
   this.route('ledger');
   this.route('transaction', { path: '/ledger/:transaction_id' });

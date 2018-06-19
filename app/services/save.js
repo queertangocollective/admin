@@ -11,6 +11,7 @@ export default Service.extend({
   execute (m, changes) {
     return RSVP.resolve(m).then((model) => {
       let attachments = [];
+
       model.eachRelationship(function (key, desc) {
         if (desc.type === 'photo') {
           attachments.push(desc);

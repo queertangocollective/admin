@@ -1,7 +1,7 @@
 {{title model.description}}
 {{remember-document-scroll key=(concat 'expense/' model.id)}}
 
-<section id="transaction">
+<section id="transaction" class="container">
   {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
     {{#f.nav ondelete=(route-action 'deleteRecord')}}
       {{#if model.paymentProcessorUrl}}

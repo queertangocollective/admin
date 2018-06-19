@@ -9,6 +9,15 @@ export default Route.extend({
         page: {
           limit: 10
         }
+      }),
+      events: this.store.query('event', {
+        sort: 'ends-at',
+        filter: {
+          upcoming: true
+        },
+        page: {
+          limit: 10
+        }
       })
     });
   }

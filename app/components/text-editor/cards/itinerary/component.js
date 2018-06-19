@@ -7,7 +7,7 @@ export default Component.extend({
   init() {
     this._super();
     RSVP.all(
-      this.payload.eventIds.map(id => this.store.findRecord('event', id))
+      (this.payload.eventIds || []).map(id => this.store.findRecord('event', id))
     ).then((events) => {
       if (this.isDestroyed) return;
       this.set('events', events.sortBy('startsAt'));

@@ -28,13 +28,9 @@ export default Resource.extend({
         venue.set('location', location);
       });
     },
-    addGuest(event) {
-      return this.store.createRecord('guest', { event });
-    },
-    saveVenue(venue, changes) {
-      return this.save(venue, changes).then(() => {
-        return this.save(this.currentModel, { venue });
-      });
+    addGuest(evt) {
+      evt.preventDefault();
+      this.store.createRecord('guest', { event: this.currentModel });
     }
   }
 });
