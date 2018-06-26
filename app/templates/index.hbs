@@ -28,7 +28,7 @@
             Name
           {{/l.item}}
           {{#l.item 'amountPaid' as |item|}}
-            {{l 'currency' item.amountPaid}}
+            {{l 'currency' item.amountPaid currency=item.currency}}
           {{else}}
             Amount
           {{/l.item}}

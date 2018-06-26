@@ -4,7 +4,7 @@
   {{title model.name}}
 {{/if}}
 <section id="group" class="container">
-  {{#form-for model autosave=true onsubmit=(route-action 'save') class='grid-column' as |f|}}
+  {{#form-for model name='group' autosave=true onsubmit=(route-action 'save') class='grid-column' as |f|}}
     {{#f.nav}}
       {{#dialog-button (component 'manage-builds-dialog' builds=model.builds) group='updates'}}
         {{icon 'love'}} See Updates
@@ -14,9 +14,14 @@
       {{/dialog-button}}
     {{/f.nav}}
     {{f.text 'name'}}
-    {{f.text 'hostname' label="Hostname"}}
+    {{f.text 'hostname'}}
     {{f.text 'email' type='email'}}
-    {{f.text 'timezone'}}
+    {{#f.select 'timezone' options=timezones as |timezone|}}
+      {{t (concat 'timezones.' timezone)}}
+    {{/f.select}}
+    {{#f.select 'locale' options=(list 'en-us' 'en-de') as |option|}}
+      {{t (concat 'locales.' option)}}
+    {{/f.select}}
 
     <h3>Sections</h3>
     {{#f.form-for 'channels' as |g|}}

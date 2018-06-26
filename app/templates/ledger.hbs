@@ -37,13 +37,13 @@
       Paid At
     {{/list.item}}
     {{#list.item 'amountPaid' class=(if item.amountOwed 'iou' (if (gt item.amountPaid 0) 'credit' 'debit')) as |item|}}
-      {{l 'currency' item.amountPaid}}
+      {{l 'currency' item.amountPaid currency=item.currency}}
     {{else}}
       Amount
     {{/list.item}}
     {{#list.item 'amountOwed' as |item|}}
       {{#if item.amountOwed}}
-        {{l 'currency' item.amountOwed}}
+        {{l 'currency' item.amountOwed currency=item.currency}}
       {{/if}}
     {{else}}
       Owed

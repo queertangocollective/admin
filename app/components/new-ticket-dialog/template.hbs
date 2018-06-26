@@ -1,9 +1,9 @@
-{{#form-for onsubmit=(action 'submit') as |f|}}
-  <header>{{icon 'ticket'}} Add Ticket</header>
+{{#form-for name='ticket' onsubmit=(action 'submit') as |f|}}
+  <header>{{t 'ticket.create.title' icon=(icon 'ticket') htmlSafe=true}} Add Ticket</header>
   <div class="body grid-column">
     {{f.text 'description'}}
     <div class='grid-row'>
-      {{f.currency 'cost'}}
+      {{f.currency 'cost' 'currency' currencies=(list 'USD' 'EUR')}}
       {{f.number 'quantity'}}
     </div>
     <div class='grid-row'>
@@ -12,7 +12,7 @@
     </div>
   </div>
   <footer>
-    {{f.submit 'Add Ticket'}}
-    <button type='reset' onclick={{dismiss}}>Cancel</button>
+    {{#f.submit}}{{t 'ticket.create.submit'}}{{/f.submit}}
+    <button type='reset' onclick={{dismiss}}>{{t 'ticket.create.cancel'}}</button>
   </footer>
 {{/form-for}}

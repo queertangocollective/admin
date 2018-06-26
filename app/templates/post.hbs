@@ -3,25 +3,25 @@
 
 {{#file-dropzone name=(concat 'post/' model.id '/photo/new')}}
 <section id="post-edit" class="container">
-  {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
+  {{#form-for model name='post' autosave=true onsubmit=(route-action 'save') as |f|}}
     {{#f.nav ondelete=(route-action 'deleteRecord')}}
       {{#if model.published}}
         {{#submit-button onsubmit=(route-action 'unpublish' model)}}
-          {{icon "eye-closed"}} Unpublish
+          {{t 'post.actions.unpublish' icon=(icon "eye-closed") htmlSafe=true}}
         {{/submit-button}}
         <a href="{{session.currentGroup.url}}/{{model.slug}}" target="__blank" class="submit-button">
-          {{icon "export"}} View Live
+          {{t 'post.actions.viewLive' icon=(icon "export") htmlSafe=true}}
         </a>
       {{else}}
         {{#submit-button onsubmit=(route-action 'publish' model)}}
-          {{icon "eye"}} Publish
+          {{t 'post.actions.publish' icon=(icon "eye") htmlSafe=true}}
         {{/submit-button}}
       {{/if}}
     {{/f.nav}}
     <div class="grid-column">
       {{f.text 'title'}}
       <div class='grid-row'>
-        {{f.autocomplete 'channel' label='Section' key='name' onquery=(route-action 'query' 'channel')}}
+        {{f.autocomplete 'channel' key='name' onquery=(route-action 'query' 'channel')}}
         {{f.text 'slug'}}
       </div>
       {{f.editor 'body' rows=6 onembed=(route-action 'embed' (component 'add-embed-dialog' onupload=(route-action 'addPhoto')))

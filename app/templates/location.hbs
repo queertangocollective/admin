@@ -2,15 +2,17 @@
 {{remember-document-scroll key=(concat 'location/' model.id)}}
 
 <section id="location" class="container">
-  {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
+  {{#form-for model name='location' autosave=true onsubmit=(route-action 'save') as |f|}}
     {{#f.nav ondelete=(route-action 'deleteRecord')}}
       {{#dialog-button (component 'map-dialog' latitude=model.latitude longitude=model.longitude) group='map'}}
-        {{icon 'location'}} View Map
+        {{t 'location.actions.viewMap' icon=(icon 'location') htmlSafe=true}}
       {{/dialog-button}}
     {{/f.nav}}
     <div class='grid-column'>
-      {{f.text 'name'}}
-      {{f.text 'website'}}
+      <div class='grid-row'>
+        {{f.text 'name'}}
+        {{f.text 'website'}}
+      </div>
       {{f.textarea 'address' rows=2}}
       {{f.text 'postalCode' onblur=(route-action 'hydrateLocation' f)}}
       <div class='grid-row'>

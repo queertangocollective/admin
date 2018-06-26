@@ -1,11 +1,11 @@
 {{#animated-container class="container" click=(action (mut isShowingCalculations) (not isShowingCalculations))}}
   <div>
-    Balance {{l 'currency' balance.amount currency=balance.currency}}
+    Balance {{l 'currency' balance.amount currency=(or balance.currency 'USD')}}
   </div>
 
   {{#animated-if isShowingCalculations duration=200}}
     <div>
-      {{l 'currency' credit.amount currency=credit.currency}} + {{l 'currency' debit.amount currency=debit.currency}} = {{l 'currency' balance.amount currency=balance.currency}}
+      {{l 'currency' credit.amount currency=(or credit.currency 'USD')}} + {{l 'currency' debit.amount currency=(or debit.currency 'USD')}} = {{l 'currency' balance.amount currency=(or balance.currency 'USD')}}
     </div>
   {{/animated-if}}
 {{/animated-container}}

@@ -11,7 +11,8 @@ export default Component.extend({
     get() {
       return {
         paidAt: new Date(),
-        paidBy: get(this, 'person')
+        paidBy: get(this, 'person'),
+        currency: 'USD'
       };
     }
   }),

@@ -1,0 +1,108 @@
+locales:
+  'en-us': 'English (USA)'
+  'en-de': 'English (Germany)'
+timezones:
+  'America/New_York': 'New York, New York'
+  'Pacific/Honolulu': 'Honolulu, Hawaii'
+  'Europe/Berlin': 'Berlin, Germany'
+
+event:
+  title: 'Name'
+  startsAt: 'Starts At'
+  endsAt: 'Ends At'
+  description: 'Description'
+  guests:
+    person: 'Person'
+    role: 'Role'
+  venue:
+    location: 'Venue Name'
+    extendedAddress: 'Extended Address'
+  repeats: 'Repeats'
+  repeatDuration:
+    days: '{count, plural, =0 {Days} =1 {Day} other {Days}}'
+    weeks: '{count, plural, =0 {Weeks} =1 {Week} other {Weeks}}'
+    months: '{count, plural, =0 {Months} =1 {Month} other {Months}}'
+
+group:
+  name: 'Group Name'
+  hostname: 'URL'
+  email: 'Email Address'
+  timezone: 'Default Timezone'
+  currency: 'Default Currency'
+  locale: 'Language'
+  channels:
+    name: 'Section Name'
+    slug: 'Pretty URL'
+
+location:
+  name: 'Name'
+  website: 'Website'
+  address: 'Address'
+  postalCode: 'Postal Code'
+  city: 'City'
+  regionCode: 'State'
+  actions:
+    viewMap: '{icon} View Map'
+person:
+  name: 'Name'
+  email: 'Email'
+  website: 'Website'
+  biography: 'Biography'
+  photos: 'Photos'
+  actions:
+    email: '{icon} Email'
+    manageLogins: '{icon} Manage Logins'
+    addLogin: '{icon} Add Login'
+    addDeployKey: '{icon} Add Deploy Key'
+
+photo:
+  align: 'Align to'
+  size: 'Photo Size'
+  caption: 'Caption'
+
+post:
+  title: 'Title'
+  channel: 'Section'
+  slug: 'Pretty URL'
+  body: 'Body'
+  actions:
+    viewLive: '{icon} View Live'
+    publish: '{icon} Publish'
+    unpublish: '{icon} Unpublish'
+
+publicKeys:
+  name: 'Name (Private)'
+  key: 'Public Key'
+
+purchases:
+  paymentMethod: 'Paid With'
+  paidBy: 'Paid By'
+
+stripe:
+  stripePublishableKey: 'Stripe Publishable Key'
+  stripeSecretKey: 'Stripe Secret Key'
+  appleDeveloperMerchantidDomainAssociation: 'Apple Pay Certificate'
+    
+ticket:
+  create:
+    title: '{icon} Add Ticket'
+    cancel: 'Cancel'
+    submit: 'Add Ticket'
+  callToAction: 'Call to Action'
+  description: 'Description'
+  cost: 'Cost'
+  quantity: 'Quantity'
+  validFrom: 'Valid From'
+  validTo: 'Valid To'
+  actions:
+    addEvents: '{icon} Add Events'
+    payments: '{icon} Payments'
+transaction:
+  description: 'Description'
+  amountPaid: 'Paid'
+  paidAt: 'Paid At'
+  paidBy: 'Paid By'
+  amountOwed: 'Owes'
+  notes: 'Private Notes'
+  actions:
+    viewInStripe: '{icon} View Charge'

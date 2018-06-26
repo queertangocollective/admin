@@ -1,11 +1,11 @@
-{{#form-for data onsubmit=(action 'submit') as |f|}}
+{{#form-for data name='transaction' onsubmit=(action 'submit') as |f|}}
   <header>{{icon 'coin'}} Add Expense</header>
   <div class="body grid-column">
-    {{f.text 'description'}}
     <div class='grid-row'>
-      {{f.currency 'amountOwed'}}
+      {{f.text 'description'}}
       {{f.date 'paidAt'}}
     </div>
+    {{f.currency 'amountOwed' 'currency' currencies=(list 'USD' 'EUR')}}
     {{f.autocomplete 'paidBy' key='name' onquery=(action onquery 'person')}}
     {{f.editor 'notes' markup=(list 'bold' 'italic' 'underline' 'emoji')}}
   </div>

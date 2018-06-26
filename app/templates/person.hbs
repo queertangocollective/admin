@@ -1,10 +1,10 @@
 {{title model.name}}
 <section id="person" class="container">
-  {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
+  {{#form-for model name='person' autosave=true onsubmit=(route-action 'save') as |f|}}
     {{#f.nav ondelete=(route-action 'deleteRecord')}}
       {{#if model.email}}
         <a class='submit-button' href="mailto:{{model.email}}">
-          {{icon "email"}} Email
+          {{t 'person.actions.email' icon=(icon "email") htmlSafe=true}}
         </a>
       {{/if}} 
       {{#if model.authorizations.length}}
@@ -12,12 +12,12 @@
             logins=model.authorizations
             oncreate=(route-action 'addLogin' model)
             ondelete=(route-action 'deleteLogin')) group='new-login'}}
-          {{icon 'lock'}} Manage Logins
+          {{t 'person.actions.manageLogins' icon=(icon 'lock') htmlSafe=true}}
         {{/dialog-button}}
       {{else}}
         {{#animated-container}}
           {{#create-button 'email' onsubmit=(route-action 'addLogin' model) placeholder='Enter email' value=model.email}}
-            {{icon 'add'}} Add Login
+            {{t 'person.actions.addLogin' icon=(icon 'add') htmlSafe=true}}
           {{else}}
             {{icon 'add'}}
           {{/create-button}}
@@ -28,7 +28,7 @@
             publicKeys=model.publicKeys
             oncreate=(route-action 'addPublicKey')
             ondelete=(route-action 'deletePublicKey')) group='new-public-key'}}
-          {{icon 'key'}} Add Deploy Key
+          {{t 'person.actions.addDeployKey' icon=(icon 'key') htmlSafe=true}}
         {{/dialog-button}}
       {{/if}}
     {{/f.nav}}

@@ -1,4 +1,4 @@
-{{#form-for model onsubmit=(action 'submit') as |f|}}
+{{#form-for model name='purchase' onsubmit=(action 'submit') as |f|}}
   <header>{{icon 'coin'}} Add Purchase</header>
   <div class='body grid-column'>
     {{#f.buttons 'paymentMethod' as |b|}}
@@ -8,7 +8,7 @@
     {{/f.buttons}}
     {{f.autocomplete 'paidBy' key='name' onquery=(route-action 'query' 'person')}}
     {{#if (equals f.changeset.paymentMethod 'cash')}}
-      {{f.currency 'amountPaid'}}
+      {{f.currency 'amountPaid' 'currency' currencies=(list 'USD' 'EUR')}}
     {{else if (equals f.changeset.paymentMethod 'stripe')}}
       Stripe elements here
     {{/if}}

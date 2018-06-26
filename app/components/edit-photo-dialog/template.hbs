@@ -1,4 +1,4 @@
-{{#form-for payload onsubmit=(action submit) as |f|}}
+{{#form-for payload name='photo' onsubmit=(action submit) as |f|}}
   <header>{{icon 'photo'}} Edit Photo</header>
   <div class="body grid-column">
     {{#f.buttons 'align' as |b|}}

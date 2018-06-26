@@ -1,4 +1,4 @@
-{{#form-for payload onsubmit=(action submit) as |f|}}
+{{#form-for payload name='ticket' onsubmit=(action submit) as |f|}}
   <header>{{icon 'ticket'}} {{#link-to 'ticket' ticket target='__blank'}}{{ticket.description}}{{/link-to}} <span>{{l 'currency' ticket.cost currency=ticket.currency}}</span></header>
   <div class="body grid-column">
     {{f.text 'callToAction'}}

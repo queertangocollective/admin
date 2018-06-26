@@ -1,12 +1,12 @@
-{{#form-for data autocomplete="off" onsubmit=(action 'submit') as |f|}}
+{{#form-for data name='transaction' autocomplete="off" onsubmit=(action 'submit') as |f|}}
   <header>{{icon 'love'}} Add Donation</header>
   <div class="body grid-column">
-    {{f.text 'description' autocomplete=(if f.changeset.paidBy.name (concat 'Donation from ' f.changeset.paidBy.name))}}
-    {{f.autocomplete 'paidBy' inputId='paid-by' key='name' onquery=(action onquery 'person')}}
     <div class='grid-row'>
-      {{f.currency 'amountPaid'}}
+      {{f.text 'description' autocomplete=(if f.changeset.paidBy.name (concat 'Donation from ' f.changeset.paidBy.name))}}
       {{f.date 'paidAt'}}
     </div>
+    {{f.currency 'amountPaid' 'currency' currencies=(list 'USD' 'EUR')}}
+    {{f.autocomplete 'paidBy' inputId='paid-by' key='name' onquery=(action onquery 'person')}}
     {{f.editor 'notes' markup=(list 'bold' 'italic' 'underline' 'emoji')}}
   </div>
   <footer>

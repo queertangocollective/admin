@@ -1,14 +1,24 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { inject as method } from 'ember-service-methods';
 import Authenticatable from 'torii/routing/application-route-mixin';
-import method from 'ember-service-methods/inject';
 
 export default Route.extend(Authenticatable, {
 
   flash: method(),
 
+  intl: service(),
+
+  beforeModel() {
+    this.intl.setLocale(['en']);
+    return this._super();
+  },
+
   afterModel() {
     if (!this.session.get('isAuthenticated')) {
       this.replaceWith('login');
+    } else if (this.session.get('currentGroup.locale')) {
+      this.intl.setLocale([this.session.get('currentGroup.locale'), 'en']);
     }
   },
 

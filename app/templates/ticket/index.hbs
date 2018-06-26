@@ -1,21 +1,21 @@
 {{remember-document-scroll key=(concat 'ticket/' model.id)}}
 
 <section id="ticket">
-  {{#form-for model autosave=true onsubmit=(route-action 'save') as |f|}}
+  {{#form-for model name='ticket' autosave=true onsubmit=(route-action 'save') as |f|}}
     <div class='container'>
       {{#f.nav ondelete=(route-action 'deleteRecord') class="container"}}
         {{#dialog-button (component 'find-event-dialog' disabled=model.events onsubmit=(route-action 'createTicketedEvents' model)) group='add-event'}}
-          {{icon 'add'}} Add Events
+          {{t 'ticket.actions.addEvents' icon=(icon 'add') htmlSafe=true}}
         {{/dialog-button}}
         {{#link-to 'ticket.purchases' model class='submit-button'}}
-          {{icon 'coin'}} Payments
+          {{t 'ticket.actions.payments' icon=(icon 'coin') htmlSafe=true}}
         {{/link-to}}
       {{/f.nav}}
     </div>
     <div class='grid-column container'>
       {{f.text 'description'}}
       <div class='grid-row'>
-        {{f.currency 'cost'}}
+        {{f.currency 'cost' 'currency' currencies=(list 'USD' 'EUR')}}
         {{f.number 'quantity'}}
       </div>
       <div class='grid-row'>

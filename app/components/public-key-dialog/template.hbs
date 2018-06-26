@@ -27,7 +27,7 @@
     {{/sortable-list}}
   {{/if}}
   {{#if isAdding}}
-    {{#form-for class='container grid-column' onsubmit=(action 'submit') as |f|}}
+    {{#form-for name='publicKeys' class='container grid-column' onsubmit=(action 'submit') as |f|}}
       {{f.text 'name'}}
       {{f.textarea 'key' rows=5}}
       <div>
