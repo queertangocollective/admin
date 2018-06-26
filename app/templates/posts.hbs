@@ -17,7 +17,7 @@
     </nav>
   </header>
 
-  {{#sortable-list rows=model.model load=(route-action 'load') total=model.meta.page.total sort=sort as |l|}}
+  {{#sortable-list name='posts' rows=model.model load=(route-action 'load') total=model.meta.page.total sort=sort as |l|}}
     {{#l.item 'pinned' sortable=false as |item|}}
       <button onclick={{route-action 'pin' item (not item.pinned)}}>{{icon 'pin' class=(if item.pinned 'pin active' 'pin')}}</button>
     {{else~}}
@@ -25,18 +25,12 @@
     {{~/l.item}}
     {{#l.item 'title' as |item|}}
       {{#link-to 'post' item}}{{item.title}}{{/link-to}}
-    {{else}}
-      Title
     {{/l.item}}
     {{#l.item 'channel.name' as |item|}}
       <span>{{item.channel.name}}</span>
-    {{else}}
-      Section
     {{/l.item}}
     {{#l.item 'publishedAt' as |item|}}
       {{l 'date' item.publishedAt}}
-    {{else}}
-      Published At
     {{/l.item}}
   {{else}}
     <div class='no-items'>

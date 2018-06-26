@@ -135,7 +135,7 @@ h4 {
 }
 
 #ledger .item {
-  grid-template-columns: 25% 20% 20% 18% 17%;
+  grid-template-columns: 2fr 1fr 2fr 5rem;
 
   &.mobile {
     grid-template-columns: auto 1fr auto;
@@ -147,9 +147,6 @@ h4 {
     }
     .amount-paid {
       text-align: right;
-    }
-    .amount-owed {
-      overflow: hidden;
     }
   }
 

@@ -1,21 +1,15 @@
 <header>{{icon 'key'}}{{#if logins.length}}Manage Deploy Keys{{else}}Add Deploy Key{{/if}}</header>
 <div class='body' id='public-keys'>
   {{#if publicKeys.length}}
-    {{#sortable-list rows=sortedPublicKeys sort=sort onsort=(action (mut sort)) as |l|}}
+    {{#sortable-list name='publicKeys' rows=sortedPublicKeys sort=sort onsort=(action (mut sort)) as |l|}}
       {{#l.item 'name' as |key|}}
         {{key.name}}
-      {{else}}
-        Name
       {{/l.item}}
       {{#l.item 'fingerprint' as |key|}}
         {{key.fingerprint}}
-      {{else}}
-        Fingerprint
       {{/l.item}}
       {{#l.item 'lastUsedAt' as |key|}}
         {{l 'date' key.lastUsedAt}}
-      {{else}}
-        Last Used At
       {{/l.item}}
       {{#l.item 'delete' sortable=false as |key|}}
         {{#confirm-button class='icon' onsubmit=(action ondelete key)}}

@@ -20,33 +20,20 @@
 
   {{balance-bar balance=model.meta.balance credit=model.meta.credit debit=model.meta.debit}}
 
-  {{#sortable-list rows=model.model total=model.meta.page.total load=(route-action 'load') sort=sort icon='piggy-bank' as |list item|}}
+  {{#sortable-list name='ledger' rows=model.model total=model.meta.page.total load=(route-action 'load') sort=sort icon='piggy-bank' as |list item|}}
     {{#list.item 'description' as |item|}}
       {{#link-to 'transaction' item}}{{item.description}}{{/link-to}}
-    {{else}}
-      Description
     {{/list.item}}
     {{#list.item 'paidBy' as |item|}}
       {{item.paidBy.name}}
-    {{else}}
-      Paid By
     {{/list.item}}
     {{#list.item 'paidAt' as |item|}}
       {{l 'date' item.paidAt}}
-    {{else}}
-      Paid At
     {{/list.item}}
     {{#list.item 'amountPaid' class=(if item.amountOwed 'iou' (if (gt item.amountPaid 0) 'credit' 'debit')) as |item|}}
-      {{l 'currency' item.amountPaid currency=item.currency}}
-    {{else}}
-      Amount
-    {{/list.item}}
-    {{#list.item 'amountOwed' as |item|}}
-      {{#if item.amountOwed}}
-        {{l 'currency' item.amountOwed currency=item.currency}}
+      {{l 'currency' item.amountPaid currency=item.currency}} {{#if item.amountOwed}}
+        (Owes {{l 'currency' item.amountOwed currency=item.currency}})
       {{/if}}
-    {{else}}
-      Owed
     {{/list.item}}
   {{/sortable-list}}
 </div>

@@ -1,7 +1,7 @@
 <header>{{icon 'lock'}}{{#if logins.length}}Manage Logins{{else}}Add Login{{/if}}</header>
 <div class='body' id='authorizations'>
   {{#if logins.length}}
-    {{#sortable-list rows=sortableLogins sort=sort onsort=(action (mut sort)) as |l|}}
+    {{#sortable-list name='authorizations' rows=sortableLogins sort=sort onsort=(action (mut sort)) as |l|}}
       {{#l.item 'avatar' sortable=false as |login|}}
         {{#if login.avatar}}
           <img src="{{login.avatar}}" alt="{{login.email}}"/>
@@ -11,13 +11,9 @@
       {{/l.item}}
       {{#l.item 'email' as |login|}}
         {{login.email}}
-      {{else}}
-        Email
       {{/l.item}}
       {{#l.item 'provider' as |login|}}
-        {{login.provider}}
-      {{else}}
-        Provider
+        {{t (concat 'authorizations.providers.' login.provider)}}
       {{/l.item}}
       {{#l.item 'delete' sortable=false as |login|}}
         {{#confirm-button class='icon' onsubmit=(action ondelete login)}}

@@ -37,7 +37,7 @@
       {{/animated-if}}
     {{/animated-container}}
     
-    {{#sortable-list load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='calendar' as |l|}}
+    {{#sortable-list name='events' load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='calendar' as |l|}}
       {{#l.item 'checkbox' sortable=false as |item|}}
         {{check-box value=(contains selection item) onchange=(action 'select' item)}}
       {{else}}
@@ -45,13 +45,9 @@
       {{/l.item}}
       {{#l.item 'title' as |item|}}
         {{#link-to 'event' item}}{{item.title}}{{/link-to}}
-      {{else}}
-        Title
       {{/l.item}}
       {{#l.item 'startsAt' '-endsAt' as |item|}}
         {{{format-date-range item.startsAt item.endsAt}}}
-      {{else}}
-        Date
       {{/l.item}}
     {{else}}
       No Events found

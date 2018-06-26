@@ -24,16 +24,12 @@
       </div>
     </div>
     <br>
-    {{#sortable-list class='events' rows=events onsort=(action (mut sortEventsBy)) sort=sortEventsBy as |l|}}
+    {{#sortable-list name='events' rows=events onsort=(action (mut sortEventsBy)) sort=sortEventsBy as |l|}}
       {{#l.item 'title' as |item|}}
         {{item.title}}
-      {{else}}
-        Title
       {{/l.item}}
       {{#l.item 'startsAt' as |item|}}
         {{l 'date' item.startsAt}}
-      {{else}}
-        Date
       {{/l.item}}
     {{/sortable-list}}
   {{/form-for}}

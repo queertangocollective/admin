@@ -8,7 +8,7 @@
       {{/dialog-button}}
     </nav>
   </header>
-  {{#sortable-list class='stubs' rows=model.model load=(route-action 'load') total=model.meta.page.total sort=sort icon='person' as |l|}}
+  {{#sortable-list name='stubs' rows=model.model load=(route-action 'load') total=model.meta.page.total sort=sort icon='person' as |l|}}
     {{#l.item 'attended' sortable=false as |item|}}
       {{check-box value=item.attended onchange=(action 'updateAttendance' item (not item.attended))}}
     {{else}}
@@ -16,18 +16,12 @@
     {{/l.item}}
     {{#l.item 'person.name' as |item|}}
       {{item.person.name}}
-    {{else}}
-      Name
     {{/l.item}}
     {{#l.item 'person.email' as |item|}}
       {{item.person.email}}
-    {{else}}
-      Email
     {{/l.item}}
     {{#l.item 'purchase.amountPaid' as |item|}}
       {{l 'currency' item.purchase.amountPaid}}
-    {{else}}
-      Paid
     {{/l.item}}
   {{else}}
     No Attendees

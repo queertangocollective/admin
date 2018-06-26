@@ -9,21 +9,15 @@
     </nav>
   </header>
   {{balance-bar balance=model.meta.balance credit=model.meta.credit debit=model.meta.debit}}
-  {{#sortable-list class='purchases' rows=model.model load=(route-action 'load') total=model.meta.page.total sort=sort icon='person' as |l|}}
+  {{#sortable-list name='purchases' rows=model.model load=(route-action 'load') total=model.meta.page.total sort=sort icon='person' as |l|}}
     {{#l.item 'paidBy.name' as |item|}}
       {{#link-to 'person' item.paidBy}}{{item.paidBy.name}}{{/link-to}}
-    {{else}}
-      Name
     {{/l.item}}
     {{#l.item 'paidAt' as |item|}}
       {{l 'date' item.paidAt}}
-    {{else}}
-      Paid At
     {{/l.item}}
     {{#l.item 'id' as |item|}}
       {{#link-to 'transaction' item}}#{{item.id}}{{/link-to}}
-    {{else}}
-      Order Number
     {{/l.item}}
   {{/sortable-list}}
 </section>

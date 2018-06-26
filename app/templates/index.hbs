@@ -6,31 +6,23 @@
     <div class="grid-row">
       <div class="events">
         <h3>💃 Upcoming Events</h3>
-        {{#sortable-list rows=this.sortedEvents sort=sortEventsBy onsort=(action (mut sortEventsBy)) as |l|}}
+        {{#sortable-list name='dashboard.upcomingEvents' rows=this.sortedEvents sort=sortEventsBy onsort=(action (mut sortEventsBy)) as |l|}}
           {{#l.item 'name' as |item|}}
             {{#link-to 'event' item}}{{item.title}}{{/link-to}}
-          {{else}}
-            Name
           {{/l.item}}
-          {{#l.item 'ticketStubs.length' as |item|}}
+          {{#l.item 'ticketStubs.count' as |item|}}
             {{item.ticketStubs.length}}
-          {{else}}
-            Attendance
           {{/l.item}}
         {{/sortable-list}}
       </div>
       <div class="balance">
         <h3>💰 Balance</h3>
-        {{#sortable-list rows=this.sortedTransactions sort=sortTransactionsBy onsort=(action (mut sortTransactionsBy)) as |l|}}
+        {{#sortable-list name='dashboard.balance' rows=this.sortedTransactions sort=sortTransactionsBy onsort=(action (mut sortTransactionsBy)) as |l|}}
           {{#l.item 'name' as |item|}}
             {{#link-to 'person' item.paidBy}}{{item.paidBy.name}}{{/link-to}}
-          {{else}}
-            Name
           {{/l.item}}
           {{#l.item 'amountPaid' as |item|}}
             {{l 'currency' item.amountPaid currency=item.currency}}
-          {{else}}
-            Amount
           {{/l.item}}
         {{/sortable-list}}
         {{balance-bar balance=transactions.meta.balance credit=transactions.meta.credit debit=transactions.meta.debit}}

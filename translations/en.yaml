@@ -6,6 +6,28 @@ timezones:
   'Pacific/Honolulu': 'Honolulu, Hawaii'
   'Europe/Berlin': 'Berlin, Germany'
 
+authorizations:
+  email: 'Email Address'
+  provider: 'Login Method'
+  providers:
+    facebook: 'Facebook'
+    google: 'Google'
+    email: 'Magic Link'
+  delete: ''
+
+dashboard:
+  upcomingEvents:
+    name: 'Name'
+    ticketStubs:
+      count: 'Attendees'
+  balance:
+    name: 'Paid By'
+    amountPaid: 'Paid'
+
+events:
+  title: 'Name'
+  startsAt: 'Time'
+
 event:
   title: 'Name'
   startsAt: 'Starts At'
@@ -34,6 +56,12 @@ group:
     name: 'Section Name'
     slug: 'Pretty URL'
 
+locations:
+  name: 'Name'
+  addressLine: 'Address'
+  city: 'City'
+  regionCode: 'State'
+
 location:
   name: 'Name'
   website: 'Website'
@@ -43,9 +71,14 @@ location:
   regionCode: 'State'
   actions:
     viewMap: '{icon} View Map'
+
+people:
+  name: 'Name'
+  email: 'Email Address'
+
 person:
   name: 'Name'
-  email: 'Email'
+  email: 'Email Address'
   website: 'Website'
   biography: 'Biography'
   photos: 'Photos'
@@ -60,6 +93,12 @@ photo:
   size: 'Photo Size'
   caption: 'Caption'
 
+posts:
+  title: 'Title'
+  channel:
+    name: 'Section'
+  publishedAt: 'Published At'
+
 post:
   title: 'Title'
   channel: 'Section'
@@ -72,17 +111,29 @@ post:
 
 publicKeys:
   name: 'Name (Private)'
+  fingerprint: 'Fingerprint'
   key: 'Public Key'
+  lastUsedAt: 'Last Used At'
+  delete: ''
 
 purchases:
   paymentMethod: 'Paid With'
   paidBy: 'Paid By'
+  'paidBy.name': 'Paid By'
+  paidAt: 'Paid At'
+  id: 'Order #'
 
 stripe:
   stripePublishableKey: 'Stripe Publishable Key'
   stripeSecretKey: 'Stripe Secret Key'
   appleDeveloperMerchantidDomainAssociation: 'Apple Pay Certificate'
-    
+
+tickets:
+  description: 'Name'
+  cost: 'Price'
+  ticketStubs:
+    count: '# Sold'
+
 ticket:
   create:
     title: '{icon} Add Ticket'
@@ -97,6 +148,13 @@ ticket:
   actions:
     addEvents: '{icon} Add Events'
     payments: '{icon} Payments'
+
+ledger:
+  description: 'Description'
+  paidBy: 'Paid By'
+  paidAt: 'Paid At'
+  amountPaid: 'Paid'
+
 transaction:
   description: 'Description'
   amountPaid: 'Paid'
@@ -106,3 +164,9 @@ transaction:
   notes: 'Private Notes'
   actions:
     viewInStripe: '{icon} View Charge'
+
+stubs:
+  person:
+    name: 'Name'
+    email: 'Email Address'
+  amountPaid: 'Paid'
