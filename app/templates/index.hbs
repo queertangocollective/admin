@@ -6,7 +6,7 @@
     <div class="grid-row">
       <div class="events">
         <h3>💃 Upcoming Events</h3>
-        {{#sortable-list name='dashboard.upcomingEvents' rows=this.sortedEvents sort=sortEventsBy onsort=(action (mut sortEventsBy)) as |l|}}
+        {{#sortable-list name='dashboard.upcomingEvents' rows=this.sortedEvents sort=sortEventsBy onsort=(action (mut sortEventsBy)) icon='calendar' as |l|}}
           {{#l.item 'name' as |item|}}
             {{#link-to 'event' item}}{{item.title}}{{/link-to}}
           {{/l.item}}
@@ -17,7 +17,7 @@
       </div>
       <div class="balance">
         <h3>💰 Balance</h3>
-        {{#sortable-list name='dashboard.balance' rows=this.sortedTransactions sort=sortTransactionsBy onsort=(action (mut sortTransactionsBy)) as |l|}}
+        {{#sortable-list name='dashboard.balance' rows=this.sortedTransactions sort=sortTransactionsBy onsort=(action (mut sortTransactionsBy)) icon='coin' as |l|}}
           {{#l.item 'name' as |item|}}
             {{#link-to 'person' item.paidBy}}{{item.paidBy.name}}{{/link-to}}
           {{/l.item}}

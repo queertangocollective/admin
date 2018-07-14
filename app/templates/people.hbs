@@ -11,7 +11,7 @@
       {{/create-button}}
     </nav>
   </header>
-  {{#sortable-list name='people' rows=model.model total=model.meta.page.total sort=sort load=(route-action 'load') as |l|}}
+  {{#sortable-list name='people' rows=model.model total=model.meta.page.total icon='person' sort=sort query=q load=(route-action 'load') as |l|}}
     {{#l.item 'name' as |item|}}
       {{#link-to 'person' item~}}
         {{item.name}}

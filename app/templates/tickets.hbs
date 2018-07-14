@@ -11,7 +11,7 @@
     </nav>
   </header>
 
-  {{#sortable-list name='tickets' load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort icon='ticket' as |l item|}}
+  {{#sortable-list name='tickets' load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort query=q icon='ticket' as |l item|}}
     {{#l.item 'description' class=(if item.isActive 'active' 'inactive') as |item|}}
       {{#link-to 'ticket' item}}{{item.description}}{{/link-to}}
     {{/l.item}}

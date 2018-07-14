@@ -17,14 +17,25 @@ authorizations:
 
 dashboard:
   upcomingEvents:
+    none: 'No upcoming events'
     name: 'Name'
     ticketStubs:
       count: 'Attendees'
   balance:
+    none: 'No recent transactions'
     name: 'Paid By'
     amountPaid: 'Paid'
 
+editor:
+  h2: 'Extra Large'
+  h3: 'Large'
+  none: 'Normal'
+  blockquote: 'Quote'
+  small: 'Small'
+
 events:
+  none: 'No Events created'
+  notFound: 'No Events found named "{query}"'
   title: 'Name'
   startsAt: 'Time'
 
@@ -57,6 +68,8 @@ group:
     slug: 'Pretty URL'
 
 locations:
+  none: 'No Locations added'
+  notFound: 'No Locations found for "{query}"'
   name: 'Name'
   addressLine: 'Address'
   city: 'City'
@@ -73,6 +86,8 @@ location:
     viewMap: '{icon} View Map'
 
 people:
+  none: 'No People added'
+  notFound: 'No People found named "{query}"'
   name: 'Name'
   email: 'Email Address'
 
@@ -94,6 +109,8 @@ photo:
   caption: 'Caption'
 
 posts:
+  none: 'No Posts created'
+  notFound: 'No Posts found titled "{query}"'
   title: 'Title'
   channel:
     name: 'Section'
@@ -117,6 +134,8 @@ publicKeys:
   delete: ''
 
 purchases:
+  none: 'No Purchases have been added'
+  notFound: 'No Purchases found for "{query}"'
   paymentMethod: 'Paid With'
   paidBy: 'Paid By'
   'paidBy.name': 'Paid By'
@@ -129,6 +148,8 @@ stripe:
   appleDeveloperMerchantidDomainAssociation: 'Apple Pay Certificate'
 
 tickets:
+  none: 'No Tickets created'
+  notFound: 'No Tickets found for "{query}"'
   description: 'Name'
   cost: 'Price'
   ticketStubs:
@@ -150,6 +171,8 @@ ticket:
     payments: '{icon} Payments'
 
 ledger:
+  none: 'No Transactions created'
+  notFound: 'No Transactions found for "{query}"'
   description: 'Description'
   paidBy: 'Paid By'
   paidAt: 'Paid At'

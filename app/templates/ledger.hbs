@@ -20,7 +20,7 @@
 
   {{balance-bar balance=model.meta.balance credit=model.meta.credit debit=model.meta.debit}}
 
-  {{#sortable-list name='ledger' rows=model.model total=model.meta.page.total load=(route-action 'load') sort=sort icon='piggy-bank' as |list item|}}
+  {{#sortable-list name='ledger' rows=model.model total=model.meta.page.total load=(route-action 'load') sort=sort query=q icon='coin' as |list item|}}
     {{#list.item 'description' as |item|}}
       {{#link-to 'transaction' item}}{{item.description}}{{/link-to}}
     {{/list.item}}

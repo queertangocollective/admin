@@ -10,7 +10,7 @@
       {{/dialog-button}}
     </nav>
   </header>
-  {{#sortable-list name='locations' rows=model.model load=(route-action 'load') total=model.meta.page.total sort=sort icon='location' as |l|}}
+  {{#sortable-list name='locations' rows=model.model load=(route-action 'load') total=model.meta.page.total query=q sort=sort icon='location' as |l|}}
     {{#l.item 'name' as |item|}}
       {{#link-to 'location' item}}{{item.name}}{{/link-to}}
     {{~/l.item}}

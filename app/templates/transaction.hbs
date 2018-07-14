@@ -6,7 +6,7 @@
     {{#f.nav ondelete=(route-action 'deleteRecord')}}
       {{#if model.paymentProcessorUrl}}
         <a href="{{model.paymentProcessorUrl}}" target="__blank" rel="nofollow noreferrer" class="submit-button">
-          {{t 'transaction.actions.viewInStripe' icon=(icon "stripe")}}
+          {{t 'transaction.actions.viewInStripe' icon=(icon "stripe") htmlSafe=true}}
         </a>
       {{/if}}
     {{/f.nav}}

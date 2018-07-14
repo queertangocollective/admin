@@ -24,7 +24,7 @@
       </div>
     </div>
     <br>
-    {{#sortable-list name='events' rows=events onsort=(action (mut sortEventsBy)) sort=sortEventsBy as |l|}}
+    {{#sortable-list name='events' rows=events onsort=(action (mut sortEventsBy)) icon='calendar' sort=sortEventsBy as |l|}}
       {{#l.item 'title' as |item|}}
         {{item.title}}
       {{/l.item}}
