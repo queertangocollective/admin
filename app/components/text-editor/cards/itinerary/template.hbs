@@ -1,12 +1,12 @@
-{{#tabular-list rows=events click=editCard as |l|}}
-  {{#l.item 'title' as |item|}}
+{{#sortable-list name='itinerary' rows=events click=editCard sort='startsAt' onsort=(action 'nothing') icon='calendar' as |l|}}
+  {{#l.item 'title' sortable=false as |item|}}
     {{item.title}}
   {{else}}
-    Title
+    <span>{{t 'itinerary.title'}}</span>
   {{/l.item}}
-  {{#l.item 'date' as |item|}}
+  {{#l.item 'startsAt' '-endsAt' sortable=false as |item|}}
     {{{format-date-range item.startsAt item.endsAt}}}
   {{else}}
-    Date
+    <span>{{t 'itinerary.startsAt'}}</span>
   {{/l.item}}
-{{/tabular-list}}
+{{/sortable-list}}

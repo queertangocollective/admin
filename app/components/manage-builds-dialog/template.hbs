@@ -1,24 +1,22 @@
 <header>{{icon 'love'}} Updates</header>
 <div class="body grid-column">
-  {{#tabular-list rows=rows as |l item|}}
-    {{#l.item 'deployedBy' class=(if item.live 'active' 'inactive') as |build|}}
+  {{#sortable-list name='builds' rows=rows sort='deployedBy.name' onsort=(action (mut sort)) as |l item|}}
+    {{#l.item 'deployedBy.name' sortable=false class=(if item.live 'active' 'inactive') as |build|}}
       {{#link-to 'person' build.deployedBy}}{{build.deployedBy.name}}{{/link-to}}
     {{else}}
-      Updated by
+      <span>{{t 'builds.deployedBy.name'}}</span>
     {{/l.item}}
-    {{#l.item 'liveAt' as |build|}}
-      {{l 'date' build.liveAt}}
+    {{#l.item 'liveAt' sortable=false as |build|}}
+      <span>{{l 'date' build.liveAt}}</span>
     {{else}}
-      Active Since
+      {{t 'builds.liveAt'}}
     {{/l.item}}
-    {{#l.item 'changes' as |build|}}
+    {{#l.item 'changes' sortable=false as |build|}}
       <a href="{{build.gitUrl}}/commit/{{build.gitSha}}" target="__blank">View Changes</a>
     {{else}}
-      Changes
+      <span>{{t 'builds.changes'}}</span>
     {{/l.item}}
-  {{else}}
-    No updates yet!
-  {{/tabular-list}}
+  {{/sortable-list}}
 </div>
 <footer>
   <button type='reset' onclick={{action dismiss}}>Cancel</button>

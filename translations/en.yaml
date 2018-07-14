@@ -15,6 +15,12 @@ authorizations:
     email: 'Magic Link'
   delete: ''
 
+builds:
+  deployedBy:
+    name: 'Made By'
+  liveAt: 'Live At'
+  changes: 'Changes Made'
+
 dashboard:
   upcomingEvents:
     none: 'No upcoming events'
@@ -142,13 +148,38 @@ purchases:
   paidAt: 'Paid At'
   id: 'Order #'
 
+purchase:
+  paymentMethod: 'Paid With'
+  paidBy: 'Paid By'
+  amountPaid: 'Amount Paid'
+
 stripe:
   stripePublishableKey: 'Stripe Publishable Key'
   stripeSecretKey: 'Stripe Secret Key'
   appleDeveloperMerchantidDomainAssociation: 'Apple Pay Certificate'
 
+findEvents:
+  none: 'No Events created'
+  notFound: 'No Events found for "{query}"'
+  checkbox: ''
+  title: 'Name'
+  startsAt: 'Date'
+
+itinerary:
+  none: 'Add items to this itinerary by tapping here'
+  title: 'Name'
+  startsAt: 'Date'
+
+findTickets:
+  none: 'No Tickets created'
+  notFound: 'No Tickets found for "{query}"'
+  checkbox: ''
+  description: 'Name'
+  cost: 'Price'
+
 tickets:
   none: 'No Tickets created'
+  checkbox: ''
   notFound: 'No Tickets found for "{query}"'
   description: 'Name'
   cost: 'Price'
@@ -189,7 +220,10 @@ transaction:
     viewInStripe: '{icon} View Charge'
 
 stubs:
+  none: 'No Sign Ups yet'
+  notFound: 'No Sign Up found for "{query}"'
   person:
     name: 'Name'
     email: 'Email Address'
-  amountPaid: 'Paid'
+  purchase:
+    amountPaid: 'Paid'

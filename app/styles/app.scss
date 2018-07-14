@@ -1,7 +1,4 @@
 @import '@queertangocollective/ui';
-@import './find-ticket-dialog/style';
-@import './find-event-dialog/style';
-@import './manage-builds-dialog/style';
 
 $green: #00D925;
 $red: #FF0052;
@@ -10,19 +7,6 @@ $yellow: #FFF500;
 section,
 section.container {
   margin-bottom: 3rem;
-}
-
-h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid $black;
-}
-
-h3 {
-  font-size: 1.25rem;
-  font-weight: bold;
-  padding: 0.5rem 0;
 }
 
 :not(.text-editor) p {
@@ -609,6 +593,76 @@ nav .create-button,
       overflow: visible;
       text-overflow: inherit;
     }
+  }
+}
+
+.builds .item {
+  grid-template-columns: 1fr 1fr 8rem;
+
+  &.mobile {
+    grid-template-columns: 1fr;
+  }
+
+  .deployed-by-name {
+    &.active:before {
+      background: $green;
+    }
+
+    &.inactive:before {
+      background: $heather;
+    }
+
+    &:before {
+      content: ' ';
+      position: absolute;
+      left: 0px;
+      width: 6px;
+      top: 0px;
+      bottom: 0px;
+    }
+  }
+}
+
+.itinerary {
+  @extend .serif;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
+
+  .item {
+    grid-template-columns: 1fr 1fr;
+
+    .title {
+      padding-right: 1rem;
+    }
+
+    &.mobile {
+      grid-template-columns: 1fr;
+
+      .title {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+.findTickets, .findEvents {
+  .item {
+    grid-template-columns: 2rem 1fr 1fr;
+
+    &.mobile {
+      grid-template-columns: 2rem 1fr;
+    
+      .cost, .starts-at {
+        grid-column: span 2;
+        margin-left: 2rem;
+      }
+    }
+  }
+  .check-box {
+    position: relative;
+    top: 3px;
+    overflow: visible;
   }
 }
 

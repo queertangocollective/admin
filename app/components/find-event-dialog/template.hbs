@@ -1,30 +1,19 @@
 <header>{{icon 'calendar'}} Add Events</header>
 <div class="body grid-column">
   {{search-field query=q onquery=(action 'query') placeholder="Search events by title"}}
-  {{#animated-container}}
-    {{#animated-if isLoading use=fade duration=200}}
-      <div class='loading'>
-        {{icon 'spinner' class='spinner'}}
-      </div>
-    {{/animated-if}}
-    {{#tabular-list rows=results as |l|}}
-      {{#l.item 'checkbox' as |item|}}
-        {{check-box value=(contains selection item) disabled=(contains disabledIds item.id) onchange=(action 'select' item)}}
-      {{else}}
-        {{check-box value=areAllSelected onchange=(action 'toggleSelectAll')}}
-      {{/l.item}}
-      {{#l.item 'title' as |item|}}
-        {{item.title}}
-      {{else}}
-        Title
-      {{/l.item}}
-      {{#l.item 'date' as |item|}}
-        {{{format-date-range item.startsAt item.endsAt}}}
-      {{else}}
-        Date
-      {{/l.item}}
-    {{/tabular-list}}
-  {{/animated-container}}
+  {{#sortable-list name='findEvents' rows=results sort=sort onsort=(action 'sort') query=q icon='calendar' as |l|}}
+    {{#l.item 'checkbox' sortable=false as |item|}}
+      {{check-box value=(contains selection item) disabled=(contains disabledIds item.id) onchange=(action 'select' item)}}
+    {{else}}
+      {{check-box value=areAllSelected onchange=(action 'toggleSelectAll')}}
+    {{/l.item}}
+    {{#l.item 'title' as |item|}}
+      {{item.title}}
+    {{/l.item}}
+    {{#l.item 'startsAt' '-endsAt' as |item|}}
+      {{{format-date-range item.startsAt item.endsAt}}}
+    {{/l.item}}
+  {{/sortable-list}}
 </div>
 <footer>
   {{#submit-button onsubmit=(action 'submit' selection)}}

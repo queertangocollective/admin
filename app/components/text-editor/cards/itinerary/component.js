@@ -12,5 +12,9 @@ export default Component.extend({
       if (this.isDestroyed) return;
       this.set('events', events.sortBy('startsAt'));
     });
+  },
+
+  actions: {
+    nothing() {}
   }
 });

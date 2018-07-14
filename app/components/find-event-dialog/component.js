@@ -61,6 +61,10 @@ export default Component.extend({
       this.set('q', query);
       this.query();
     },
+    sort(sort) {
+      this.set('sort', sort);
+      this.query();
+    },
     select(item) {
       let selection = this.selection.slice();
       let index = selection.indexOf(item);

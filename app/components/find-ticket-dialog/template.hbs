@@ -1,22 +1,19 @@
 <header>{{icon 'ticket'}} Add Ticket</header>
 <div class="body grid-column">
   {{search-field query=q onquery=(action 'query') placeholder="Search tickets by description"}}
-  {{#tabular-list rows=results as |l|}}
-    {{#l.item 'checkbox' as |item|}}
+  {{#sortable-list name='findTickets' rows=results sort=sort onsort=(action 'sort') query=q icon='ticket' as |l|}}
+    {{#l.item 'checkbox' sortable=false as |item|}}
       {{check-box value=(equals selected item) onchange=(action (mut selected) item)}}
     {{else}}
+      <span></span>
     {{/l.item}}
     {{#l.item 'description' as |item|}}
       {{item.description}}
-    {{else}}
-      Description
     {{/l.item}}
     {{#l.item 'cost' as |item|}}
       {{l 'currency' item.cost currency=item.currency}}
-    {{else}}
-      Cost
     {{/l.item}}
-  {{/tabular-list}}
+  {{/sortable-list}}
 </div>
 <footer>
   <button type='submit' onclick={{action onsubmit selected}}>Add Ticket</button>

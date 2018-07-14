@@ -31,6 +31,10 @@ export default Component.extend({
     query(query) {
       this.set('q', query);
       this.query();
+    },
+    sort(sort) {
+      this.set('sort', sort);
+      this.query();
     }
   }
 });
