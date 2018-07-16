@@ -18,7 +18,7 @@
       <div class="balance">
         <h3>💰 Balance</h3>
         {{#sortable-list name='dashboard.balance' rows=this.sortedTransactions sort=sortTransactionsBy onsort=(action (mut sortTransactionsBy)) icon='coin' as |l|}}
-          {{#l.item 'name' as |item|}}
+          {{#l.item 'paidBy.name' as |item|}}
             {{#link-to 'person' item.paidBy}}{{item.paidBy.name}}{{/link-to}}
           {{/l.item}}
           {{#l.item 'amountPaid' as |item|}}

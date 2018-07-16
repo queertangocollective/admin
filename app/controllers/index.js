@@ -4,6 +4,6 @@ import sort from '../computed/sort';
 export default Controller.extend({
   sortEventsBy: 'name',
   sortedEvents: sort('events', 'sortEventsBy'),
-  sortTransactionsBy: 'person.name',
+  sortTransactionsBy: 'paidBy.name',
   sortedTransactions: sort('transactions', 'sortTransactionsBy')
 });

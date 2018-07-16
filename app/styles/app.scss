@@ -284,12 +284,9 @@ figcaption {
 }
 
 .text-editor nav {
-  max-width: calc(100vw - 32px);
-  overflow: scroll;
-
-  button, label {
-    min-width: 2.5rem;
-  }
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .__mobiledoc-card .event-planner {
