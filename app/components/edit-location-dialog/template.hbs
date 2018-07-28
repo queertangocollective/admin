@@ -1,0 +1,10 @@
+{{#form-for payload name='location' onsubmit=(action submit) as |f|}}
+  <header>{{icon 'location'}} {{location.name}}</header>
+  <div class="body grid-column">
+    {{f.text 'extendedAddress'}}
+  </div>
+  <footer>
+    {{f.submit 'Save'}}
+    <button type='reset' onclick={{dismiss}}>Cancel</button>
+  </footer>
+{{/form-for}}

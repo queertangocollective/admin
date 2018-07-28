@@ -11,14 +11,22 @@
       {{/dialog-button}}
     </div>
     <div class="grid-row">
-      {{#file-upload class='submit-button' onfileadd=(action 'addPhoto') name="embeds"}}
+      {{#dialog-button (component 'find-photo-dialog' onsubmit=(action 'addPhoto') onupload=onupload) group='photo'}}
         {{icon 'photo'}} Add Photo
-      {{/file-upload}}
+      {{/dialog-button}}
       {{#create-button 'url' type='url' onsubmit=(action 'addYoutubeVideo') placeholder='Enter URL'}}
         {{icon 'youtube'}} Add Youtube Video
       {{else}}
         {{icon 'check'}}
       {{/create-button}}
+    </div>
+    <div class="grid-row">
+      {{#dialog-button (component 'find-location-dialog' onsubmit=(action 'addLocation')) group='location'}}
+        {{icon 'location'}} Add Location
+      {{/dialog-button}}
+      {{#dialog-button (component 'find-person-dialog' onsubmit=(action 'addPerson')) group='person'}}
+        {{icon 'person'}} Add Person
+      {{/dialog-button}}
     </div>
     <br>
   </div>

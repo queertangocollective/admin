@@ -25,7 +25,7 @@
         {{f.text 'slug'}}
       </div>
       {{f.editor 'body' rows=6 onembed=(route-action 'embed' (component 'add-embed-dialog' onupload=(route-action 'addPhoto')))
-          embeds=(list 'ticket' 'itinerary' 'photo' 'youtube')}}
+          embeds=(list 'ticket' 'itinerary' 'photo' 'youtube' 'location' 'person')}}
     </div>
   {{/form-for}}
 </section>

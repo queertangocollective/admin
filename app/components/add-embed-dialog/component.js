@@ -24,6 +24,25 @@ export default Component.extend({
       });
       this.open.set('dialogs', []);
     },
+    addLocation(location) {
+      this.onsubmit({
+        type: 'location',
+        attributes: {
+          locationId: location.get('id'),
+          extendedAddress: location.get('extendedAddress')
+        }
+      });
+      this.open.set('dialogs', []);
+    },
+    addPerson(person) {
+      this.onsubmit({
+        type: 'person',
+        attributes: {
+          personId: person.get('id')
+        }
+      });
+      this.open.set('dialogs', []);
+    },
     addYoutubeVideo({ url }) {
       this.onsubmit({
         type: 'youtube',
@@ -36,18 +55,16 @@ export default Component.extend({
       });
       this.open.set('dialogs', []);
     },
-    addPhoto(file) {
-      this.onupload(file).then((photo) => {
-        this.onsubmit({
-          type: 'photo',
-          attributes: {
-            photoId: photo.get('id'),
-            url: photo.get('url'),
-            size: 'medium'
-          }
-        });
-        this.open.set('dialogs', []);
+    addPhoto(photo) {
+      this.onsubmit({
+        type: 'photo',
+        attributes: {
+          photoId: photo.get('id'),
+          url: photo.get('url'),
+          size: 'medium'
+        }
       });
+      this.open.set('dialogs', []);
     }
   }
 });

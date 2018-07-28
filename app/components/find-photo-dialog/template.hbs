@@ -1,0 +1,17 @@
+<header>{{icon 'photo'}} Add Photos
+  {{#file-upload class='submit-button' onfileadd=(action 'upload') name="embeds"}}
+    {{icon 'add'}} Upload Photo
+  {{/file-upload}}
+</header>
+<div class="body grid-column">
+  <div class='photo-grid'>
+    {{#photo-grid photos=results as |photo height|~}}
+      {{check-box inputId=(concat "photo-" photo.id) value=(equals selected photo) onchange=(action (mut selected) photo)~}}
+      <label for="photo-{{photo.id}}"><img src="{{photo.url}}" height="{{height}}"></label>
+    {{~/photo-grid}}
+  </div>
+</div>
+<footer>
+  <button type='submit' onclick={{action onsubmit selected}}>Add Photo</button>
+  <button type='reset' onclick={{action dismiss}}>Cancel</button>
+</footer>

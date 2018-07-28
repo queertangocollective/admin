@@ -61,7 +61,7 @@ event:
     role: 'Role'
   venue:
     location: 'Venue Name'
-    extendedAddress: 'Extended Address'
+    extendedAddress: 'Studio # / Floor / Unit'
   repeats: 'Repeats'
   repeatDuration:
     days: '{count, plural, =0 {Days} =1 {Day} other {Days}}'
@@ -91,6 +91,7 @@ location:
   name: 'Name'
   website: 'Website'
   address: 'Address'
+  extendedAddress: 'Studio # / Floor / Unit'
   postalCode: 'Postal Code'
   city: 'City'
   regionCode: 'State'
@@ -170,6 +171,20 @@ findEvents:
   checkbox: ''
   title: 'Name'
   startsAt: 'Date'
+
+findLocation:
+  none: 'No Locations created'
+  notFound: 'No Locations found for "{query}"'
+  name: 'Name'
+  addressLine: 'Address'
+  city: 'City'
+  regionCode: 'State'
+
+findPeople:
+  none: 'No People added'
+  notFound: 'No People found named "{query}"'
+  name: 'Name'
+  email: 'Email Address'
 
 itinerary:
   none: 'Add items to this itinerary by tapping here'

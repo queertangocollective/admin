@@ -643,16 +643,43 @@ nav .create-button,
   }
 }
 
-.findTickets, .findEvents {
+.findTickets, .findEvents, .findPeople {
   .item {
     grid-template-columns: 2rem 1fr 1fr;
 
     &.mobile {
       grid-template-columns: 2rem 1fr;
     
-      .cost, .starts-at {
+      .cost, .starts-at, .email {
         grid-column: span 2;
         margin-left: 2rem;
+      }
+    }
+  }
+  .check-box {
+    position: relative;
+    top: 3px;
+    overflow: visible;
+  }
+}
+
+.findLocation {
+  .item {
+    grid-template-columns: 2rem 4fr 3fr 2fr 1fr;
+
+    &.mobile {
+      grid-template-columns: 2rem auto auto 1fr;
+    
+      .name {
+        grid-column: span 3;
+        overflow: hidden;
+        max-width: calc(100vw - 2rem);
+      }
+      .city:after {
+        content: ',';
+      }
+      .city, .region-code {
+        padding-left: 0.4rem;
       }
     }
   }
@@ -737,5 +764,77 @@ nav .create-button,
 
   & + .sortable-list header {
     top: 2rem;
+  }
+}
+
+.location-card {
+  box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
+  display: flex;
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 1rem 0;
+
+  img {
+    width: auto;
+    height: 100px;
+  }
+
+  .location-info {
+    padding: 0.5rem;
+  }
+}
+
+.person-card {
+  box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
+  border-radius: 2px;
+  padding: 1rem 1rem 0.5rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.dialog-box header > .submit-button {
+  line-height: 1.25rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: $accent;
+
+  svg {
+    top: 0;
+    margin-right: 0;
+  }
+}
+
+.photo-grid {
+  .row {
+    display: flex;
+    margin-top: 10px;
+
+    &:last-of-type {
+      margin-bottom: 10px;
+    }
+  }
+
+  img {
+    width: auto;
+  }
+
+  .photo {
+    display: flex;
+    position: relative;
+    margin: 0 0 0 10px;
+    box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+
+    label {
+      display: grid;
+    }
+
+    .check-box {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+    }
   }
 }

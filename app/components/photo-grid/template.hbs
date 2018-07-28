@@ -1,0 +1,9 @@
+{{#each rows as |row|}}
+  <div class="row">
+    {{~#each row.photos as |photo|~}}
+      <div class="photo">
+        {{~yield photo row.height~}}
+      </div>
+    {{~/each~}}
+  </div>
+{{/each}}
