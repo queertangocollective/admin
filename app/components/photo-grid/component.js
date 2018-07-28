@@ -1,15 +1,29 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { bind } from '@ember/runloop';
+import { max } from '@ember/object/computed';
 
 export default Component.extend({
-
+  classNames: ['photo-grid'],
   idealHeight: 180,
   minimumShrink: 80,
   maxiumumStretch: 240,
+  viewportWidth: 0,
   gutter: 10,
 
   didInsertElement() {
-    this.set('viewportWidth', this.element.clientWidth - this.gutter);
+    this.set('viewportWidth', this.element.clientWidth + this.gutter);
+    this.resize = bind(this, () => {
+      let width = this.element.clientWidth + this.gutter;
+      if (width !== this.viewportWidth) {
+        this.set('viewportWidth', width);
+      }
+    });
+    window.addEventListener('resize', this.resize);
+  },
+
+  willDestroyElement() {
+    window.removeEventListener('resize', this.resize);
   },
 
   findPossibleRows(photos) {
@@ -25,20 +39,48 @@ export default Component.extend({
       row.aspectRatio += aspectRatio;
 
       let height = (viewportWidth - (row.photos.length * this.gutter)) / row.aspectRatio;
-      if (height > this.maxiumumStretch && i < len) {
+      if (height > this.maxiumumStretch && i < len - 1) {
         continue;
       } else if (height < this.minimumShrink) {
         break;
       } else {
+        let score = Math.pow(Math.abs(this.idealHeight - height), 2);
+        let nextRow = this.findPossibleRows(photos.slice(i + 1));
+        height = Math.min(this.maxiumumStretch, height);
         validRows.push({
-          score: Math.pow(Math.abs(this.idealHeight - height), 2),
+          score,
           height,
-          photos: row.photos.slice(),
-          nextRow: this.findPossibleRows(photos.slice(i + 1))
+          photos: row.photos.slice().map((photo) => {
+            return {
+              photo,
+              width: (photo.width / photo.height) * height
+            };
+          }),
+          nextRow
         });
       }
     }
     return validRows;
+  },
+
+  getScores(rows, result={ score: 0, rows: [] }, state={ minimum: Infinity }) {
+    let results = [];
+    for (let i = 0, len = rows.length; i < len; i++) {
+      let row = rows[i];
+      let path = {
+        score: result.score + row.score,
+        rows: [...result.rows, row]
+      };
+      if (row.nextRow.length === 0) {
+        if (path.score < state.minimum) {
+          results.push(path);
+          state.minimum = path.score;
+        }
+      } else {
+        results.push(...this.getScores(row.nextRow, path, state));
+      }
+    }
+    return results;
   },
 
   rows: computed('idealHeight', 'viewportWidth', 'photos', function () {
@@ -54,27 +96,7 @@ export default Component.extend({
     });
 
     let rows = this.findPossibleRows(photos);
-    let idealRows = [];
-    let row = rows.reduce((min, row) => {
-      if (min.score > row.score) {
-        return row;
-      }
-      return min;
-    }, { score: Infinity, nextRow: [] });
-    if (row.photos) {
-      idealRows.push(row);
-    }
-
-    while (row.nextRow.length > 0) {
-      rows = row.nextRow;
-      row = rows.reduce((min, row) => {
-        if (min.score > row.score) {
-          return row;
-        }
-        return min;
-      }, { score: Infinity });
-      idealRows.push(row);
-    }
-    return idealRows;
+    let results = this.getScores(rows);
+    return results[results.length - 1].rows;
   })
 });

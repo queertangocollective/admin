@@ -1,0 +1,14 @@
+{{title "Photos"}}
+
+<section id="photos">
+  <header class="container">
+    {{search-field query=q onquery=(action (mut q)) placeholder="Search photos by filename or accessibility description"}}
+    <nav>
+    </nav>
+  </header>
+  {{#photo-grid name='photo' photos=model.model total=model.meta.page.total icon='photo' sort=sort load=(route-action 'load') as |photo width height|}}
+    {{#link-to 'photo' photo~}}
+      <img src="{{photo.url}}" alt="{{photo.title}}" width="{{width}}" height="{{height}}">
+    {{~/link-to}}
+  {{/photo-grid}}
+</section>

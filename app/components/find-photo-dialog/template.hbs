@@ -5,9 +5,9 @@
 </header>
 <div class="body grid-column">
   <div class='photo-grid'>
-    {{#photo-grid photos=results as |photo height|~}}
+    {{#photo-grid photos=results as |photo width height|~}}
       {{check-box inputId=(concat "photo-" photo.id) value=(equals selected photo) onchange=(action (mut selected) photo)~}}
-      <label for="photo-{{photo.id}}"><img src="{{photo.url}}" height="{{height}}"></label>
+      <label for="photo-{{photo.id}}"><img src="{{photo.url}}" width="{{width}}" height="{{height}}"></label>
     {{~/photo-grid}}
   </div>
 </div>

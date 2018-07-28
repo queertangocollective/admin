@@ -120,6 +120,9 @@ photo:
   align: 'Align to'
   size: 'Photo Size'
   caption: 'Caption'
+  filename: 'Filename'
+  title: 'Accessibility Description'
+  accessibilityHelp: 'Describe what is in the photo to assist people who are using screen readers or other voice assistant software.'
 
 posts:
   none: 'No Posts created'

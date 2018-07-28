@@ -22,6 +22,9 @@ export default Router.extend({
     this.route('purchases');
   });
 
+  this.route('photos');
+  this.route('photo', { path: '/photos/:photo_id' });
+
   this.route('ledger');
   this.route('transaction', { path: '/ledger/:transaction_id' });
 

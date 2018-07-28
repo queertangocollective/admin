@@ -1,8 +1,8 @@
 {{#each rows as |row|}}
-  <div class="row">
-    {{~#each row.photos as |photo|~}}
+  <div class="photo-grid-row">
+    {{~#each row.photos as |cell|~}}
       <div class="photo">
-        {{~yield photo row.height~}}
+        {{~yield cell.photo cell.width row.height~}}
       </div>
     {{~/each~}}
   </div>

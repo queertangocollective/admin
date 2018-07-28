@@ -1,0 +1,14 @@
+{{title (or model.title model.filename)}}
+<section id="photo" class="container">
+  {{#form-for model name='photo' autosave=true onsubmit=(route-action 'save') as |f|}}
+    {{f.nav ondelete=(route-action 'deleteRecord')}}
+    <div class='grid-row'>
+      <img src="{{model.url}}" alt="{{model.title}}">
+      <div class='grid-column'>
+        {{f.text 'filename'}}
+        {{f.text 'title'}}
+        <p>{{t 'photo.accessibilityHelp'}}</p>
+      </div>
+    </div>
+  {{/form-for}}
+</section>
