@@ -25,7 +25,7 @@ export default Component.extend({
       row.aspectRatio += aspectRatio;
 
       let height = (viewportWidth - (row.photos.length * this.gutter)) / row.aspectRatio;
-      if (height > this.maxiumumStretch) {
+      if (height > this.maxiumumStretch && i < len) {
         continue;
       } else if (height < this.minimumShrink) {
         break;
