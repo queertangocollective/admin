@@ -806,10 +806,19 @@ nav .create-button,
   }
 }
 
+.find-photo-dialog .photo-grid {
+  margin-left: 6px;
+  width: calc(100% - 12px);
+}
+
 #photos {
-  width: calc(100vw - 20px);
+  width: 100vw;
   overflow: hidden;
-  margin-left: 10px;
+  
+  .photo-grid {
+    margin-left: 1rem;
+    width: calc(100vw - 2rem);
+  }
 }
 
 #photo {
@@ -822,11 +831,11 @@ nav .create-button,
   .photo-grid-row {
     display: flex;
     flex-direction: row;
-    margin-top: 10px;
+    margin-top: 0.5rem;
     justify-content: space-between;
 
     &:last-of-type {
-      margin-bottom: 10px;
+      margin-bottom: 0.5rem;
     }
   }
 

@@ -5,11 +5,11 @@ import { max } from '@ember/object/computed';
 
 export default Component.extend({
   classNames: ['photo-grid'],
-  idealHeight: 180,
+  idealHeight: 160,
   minimumShrink: 80,
-  maxiumumStretch: 240,
+  maxiumumStretch: 220,
   viewportWidth: 0,
-  gutter: 10,
+  gutter: 8,
 
   didInsertElement() {
     this.set('viewportWidth', this.element.clientWidth + this.gutter);
