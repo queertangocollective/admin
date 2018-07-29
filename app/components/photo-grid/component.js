@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { bind } from '@ember/runloop';
-import { max } from '@ember/object/computed';
 
 export default Component.extend({
   classNames: ['photo-grid'],
@@ -71,6 +70,12 @@ export default Component.extend({
         score: result.score + row.score,
         rows: [...result.rows, row]
       };
+
+      // Skip if there's already a better solution
+      if (path.score > state.minimum) {
+        continue;
+      }
+
       if (row.nextRow.length === 0) {
         if (path.score < state.minimum) {
           results.push(path);
