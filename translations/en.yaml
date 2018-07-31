@@ -6,6 +6,19 @@ timezones:
   'Pacific/Honolulu': 'Honolulu, Hawaii'
   'Europe/Berlin': 'Berlin, Germany'
 
+navigation:
+  home: 'Dashboard'
+  group: 'My Group'
+  posts: 'Posts'
+  events: 'Events'
+  tickets: 'Tickets'
+  ledger: 'Ledger'
+  people: 'People'
+  locations: 'Locations'
+  photos: 'Photos'
+  more: 'More'
+  logout: 'Logout'
+
 authorizations:
   email: 'Email Address'
   provider: 'Login Method'

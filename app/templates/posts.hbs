@@ -1,9 +1,9 @@
 {{title 'Posts'}}
 {{remember-document-scroll key='posts'}}
 
+{{to-elsewhere named='search' send=(component 'search-field' query=q onquery=(action (mut q)) placeholder="Search posts by title")}}
 <div id="posts">
   <header class="container">
-    {{search-field query=q onquery=(action (mut q)) placeholder="Search posts by title"}}
     <nav class="row">
       {{#create-button 'title' onsubmit=(route-action 'createPost') placeholder='Enter Title'}}
         {{icon "edit"}} Draft Post

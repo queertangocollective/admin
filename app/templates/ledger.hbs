@@ -1,8 +1,8 @@
 {{title "Ledger"}}
 
+{{to-elsewhere named='search' send=(component 'search-field' query=q onquery=(action (mut q)) placeholder="Search ledger by description or paid by")}}
 <div id="ledger">
   <header class="container">
-    {{search-field query=q onquery=(action (mut q)) placeholder="Search ledger by description or paid by"}}
     <nav class='row'>
       {{#dialog-button (component 'new-donation-dialog'
             onquery=(route-action 'query')

@@ -1,9 +1,9 @@
 {{title 'Tickets'}}
 {{remember-document-scroll key='tickets'}}
 
+{{to-elsewhere named='search' send=(component 'search-field' query=q onquery=(action (mut q)) placeholder="Search tickets by description")}}
 <section id="tickets">
   <header class="container">
-    {{search-field query=q onquery=(action (mut q)) placeholder="Search tickets by description"}}
     <nav>
       {{#dialog-button (component 'new-ticket-dialog' onsubmit=(route-action 'createTicket')) group='new-ticket'}}
         {{icon "ticket"}} Add Ticket

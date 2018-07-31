@@ -1,9 +1,9 @@
 {{title "Locations"}}
 {{remember-document-scroll key='locations'}}
 
+{{to-elsewhere named='search' send=(component 'search-field' query=q onquery=(action (mut q)) placeholder="Search locations by name, address, or city")}}
 <section id="locations">
   <header class="container">
-    {{search-field query=q onquery=(action (mut q)) placeholder="Search locations by name, address, or city"}}
     <nav>
       {{#dialog-button (component 'new-location-dialog' onsubmit=(route-action 'createLocation')) group='add-location'}}
         {{icon "location"}} Add Location

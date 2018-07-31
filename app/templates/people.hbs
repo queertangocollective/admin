@@ -1,8 +1,8 @@
 {{title "People"}}
 
+{{to-elsewhere named='search' send=(component 'search-field' query=q onquery=(action (mut q)) placeholder="Search people by name or email")}}
 <section id="people">
   <header class="container">
-    {{search-field query=q onquery=(action (mut q)) placeholder="Search people by name or email"}}
     <nav>
       {{#create-button 'name' onsubmit=(route-action 'createPerson') placeholder='Enter name'}}
         {{icon "person"}} Add Person

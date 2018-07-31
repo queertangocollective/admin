@@ -1,18 +1,16 @@
 {{title 'Events'}}
 {{remember-document-scroll key='events'}}
 
+{{to-elsewhere named='search' send=(component 'search-field' query=q onquery=(action (mut q)) placeholder="Search events by title")}}
 <section id="events">
-  <header class="container">
-    <div>
-      {{search-field query=q onquery=(action (mut q)) placeholder="Search events by title"}}
+  <header class='container'>
+    <nav class='row'>
       {{#link-to (query-params as='list') class='button icon'}}
         {{icon 'list'}}{{#if (media '(min-width: 500px)')}} List{{/if}}
       {{/link-to}}
       {{#link-to (query-params as='calendar') class='button icon'}}
         {{icon 'calendar'}}{{#if (media '(min-width: 500px)')}} Calendar{{/if}}
       {{/link-to}}
-    </div>
-    <nav class='row'>
       {{#dialog-button (component 'new-event-dialog' onsubmit=(route-action 'createEvent') onquery=(route-action 'query')) group='add-event'}}
         {{icon "calendar"}} Add Event
       {{/dialog-button}}

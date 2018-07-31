@@ -6,6 +6,7 @@ export default Router.extend({
   rootURL: config.rootURL
 }).map(function () {
   this.route('login');
+  this.route('home', { path: '/' });
   this.route('learn');
 
   this.route('posts');
