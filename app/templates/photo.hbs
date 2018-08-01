@@ -1,9 +1,15 @@
 {{title (or model.title model.filename)}}
+{{remember-document-scroll key=(concat 'photo.' model.id)}}
+
 <section id="photo" class="container">
   {{#form-for model name='photo' autosave=true onsubmit=(route-action 'save') as |f|}}
     {{f.nav ondelete=(route-action 'deleteRecord')}}
     <div class='grid-row'>
-      <img src="{{model.url}}" alt="{{model.title}}">
+      {{#animated-container}}
+        {{#animated-value model use=transition duration=300 as |m|}}
+          <img src="{{m.url}}" alt="{{m.title}}">
+        {{/animated-value}}
+      {{/animated-container}}
       <div class='grid-column'>
         {{f.text 'filename'}}
         {{f.text 'title'}}

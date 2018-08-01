@@ -1,7 +1,7 @@
 {{head-layout}}
 {{#if session.isAuthenticated}}
   {{title session.currentGroup.name}}
-  {{#navigation-bar routes='home posts events tickets ledger people locations photos' onlogout=(route-action 'logout')}}
+  {{#navigation-bar routes='home posts events tickets ledger people locations photos group' onlogout=(route-action 'logout')}}
     {{#from-elsewhere name='search' as |searchField|}}
       {{#if searchField}}
         {{component searchField}}

@@ -1,6 +1,10 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { bind } from '@ember/runloop';
+import move from 'ember-animated/motions/move';
+import scale from 'ember-animated/motions/scale';
+import opacity from 'ember-animated/motions/opacity';
+import { parallel } from 'ember-animated';
 
 export default Component.extend({
   classNames: ['photo-grid'],
@@ -9,6 +13,24 @@ export default Component.extend({
   maxiumumStretch: 220,
   viewportWidth: 0,
   gutter: 8,
+
+  *transition({ insertedSprites, receivedSprites, sentSprites }) {
+    // received and sent sprites are flying above all the others
+    receivedSprites.concat(sentSprites).forEach(sprite => {
+      sprite.applyStyles({
+        'z-index': 1,
+        'overflow': 'visible'
+      });
+    });
+
+    receivedSprites.forEach(parallel(move, scale));
+    sentSprites.forEach(parallel(move, scale));
+
+    insertedSprites.forEach(sprite => {
+      opacity(sprite, { from: 0, to: 1 });
+    });
+    yield;
+  },
 
   didInsertElement() {
     this.set('viewportWidth', this.element.clientWidth + this.gutter);

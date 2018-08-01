@@ -1,9 +1,11 @@
 {{#each rows as |row|}}
   <div class="photo-grid-row">
     {{~#each row.photos as |cell|~}}
-      <div class="photo">
-        {{~yield cell.photo cell.width row.height~}}
-      </div>
+      {{#animated-container class='photo'}}
+        {{#animated-value cell.photo duration=300 use=transition as |p|}}
+          {{~yield p cell.width row.height~}}
+        {{/animated-value}}
+      {{/animated-container}}
     {{~/each~}}
   </div>
 {{/each}}

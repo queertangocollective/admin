@@ -9,9 +9,20 @@ section.container {
   margin-bottom: 3rem;
 }
 
+h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
 :not(.text-editor) p {
+  font-size: 1.15rem;
   margin: 1.4rem 0;
-  line-height: 1.4rem;
+  line-height: 1.5rem;
 }
 
 #home .sortable-list {
@@ -47,6 +58,10 @@ p ul li {
 
 .navigation-bar {
   margin-bottom: 0;
+
+  .pop-over {
+    white-space: nowrap;
+  }
 }
 
 header nav {
@@ -823,11 +838,24 @@ nav .create-button,
     margin-left: 1rem;
     width: calc(100vw - 2rem);
   }
+
+  .photo:hover img {
+    box-shadow: 0 2px 4px 2px rgba(5, 5, 5, 0.2);
+  }
+
+  .photo:active img {
+    transition-duration: 80ms;
+    transform: translateY(1px);
+    box-shadow: 0 0 0 0 rgba(5, 5, 5, 0.2);
+  }
 }
 
 #photo {
   img {
     max-width: 100%;
+  }
+  .grid-column {
+    align-content: start;
   }
 }
 
@@ -846,12 +874,20 @@ nav .create-button,
   .photo {
     display: flex;
     position: relative;
-    box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
-    border-radius: 2px;
-    overflow: hidden;
 
+    img {
+      border-radius: 2px;
+      transition: all 200ms;
+      box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
+    }
+  
     a, label {
       display: grid;
+    }
+
+    .animated-container {
+      display: grid;
+      grid-template-columns: 0 1fr 0;
     }
 
     .check-box {
