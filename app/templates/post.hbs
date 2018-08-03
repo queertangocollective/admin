@@ -5,11 +5,11 @@
 
 {{action-bar 'unpublish' 'viewLive' 'publish' 'delete'
   for='post'
-  unpublish=(if model.published (route-action 'unpublish' model))
+  unpublish=(if model.published (route-action 'unpublish' model) null)
   unpublishIcon='eye-closed'
-  viewLive=(if model.published (concat session.currentGroup.url '/' model.slug))
+  viewLive=(if model.published (concat session.currentGroup.url '/' model.slug) null)
   viewLiveIcon='export'
-  publish=(unless model.published (route-action 'publish' model))
+  publish=(unless model.published (route-action 'publish' model) null)
   publishIcon='eye'
   delete=(route-action 'deleteRecord')
   deleteIcon='trash'}}
