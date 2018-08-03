@@ -1,42 +1,30 @@
 {{title model.name}}
+
+{{action-bar 'email' 'manageLogins' 'addDeployKey' 'delete'
+  for='person'
+  email=(if model.email (concat 'mailto:' model.email))
+  emailIcon='email'
+  manageLogins=(component 'new-login-dialog'
+    logins=model.authorizations
+    oncreate=(route-action 'addLogin' model)
+    ondelete=(route-action 'deleteLogin'))
+  manageLoginsIcon='lock'
+  addDeployKey=(if (equals model.role 'staff') (component 'public-key-dialog'
+    publicKeys=model.publicKeys
+    oncreate=(route-action 'addPublicKey')
+    ondelete=(route-action 'deletePublicKey')))
+  addDeployKeyIcon='key'
+  delete=(route-action 'deleteRecord')
+  deleteIcon='trash'}}
+
 <section id="person" class="container">
   {{#form-for model name='person' autosave=true onsubmit=(route-action 'save') as |f|}}
-    {{#f.nav ondelete=(route-action 'deleteRecord')}}
-      {{#if model.email}}
-        <a class='submit-button' href="mailto:{{model.email}}">
-          {{t 'person.actions.email' icon=(icon "email") htmlSafe=true}}
-        </a>
-      {{/if}} 
-      {{#if model.authorizations.length}}
-        {{#dialog-button (component 'new-login-dialog'
-            logins=model.authorizations
-            oncreate=(route-action 'addLogin' model)
-            ondelete=(route-action 'deleteLogin')) group='new-login'}}
-          {{t 'person.actions.manageLogins' icon=(icon 'lock') htmlSafe=true}}
-        {{/dialog-button}}
-      {{else}}
-        {{#animated-container}}
-          {{#create-button 'email' onsubmit=(route-action 'addLogin' model) placeholder='Enter email' value=model.email}}
-            {{t 'person.actions.addLogin' icon=(icon 'add') htmlSafe=true}}
-          {{else}}
-            {{icon 'add'}}
-          {{/create-button}}
-        {{/animated-container}}
-      {{/if}}
-      {{#if (equals model.role 'staff')}}
-        {{#dialog-button (component 'public-key-dialog'
-            publicKeys=model.publicKeys
-            oncreate=(route-action 'addPublicKey')
-            ondelete=(route-action 'deletePublicKey')) group='new-public-key'}}
-          {{t 'person.actions.addDeployKey' icon=(icon 'key') htmlSafe=true}}
-        {{/dialog-button}}
-      {{/if}}
-    {{/f.nav}}
+    {{f.save-status}}
     <div class='grid-column'>
       {{f.text 'name'}}
       {{f.text 'email'}}
       {{f.url 'website'}}
-      {{f.editor 'biography' rows=5}}
+      {{f.editor 'biography' rows=5 onembed=null}}
       {{f.photos 'photos'}}
     </div>
   {{/form-for}}

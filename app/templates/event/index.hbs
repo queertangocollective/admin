@@ -1,15 +1,16 @@
 {{remember-document-scroll key=(concat 'event/' model.id '/edit')}}
 
+{{action-bar 'attendance' 'photos' 'delete'
+  for='event'
+  delete=(route-action 'deleteRecord')
+  deleteIcon='trash'
+  attendance='event.ledger'
+  attendanceIcon='person'
+  photos='event.photos'
+  photosIcon='photo'}}
 <section id="event-edit" class="container">
   {{#form-for model name='event' autosave=true onsubmit=(route-action 'save') as |f|}}
-    {{#f.nav ondelete=(route-action 'deleteRecord')}}
-      {{#link-to 'event.ledger' class='submit-button'}}
-        {{icon "person"}} Attendance
-      {{/link-to}}
-      {{#link-to 'event.photos' class='submit-button'}}
-        {{icon "photo"}} Photos
-      {{/link-to}}
-    {{/f.nav}}
+    {{f.save-status}}
     <div class='grid-column'>
       {{f.text 'title'}}
       <div class='grid-row'>

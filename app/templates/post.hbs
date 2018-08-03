@@ -2,22 +2,21 @@
 {{title model.title}}
 
 {{#file-dropzone name=(concat 'post/' model.id '/photo/new')}}
+
+{{action-bar 'unpublish' 'viewLive' 'publish' 'delete'
+  for='post'
+  unpublish=(if model.published (route-action 'unpublish' model))
+  unpublishIcon='eye-closed'
+  viewLive=(if model.published (concat session.currentGroup.url '/' model.slug))
+  viewLiveIcon='export'
+  publish=(unless model.published (route-action 'publish' model))
+  publishIcon='eye'
+  delete=(route-action 'deleteRecord')
+  deleteIcon='trash'}}
+
 <section id="post-edit" class="container">
   {{#form-for model name='post' autosave=true onsubmit=(route-action 'save') as |f|}}
-    {{#f.nav ondelete=(route-action 'deleteRecord')}}
-      {{#if model.published}}
-        {{#submit-button onsubmit=(route-action 'unpublish' model)}}
-          {{t 'post.actions.unpublish' icon=(icon "eye-closed") htmlSafe=true}}
-        {{/submit-button}}
-        <a href="{{session.currentGroup.url}}/{{model.slug}}" target="__blank" class="submit-button">
-          {{t 'post.actions.viewLive' icon=(icon "export") htmlSafe=true}}
-        </a>
-      {{else}}
-        {{#submit-button onsubmit=(route-action 'publish' model)}}
-          {{t 'post.actions.publish' icon=(icon "eye") htmlSafe=true}}
-        {{/submit-button}}
-      {{/if}}
-    {{/f.nav}}
+    {{f.save-status}}
     <div class="grid-column">
       {{f.text 'title'}}
       <div class='grid-row'>

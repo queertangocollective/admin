@@ -1,13 +1,15 @@
 {{title model.name}}
 {{remember-document-scroll key=(concat 'location/' model.id)}}
 
+{{action-bar 'viewMap' 'delete'
+  for='location'
+  viewMap=(component 'map-dialog' latitude=model.latitude longitude=model.longitude)
+  viewMapIcon='location'
+  delete=(route-action 'deleteRecord')
+  deleteIcon='trash'}}
 <section id="location" class="container">
   {{#form-for model name='location' autosave=true onsubmit=(route-action 'save') as |f|}}
-    {{#f.nav ondelete=(route-action 'deleteRecord')}}
-      {{#dialog-button (component 'map-dialog' latitude=model.latitude longitude=model.longitude) group='map'}}
-        {{t 'location.actions.viewMap' icon=(icon 'location') htmlSafe=true}}
-      {{/dialog-button}}
-    {{/f.nav}}
+    {{f.save-status}}
     <div class='grid-column'>
       <div class='grid-row'>
         {{f.text 'name'}}

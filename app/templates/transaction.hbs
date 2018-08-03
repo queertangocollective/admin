@@ -1,15 +1,16 @@
 {{title model.description}}
 {{remember-document-scroll key=(concat 'expense/' model.id)}}
 
+{{action-bar 'viewInStripe' 'delete'
+  for='transaction'
+  viewInStripe=model.paymentProcessorUrl
+  viewInStripeIcon='stripe'
+  delete=(route-action 'deleteRecord')
+  deleteIcon='trash'}}
+
 <section id="transaction" class="container">
   {{#form-for model name='transaction' autosave=true onsubmit=(route-action 'save') as |f|}}
-    {{#f.nav ondelete=(route-action 'deleteRecord')}}
-      {{#if model.paymentProcessorUrl}}
-        <a href="{{model.paymentProcessorUrl}}" target="__blank" rel="nofollow noreferrer" class="submit-button">
-          {{t 'transaction.actions.viewInStripe' icon=(icon "stripe") htmlSafe=true}}
-        </a>
-      {{/if}}
-    {{/f.nav}}
+    {{f.save-status}}
     <div class="grid-column">
       <div class='grid-row'>
         {{f.text 'description'}}
@@ -23,7 +24,7 @@
       {{#if model.paidBy}}
         {{#link-to 'person' model.paidBy}}&rarr; {{model.paidBy.name}}{{/link-to}}
       {{/if}}
-      {{f.editor 'notes' rows=3 markup=(list 'bold' 'italic' 'underline' 'emoji')}}
+      {{f.editor 'notes' rows=3 markup=(list 'bold' 'italic' 'underline')}}
     </div>
   {{/form-for}}
 </section>

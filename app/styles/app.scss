@@ -458,9 +458,18 @@ figcaption {
   }
 }
 
+.action-bar {
+  padding-top: 1rem;
+  max-width: 100vw;
+
+  .container {
+    margin-bottom: 0.25rem;
+  }
+}
+
 .ember-application > div {
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   min-height: 100vh;
 }
 

@@ -2,20 +2,18 @@
 
 {{to-elsewhere named='search' send=(component 'search-field' query=q onquery=(action (mut q)) placeholder="Search ledger by description or paid by")}}
 <div id="ledger">
-  <header class="container">
-    <nav class='row'>
-      {{#dialog-button (component 'new-donation-dialog'
+  <header>
+    {{action-bar 'addDonation' 'addExpense'
+      for='ledger'
+      addDonation=(component 'new-donation-dialog'
             onquery=(route-action 'query')
-            onsubmit=(route-action 'createTransaction')) group='add-donation'}}
-        {{icon "love"}} Add Donation
-      {{/dialog-button}}
-      {{#dialog-button (component 'new-expense-dialog'
+            onsubmit=(route-action 'createTransaction'))
+      addDonationIcon='love'
+      addExpense=(component 'new-expense-dialog'
           person=session.currentPerson
           onquery=(route-action 'query')
-          onsubmit=(route-action 'createTransaction')) group='add-expense'}}
-        {{icon "coin"}} Add Expense
-      {{/dialog-button}}
-    </nav>
+          onsubmit=(route-action 'createTransaction'))
+      addExpenseIcon='coin'}}
   </header>
 
   {{balance-bar balance=model.meta.balance credit=model.meta.credit debit=model.meta.debit}}
