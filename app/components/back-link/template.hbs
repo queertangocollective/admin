@@ -1,0 +1,3 @@
+{{#if (media '(max-width: 500px)')}}
+  {{#link-to params=params class='back-link'}}{{#if label}}{{icon 'chevron'}} {{label}}{{else}}{{t (concat params.firstObject '.back') icon=(icon 'chevron') htmlSafe=true}}{{/if}}{{/link-to}}
+{{/if}}

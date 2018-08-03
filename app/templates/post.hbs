@@ -1,6 +1,8 @@
 {{remember-document-scroll key=(concat 'post/' model.id '/edit')}}
 {{title model.title}}
 
+{{to-elsewhere named='search' send=(component 'back-link' 'posts')}}
+
 {{#file-dropzone name=(concat 'post/' model.id '/photo/new')}}
 
 {{action-bar 'unpublish' 'viewLive' 'publish' 'delete'

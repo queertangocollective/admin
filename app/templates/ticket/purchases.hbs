@@ -1,5 +1,6 @@
+{{to-elsewhere named='search' send=(component 'back-link' 'ticket.index' model.ticket label=model.ticket.description)}}
+
 <section id="ticket">
-  {{#link-to 'ticket.index' model.ticket}}&larr; {{model.ticket.description}}{{/link-to}}
   <header class="container">
     {{search-field query=q onquery=(action (mut q)) placeholder='Search by name'}}
     <nav>

@@ -21,17 +21,15 @@
   {{#if (equals as 'list')}}
     {{#animated-container class=(concat 'bulk-actions ' (if selection.length 'open'))}}
       {{#animated-if selection.length use=fadeIn duration=250}}
-        <div class='container row'>
-          {{#submit-button onsubmit=(route-action 'createTicket' (component 'new-ticket-dialog') selection)}}
-            {{icon 'ticket'}} Create Ticket
-          {{/submit-button}}
-          {{#submit-button onsubmit=(route-action 'deleteAll' selection)}}
-            {{icon 'trash'}} Delete Selected
-          {{/submit-button}}
-          <button type="reset" onclick={{action 'clearSelection'}}>
-            {{icon 'cancel'}} Clear Selection
-          </button>
-        </div>
+        {{action-bar 'createTicket' 'deleteAll' 'clearSelection'
+          for='events'
+          createTicket=(route-action 'createTicket' (component 'new-ticket-dialog') selection)
+          createTicketIcon='ticket'
+          deleteAll=(route-action 'deleteAll' selection)
+          deleteAllIcon='trash'
+          clearSelection=(action 'clearSelection')
+          clearSelectionIcon='cancel'
+        }}
       {{/animated-if}}
     {{/animated-container}}
     

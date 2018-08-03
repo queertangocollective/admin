@@ -1,5 +1,7 @@
 {{remember-document-scroll key=(concat 'event/' model.id '/edit')}}
 
+{{to-elsewhere named='search' send=(component 'back-link' 'events')}}
+
 {{action-bar 'attendance' 'photos' 'delete'
   for='event'
   delete=(route-action 'deleteRecord')

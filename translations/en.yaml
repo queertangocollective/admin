@@ -64,10 +64,15 @@ textEditor:
   small: 'Small'
 
 events:
+  back: '{icon} Events'
   none: 'No Events created'
   notFound: 'No Events found named "{query}"'
   title: 'Name'
   startsAt: 'Time'
+  actions:
+    createTicket: '{icon} Create Ticket'
+    deleteAll: '{icon} Delete Selected'
+    clearSelection: '{icon} Clear Selection'
 
 event:
   title: 'Name'
@@ -105,6 +110,7 @@ group:
     stripe: '{icon} Update Stripe'
 
 locations:
+  back: '{icon} Locations'
   none: 'No Locations added'
   notFound: 'No Locations found for "{query}"'
   name: 'Name'
@@ -125,6 +131,7 @@ location:
     delete: '{icon} Delete'
 
 people:
+  back: '{icon} People'
   none: 'No People added'
   notFound: 'No People found named "{query}"'
   name: 'Name'
@@ -143,6 +150,9 @@ person:
     addDeployKey: '{icon} Add Deploy Key'
     delete: '{icon} Delete'
 
+photos:
+  back: '{icon} Photos'
+
 photo:
   align: 'Align to'
   size: 'Photo Size'
@@ -154,6 +164,7 @@ photo:
     delete: '{icon} Delete'
 
 posts:
+  back: '{icon} Posts'
   none: 'No Posts created'
   notFound: 'No Posts found titled "{query}"'
   title: 'Title'
@@ -232,6 +243,7 @@ findTickets:
   cost: 'Price'
 
 tickets:
+  back: '{icon} Tickets'
   none: 'No Tickets created'
   checkbox: ''
   notFound: 'No Tickets found for "{query}"'
@@ -257,6 +269,7 @@ ticket:
     delete: '{icon} Delete'
 
 ledger:
+  back: '{icon} Ledger'
   none: 'No Transactions created'
   notFound: 'No Transactions found for "{query}"'
   description: 'Description'

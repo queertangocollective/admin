@@ -1,5 +1,7 @@
 {{title model.name}}
 
+{{to-elsewhere named='search' send=(component 'back-link' 'people')}}
+
 {{action-bar 'email' 'manageLogins' 'addDeployKey' 'delete'
   for='person'
   email=(if model.email (concat 'mailto:' model.email))

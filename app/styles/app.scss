@@ -194,6 +194,10 @@ h4 {
   top: 0;
   z-index: 2;
 
+  .action-bar {
+    padding-top: 0;
+  }
+
   .container {
     padding: 1rem;
   }
@@ -904,5 +908,19 @@ nav .create-button,
       top: 0.5rem;
       left: 0.5rem;
     }
+  }
+}
+
+.back-link {
+  display: block;
+  color: $black;
+  padding-left: 2rem;
+  line-height: 2rem;
+
+  svg {
+    position: absolute;
+    left: 0.4rem;
+    top: 0.4rem;
+    transform: rotate(180deg);
   }
 }

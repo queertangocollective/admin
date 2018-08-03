@@ -1,3 +1,5 @@
+{{to-elsewhere named='search' send=(component 'back-link' 'event.index' model label=model.title)}}
+
 <section id="photos">
   {{#file-dropzone name=(concat 'event-' model.id) as |dropzone|}}
     {{#if (await model.eventPhotos)}}

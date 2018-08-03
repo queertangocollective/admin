@@ -1,5 +1,6 @@
 {{title model.description}}
 {{remember-document-scroll key=(concat 'expense/' model.id)}}
+{{to-elsewhere named='search' send=(component 'back-link' 'ledger')}}
 
 {{action-bar 'viewInStripe' 'delete'
   for='transaction'

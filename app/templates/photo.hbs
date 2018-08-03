@@ -1,6 +1,8 @@
 {{title (or model.title model.filename)}}
 {{remember-document-scroll key=(concat 'photo.' model.id)}}
 
+{{to-elsewhere named='search' send=(component 'back-link' 'photos')}}
+
 {{action-bar 'delete'
   for='photo'
   delete=(route-action 'deleteRecord')

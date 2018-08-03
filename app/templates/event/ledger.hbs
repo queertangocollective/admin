@@ -1,6 +1,7 @@
+{{to-elsewhere named='search' send=(component 'back-link' 'event.index' model.event label=model.event.title)}}
+
 <section id="event">
   <header class="container">
-    {{#link-to 'events'}}Events{{/link-to}} > {{#link-to 'event.index' model.event}}{{model.event.title}}{{/link-to}} > Attendance
     {{search-field query=q onquery=(action (mut q)) placeholder='Search by name'}}
     <nav>
       {{#dialog-button (component 'add-purchase-dialog' ticket=model onsubmit=(route-action 'createPurchase' model)) group='add-purchase'}}

@@ -1,6 +1,8 @@
 {{title model.name}}
 {{remember-document-scroll key=(concat 'location/' model.id)}}
 
+{{to-elsewhere named='search' send=(component 'back-link' 'locations')}}
+
 {{action-bar 'viewMap' 'delete'
   for='location'
   viewMap=(component 'map-dialog' latitude=model.latitude longitude=model.longitude)
