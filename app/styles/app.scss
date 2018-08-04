@@ -937,12 +937,14 @@ nav .create-button,
   display: block;
   color: $black;
   padding-left: 2rem;
-  line-height: 2rem;
+  line-height: 1.8rem;
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
 
   svg {
     position: absolute;
     left: 0.4rem;
-    top: 0.4rem;
+    top: 0.3rem;
     transform: rotate(180deg);
   }
 }
