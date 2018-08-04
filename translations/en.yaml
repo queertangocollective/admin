@@ -98,6 +98,7 @@ event:
     attendance: '{icon} Attendance'
     photos: '{icon} Photos'
     delete: '{icon} Delete'
+    confirmDelete: 'Are you sure?'
 
 group:
   name: 'Group Name'
@@ -133,6 +134,7 @@ location:
   actions:
     viewMap: '{icon} View Map'
     delete: '{icon} Delete'
+    confirmDelete: 'Are you sure?'
 
 people:
   back: '{icon} People'
@@ -153,6 +155,7 @@ person:
     addLogin: '{icon} Add Login'
     addDeployKey: '{icon} Add Deploy Key'
     delete: '{icon} Delete'
+    confirmDelete: 'Are you sure?'
 
 photos:
   back: '{icon} Photos'
@@ -166,6 +169,7 @@ photo:
   accessibilityHelp: 'Describe what is in the photo to assist people who are using screen readers or other voice assistant software.'
   actions:
     delete: '{icon} Delete'
+    confirmDelete: 'Are you sure?'
 
 posts:
   back: '{icon} Posts'
@@ -183,6 +187,7 @@ post:
   body: 'Body'
   actions:
     delete: '{icon} Delete'
+    confirmDelete: 'Are you sure?'
     viewLive: '{icon} View Live'
     publish: '{icon} Publish'
     unpublish: '{icon} Unpublish'
@@ -271,6 +276,7 @@ ticket:
     addEvents: '{icon} Add Events'
     payments: '{icon} Payments'
     delete: '{icon} Delete'
+    confirmDelete: 'Are you sure?'
 
 ledger:
   back: '{icon} Ledger'
@@ -294,6 +300,7 @@ transaction:
   actions:
     viewInStripe: '{icon} View Charge'
     delete: '{icon} Delete'
+    confirmDelete: 'Are you sure?'
 
 stubs:
   none: 'No Sign Ups yet'

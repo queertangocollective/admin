@@ -1,5 +1,5 @@
 <header>{{icon 'calendar'}} Add Events</header>
-<div class="body grid-column">
+<div class="body">
   {{search-field query=q onquery=(action 'query') placeholder="Search events by title"}}
   {{#sortable-list name='findEvents' rows=results sort=sort onsort=(action 'sort') query=q icon='calendar' as |l|}}
     {{#l.item 'checkbox' sortable=false as |item|}}

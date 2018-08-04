@@ -13,7 +13,7 @@
   viewLiveIcon='export'
   publish=(unless model.published (route-action 'publish' model) null)
   publishIcon='eye'
-  delete=(route-action 'deleteRecord')
+  delete=(route-action 'deleteRecord' model)
   deleteIcon='trash'}}
 
 <section id="post-edit" class="container">

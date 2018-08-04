@@ -1,5 +1,5 @@
 <header>{{icon 'location'}} Add Location</header>
-<div class="body grid-column">
+<div class="body">
   {{search-field query=q onquery=(action 'query') placeholder="Search locations by name, address"}}
   {{#sortable-list name='findLocation' rows=results sort=sort onsort=(action 'sort') query=q icon='location' as |l|}}
     {{#l.item 'checkbox' sortable=false as |item|}}

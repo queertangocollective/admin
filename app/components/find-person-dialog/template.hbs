@@ -1,5 +1,5 @@
 <header>{{icon 'person'}} Add Person</header>
-<div class="body grid-column">
+<div class="body">
   {{search-field query=q onquery=(action 'query') placeholder="Search people by name"}}
   {{#sortable-list name='findPeople' rows=results sort=sort onsort=(action 'sort') query=q icon='person' as |l|}}
     {{#l.item 'checkbox' sortable=false as |item|}}

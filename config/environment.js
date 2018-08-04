@@ -14,6 +14,9 @@ module.exports = function(environment) {
     moment: {
       includeTimezone: 'all'
     },
+    intl: {
+      locales: ['en-us', 'en-de']
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

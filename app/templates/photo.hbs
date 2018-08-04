@@ -5,7 +5,7 @@
 
 {{action-bar 'delete'
   for='photo'
-  delete=(route-action 'deleteRecord')
+  delete=(route-action 'deleteRecord' model)
   deleteIcon='trash'}}
 <section id="photo" class="container">
   {{#form-for model name='photo' autosave=true onsubmit=(route-action 'save') as |f|}}

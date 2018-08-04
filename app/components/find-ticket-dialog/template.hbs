@@ -1,5 +1,5 @@
 <header>{{icon 'ticket'}} Add Ticket</header>
-<div class="body grid-column">
+<div class="body">
   {{search-field query=q onquery=(action 'query') placeholder="Search tickets by description"}}
   {{#sortable-list name='findTickets' rows=results sort=sort onsort=(action 'sort') query=q icon='ticket' as |l|}}
     {{#l.item 'checkbox' sortable=false as |item|}}

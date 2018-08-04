@@ -45,14 +45,14 @@ export default Route.extend(Restricted, {
 
     deleteRecord(model) {
       return model.destroyRecord().then(() => {
-        this.flash(`"${model.get('name') || model.get('title') || model.get('email')}" was removed.`, {
+        this.flash(`"${model.name || model.title || model.email || model.description || model.filename}" was removed.`, {
           timeout: 5000
         });
-        let [, modelName] = this.routeName.split('.');
+        let [modelName] = this.routeName.split('.');
         if (modelName === 'index') {
           modelName = this.routeName.split('.')[0];
         }
-        this.replaceWith(`${pluralize(modelName)}`);
+        this.replaceWith(this.collectionRoute || `${pluralize(modelName)}`);
       });
     }
   }

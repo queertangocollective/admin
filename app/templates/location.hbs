@@ -7,7 +7,7 @@
   for='location'
   viewMap=(component 'map-dialog' latitude=model.latitude longitude=model.longitude)
   viewMapIcon='location'
-  delete=(route-action 'deleteRecord')
+  delete=(route-action 'deleteRecord' model)
   deleteIcon='trash'}}
 <section id="location" class="container">
   {{#form-for model name='location' autosave=true onsubmit=(route-action 'save') as |f|}}

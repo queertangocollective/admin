@@ -29,9 +29,6 @@ h3 {
   .mobiledoc-editor__editor > p {
     padding: 0;
   }
-  .auto-complete .search-field {
-    margin: 0;
-  }
 }
 
 #home .sortable-list {
@@ -63,27 +60,6 @@ p ul li {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   margin-bottom: 1rem;
-}
-
-input {
-  margin: 0;
-}
-
-.navigation-bar {
-  margin-bottom: 0;
-
-  .mobile-nav {
-    background: $white;
-    min-height: calc(2rem + 2px);
-
-    button {
-      width: 100%;
-    }
-  }
-
-  .pop-over {
-    white-space: nowrap;
-  }
 }
 
 header nav {
@@ -592,11 +568,11 @@ nav .create-button,
 
   .delete {
     position: relative;
-    top: -0.75rem;
+    top: -0.9rem;
     overflow: visible;
 
     button {
-      padding: 0.5rem 0.75rem;
+      padding: 0.2rem 0.4rem;
     }
   }
 }
@@ -894,6 +870,10 @@ nav .create-button,
   }
 }
 
+.add-embed-dialog .create-button button:not(.icon) {
+  width: 100%;
+}
+
 .photo-grid {
   .photo-grid-row {
     display: flex;
@@ -937,14 +917,13 @@ nav .create-button,
   display: block;
   color: $black;
   padding-left: 2rem;
-  line-height: 1.8rem;
+  line-height: 2rem;
   font-size: 1.2rem;
-  margin-top: 0.2rem;
 
   svg {
     position: absolute;
     left: 0.4rem;
-    top: 0.3rem;
+    top: 0.4rem;
     transform: rotate(180deg);
   }
 }

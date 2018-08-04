@@ -1,3 +1,5 @@
 import Resource from './resource';
 
-export default Resource.extend();
+export default Resource.extend({
+  collectionRoute: 'ledger'
+});

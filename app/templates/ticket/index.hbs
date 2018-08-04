@@ -5,7 +5,7 @@
 <section id="ticket">
   {{action-bar 'addEvents' 'payments' 'delete'
     for='ticket'
-    delete=(route-action 'deleteRecord')
+    delete=(route-action 'deleteRecord' model)
     deleteIcon='trash'
     addEvents=(component 'find-event-dialog' disabled=model.events onsubmit=(route-action 'createTicketedEvents' model))
     addEventsIcon='calendar'

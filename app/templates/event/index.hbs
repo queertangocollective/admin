@@ -4,7 +4,7 @@
 
 {{action-bar 'attendance' 'photos' 'delete'
   for='event'
-  delete=(route-action 'deleteRecord')
+  delete=(route-action 'deleteRecord' model)
   deleteIcon='trash'
   attendance='event.ledger'
   attendanceIcon='person'
