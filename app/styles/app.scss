@@ -65,11 +65,20 @@ p ul li {
   margin-bottom: 1rem;
 }
 
+input {
+  margin: 0;
+}
+
 .navigation-bar {
   margin-bottom: 0;
-  
+
   .mobile-nav {
-    min-height: 2rem;
+    background: $white;
+    min-height: calc(2rem + 2px);
+
+    button {
+      width: 100%;
+    }
   }
 
   .pop-over {

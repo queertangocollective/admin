@@ -17,7 +17,7 @@ export default Route.extend({
       localStorage.setItem('qtc-token', url.searchParams.get('token'));
 
       return this.session.fetch().then(() => {
-        this.replaceWith('index');
+        this.replaceWith('home');
       }, () => {
         this.flash('The login link has expired', {
           timeout: 5000
@@ -25,7 +25,7 @@ export default Route.extend({
         return;
       });
     } else if (this.session.get('isAuthenticated')) {
-      this.replaceWith('index');
+      this.replaceWith('home');
     }
   },
 

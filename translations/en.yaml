@@ -34,6 +34,7 @@ authorizations:
     facebook: 'Facebook'
     google: 'Google'
     email: 'Magic Link'
+    none: 'Not Logged In Yet'
   delete: ''
 
 builds:

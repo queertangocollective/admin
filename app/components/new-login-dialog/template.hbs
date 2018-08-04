@@ -13,7 +13,7 @@
         {{login.email}}
       {{/l.item}}
       {{#l.item 'provider' as |login|}}
-        {{t (concat 'authorizations.providers.' login.provider)}}
+        {{t (concat 'authorizations.providers.' (or login.provider 'none'))}}
       {{/l.item}}
       {{#l.item 'delete' sortable=false as |login|}}
         {{#confirm-button class='icon' onsubmit=(action ondelete login)}}
@@ -23,6 +23,8 @@
         {{/confirm-button}}
       {{/l.item}}
     {{/sortable-list}}
+  {{else}}
+    <br>
   {{/if}}
   <div class="container">
     {{#create-button 'email' type='email' onsubmit=(action oncreate) placeholder='Enter email'}}
@@ -30,6 +32,7 @@
     {{else}}
       {{icon "add"}}
     {{/create-button}}
+    <br>
   </div>
 </div>
 <footer>
