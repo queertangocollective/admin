@@ -22,7 +22,7 @@
           </div>
         {{/liquid-if}}
       </div>
-      {{f.editor 'description'}}
+      {{f.editor 'description' markup=(list 'bold' 'italic' 'underline')}}
       <div class='grid-row'>
         {{f.autocomplete 'venue.location' key='name' onquery=(action onquery 'location')}}
         {{f.text 'venue.extendedAddress'}}
