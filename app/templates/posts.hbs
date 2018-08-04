@@ -27,7 +27,9 @@
       {{#link-to 'post' item}}{{item.title}}{{/link-to}}
     {{/l.item}}
     {{#l.item 'channel.name' as |item|}}
-      <span>{{item.channel.name}}</span>
+      {{#if item.channel}}
+        <span>{{item.channel.name}}</span>
+      {{/if}}
     {{/l.item}}
     {{#l.item 'publishedAt' as |item|}}
       {{l 'date' item.publishedAt}}

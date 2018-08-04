@@ -7,7 +7,7 @@
     </div>
     {{f.currency 'amountOwed' 'currency' currencies=(list 'USD' 'EUR')}}
     {{f.autocomplete 'paidBy' key='name' onquery=(action onquery 'person')}}
-    {{f.editor 'notes' markup=(list 'bold' 'italic' 'underline' 'emoji')}}
+    {{f.editor 'notes' markup=(list 'bold' 'italic' 'underline')}}
   </div>
   <footer>
     {{f.submit 'Add Expense'}}

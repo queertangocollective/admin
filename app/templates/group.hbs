@@ -4,6 +4,8 @@
   {{title model.name}}
 {{/if}}
 
+{{to-elsewhere named='search' send=(component 'back-link' 'home')}}
+
 {{action-bar 'updates' 'stripe'
   for='group'
   updates=(component 'manage-builds-dialog' builds=model.builds)

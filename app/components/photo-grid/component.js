@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import { bind } from '@ember/runloop';
+import { bind, debounce } from '@ember/runloop';
 import move from 'ember-animated/motions/move';
 import scale from 'ember-animated/motions/scale';
 import opacity from 'ember-animated/motions/opacity';
@@ -12,9 +12,13 @@ export default Component.extend({
   minimumShrink: 80,
   maxiumumStretch: 220,
   viewportWidth: 0,
+  duration: 300,
   gutter: 8,
 
   *transition({ insertedSprites, receivedSprites, sentSprites }) {
+    if (sentSprites.length === 0 && receivedSprites.length === 0) {
+      return;
+    }
     // received and sent sprites are flying above all the others
     receivedSprites.concat(sentSprites).forEach(sprite => {
       sprite.applyStyles({
@@ -33,12 +37,17 @@ export default Component.extend({
   },
 
   didInsertElement() {
+    let duration = this.duration;
     this.set('viewportWidth', this.element.clientWidth + this.gutter);
     this.resize = bind(this, () => {
+      this.set('duration', 0);
       let width = this.element.clientWidth + this.gutter;
       if (width !== this.viewportWidth) {
         this.set('viewportWidth', width);
       }
+      debounce(() => {
+        this.set('duration', duration);
+      }, 100);
     });
     window.addEventListener('resize', this.resize);
   },

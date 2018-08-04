@@ -6,7 +6,7 @@ timezones:
   'Pacific/Honolulu': 'Honolulu, Hawaii'
   'Europe/Berlin': 'Berlin, Germany'
 
-saveIndicator:
+saveStatus:
   savedAt: 'Saved {savedAt}'
   unsaved: 'Unsaved Changes'
   lastSavedAt: 'Last saved on {savedAt}'
@@ -23,6 +23,9 @@ navigation:
   photos: 'Photos'
   more: 'More'
   logout: 'Logout'
+
+home:
+  back: '{icon} Dashboard'
 
 authorizations:
   email: 'Email Address'

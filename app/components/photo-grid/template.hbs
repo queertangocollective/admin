@@ -2,7 +2,7 @@
   <div class="photo-grid-row">
     {{~#each row.photos as |cell|~}}
       {{#animated-container class='photo'}}
-        {{#animated-value cell.photo duration=300 use=transition as |p|}}
+        {{#animated-value cell.photo duration=duration use=transition as |p|}}
           {{~yield p cell.width row.height~}}
         {{/animated-value}}
       {{/animated-container}}
