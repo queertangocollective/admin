@@ -52,7 +52,7 @@ export default Route.extend({
     },
     loginWithFacebook() {
       this.session.open('facebook-oauth2').then(() => {
-        this.transitionTo('index');
+        this.transitionTo('home');
       }, (error) => {
         this.controller.set('error', error);
         setTimeout(() => {
@@ -64,7 +64,7 @@ export default Route.extend({
     },
     loginWithGoogle() {
       this.session.open('google-oauth2').then(() => {
-        this.transitionTo('index');
+        this.transitionTo('home');
       }, (error) => {
         this.controller.set('error', error);
         setTimeout(() => {
