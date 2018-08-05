@@ -28,8 +28,7 @@ module.exports = function(environment) {
     },
     sentry: {
       dsn: 'https://90fd196af750400aac4cd69d642589c5@sentry.io/293902',
-      serviceName: 'error-reporter',
-      development: environment === 'development'
+      environment
     },
 
     torii: {

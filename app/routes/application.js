@@ -9,6 +9,8 @@ export default Route.extend(Authenticatable, {
 
   intl: service(),
 
+  raven: service(),
+
   beforeModel() {
     this.intl.setLocale(['en']);
     return this._super();
@@ -18,6 +20,10 @@ export default Route.extend(Authenticatable, {
     if (!this.session.get('isAuthenticated')) {
       this.replaceWith('login');
     } else if (this.session.get('currentGroup.locale')) {
+      this.raven.callRaven('setUserContext', {
+        id: this.session.get('currentUser.id'),
+        name: this.session.get('currentUser.name')
+      });
       this.intl.setLocale([this.session.get('currentGroup.locale'), 'en']);
     }
   },
