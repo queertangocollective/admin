@@ -17,7 +17,7 @@
     "test": "ember test"
   },
   "devDependencies": {
-    "@queertangocollective/ui": "^0.3.19",
+    "@queertangocollective/ui": "^0.3.21",
     "broccoli-asset-rev": "^2.7.0",
     "ember-cli": "~3.3.0",
     "ember-cli-app-version": "^3.0.0",
@@ -30,6 +30,7 @@
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-qunit": "^4.3.2",
+    "ember-cli-sentry": "^3.0.0",
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
@@ -42,17 +43,16 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-mobiledoc-dom-renderer": "^0.6.0",
     "ember-moment": "^7.7.0",
-    "ember-page-title": "^4.0.3",
+    "ember-page-title": "^4.0.5",
     "ember-resolver": "^4.0.0",
     "ember-route-action-helper": "^2.0.6",
     "ember-service-methods": "^1.1.0",
-    "ember-source": "~3.3.0",
-    "ember-svg-jar": "^0.12.0",
+    "ember-source": "~3.3.1",
+    "ember-svg-jar": "^1.2.1",
     "eslint-plugin-ember": "^5.0.0",
     "loader.js": "^4.2.3",
     "memory-scroll": "^0.9.0",
     "qunit-dom": "^0.6.2",
-    "raven-js": "^3.25.2",
     "torii": "^0.10.1"
   },
   "engines": {

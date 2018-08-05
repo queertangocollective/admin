@@ -4,7 +4,7 @@
     {{#sortable-list name='authorizations' rows=sortableLogins sort=sort onsort=(action (mut sort)) as |l|}}
       {{#l.item 'avatar' sortable=false as |login|}}
         {{#if login.avatar}}
-          <img src="{{login.avatar}}" alt="{{login.email}}"/>
+          <img src="{{login.avatar}}" alt="{{login.email}}">
         {{/if}}
       {{else}}
         &nbsp;

@@ -9,7 +9,6 @@ module.exports = function(environment) {
     API_KEY: 'c0af655443ad20ed921dfe41049a58c5',
     API_HOST: 'http://localhost:3000',
     ZIP_API_KEY: 'js-UgjzTROXe9B7ac3ruujT6W4TqAIwT86OppnihcfwlRDw4HYycisiewcE7Va03hOt',
-    VERSION: '{{build.id}}',
     GOOGLE_MAPS_API_KEY: 'AIzaSyCEXiB9AwC377Dhmbni6tRWGnfjHvhTQcE',
     moment: {
       includeTimezone: 'all'
@@ -26,6 +25,11 @@ module.exports = function(environment) {
         // Prevent Ember Data from overriding Date.parse.
         Date: false
       }
+    },
+    sentry: {
+      dsn: 'https://90fd196af750400aac4cd69d642589c5@sentry.io/293902',
+      serviceName: 'error-reporter',
+      development: environment === 'development'
     },
 
     torii: {
@@ -48,6 +52,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      version: '{{build.id}}'
     }
   };
 
@@ -78,7 +83,6 @@ module.exports = function(environment) {
     ENV.GOOGLE_MAPS_API_KEY = 'AIzaSyBRoseyODw0jyZi4lcw-rSsQmmYu0l7go0';
     ENV.torii.providers['facebook-oauth2'].redirectUri = 'https://admin.queertangocollective.org/torii/redirect.html';
     ENV.torii.providers['google-oauth2'].redirectUri = 'https://admin.queertangocollective.org/torii/redirect.html';
-    ENV.SENTRY_DSN = 'https://90fd196af750400aac4cd69d642589c5@sentry.io/293902';
   }
 
   return ENV;
