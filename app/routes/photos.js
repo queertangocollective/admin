@@ -6,7 +6,9 @@ export default Collection.extend({
 
   actions: {
     upload(file) {
-      this.uploadPhoto(file);
+      this.uploadPhoto(file).then(() => {
+        this.refresh();
+      });
     }
   }
 });

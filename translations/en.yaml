@@ -159,6 +159,8 @@ person:
 
 photos:
   back: '{icon} Photos'
+  actions:
+    upload: '{icon} Upload Photos'
 
 photo:
   align: 'Align to'

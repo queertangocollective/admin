@@ -845,6 +845,32 @@ nav .create-button,
 #photos {
   width: 100vw;
   overflow: hidden;
+
+  .dropzone-backdrop {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    background: $accent;
+    color: $white;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    font-size: 1.5rem;
+
+    span {
+      margin: 0 auto;
+    }
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    path {
+      fill: $white;
+    }
+  }
   
   .photo-grid {
     margin-left: 1rem;
@@ -927,4 +953,8 @@ nav .create-button,
     top: 0.4rem;
     transform: rotate(180deg);
   }
+}
+
+.progress-bar .inner {
+  background: $accent;
 }
