@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import EmberObject, { get } from '@ember/object';
-import RSVP, { reject } from 'rsvp';
+import RSVP, { resolve, reject } from 'rsvp';
 import config from '../config/environment';
 import fetch from 'fetch';
 
@@ -29,19 +29,17 @@ export default EmberObject.extend({
     }).then((json) => {
       return RSVP.all([
         get(this, 'store').find('person', json.data.attributes['person-id']),
-        get(this, 'store').find('authorization', json.data.attributes['authorization-id'])
+        get(this, 'store').find('authorization', json.data.attributes['authorization-id']),
+        get(this, 'store').find('group', json.data.attributes['group-id']),
+        resolve(json)
       ]);
-    }).then(function ([person, authorization]) {
-      return RSVP.all([
-        person,
-        authorization,
-        authorization.get('group')
-      ]);
-    }).then(function ([person, authorization, group]) {
+    }).then(function ([person, authorization, group, json]) {
       return {
+        id: json.data.attributes['id'],
         currentPerson: person,
         currentAuthorization: authorization,
-        currentGroup: group
+        currentGroup: group,
+        groupAccess: json.data.attributes['group-access']
       };
     });
   },
@@ -69,13 +67,16 @@ export default EmberObject.extend({
       return RSVP.all([
         get(this, 'store').find('person', json.data.attributes['person-id']),
         get(this, 'store').find('authorization', json.data.attributes['authorization-id']),
-        get(this, 'store').peekAll('group').get('firstObject')
+        get(this, 'store').find('authorization', json.data.attributes['group-id']),
+        resolve(json)
       ]);
-    }).then(function ([person, authorization, group]) {
+    }).then(function ([person, authorization, group, json]) {
       return {
+        id: json.data.attributes['id'],
         currentPerson: person,
         currentAuthorization: authorization,
-        currentGroup: group
+        currentGroup: group,
+        groupAccess: json.data.attributes['group-access'],
       };
     });
   },

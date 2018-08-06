@@ -1,6 +1,11 @@
 {{head-layout}}
 {{#if session.isAuthenticated}}
   {{title session.currentGroup.name}}
+  {{#if canAccessOtherGroups}}
+    {{#select-field value=activeGroup options=authorizedGroups onchange=(action 'changeGroup') as |opt|}}
+      {{opt.name}}
+    {{/select-field}}
+  {{/if}}
   {{#navigation-bar routes='home posts events tickets ledger people locations photos group' onlogout=(route-action 'logout')}}
     {{#from-elsewhere name='search' as |searchField|}}
       {{#if searchField}}
