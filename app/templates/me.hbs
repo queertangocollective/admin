@@ -1,0 +1,36 @@
+{{title model.name}}
+
+{{to-elsewhere named='search' send=(component 'back-link' 'home')}}
+
+{{action-bar 'changeGroup' 'manageLogins' 'addDeployKey' 'delete'
+  for='person'
+  manageLogins=(component 'new-login-dialog'
+    logins=model.authorizations
+    oncreate=(route-action 'addLogin' model)
+    ondelete=(route-action 'deleteLogin'))
+  manageLoginsIcon='lock'
+  addDeployKey=(if (equals model.role 'staff') (component 'public-key-dialog'
+    publicKeys=model.publicKeys
+    oncreate=(route-action 'addPublicKey')
+    ondelete=(route-action 'deletePublicKey')))
+  addDeployKeyIcon='key'
+  delete=(route-action 'deleteRecord')
+  deleteIcon='trash'
+  changeGroup=(component 'change-group-dialog'
+    selected=activeGroup
+    groups=authorizedGroups
+    onsubmit=(action 'changeGroup'))
+  changeGroupIcon='settings'}}
+
+<section id="me" class="container">
+  {{#form-for model name='person' autosave=true onsubmit=(route-action 'save') as |f|}}
+    {{f.save-status}}
+    <div class='grid-column'>
+      {{f.text 'name'}}
+      {{f.text 'email'}}
+      {{f.url 'website'}}
+      {{f.editor 'biography' rows=5 onembed=null}}
+      {{f.photos 'photos'}}
+    </div>
+  {{/form-for}}
+</section>

@@ -1,14 +1,12 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { gt, reads } from '@ember/object/computed';
+import { gt } from '@ember/object/computed';
 import config from '../config/environment';
 import fetch from 'fetch';
 
 export default Controller.extend({
-  fileQueue: service(),
   session: service(),
-  progress: reads('fileQueue.progress'),
   canAccessOtherGroups: gt('authorizedGroups.length', 1),
   authorizedGroups: computed('session.groupAccess', function () {
     return this.get('session.groupAccess') || [];
@@ -32,6 +30,8 @@ export default Controller.extend({
         body: JSON.stringify({
           group_id: group.id
         })
+      }).then(() => {
+        location.reload();        
       });
     }
   }

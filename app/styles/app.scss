@@ -187,6 +187,10 @@ h4 {
   height: 100vh;
 }
 
+#event .search-field {
+  margin-top: 1rem;
+}
+
 .bulk-actions {
   background: $grey;
   position: sticky;
@@ -675,7 +679,7 @@ nav .create-button,
   }
 }
 
-.findTickets, .findEvents, .findPeople {
+.findTickets, .findEvents, .findPeople, .changeGroup {
   .item {
     grid-template-columns: 2rem 1fr 1fr;
 
@@ -946,6 +950,9 @@ nav .create-button,
   padding-left: 2rem;
   line-height: 2rem;
   font-size: 1.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   svg {
     position: absolute;
@@ -953,8 +960,4 @@ nav .create-button,
     top: 0.4rem;
     transform: rotate(180deg);
   }
-}
-
-.progress-bar .inner {
-  background: $accent;
 }

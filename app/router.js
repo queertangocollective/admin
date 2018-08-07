@@ -36,4 +36,5 @@ export default Router.extend({
   this.route('location', { path: '/locations/:location_id' });
 
   this.route('group', { path: '/group' });
+  this.route('me', { path: '/me' });
 });

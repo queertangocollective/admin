@@ -2,30 +2,24 @@
 
 <section id="photos">
   {{#file-dropzone name=(concat 'event-' model.id) as |dropzone|}}
-    {{#if (await model.eventPhotos)}}
+    <header class='container'>
       <nav class='row'>
         {{#file-upload name=(concat 'event-' model.id)
-                       onfileadd=(route-action 'addPhoto' model)
-                       accept='image/*'
-                       multiple=true
-                       class='submit-button'}}
+                        onfileadd=(route-action 'addPhoto' model)
+                        accept='image/*'
+                        multiple=true
+                        class='submit-button'}}
           {{icon "photo"}} Add Photos
         {{/file-upload}}
       </nav>
-    {{/if}}
+    </header>
 
-    {{#each (await model.eventPhotos) as |photo|}}
-      {{photo-field value=photo
-        name=(concat 'eventPhotos/' photo.id)
-        onchange=(route-action 'save')}}
-    {{else}}
-      {{#file-upload name=(concat 'event-' model.id)
-                     onfileadd=(route-action 'addPhoto' model)
-                     accept='image/*'
-                     multiple=true
-                     class='submit-button'}}
-        {{icon "photo"}} Add Photos
-      {{/file-upload}}
+    {{#each (await model.eventPhotos) as |photos|}}
+      {{#photo-grid name='photo' photos=photos icon='photo' as |photo width height|}}
+        {{#link-to 'photo' photo~}}
+          <img src="{{photo.url}}" alt="{{photo.title}}" width="{{width}}" height="{{height}}">
+        {{~/link-to}}
+      {{/photo-grid}}
     {{/each}}
   {{/file-dropzone}}
 </section>

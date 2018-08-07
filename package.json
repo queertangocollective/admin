@@ -17,7 +17,7 @@
     "test": "ember test"
   },
   "devDependencies": {
-    "@queertangocollective/ui": "^0.3.22",
+    "@queertangocollective/ui": "^0.3.23",
     "broccoli-asset-rev": "^2.7.0",
     "ember-cli": "~3.3.0",
     "ember-cli-app-version": "^3.0.0",

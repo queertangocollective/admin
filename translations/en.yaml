@@ -13,6 +13,7 @@ saveStatus:
 
 navigation:
   home: 'Dashboard'
+  me: 'Me'
   group: 'My Group'
   posts: 'Posts'
   events: 'Events'
@@ -58,6 +59,7 @@ dashboard:
 textEditor:
   strong: 'Bold [{shortcut}]'
   em: 'Italic [{shortcut}]'
+  u: 'Underline [{shortcut}]'
   a: 'Link'
   textSize: 'Text Size'
   embed: 'Add Embed'
@@ -156,6 +158,10 @@ person:
     addDeployKey: '{icon} Add Deploy Key'
     delete: '{icon} Delete'
     confirmDelete: 'Are you sure?'
+    changeGroup: '{icon} Change Group'
+
+changeGroup:
+  name: 'Name'
 
 photos:
   back: '{icon} Photos'

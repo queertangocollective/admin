@@ -1,0 +1,17 @@
+<header>{{icon 'settings'}} Change Group</header>
+<div class="body">
+  {{#sortable-list name='changeGroup' rows=groups sort=sort onsort=(action 'sort') as |l|}}
+    {{#l.item 'checkbox' sortable=false as |item|}}
+      {{check-box value=(equals selected item) onchange=(action (mut selected) item)}}
+    {{else}}
+      <span></span>
+    {{/l.item}}
+    {{#l.item 'name' sortable=false as |item|}}
+      {{item.name}}
+    {{/l.item}}
+  {{/sortable-list}}
+</div>
+<footer>
+  <button type='submit' onclick={{action onsubmit selected}}>Change Group</button>
+  <button type='reset' onclick={{action dismiss}}>Cancel</button>
+</footer>
