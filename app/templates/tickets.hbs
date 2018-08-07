@@ -3,12 +3,13 @@
 
 {{to-elsewhere named='search' send=(component 'search-field' query=q onquery=(action (mut q)) placeholder="Search tickets by description")}}
 <section id="tickets">
-  <header class="container">
-    <nav>
-      {{#dialog-button (component 'new-ticket-dialog' onsubmit=(route-action 'createTicket')) group='new-ticket'}}
-        {{icon "ticket"}} Add Ticket
-      {{/dialog-button}}
-    </nav>
+  <header>
+    {{action-bar 'addTicket'
+      for='tickets'
+      addTicket=(component 'new-ticket-dialog'
+            onsubmit=(route-action 'createTicket'))
+      addTicketIcon='ticket'}}
+      <br>
   </header>
 
   {{#sortable-list name='tickets' load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort query=q icon='ticket' as |l item|}}
