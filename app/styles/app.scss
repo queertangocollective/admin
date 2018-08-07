@@ -466,11 +466,17 @@ figcaption {
 }
 
 .action-bar {
-  padding-top: 1rem;
+  padding-top: 0;
   max-width: 100vw;
 
   .container {
     margin-bottom: 0.25rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .action-bar {
+    padding-top: 1rem;
   }
 }
 
