@@ -16,10 +16,10 @@
   addDeployKeyIcon='key'
   delete=(route-action 'deleteRecord')
   deleteIcon='trash'
-  changeGroup=(component 'change-group-dialog'
+  changeGroup=(if canAccessOtherGroups (component 'change-group-dialog'
     selected=activeGroup
     groups=authorizedGroups
-    onsubmit=(action 'changeGroup'))
+    onsubmit=(action 'changeGroup')))
   changeGroupIcon='settings'}}
 
 <section id="me" class="container">
