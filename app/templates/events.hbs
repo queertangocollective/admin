@@ -18,8 +18,8 @@
     </nav>
   </header>
   {{#if (equals as 'list')}}
-    {{#animated-container class=(concat 'bulk-actions ' (if selection.length 'open'))}}
-      {{#animated-if selection.length use=fadeIn duration=250}}
+    {{#animated-container class=(concat 'bulk-actions ' (if hasSelection 'open'))}}
+      {{#animated-if hasSelection use=fadeIn duration=250}}
         {{action-bar 'createTicket' 'deleteAll' 'clearSelection'
           for='events'
           createTicket=(route-action 'createTicket' (component 'new-ticket-dialog') selection)

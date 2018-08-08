@@ -36,15 +36,25 @@ export default Controller.extend({
         selection.splice(index, 1);
       }
       this.set('selection', selection);
+      if (this.selection.length && !this.hasSelection) {
+        this.set('hasSelection', true);
+      } else if (this.selection.length === 0 && this.hasSelection) {
+        this.set('hasSelection', false);
+      }
     },
     clearSelection() {
       this.set('selection', []);
+      this.set('hasSelection', false);
     },
     toggleSelectAll() {
       if (this.areAllSelected) {
         this.set('selection', []);
+        this.set('hasSelection', false);
       } else {
         this.set('selection', this.model.model.toArray());
+        if (!this.hasSelection) {
+          this.set('hasSelection', true);
+        }
       }
     }
   }
