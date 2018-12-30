@@ -6,10 +6,9 @@
 
 {{to-elsewhere named='search' send=(component 'back-link' 'home')}}
 
-{{action-bar 'updates' 'stripe'
+{{action-bar 'syncWebsite' 'stripe'
   for='group'
-  updates=(component 'manage-builds-dialog' builds=model.builds)
-  updatesIcon='love'
+  syncWebsite=(route-action 'updateWebsite')
   stripe=(component 'update-stripe-dialog' model=model onsave=(route-action 'save'))
   stripeIcon='stripe'}}
 <section id="group" class="container">
@@ -17,6 +16,7 @@
     {{f.save-status}}
     {{f.text 'name'}}
     {{f.text 'hostname'}}
+    {{f.text 'glitchUrl'}}
     {{f.text 'email' type='email'}}
     {{#f.select 'timezone' options=timezones as |timezone|}}
       {{t (concat 'timezones.' timezone)}}

@@ -12,6 +12,12 @@ export default Resource.extend({
         group: this.currentModel
       });
       this.currentModel.get('channels').pushObject(channel);
+    },
+    updateWebsite() {
+      let website = this.store.createRecord('website', {
+        group: this.currentModel
+      });
+      return website.save();
     }
   }
 });

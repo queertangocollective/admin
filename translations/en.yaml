@@ -105,6 +105,7 @@ event:
 group:
   name: 'Group Name'
   hostname: 'URL'
+  glitchUrl: 'Glitch App'
   email: 'Email Address'
   timezone: 'Default Timezone'
   currency: 'Default Currency'
@@ -113,7 +114,7 @@ group:
     name: 'Section Name'
     slug: 'Pretty URL'
   actions:
-    updates: '{icon} Updates'
+    syncWebsite: 'Sync Website'
     stripe: '{icon} Update Stripe'
 
 locations:
