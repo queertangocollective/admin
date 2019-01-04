@@ -80,11 +80,11 @@ export default Component.extend({
       });
       this.open.set('dialogs', []);
     },
-    addPost(post) {
+    addRiver(section) {
       this.onsubmit({
-        type: 'post',
+        type: 'river',
         attributes: {
-          postId: post.get('id')
+          channelId: section.get('id')
         }
       });
       this.open.set('dialogs', []);

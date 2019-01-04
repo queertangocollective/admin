@@ -240,6 +240,12 @@ stripe:
   stripeSecretKey: 'Stripe Secret Key'
   appleDeveloperMerchantidDomainAssociation: 'Apple Pay Certificate'
 
+findChannels:
+  none: 'No Channels'
+  checkbox: ''
+  name: 'Name'
+  slug: 'Slug'
+
 findEvents:
   none: 'No Events created'
   notFound: 'No Events found for "{query}"'

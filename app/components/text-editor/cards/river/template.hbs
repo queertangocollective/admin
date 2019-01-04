@@ -1,0 +1,7 @@
+{{#sortable-list name='posts' rows=posts click=editCard onsort=(action 'nothing') icon='edit' as |l|}}
+  {{#l.item 'title' sortable=false as |item|}}
+    {{item.title}}
+  {{else}}
+    <span>{{t 'itinerary.title'}}</span>
+  {{/l.item}}
+{{/sortable-list}}
