@@ -73,7 +73,7 @@ export default Component.extend({
       this.onsubmit({
         type: 'gallery',
         attributes: {
-          style: photos.length > 3 ? 'mosaic' : 'polyptich',
+          style: 'mosaic',
           size: 'medium',
           photoIds: photos.mapBy('id')
         }
