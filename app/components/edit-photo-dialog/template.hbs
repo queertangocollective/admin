@@ -1,15 +1,15 @@
 {{#form-for payload name='photo' onsubmit=(action submit) as |f|}}
   <header>{{icon 'photo'}} Edit Photo</header>
   <div class="body grid-column">
-    {{#f.buttons 'align' as |b|}}
-      {{#b.option 'left'}}{{icon 'align-left'}} Left{{/b.option}}
-      {{#b.option 'center'}}{{icon 'align-center'}} Center{{/b.option}}
-      {{#b.option 'right'}}{{icon 'align-right'}} Right{{/b.option}}
+    {{#f.buttons 'align' name='photo.alignments' as |b|}}
+      {{b.option 'left' icon='align-left'}}
+      {{b.option 'center' icon='align-center'}}
+      {{b.option 'right' icon='align-right'}}
     {{/f.buttons}}
-    {{#f.buttons 'size' as |b|}}
-      {{#b.option 'small'}}{{icon 'small'}} Small{{/b.option}}
-      {{#b.option 'medium'}}{{icon 'medium'}} Medium{{/b.option}}
-      {{#b.option 'large'}}{{icon 'large'}} Large{{/b.option}}
+    {{#f.buttons 'size' name='photo.sizes' as |b|}}
+      {{b.option 'small'}}
+      {{b.option 'medium'}}
+      {{b.option 'large'}}
     {{/f.buttons}}
     {{f.text 'caption'}}
   </div>

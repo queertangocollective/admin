@@ -58,13 +58,33 @@ export default Component.extend({
       });
       this.open.set('dialogs', []);
     },
-    addPhoto(photo) {
+    addPhoto([photo]) {
       this.onsubmit({
         type: 'photo',
         attributes: {
           photoId: photo.get('id'),
           url: photo.get('url'),
           size: 'medium'
+        }
+      });
+      this.open.set('dialogs', []);
+    },
+    addGallery(photos) {
+      this.onsubmit({
+        type: 'gallery',
+        attributes: {
+          style: photos.length > 3 ? 'mosaic' : 'polyptich',
+          size: 'medium',
+          photoIds: photos.mapBy('id')
+        }
+      });
+      this.open.set('dialogs', []);
+    },
+    addPost(post) {
+      this.onsubmit({
+        type: 'post',
+        attributes: {
+          postId: post.get('id')
         }
       });
       this.open.set('dialogs', []);

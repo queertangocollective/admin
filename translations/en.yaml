@@ -3,6 +3,7 @@ locales:
   'en-de': 'English (Germany)'
 timezones:
   'America/New_York': 'New York, New York'
+  'America/Los_Angeles': 'Los Angeles, California'
   'Pacific/Honolulu': 'Honolulu, Hawaii'
   'Europe/Berlin': 'Berlin, Germany'
 
@@ -171,7 +172,15 @@ photos:
 
 photo:
   align: 'Align to'
+  alignments:
+    left: '{icon} Left'
+    center: '{icon} Center'
+    right: '{icon} Right'
   size: 'Photo Size'
+  sizes:
+    small: 'Small'
+    medium: 'Medium'
+    large: 'Full Bleed'
   caption: 'Caption'
   filename: 'Filename'
   title: 'Accessibility Description'
@@ -221,6 +230,10 @@ purchase:
   paymentMethod: 'Paid With'
   paidBy: 'Paid By'
   amountPaid: 'Amount Paid'
+  methods:
+    cash: '{icon} Cash'
+    stripe: '{icon} Card'
+    free: '{icon} Free'
 
 stripe:
   stripePublishableKey: 'Stripe Publishable Key'
@@ -247,6 +260,19 @@ findPeople:
   notFound: 'No People found named "{query}"'
   name: 'Name'
   email: 'Email Address'
+
+findPosts:
+  none: 'No Posts written'
+  notFound: 'No Posts found titled "{query}"'
+  title: 'Title'
+  publishedAt: 'Published At'
+
+findPhotos:
+  header: '{icon} Add Photos'
+  actions:
+    upload: '{icon} Upload Photos'
+    submit: '{count, plural, =0 {Add Photo} =1 {Add Photo} other {Add # Photos}}'
+    cancel: 'Cancel'
 
 itinerary:
   none: 'Add items to this itinerary by tapping here'
@@ -309,6 +335,7 @@ transaction:
   amountOwed: 'Owes'
   notes: 'Private Notes'
   actions:
+    payBack: '{icon} Pay Back'
     viewInStripe: '{icon} View Charge'
     delete: '{icon} Delete'
     confirmDelete: 'Are you sure?'

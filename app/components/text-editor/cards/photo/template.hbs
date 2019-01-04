@@ -1,0 +1,13 @@
+<figure onclick={{action editCard}}>
+  {{#animated-beacon group=(concat "photo-" payload.photoId)}}
+    <img src="{{payload.url}}" alt="{{payload.title}}" class="size-{{payload.size}}">
+  {{/animated-beacon}}
+  {{#unless (equals payload.align 'center')}}
+    <button disabled=true class='icon' type='submit'>
+      {{icon (concat 'align-' payload.align)}}
+    </button>
+  {{/unless}}
+</figure>
+<figcaption>
+  {{payload.caption}}
+</figcaption>

@@ -22,9 +22,26 @@ export default Component.extend({
   init() {
     this._super();
     this.query();
+    if (this.selection == null) {
+      this.set('selection', []);
+    }
   },
 
   actions: {
+    select(photo) {
+      if (this.multiple) {
+        let selection = [...this.selection];
+        let index = selection.indexOf(photo)
+        if (index === -1) {
+          this.set('selection', selection.concat(photo));
+        } else {
+          selection.splice(index, 1);
+          this.set('selection', selection);
+        }
+      } else {
+        this.set('selection', [photo]);
+      }
+    },
     upload(file) {
       this.onupload(file).then((photo) => {
         this.onsubmit(photo);

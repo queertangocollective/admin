@@ -1,0 +1,21 @@
+<header>{{icon "edit"}} Add Posts</header>
+<div class="body">
+  {{search-field query=q onquery=(action 'query') placeholder="Search channels by title"}}
+  {{#sortable-list name='findChannels' rows=results sort=sort onsort=(action 'sort') query=q icon='edit' as |l|}}
+    {{#l.item 'checkbox' sortable=false as |item|}}
+      {{check-box value=(equals selected item) onchange=(action (mut selected) item)}}
+    {{else}}
+      <span></span>
+    {{/l.item}}
+    {{#l.item 'title' as |item|}}
+      {{item.title}}
+    {{/l.item}}
+    {{#l.item 'slug' as |item|}}
+      {{item.slug}}
+    {{/l.item}}
+  {{/sortable-list}}
+</div>
+<footer>
+  <button type='submit' onclick={{action onsubmit selected}}>Add Posts</button>
+  <button type='reset' onclick={{action dismiss}}>Cancel</button>
+</footer>
