@@ -259,7 +259,7 @@ figcaption {
       border: 0;
       padding: 0;
 
-      &:hover .pin path {
+      &:hover .pin svg {
         fill: $black;
       }
     }
@@ -268,14 +268,14 @@ figcaption {
       position: relative;
       top: 0.25rem;
 
-      path {
+      svg {
         transition: all 120ms;
       }
     }
-    .pin path {
+    .pin svg {
       fill: $heather;
     }
-    .pin.active path {
+    .pin.active svg {
       fill: $accent;
     }
   }
