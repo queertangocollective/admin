@@ -63,6 +63,7 @@ export default Component.extend({
         type: 'photo',
         attributes: {
           photoId: photo.get('id'),
+          align: 'center',
           url: photo.get('url'),
           size: 'medium'
         }
