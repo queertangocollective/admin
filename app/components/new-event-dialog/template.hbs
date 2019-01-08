@@ -1,4 +1,4 @@
-{{#form-for name='event' onsubmit=(action 'submit') as |f|}}
+{{#form-for form name='event' onsubmit=(action 'submit') as |f|}}
   <header>{{icon 'calendar'}} Add Event</header>
   <div class="body">
     <div class='grid-column'>
@@ -7,22 +7,32 @@
         {{f.datetime 'startsAt'}}
         {{f.datetime 'endsAt' autocomplete=f.changeset.startsAt}}
       </div>
-      <div>
-        <label>
-          {{check-box value=repeats onchange=(action (mut repeats))}}
-          {{t 'event.repeats'}}
-        </label>
-        {{#liquid-if repeats}}
-          <br>
-          <div class='grid-row'>
-            {{number-field value=repetition onchange=(action (mut repetition))}}
-            {{#select-field value=frequency onchange=(action (mut frequency)) options=(list 'weeks' 'days' 'months') as |option|}}
-              {{t (concat 'event.repeatDuration.' option) count=repetition}}
+      <div class='grid-row'>
+        <div class='form-for_field'>
+          <label>
+            {{check-box value=repeats onchange=(action (mut repeats))}}
+            {{t 'event.repeats'}}
+          </label>
+          {{#if repeats}}
+            {{#select-field value=frequency onchange=(action (mut frequency)) options=repetitions as |option|}}
+              {{t (concat 'event.repeatDuration.' option.label)}}
             {{/select-field}}
+          {{/if}}
+        </div>
+        {{#if repeats}}
+          <div class='form-for_field'>
+            <label for='until-date'>{{t 'event.repeatsUntil'}}</label>
+            {{date-field inputId='until-date' value=repeatsUntil onchange=(action (mut repeatsUntil))}}
           </div>
-        {{/liquid-if}}
+        {{/if}}
       </div>
       {{f.editor 'description' markup=(list 'bold' 'italic' 'underline')}}
+      {{#f.form-for 'guests' class='grid-row' onsubmit=(action 'submitBylines') as |g|}}
+        {{g.text 'role'}}
+        {{g.autocomplete 'person' onquery=(action onquery 'person') ondelete=(action 'removeByline' f.changeset) key='name'}}
+      {{else}}
+        <button type='submit' onclick={{action 'addByline' f.changeset}}>{{icon 'add'}} Add Byline</button>
+      {{/f.form-for}}
       <div class='grid-row'>
         {{f.autocomplete 'venue.location' key='name' onquery=(action onquery 'location')}}
         {{f.text 'venue.extendedAddress'}}

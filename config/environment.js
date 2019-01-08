@@ -16,16 +16,6 @@ module.exports = function(environment) {
     intl: {
       locales: ['en-us', 'en-de']
     },
-    EmberENV: {
-      FEATURES: {
-        // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
-      },
-      EXTEND_PROTOTYPES: {
-        // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
-    },
     sentry: {
       dsn: 'https://90fd196af750400aac4cd69d642589c5@sentry.io/293902',
       environment,

@@ -1,6 +1,7 @@
 import Collection from './collection';
+import { debounce } from '@ember/runloop';
 import { inject as method } from 'ember-service-methods';
-import RSVP from 'rsvp';
+import RSVP, { all, resolve } from 'rsvp';
 
 export default Collection.extend({
 
@@ -34,7 +35,10 @@ export default Collection.extend({
       this.controller.set('upcoming', upcoming ? true : null);
     },
     deleteAll(records) {
-      return RSVP.all(records.map(record => record.destroyRecord()));
+      return RSVP.all(records.map(record => record.destroyRecord())).then(() => {
+        this.set('selection', []);
+        this.set('hasSelection', false);
+      });
     },
     createTicket(Dialog, events) {
       return this.open(Dialog).then((params) => {
@@ -54,6 +58,8 @@ export default Collection.extend({
     createEvent(attributes) {
       let venueParams = attributes.venue;
       delete attributes.venue;
+      let guestsParams = attributes.guests;
+      delete attributes.guests;
 
       let event = this.store.createRecord('event', attributes);
       return event.save().then(() => {
@@ -64,8 +70,17 @@ export default Collection.extend({
       }).then((venue) => {
         event.set('venue', venue);
         return event.save();
-      }).then(() => {
-        this.transitionTo('event', event);
+      }).then((event) => {
+        return all(guestsParams.map(byline => {
+          if (byline && byline.person) {
+            let guest = this.store.createRecord('guest', Object.assign({ event }, byline));
+            return guest.save();
+          }
+          return resolve();
+        })).then(() => {
+          debounce(this, 'refresh', 1000);
+          return event;
+        });
       });
     }
   }

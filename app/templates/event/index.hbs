@@ -20,10 +20,10 @@
         {{f.datetime 'endsAt' autocomplete=f.changeset.startsAt}}
       </div>
       {{#f.form-for 'guests' class='grid-row' as |g|}}
-        {{g.autocomplete 'person' onquery=(route-action 'query' 'person') key='name'}}
         {{g.text 'role'}}
+        {{g.autocomplete 'person' onquery=(route-action 'query' 'person') key='name'}}
       {{else}}
-        <button type='submit' onclick={{route-action 'addGuest'}}>{{icon 'add'}} Add Guest</button>
+        <button type='submit' onclick={{route-action 'addGuest'}}>{{icon 'add'}} Add Byline</button>
       {{/f.form-for}}
       {{f.editor 'description'}}
       {{#f.form-for 'venue' class='grid-row' as |g|}}

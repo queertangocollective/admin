@@ -961,3 +961,14 @@ nav .create-button,
     transform: rotate(180deg);
   }
 }
+
+.form-for_field label .check-box {
+  position: relative;
+  top: 0.15rem;
+  left: 0rem;
+  margin-right: 0.25rem;
+
+  label {
+    margin-bottom: 0;
+  }
+}
