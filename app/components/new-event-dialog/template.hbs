@@ -26,7 +26,6 @@
           </div>
         {{/if}}
       </div>
-      {{f.editor 'description' markup=(list 'bold' 'italic' 'underline')}}
       {{#f.form-for 'guests' class='grid-row' onsubmit=(action 'submitBylines') as |g|}}
         {{g.text 'role'}}
         {{g.autocomplete 'person' onquery=(action onquery 'person') ondelete=(action 'removeByline' f.changeset) key='name'}}
@@ -37,6 +36,7 @@
         {{f.autocomplete 'venue.location' key='name' onquery=(action onquery 'location')}}
         {{f.text 'venue.extendedAddress'}}
       </div>
+      {{f.editor 'description' markup=(list 'bold' 'italic' 'underline')}}
     </div>
   </div>
   <footer>
