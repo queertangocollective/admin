@@ -1,7 +1,8 @@
 import Component from '@ember/component';
 import EmberObject, { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { all, resolve } from 'rsvp';
+import { all } from 'rsvp';
+import moment from 'moment';
 
 const Guest = EmberObject.extend({
   isDeleted: false,
@@ -70,7 +71,7 @@ export default Component.extend({
         counter[person.id] = (counter[person.id] || 0) + 1;
         guests[person.id] = Guest.create({
           role: byline.role,
-          person
+          person,
         });
       }
     }
@@ -96,19 +97,110 @@ export default Component.extend({
   }),
 
   actions: {
-    removeByline(changes, byline) {
-      changes.get('guests').removeObject(byline);
-    },
     addByline(changes, evt) {
       evt.preventDefault();
-      changes.get('guests').pushObject(Guest.create());
-    },
-    submitBylines(model, changes) {
-      model.setProperties(changes);
-      return resolve();
+      changes.get('guests').pushObject(Guest.create({ isNew: true }));
     },
     submit(model, changes) {
-      // edit all events
+      if (model instanceof Guest) {
+        return all(this.events.map(async (event) => {
+          if (model.isDeleted) {
+            let bylines = await event.guests;
+  
+            let guest;
+            for (let i = 0, len = bylines.length; i < len; i++) {
+              let byline = bylines.objectAt(i);
+              let person = await byline.person;
+              if (byline.role === model.role &&
+                  person === model.person) {
+                guest = byline;
+                break;
+              }
+            }
+            if (guest) {
+              guest.deleteRecord();
+              return guest.save();
+            }
+          } else if (model.isNew) {
+            debugger;
+            let guest = this.store.createRecord('guest', {
+              event,
+              role: changes.role,
+              person: changes.person
+            });
+            return guest.save();
+          } else {
+            let bylines = await event.guests;
+  
+            let guest;
+            for (let i = 0, len = bylines.length; i < len; i++) {
+              let byline = bylines.objectAt(i);
+              let person = await byline.person;
+              if (byline.role === model.role &&
+                  person === model.person) {
+                guest = byline;
+                break;
+              }
+            }
+            if (guest) {
+              if (changes.person) {
+                guest.set('person', changes.person);
+              }
+              if (changes.role) {
+                guest.set('role', changes.role);
+              }
+              return guest.save();
+            }
+          }
+        })).then(() => {
+          model.set('isNew', false);
+        });
+      }
+
+      if (changes.title) {
+        this.events.setEach('title', changes.title);
+      }
+
+      if (changes.description) {
+        this.events.setEach('description', changes.description);
+      }
+
+      if (changes.startTime) {
+        this.events.forEach(event => {
+          let startsAt = moment(event.startsAt);
+          let time = moment(changes.startTime);
+          startsAt.hours(time.hours());
+          startsAt.minutes(time.minutes());
+          event.set('startsAt', startsAt.toDate());
+        })
+      }
+
+      if (changes.endTime) {
+        this.events.forEach(event => {
+          let endsAt = moment(event.endsAt);
+          let time = moment(changes.endTime);
+          endsAt.hours(time.hours());
+          endsAt.minutes(time.minutes());
+          event.set('endsAt', endsAt.toDate());
+        })
+      }
+
+      return all(this.events.map(event => {
+        return event.save().then(() => {
+          if (changes.venue) {
+            return event.venue.then(venue => {
+              if (changes.venue.location !== venue.location) {
+                venue.set('location', changes.venue.location);
+              }
+      
+              if (changes.venue.extendedAddress !== venue.extendedAddress) {
+                venue.set('extendedAddress', changes.venue.extendedAddress);
+              }
+              return venue.save();
+            });
+          }
+        });
+      }));
     }
   }
 });

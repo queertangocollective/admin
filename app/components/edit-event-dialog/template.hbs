@@ -1,5 +1,5 @@
 {{#with (await form) as |model|}}
-  {{#form-for model name='event' onsubmit=(action 'submit') as |f|}}
+  {{#form-for model name='event' onsubmit=(action 'submit') onsaved=dismiss as |f|}}
     <header>{{icon 'calendar'}} Edit Events</header>
     <div class="body">
       <div class='grid-column'>
@@ -8,9 +8,9 @@
           {{f.time 'startTime'}}
           {{f.time 'endTime'}}
         </div>
-        {{#f.form-for 'guests' class='grid-row' onsubmit=(action 'submitBylines') as |g|}}
+        {{#f.form-for 'guests' class='grid-row' as |g|}}
           {{g.text 'role'}}
-          {{g.autocomplete 'person' onquery=(action onquery 'person') ondelete=(action 'removeByline' f.changeset) key='name'}}
+          {{g.autocomplete 'person' onquery=(action onquery 'person') key='name'}}
         {{else}}
           <button type='submit' onclick={{action 'addByline' f.changeset}}>{{icon 'add'}} Add Byline</button>
         {{/f.form-for}}
