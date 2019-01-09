@@ -1,0 +1,78 @@
+{{#if (not (equals fieldType 'check-box'))}}
+  {{#if hasLabel}}<label for={{inputId}}>{{t (concat formName '.' fieldName) htmlSafe=true}}</label>{{/if}}
+{{/if}}
+<div class='field'>
+  {{#if hasBlock}}
+    {{#component fieldType
+      inputId=inputId
+      name=(or name (concat modelName '/' model.id '/' fieldName))
+      accept=accept
+      autofocus=autofocus
+      placeholder=placeholder
+      value=(if fieldName (get model fieldName) model)
+      key=key
+      min=min
+      max=max
+      unit=unit
+      link=link
+      embeds=embeds
+      disabled=disabled
+      readonly=readonly
+      list=list
+      multiple=multiple
+      options=options
+      search-by=search-by
+      gravity=gravity
+      markup=markup
+      onblur=onblur
+      ondelete=ondelete
+      onsubmit=onsubmit
+      onembed=onembed
+      oncancel=oncancel
+      onchange=(action onchange model (if fieldName fieldName index))
+      onquery=(action 'query')
+      onupload=onupload
+      precision=precision
+      rows=rows as |arg1 arg2|}}
+      {{yield arg1 arg2}}
+    {{else}}
+      {{yield to='inverse'}}
+    {{/component}}
+  {{else}}
+    {{component fieldType
+      inputId=inputId
+      name=(or name (concat modelName '/' model.id '/' fieldName))
+      accept=accept
+      autofocus=autofocus
+      placeholder=placeholder
+      value=(if fieldName (get model fieldName) model)
+      key=key
+      min=min
+      max=max
+      unit=unit
+      link=link
+      embeds=embeds
+      readonly=readonly
+      list=list
+      markup=markup
+      multiple=multiple
+      onblur=onblur
+      ondelete=ondelete
+      onembed=onembed
+      onsubmit=onsubmit
+      oncancel=oncancel
+      onchange=(action onchange model (if fieldName fieldName index))
+      onquery=(action 'query')
+      onupload=onupload
+      precision=precision
+      rows=rows}}
+  {{/if}}
+  {{#if (equals fieldType 'check-box')}}
+    {{#if hasLabel}}<label for={{inputId}}>{{t (concat formName '.' fieldName) htmlSafe=true}}</label>{{/if}}
+  {{/if}}
+  {{#if autocomplete}}
+    <a tabindex=0 class='autocomplete' onclick={{action onchange model (if fieldName fieldName index) autocomplete preventDefault=false}}>
+      {{icon 'wand'}}
+    </a>
+  {{/if}}
+</div>

@@ -40,19 +40,13 @@ export default Collection.extend({
         this.set('hasSelection', false);
       });
     },
-    createTicket(Dialog, events) {
-      return this.open(Dialog).then((params) => {
-        return this.createTicket(params).then((ticket) => {
-          return RSVP.all(events.map((event) => {
-            let ticketedEvent = this.store.createRecord('ticketed-event', { event, ticket });
-            return ticketedEvent.save();
-          })).then(() => {
-            return ticket;
-          });
-        });
-      }).then((ticket) => {
+    bulkEdit(Dialog, events) {
+      return this.open(Dialog).then((changes) => {
+        debugger;
+        //
+      }).then((events) => {
         this.set('selection', []);
-        return this.transitionTo('ticket', ticket);
+        return this.refresh();
       });
     },
     createEvent(attributes) {

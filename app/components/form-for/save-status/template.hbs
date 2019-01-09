@@ -1,0 +1,25 @@
+<div class="save-indicator">
+  {{#if model.updatedAt}}
+    <button id="save-indicator-for-{{id}}" class='reset' onclick={{action onsave}}>
+      {{#if model.isSaving}}
+        {{icon 'ellipsis' class='bounce'}}
+      {{else if hasChanges}}
+        {{icon 'ellipsis'}}
+      {{else}}
+        {{icon 'check'}}
+      {{/if}}
+      {{#if hasChanges}}
+        {{t 'saveStatus.unsaved'}}
+      {{else}}
+        {{t 'saveStatus.savedAt' savedAt=(format-relative model.updatedAt)}}
+      {{/if}}
+    </button>
+    {{#pop-over for=(concat "save-indicator-for-" id) gravity="sw" on="click"}}
+      {{#if hasChanges}}
+        {{t 'saveStatus.lastSavedAt' savedAt=(l 'date' model.updatedAt)}}
+      {{else}}
+        {{l 'date' model.updatedAt}}
+      {{/if}}
+    {{/pop-over}}
+  {{/if}}
+</div>

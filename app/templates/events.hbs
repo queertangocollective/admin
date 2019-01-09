@@ -20,10 +20,10 @@
   {{#if (equals as 'list')}}
     {{#animated-container class=(concat 'bulk-actions ' (if hasSelection 'open'))}}
       {{#animated-if hasSelection use=fadeIn duration=250}}
-        {{action-bar 'createTicket' 'deleteAll' 'clearSelection'
+        {{action-bar 'edit' 'deleteAll' 'clearSelection'
           for='events'
-          createTicket=(route-action 'createTicket' (component 'new-ticket-dialog') selection)
-          createTicketIcon='ticket'
+          edit=(route-action 'bulkEdit' (component 'edit-event-dialog' onquery=(route-action 'query') events=selection) selection)
+          editIcon='pencil'
           deleteAll=(route-action 'deleteAll' selection)
           deleteAllIcon='trash'
           clearSelection=(action 'clearSelection')

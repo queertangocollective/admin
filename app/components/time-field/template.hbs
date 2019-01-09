@@ -1,0 +1,25 @@
+{{#if (media '(min-width: 320px) and (max-width: 480px)')}}
+  <input type='time'
+         id={{inputId}}
+         name={{name}}
+         placeholder={{placeholder}}
+         onfocus={{action 'focus'}}
+         onblur={{action 'blur'}}
+         onchange={{action 'selectTime'}}
+         oninput={{action 'selectTime'}}
+         disabled={{disabled}}>
+{{else}}
+  <input type='text'
+         id={{inputId}}
+         name={{name}}
+         placeholder={{placeholder}}
+         autocomplete="off"
+         onkeydown={{action 'handleArrowKeys'}}
+         onkeypress={{action 'restrict'}}
+         onfocus={{action 'focus'}}
+         onblur={{action 'blur'}}
+         onpaste={{action 'reformat'}}
+         onchange={{action 'reformat'}}
+         oninput={{action 'reformat'}}
+         disabled={{disabled}}>
+{{/if}}

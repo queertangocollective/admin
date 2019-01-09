@@ -1,0 +1,29 @@
+{{#with (await form) as |model|}}
+  {{#form-for model name='event' onsubmit=(action 'submit') as |f|}}
+    <header>{{icon 'calendar'}} Edit Events</header>
+    <div class="body">
+      <div class='grid-column'>
+        {{f.text 'title'}}
+        <div class='grid-row'>
+          {{f.time 'startTime'}}
+          {{f.time 'endTime'}}
+        </div>
+        {{#f.form-for 'guests' class='grid-row' onsubmit=(action 'submitBylines') as |g|}}
+          {{g.text 'role'}}
+          {{g.autocomplete 'person' onquery=(action onquery 'person') ondelete=(action 'removeByline' f.changeset) key='name'}}
+        {{else}}
+          <button type='submit' onclick={{action 'addByline' f.changeset}}>{{icon 'add'}} Add Byline</button>
+        {{/f.form-for}}
+        <div class='grid-row'>
+          {{f.autocomplete 'venue.location' key='name' onquery=(action onquery 'location')}}
+          {{f.text 'venue.extendedAddress'}}
+        </div>
+        {{f.editor 'description' markup=(list 'bold' 'italic' 'underline')}}
+      </div>
+    </div>
+    <footer>
+      {{f.submit 'Edit Events'}}
+      <button type='reset' onclick={{dismiss}}>Cancel</button>
+    </footer>
+  {{/form-for}}
+{{/with}}

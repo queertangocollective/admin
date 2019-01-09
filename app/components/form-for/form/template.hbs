@@ -1,0 +1,23 @@
+{{#if (is-array (get model fieldName))}}
+  {{#each (filter-by 'isDeleted' false (get model fieldName)) as |item idx|}}
+    {{#form-for item index=idx tagName='div' multiple=true class=class
+      name=(concat formName '.' fieldName)
+      autosave=autosave
+      onchange=onchange
+      onsubmit=onsubmit
+      oninit=(action 'registerWith' parent) as |f|}}
+      {{yield f idx}}
+      <button class='remove-item' onclick={{action 'ondelete' item}}>{{icon 'cancel'}}</button>
+    {{/form-for}}
+  {{/each}}
+  <div>{{yield to="inverse"}}</div>
+{{else}}
+  {{#form-for (get model fieldName) tagName='div' class=class
+    name=(concat formName '.' fieldName)
+    autosave=autosave
+    onchange=onchange
+    onsubmit=onsubmit
+    oninit=(action 'registerWith' parent) as |f|}}
+    {{yield f}}
+  {{/form-for}}
+{{/if}}

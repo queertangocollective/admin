@@ -77,6 +77,7 @@ events:
   title: 'Name'
   startsAt: 'Time'
   actions:
+    edit: '{icon} Edit Events'
     createTicket: '{icon} Create Ticket'
     deleteAll: '{icon} Delete Selected'
     clearSelection: '{icon} Clear Selection'
@@ -84,7 +85,9 @@ events:
 event:
   title: 'Name'
   startsAt: 'Starts At'
+  startTime: 'Start Time'
   endsAt: 'Ends At'
+  endTime: 'End Time'
   description: 'Description'
   guests:
     person: 'Person'

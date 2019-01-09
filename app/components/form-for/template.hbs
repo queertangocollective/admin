@@ -1,0 +1,22 @@
+{{yield (hash model=model
+              changeset=changeset
+              save-status=(component 'form-for/save-status' model=model changeset=changeset hasChanges=(or changeset.hasChanges hasNestedChanges) id=elementId onsave=(action 'save'))
+              text=(component 'form-for/field' fieldType='text-field' formName=name model=changeset index=index onchange=(action 'onchange') onsubmit=(action save))
+              buttons=(component 'form-for/field' fieldType='button-group' formName=name model=changeset index=index onchange=(action 'onchange'))
+              number=(component 'form-for/field' fieldType='number-field' formName=name model=changeset index=index onchange=(action 'onchange'))
+              currency=(component 'form-for/currency' formName=name model=changeset index=index onchange=(action 'onchange'))
+              percent=(component 'form-for/field' fieldType='percent-field' formName=name model=changeset index=index onchange=(action 'onchange'))
+              textarea=(component 'form-for/field' fieldType='text-area' formName=name model=changeset index=index onchange=(action 'onchange'))
+              editor=(component 'form-for/field' fieldType='text-editor' formName=name model=changeset index=index onchange=(action 'onchange'))
+              date=(component 'form-for/field' fieldType='date-field' formName=name model=changeset index=index onchange=(action 'onchange'))
+              time=(component 'form-for/field' fieldType='time-field' formName=name model=changeset index=index onchange=(action 'onchange'))
+              password=(component 'form-for/field' fieldType='password-field' formName=name model=changeset index=index onchange=(action 'onchange'))
+              datetime=(component 'form-for/field' fieldType='datetime-field' formName=name model=changeset index=index onchange=(action 'onchange'))
+              checkbox=(component 'form-for/field' fieldType='check-box' formName=name model=changeset index=index onchange=(action 'onchange'))
+              upload=(component 'form-for/field' fieldType='upload-field' formName=name model=changeset index=index onchange=(action 'onchange') hasLabel=false)
+              url=(component 'form-for/field' fieldType='url-field' formName=name model=changeset index=index onchange=(action 'onchange'))
+              autocomplete=(component 'form-for/field' fieldType='auto-complete' formName=name model=changeset index=index onchange=(action 'onchange'))
+              select=(component 'form-for/field' fieldType='select-field' formName=name model=changeset index=index onchange=(action 'onchange'))
+              submit=(component 'form-for/button' onsubmit=(action save))
+              form-for=(component 'form-for/form' formName=name model=model tagName='' onsubmit=onsubmit autosave=autosave onchange=(action 'hasNestedChangesDidChange') ondelete=(action 'ondelete') parent=this)
+            )}}
