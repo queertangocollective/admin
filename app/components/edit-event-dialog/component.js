@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import EmberObject, { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { all } from 'rsvp';
+import { all, resolve } from 'rsvp';
 import moment from 'moment';
 
 const Guest = EmberObject.extend({
@@ -48,7 +48,12 @@ export default Component.extend({
     }
 
     let venues = await all(this.events.mapBy('venue'));
-    let locations = await all(venues.mapBy('location'));
+    let locations = await all(venues.map(venue => {
+      if (venue && venue.location) {
+        return venue.location;
+      }
+      return resolve();
+    }));
     let [location, ...otherLocations] = locations.uniq();
     if (otherLocations.length > 0) {
       location = null;
