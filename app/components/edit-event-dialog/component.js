@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import EmberObject, { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { all, resolve } from 'rsvp';
+import { all } from 'rsvp';
 import moment from 'moment';
 
 const Guest = EmberObject.extend({
@@ -48,12 +48,9 @@ export default Component.extend({
     }
 
     let venues = await all(this.events.mapBy('venue'));
-    let locations = await all(venues.map(venue => {
-      if (venue && venue.location) {
-        return venue.location;
-      }
-      return resolve();
-    }));
+    venues = venues.map(venue => venue || {});
+    let locations = await all(venues.mapBy('location'));
+
     let [location, ...otherLocations] = locations.uniq();
     if (otherLocations.length > 0) {
       location = null;
@@ -107,7 +104,6 @@ export default Component.extend({
       changes.get('guests').pushObject(Guest.create({ isNew: true }));
     },
     submit(model, changes) {
-      console.log('save', model);
       if (model instanceof Guest) {
         return all(this.events.map(async (event) => {
           if (model.isSaved) {
