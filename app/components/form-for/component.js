@@ -21,6 +21,8 @@ export default Component.extend({
 
   autocomplete: true,
 
+  isSaved: false,
+
   attributeBindings: ['novalidate', 'autocomplete'],
 
   changeset: computed('model', {
@@ -31,41 +33,56 @@ export default Component.extend({
     }
   }),
 
-  submit(evt) {
+  submit: async function (evt) {
     if (evt) {
       evt.preventDefault();
       evt.stopPropagation();
     }
 
-    let promises = [];
     let model = this.model;
     let changeset = this.changeset;
     let changes = this.changeset.buffer;
     let isDirty = changeset.get('hasChanges') || get(model, 'isDeleted') || model.constructor === Object || this.hasNestedChanges;
 
     if (isDirty && (model == null || get(model, 'isNew'))) {
-      return this.onsubmit(model, changes).then(() => {
-        return RSVP.all(this.nestedForms.map(function (form) {
-          return form.submit(evt);
-        }));
-      }).then(() => {
-        if (this.parent) {
-          return this.parent.submit(evt);
-        }
-      });
+      await this.onsubmit(model, changes);
+      for (let i = 0, len = this.nestedForms.length; i < len; i++) {
+        let form = this.nestedForms[i];
+        await form.submit(evt);
+      }
+      if (!this.isDestroyed) {
+        this.set('isSaved', true);
+      }
+      if (!this.parent.isSaved) {
+        await this.parent.submit(evt);
+      }
     } else {
-      promises = this.nestedForms.map(function (form) {
-        return form.submit(evt);
-      });
+      for (let i = 0, len = this.nestedForms.length; i < len; i++) {
+        let form = this.nestedForms[i];
+        if (!form.isSaved) {
+          await form.submit(evt);
+        }
+      }
       if (isDirty) {
-        promises.push(this.onsubmit(model, changes));
+        await this.onsubmit(model, changes);
+        if (!this.isDestroyed) {
+          this.set('isSaved', true);
+        }
       }
     }
+  },
 
-    return RSVP.all(promises);
+  beginSaving() {
+    this.set('isSaved', false);
+    this.nestedForms.forEach(form => {
+      if (!form.isDestroyed) {
+        form.beginSaving();
+      }
+    });
   },
 
   save() {
+    this.beginSaving();
     return this.submit().then(() => {
       this.onsaved && this.onsaved(this.model);
       this.notifyPropertyChange('changeset');

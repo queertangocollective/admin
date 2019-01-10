@@ -102,9 +102,12 @@ export default Component.extend({
       changes.get('guests').pushObject(Guest.create({ isNew: true }));
     },
     submit(model, changes) {
+      console.log('save', model);
       if (model instanceof Guest) {
         return all(this.events.map(async (event) => {
-          if (model.isDeleted) {
+          if (model.isSaved) {
+            return;
+          } else if (model.isDeleted) {
             let bylines = await event.guests;
   
             let guest;
@@ -122,7 +125,6 @@ export default Component.extend({
               return guest.save();
             }
           } else if (model.isNew) {
-            debugger;
             let guest = this.store.createRecord('guest', {
               event,
               role: changes.role,
@@ -153,7 +155,7 @@ export default Component.extend({
             }
           }
         })).then(() => {
-          model.set('isNew', false);
+          model.setProperties(changes);
         });
       }
 
