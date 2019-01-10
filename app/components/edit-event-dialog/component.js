@@ -187,23 +187,31 @@ export default Component.extend({
           event.set('endsAt', endsAt.toDate());
         })
       }
-
-      return all(this.events.map(event => {
-        return event.save().then(() => {
-          if (changes.venue) {
-            return event.venue.then(venue => {
-              if (changes.venue.location !== venue.location) {
-                venue.set('location', changes.venue.location);
-              }
       
-              if (changes.venue.extendedAddress !== venue.extendedAddress) {
-                venue.set('extendedAddress', changes.venue.extendedAddress);
-              }
-              return venue.save();
+      if (changes.venue) {
+        return all(this.events.map(async (event) => {
+          let venue = await event.venue;
+          if (venue == null) {
+            venue = this.store.createRecord('venue', {
+              location: changes.venue.location,
+              extendedAddress: changes.venue.extendedAddress
             });
+            event.set('venue', venue);
+          } else {
+            if (changes.venue.location !== venue.location) {
+              venue.set('location', changes.venue.location);
+            }
+    
+            if (changes.venue.extendedAddress !== venue.extendedAddress) {
+              venue.set('extendedAddress', changes.venue.extendedAddress);
+            }
           }
-        });
-      }));
+          await venue.save();
+          await event.save();
+        }));
+      }
+
+      return all(this.events.map(event => event.save()));
     }
   }
 });
