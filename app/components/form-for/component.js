@@ -2,7 +2,6 @@ import Component from '@ember/component';
 import { set, get, computed } from '@ember/object';
 import { tryInvoke } from '@ember/utils';
 import { debounce } from '@ember/runloop';
-import RSVP from 'rsvp';
 import BufferedProxy from 'ember-buffered-proxy/proxy';
 import layout from './template';
 

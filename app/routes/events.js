@@ -40,11 +40,8 @@ export default Collection.extend({
         this.set('hasSelection', false);
       });
     },
-    bulkEdit(Dialog, events) {
-      return this.open(Dialog).then((changes) => {
-        debugger;
-        //
-      }).then((events) => {
+    bulkEdit(Dialog) {
+      return this.open(Dialog).then(() => {
         this.set('selection', []);
         return this.refresh();
       });

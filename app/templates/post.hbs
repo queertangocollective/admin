@@ -5,13 +5,13 @@
 
 {{#file-dropzone name=(concat 'post/' model.id '/photo/new')}}
 
-{{action-bar 'unpublish' 'viewLive' 'publish' 'delete'
+{{action-bar 'viewLive' 'publish' 'unpublish' 'delete'
   for='post'
-  unpublish=(if model.published (route-action 'unpublish' model) null)
+  unpublish=(if model.isPublished (route-action 'unpublish' model) null)
   unpublishIcon='eye-closed'
-  viewLive=(if model.published (concat session.currentGroup.url '/' model.slug) null)
+  viewLive=(if model.isPublished (concat session.currentGroup.url '/' model.slug) null)
   viewLiveIcon='export'
-  publish=(unless model.published (route-action 'publish' model) null)
+  publish=(route-action 'publish' model)
   publishIcon='eye'
   delete=(route-action 'deleteRecord' model)
   deleteIcon='trash'}}

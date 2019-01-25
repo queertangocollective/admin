@@ -1,6 +1,6 @@
-import { set } from '@ember/object';
 import Resource from './resource';
 import method from 'ember-service-methods/inject';
+import { all } from 'rsvp';
 
 export default Resource.extend({
   uploadPhoto: method(),
@@ -25,14 +25,18 @@ export default Resource.extend({
       return this.save(model, changes);
     },
     publish(model) {
-      set(model, 'published', true);
-      set(model, 'publishedAt', new Date());
-      return model.save();
+      let publishedPost = this.store.createRecord('published-post', {
+        post: model,
+        title: model.title,
+        body: model.body,
+        slug: model.slug,
+        featured: model.pinned,
+        channel: model.channel
+      });
+      return publishedPost.save();
     },
     unpublish(model) {
-      set(model, 'published', false);
-      set(model, 'publishedAt', null);
-      return model.save();
+      return all(model.publishedPosts.invoke('deleteRecord'));
     },
     embed(EmbedDialog) {
       return this.open(EmbedDialog);
