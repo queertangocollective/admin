@@ -208,11 +208,12 @@ post:
   slug: 'Pretty URL'
   body: 'Body'
   actions:
-    delete: '{icon} Delete'
+    delete: 'Delete'
     confirmDelete: 'Are you sure?'
-    viewLive: '{icon} View Live'
-    publish: '{icon} Publish'
-    unpublish: '{icon} Unpublish'
+    viewLive: 'View Live'
+    publish: 'Publish'
+    republish: 'Republish'
+    unpublish: 'Unpublish'
 
 publicKeys:
   name: 'Name (Private)'

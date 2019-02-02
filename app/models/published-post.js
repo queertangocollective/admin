@@ -7,6 +7,7 @@ export default Model.extend({
   body: attr('string'),
   slug: attr('string'),
   featured: attr('boolean'),
+  live: attr('boolean'),
   post: belongsTo('post'),
   publishedBy: belongsTo('person'),
   channel: belongsTo('channel')

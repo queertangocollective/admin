@@ -5,16 +5,13 @@
 
 {{#file-dropzone name=(concat 'post/' model.id '/photo/new')}}
 
-{{action-bar 'viewLive' 'publish' 'unpublish' 'delete'
+{{action-bar 'viewLive' 'publish' 'republish' 'unpublish' 'delete'
   for='post'
   unpublish=(if model.isPublished (route-action 'unpublish' model) null)
-  unpublishIcon='eye-closed'
   viewLive=(if model.isPublished (concat session.currentGroup.url '/' model.slug) null)
-  viewLiveIcon='export'
-  publish=(route-action 'publish' model)
-  publishIcon='eye'
-  delete=(route-action 'deleteRecord' model)
-  deleteIcon='trash'}}
+  publish=(if model.isPublished null (route-action 'publish' model))
+  republish=(if model.isPublished (route-action 'publish' model) null)
+  delete=(route-action 'deleteRecord' model)}}
 
 <section id="post-edit" class="container">
   {{#form-for model name='post' autosave=true onsubmit=(route-action 'save') as |f|}}

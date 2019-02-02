@@ -1,7 +1,8 @@
 import Model from './application';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 import attr from 'ember-data/attr';
-import { bool } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import { bool, reads } from '@ember/object/computed';
 
 export default Model.extend({
   title: attr('string'),
@@ -11,5 +12,9 @@ export default Model.extend({
   writtenBy: hasMany('person'),
   channel: belongsTo('channel'),
   publishedPosts: hasMany('published-post'),
-  isPublished: bool('publishedPosts.length')
+  livePost: computed('publishedPosts.@each.live', function () {
+    return this.publishedPosts.find(post => post.live);
+  }),
+  isPublished: bool('livePost'),
+  publishedAt: reads('livePost.createdAt')
 });

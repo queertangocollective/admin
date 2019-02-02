@@ -31,12 +31,15 @@ export default Resource.extend({
         body: model.body,
         slug: model.slug,
         featured: model.pinned,
-        channel: model.channel
+        channel: model.channel,
+        live: true
       });
       return publishedPost.save();
     },
     unpublish(model) {
-      return all(model.publishedPosts.invoke('deleteRecord'));
+      let livePosts = model.publishedPosts.filterBy('live', true);
+      livePosts.setEach('live', false);
+      return all(livePosts.invoke('save'));
     },
     embed(EmbedDialog) {
       return this.open(EmbedDialog);
