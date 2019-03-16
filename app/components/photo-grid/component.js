@@ -8,12 +8,20 @@ import { parallel } from 'ember-animated';
 
 export default Component.extend({
   classNames: ['photo-grid'],
-  idealHeight: 160,
-  minimumShrink: 80,
-  maxiumumStretch: 220,
   viewportWidth: 0,
   duration: 300,
   gutter: 8,
+
+  getMinAspectRatio(lastWindowWidth) {
+    if (lastWindowWidth <= 640) {
+      return 2;
+    } else if (lastWindowWidth <= 1280) {
+      return 4;
+    } else if (lastWindowWidth <= 1920) {
+      return 5;
+    }
+    return 6;
+  },
 
   *transition({ insertedSprites, receivedSprites, sentSprites }) {
     if (sentSprites.length === 0 && receivedSprites.length === 0) {
@@ -40,14 +48,14 @@ export default Component.extend({
     let duration = this.duration;
     this.set('viewportWidth', this.element.clientWidth + this.gutter);
     this.resize = bind(this, () => {
-      this.set('duration', 0);
       let width = this.element.clientWidth + this.gutter;
-      if (width !== this.viewportWidth) {
+      if (this.viewportWidth !== width) {
+        this.set('duration', 0);
         this.set('viewportWidth', width);
+        debounce(() => {
+          this.set('duration', duration);
+        }, 100);
       }
-      debounce(() => {
-        this.set('duration', duration);
-      }, 100);
     });
     window.addEventListener('resize', this.resize);
   },
@@ -56,83 +64,48 @@ export default Component.extend({
     window.removeEventListener('resize', this.resize);
   },
 
-  findPossibleRows(photos) {
-    let validRows = [];
-    let row = {
-      aspectRatio: 0,
-      photos: []
-    };
-    let viewportWidth = this.viewportWidth;
-    for (let i = 0, len = photos.length; i < len; i++) {
-      let { photo, aspectRatio } = photos[i];
-      row.photos.push(photo);
-      row.aspectRatio += aspectRatio;
-
-      let height = (viewportWidth - (row.photos.length * this.gutter)) / row.aspectRatio;
-      if (height > this.maxiumumStretch && i < len - 1) {
-        continue;
-      } else if (height < this.minimumShrink) {
-        break;
-      } else {
-        let score = Math.pow(Math.abs(this.idealHeight - height), 2);
-        let nextRow = this.findPossibleRows(photos.slice(i + 1));
-        height = Math.min(this.maxiumumStretch, height);
-        validRows.push({
-          score,
-          height,
-          photos: row.photos.slice().map((photo) => {
-            return {
-              photo,
-              width: (photo.width / photo.height) * height
-            };
-          }),
-          nextRow
-        });
-      }
-    }
-    return validRows;
-  },
-
-  getScores(rows, result={ score: 0, rows: [] }, state={ minimum: Infinity }) {
-    let results = [];
-    for (let i = 0, len = rows.length; i < len; i++) {
-      let row = rows[i];
-      let path = {
-        score: result.score + row.score,
-        rows: [...result.rows, row]
-      };
-
-      // Skip if there's already a better solution
-      if (path.score > state.minimum) {
-        continue;
-      }
-
-      if (row.nextRow.length === 0) {
-        if (path.score < state.minimum) {
-          results.push(path);
-          state.minimum = path.score;
-        }
-      } else {
-        results.push(...this.getScores(row.nextRow, path, state));
-      }
-    }
-    return results;
-  },
-
-  rows: computed('idealHeight', 'viewportWidth', 'photos', function () {
+  rows: computed('viewportWidth', 'photos', function () {
     if (this.photos == null || this.photos.length === 0 || this.viewportWidth <= 0) {
       return [];
     }
 
-    let photos = this.photos.map((photo) => {
-      return {
-        photo,
-        aspectRatio: photo.width / photo.height
-      };
+    let viewportWidth = this.viewportWidth;
+    let minAspectRatio = this.getMinAspectRatio(viewportWidth);
+    let rows = [];
+    let row = {
+      aspectRatio: 0,
+      photos: []
+    };
+
+    this.photos.forEach((photo, index) => {
+      let aspectRatio = photo.width / photo.height;
+      row.aspectRatio += aspectRatio;
+      row.photos.push(photo);
+
+      if (row.aspectRatio >= minAspectRatio || index + 1 === this.photos.length) {
+        row.aspectRatio = Math.max(row.aspectRatio, minAspectRatio);
+
+        let width = viewportWidth - (row.photos.length * this.gutter);
+        let height = width / row.aspectRatio;
+        row.height = height;
+        row.photos = row.photos.map(photo => {
+          return {
+            photo,
+            width: (photo.width / photo.height) * height
+          }
+        });
+        rows.push(row);
+        row = {
+          aspectRatio: 0,
+          photos: []
+        };
+      }
     });
 
-    let rows = this.findPossibleRows(photos);
-    let results = this.getScores(rows);
-    return results[results.length - 1].rows;
+    if (row.photos.length) {
+      rows.push(row);
+    }
+
+    return rows;
   })
 });
