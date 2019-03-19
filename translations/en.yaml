@@ -235,10 +235,12 @@ purchase:
   paymentMethod: 'Paid With'
   paidBy: 'Paid By'
   amountPaid: 'Amount Paid'
+  paymentProcessorUrl: 'Link to Proof of Purchase'
   methods:
-    cash: '{icon} Cash'
-    stripe: '{icon} Card'
-    free: '{icon} Free'
+    cash: 'Cash'
+    stripe: 'Card'
+    online: 'Online'
+    free: 'Free'
 
 stripe:
   stripePublishableKey: 'Stripe Publishable Key'

@@ -1,4 +1,5 @@
 import Collection from '../collection';
+import { all } from 'rsvp';
 
 export default Collection.extend({
 
@@ -20,8 +21,35 @@ export default Collection.extend({
   },
 
   actions: {
-    createPurchase() {
-      
+    createPurchase(_, params) {
+      let ticket = this.modelFor('ticket');
+
+      let transaction = this.store.createRecord('transaction', {
+        description: ticket.description,
+        paidAt: new Date(),
+        paidBy: params.paidBy,
+        paymentMethod: params.paymentMethod,
+        amountPaid: params.paymentMethod === 'free' ? 0 : params.amountPaid,
+        currency: params.currency,
+        paymentProcessorUrl: params.paymentProcessorUrl
+      });
+
+      return transaction.save().then(purchase => {
+        return ticket.ticketedEvents.then(ticketedEvents => {
+          return all(ticketedEvents.map(ticketedEvent => {
+            return ticketedEvent.event.then(event => {
+              let stub = this.store.createRecord('ticket-stub', {
+                ticket,
+                person: params.paidBy,
+                event,
+                purchase,
+                attended: false
+              });
+              return stub.save();
+            });
+          }));
+        });
+      });
     }
   }
 });

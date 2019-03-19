@@ -1,0 +1,57 @@
+{{#if (media '(max-width: 500px)')}}
+  {{#if sortings.length}}
+    <header class="mobile">
+      <div class='buttons'>
+        {{#select-field options=sortings value=currentSort onchange=(action 'sortMobile') as |option|}}
+          {{t (concat name '.' option.name)}}
+        {{/select-field}}
+        {{#if onsort}}
+          <a href='#' tabindex=-1 onclick={{action 'sort' (get this.currentSort this.inverse)}}
+            class="{{this.direction}} active submit-button icon">
+            <span class='sort'>{{icon 'sort'}}</span>
+          </a>
+        {{else}}
+          {{~#link-to (query-params sort=(get this.currentSort this.inverse))
+            class=(concat this.direction ' active submit-button icon')}}
+            <span class='sort'>{{icon 'sort'}}</span>
+          {{~/link-to~}}
+        {{/if}}
+      </div>
+    </header>
+  {{/if}}
+{{else}}
+  <header>
+    <div class='item'>
+      {{yield (hash item=(component 'sortable-list/list-item' sort=sort onsort=(if onsort (action 'sort')) list=this listName=name tagName=''))}}
+    </div>
+  </header>
+{{/if}}
+{{#animated-container}}
+  {{#animated-if rows.length use=fade duration=duration}}
+    <ol>
+      {{#each rows as |row|}}
+        <li>
+          <div class='item {{if (media '(max-width: 500px)') 'mobile'}}'>
+            {{~yield (hash item=(component 'sortable-list/list-item' item=row list=this listName=name sort=sort tagName='')) row~}}
+          </div>
+        </li>
+      {{/each}}
+    </ol>
+  {{else}}
+    <div class='no-items'>
+      {{icon this.icon}}
+      {{#if query}}
+        {{t (concat name '.notFound') query=query}}
+      {{else}}
+        {{t (concat name '.none')}}
+      {{/if}}
+    </div>
+  {{/animated-if}}
+{{/animated-container}}
+{{#if hasMore}}
+  <div class='container'>
+    {{#submit-button onsubmit=(action 'loadMore' rows.length)}}
+      {{t (concat name '.more')}}
+    {{/submit-button}}
+  </div>
+{{/if}}

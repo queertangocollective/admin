@@ -8,6 +8,7 @@ export default Model.extend({
   paidAt: attr('date'),
   paidBy: belongsTo('person'),
   receipt: belongsTo('photo'),
+  ticket: belongsTo('ticket'),
   amountPaid: attr('number'),
   amountOwed: attr('number'),
   currency: attr('string'),

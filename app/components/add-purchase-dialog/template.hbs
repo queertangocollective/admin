@@ -1,16 +1,18 @@
 {{#form-for model name='purchase' onsubmit=(action 'submit') as |f|}}
   <header>{{icon 'coin'}} Add Purchase</header>
   <div class='body grid-column'>
-    {{#f.buttons 'paymentMethod' as |b|}}
-      {{#b.option 'cash'}}{{icon 'coin'}} Cash{{/b.option}}
-      {{#b.option 'stripe'}}{{icon 'stripe'}} Stripe{{/b.option}}
-      {{#b.option 'free'}}{{icon 'love'}} Free{{/b.option}}
+    {{#f.buttons 'paymentMethod' name='purchase.methods' as |b|}}
+      {{b.option 'cash'}}
+      {{b.option 'online'}}
+      {{b.option 'free'}}
     {{/f.buttons}}
     {{f.autocomplete 'paidBy' key='name' onquery=(route-action 'query' 'person')}}
     {{#if (equals f.changeset.paymentMethod 'cash')}}
       {{f.currency 'amountPaid' 'currency' currencies=(list 'USD' 'EUR')}}
-    {{else if (equals f.changeset.paymentMethod 'stripe')}}
-      Stripe elements here
+    {{else if (not (equals f.changeset.paymentMethod 'free'))}}
+      {{f.currency 'amountPaid' 'currency' currencies=(list 'USD' 'EUR')}}
+      {{f.text 'paymentMethod'}}
+      {{f.url 'paymentProcessorUrl'}}
     {{/if}}
   </div>
   <footer>

@@ -1,0 +1,23 @@
+{{#if item~}}
+  <span class="{{dasherize sortAsc}} {{class}}">{{yield item}}</span>
+{{~else if sortable~}}
+  {{~#if onsort~}}
+    <a href='#' tabindex=-1 onclick={{action onsort (if (equals displaySort displaySortAsc) displaySortDesc displaySortAsc)}}
+        class="{{dasherize sortAsc}} {{if (equals displaySort displaySortAsc) "asc active"}} {{if (equals displaySort displaySortDesc) "desc active"}}">
+      <span>{{t (concat listName '.' sortAsc)}}</span>
+      <span class='sort'>{{icon 'chevron'}}</span>
+    </a>
+  {{~else~}}
+    {{~#link-to (query-params sort=(if (equals displaySort displaySortAsc) displaySortDesc displaySortAsc))
+          class=(concat (dasherize sortAsc) ' ' (if (equals displaySort displaySortAsc) 'asc active') " " (if (equals displaySort displaySortDesc) 'desc active'))~}}
+      <span>{{t (concat listName '.' sortAsc)}}</span>
+      <span class='sort'>{{icon 'chevron'}}</span>
+    {{~/link-to~}}
+  {{/if}}
+{{~else~}}
+  {{#if (has-block 'inverse')}}
+    {{yield to='inverse'}}
+  {{else}}
+    {{t (concat listName '.' sortAsc)}}
+  {{/if}}
+{{~/if}}
