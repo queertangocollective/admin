@@ -306,8 +306,7 @@ tickets:
   notFound: 'No Tickets found for "{query}"'
   description: 'Name'
   cost: 'Price'
-  ticketStubs:
-    count: '# Sold'
+  numberSold: '# Sold'
   actions:
     addTicket: '{icon} Add Ticket'
 

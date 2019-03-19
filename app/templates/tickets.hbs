@@ -19,8 +19,8 @@
     {{#l.item 'cost' as |item|}}
       {{l 'currency' item.cost currency=item.currency}}
     {{/l.item}}
-    {{#l.item 'ticketStubs.count' as |item|}}
-      {{item.ticketStubs.length}}
+    {{#l.item 'numberSold' as |item|}}
+      {{item.numberSold}}
     {{/l.item}}
   {{/sortable-list}}
 </section>
