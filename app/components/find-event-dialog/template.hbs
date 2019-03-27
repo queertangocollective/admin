@@ -11,7 +11,7 @@
       {{item.title}}
     {{/l.item}}
     {{#l.item 'startsAt' '-endsAt' as |item|}}
-      {{{format-date-range item.startsAt item.endsAt}}}
+      {{{format-date-range item.startsAt item.endsAt timezone=session.currentGroup.timezone}}}
     {{/l.item}}
   {{/sortable-list}}
 </div>

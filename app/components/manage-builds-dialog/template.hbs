@@ -7,7 +7,7 @@
       <span>{{t 'builds.deployedBy.name'}}</span>
     {{/l.item}}
     {{#l.item 'liveAt' sortable=false as |build|}}
-      <span>{{l 'date' build.liveAt}}</span>
+      <span>{{l 'date' build.liveAt timezone=session.currentGroup.timezone}}</span>
     {{else}}
       {{t 'builds.liveAt'}}
     {{/l.item}}

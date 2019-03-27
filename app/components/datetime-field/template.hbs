@@ -1,0 +1,38 @@
+{{#if (media '(min-width: 320px) and (max-width: 480px)')}}
+  <input type='datetime-local'
+         id={{inputId}}
+         name={{name}}
+         placeholder={{placeholder}}
+         onfocus={{action 'focus'}}
+         onblur={{action 'blur'}}
+         onchange={{action 'selectDate'}}
+         oninput={{action 'selectDate'}}
+         disabled={{disabled}}>
+{{else}}
+  <input type='text'
+         id={{inputId}}
+         name={{name}}
+         placeholder={{placeholder}}
+         autocomplete="off"
+         onkeydown={{action 'handleArrowKeys'}}
+         onkeypress={{action 'restrict'}}
+         onfocus={{action 'focus'}}
+         onblur={{action 'blur'}}
+         onpaste={{action 'reformat'}}
+         onchange={{action 'reformat'}}
+         oninput={{action 'reformat'}}
+         disabled={{disabled}}>
+  <a id="calendar-for-{{elementId}}" tabindex=0 onclick={{action (mut isActive) (not isActive) preventDefault=false}}>
+    {{icon 'calendar'}}
+  </a>
+  {{#pop-over for=(concat 'calendar-for-' elementId) on='click' flow='dropdown'}}
+    {{#power-calendar center=center
+                      onCenterChange=(action 'updateCenter')
+                      selected=value
+                      onSelect=(action 'onchange') as |calendar|}}
+      {{calendar.nav}}
+      <hr>
+      {{calendar.days}}
+    {{/power-calendar}}
+  {{/pop-over}}
+{{/if}}

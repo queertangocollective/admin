@@ -9,7 +9,7 @@
         {{key.fingerprint}}
       {{/l.item}}
       {{#l.item 'lastUsedAt' as |key|}}
-        {{l 'date' key.lastUsedAt}}
+        {{l 'date' key.lastUsedAt timezone=session.currentGroup.timezone}}
       {{/l.item}}
       {{#l.item 'delete' sortable=false as |key|}}
         {{#confirm-button class='icon' onsubmit=(action ondelete key)}}

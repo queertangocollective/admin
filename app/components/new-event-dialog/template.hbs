@@ -4,8 +4,8 @@
     <div class='grid-column'>
       {{f.text 'title'}}
       <div class='grid-row'>
-        {{f.datetime 'startsAt'}}
-        {{f.datetime 'endsAt' autocomplete=f.changeset.startsAt}}
+        {{f.datetime 'startsAt' timezone=session.currentGroup.timezone}}
+        {{f.datetime 'endsAt' timezone=session.currentGroup.timezone autocomplete=f.changeset.startsAt}}
       </div>
       <div class='grid-row'>
         <div class='form-for_field'>

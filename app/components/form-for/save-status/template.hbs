@@ -18,7 +18,7 @@
       {{#if hasChanges}}
         {{t 'saveStatus.lastSavedAt' savedAt=(l 'date' model.updatedAt)}}
       {{else}}
-        {{l 'date' model.updatedAt}}
+        {{l 'date' model.updatedAt timezone=session.currentGroup.timezone}}
       {{/if}}
     {{/pop-over}}
   {{/if}}

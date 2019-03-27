@@ -3,13 +3,11 @@ import Component from '@ember/component';
 import { set } from '@ember/object';
 import { tryInvoke, isBlank } from '@ember/utils';
 import moment from 'moment';
-import layout from './template';
 
 const UP = 38;
 const DOWN = 40;
 
 export default Component.extend(Autoresize, {
-  layout,
   classNames: ['date-field'],
 
   /**
@@ -33,9 +31,9 @@ export default Component.extend(Autoresize, {
 
     @property format
     @type String
-    @default 'h:mma'
+    @default 'M/D/YYYY h:mma'
    */
-  format: 'h:mma',
+  format: 'M/D/YYYY h:mma',
 
   /**
     The `timezone` that the date should be displayed in.
@@ -78,10 +76,10 @@ export default Component.extend(Autoresize, {
 
   _updateDisplayValue(displayValue) {
     let input = this.element.querySelector('input');
-    if (input.type === 'time') {
+    if (input.type === 'datetime-local') {
       if (this.value) {
         let date = moment.tz(this.value, this.timezone);
-        input.value = date.format('HH:mm');
+        input.value = date.format('YYYY-MM-DDTHH:mm');
       } else {
         input.value = null;
       }
@@ -222,7 +220,7 @@ export default Component.extend(Autoresize, {
       set(this, 'isFocused', true);
     },
 
-    selectTime(evt) {
+    selectDate(evt) {
       // Ugh, adjust for timezone
       let date = moment.tz(evt.target.value, this.timezone);
       this.onchange(date.toDate());
@@ -231,7 +229,7 @@ export default Component.extend(Autoresize, {
     onchange({ moment }) {
       set(this, 'isActive', false);
       moment.add(12, 'hours');
-      this._setValue(moment.format(this.format));
+      this._setValue(moment.format('MM/DD/YYYY h:mma'));
     }
   }
 });

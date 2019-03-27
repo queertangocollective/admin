@@ -22,8 +22,8 @@
         {{f.number 'quantity'}}
       </div>
       <div class='grid-row'>
-        {{f.datetime 'validFrom'}}
-        {{f.datetime 'validTo'}}
+        {{f.datetime 'validFrom' timezone=session.currentGroup.timezone}}
+        {{f.datetime 'validTo' timezone=session.currentGroup.timezone}}
       </div>
     </div>
     <br>
@@ -32,7 +32,7 @@
         {{item.title}}
       {{/l.item}}
       {{#l.item 'startsAt' as |item|}}
-        {{l 'date' item.startsAt}}
+        {{l 'date' item.startsAt timezone=session.currentGroup.timezone}}
       {{/l.item}}
     {{/sortable-list}}
   {{/form-for}}

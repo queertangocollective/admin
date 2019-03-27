@@ -15,7 +15,7 @@
       {{#link-to 'person' item.paidBy}}{{item.paidBy.name}}{{/link-to}}
     {{/l.item}}
     {{#l.item 'paidAt' as |item|}}
-      {{l 'date' item.paidAt}}
+      {{l 'date' item.paidAt timezone=session.currentGroup.timezone}}
     {{/l.item}}
     {{#l.item 'id' as |item|}}
       {{#link-to 'transaction' item}}#{{item.id}}{{/link-to}}

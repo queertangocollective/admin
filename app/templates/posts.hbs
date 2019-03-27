@@ -32,7 +32,7 @@
       {{/if}}
     {{/l.item}}
     {{#l.item 'publishedAt' as |item|}}
-      {{l 'date' item.publishedAt}}
+      {{l 'date' item.publishedAt timezone=session.currentGroup.timezone}}
     {{/l.item}}
   {{else}}
     <div class='no-items'>

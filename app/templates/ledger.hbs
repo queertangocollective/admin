@@ -26,7 +26,7 @@
       {{item.paidBy.name}}
     {{/list.item}}
     {{#list.item 'paidAt' as |item|}}
-      {{l 'date' item.paidAt}}
+      {{l 'date' item.paidAt timezone=session.currentGroup.timezone}}
     {{/list.item}}
     {{#list.item 'amountPaid' class=(if item.amountOwed 'iou' (if (gt item.amountPaid 0) 'credit' 'debit')) as |item|}}
       {{l 'currency' item.amountPaid currency=item.currency}} {{#if item.amountOwed}}

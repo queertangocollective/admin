@@ -15,7 +15,7 @@
     <div class="grid-column">
       <div class='grid-row'>
         {{f.text 'description'}}
-        {{f.datetime 'paidAt'}}
+        {{f.datetime 'paidAt' timezone=session.currentGroup.timezone}}
       </div>
       <div class='grid-row'>
         {{f.currency 'amountPaid' 'currency' currencies=(list 'USD' 'EUR')}}
