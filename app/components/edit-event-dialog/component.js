@@ -37,7 +37,8 @@ export default Component.extend({
     let startTime = this.events[0].startsAt;
     let endTime = this.events[0].endsAt;
     let isSameTime = (firstTime, secondTime) => {
-      return moment(firstTime).format('HH:mm') === moment(secondTime).format('HH:mm');
+      return moment.tz(firstTime, this.timezone).format('HH:mm') ===
+        moment.tz(secondTime, this.timezone).format('HH:mm');
     };
 
     if (this.events.some(event => !isSameTime(startTime, event.startsAt))) {
@@ -170,8 +171,8 @@ export default Component.extend({
 
       if (changes.startTime) {
         this.events.forEach(event => {
-          let startsAt = moment(event.startsAt);
-          let time = moment(changes.startTime);
+          let startsAt = moment.tz(event.startsAt, this.timezone);
+          let time = moment.tz(changes.startTime, this.timezone);
           startsAt.hours(time.hours());
           startsAt.minutes(time.minutes());
           event.set('startsAt', startsAt.toDate());
@@ -180,8 +181,8 @@ export default Component.extend({
 
       if (changes.endTime) {
         this.events.forEach(event => {
-          let endsAt = moment(event.endsAt);
-          let time = moment(changes.endTime);
+          let endsAt = moment.tz(event.endsAt, this.timezone);
+          let time = moment.tz(changes.endTime, this.timezone);
           endsAt.hours(time.hours());
           endsAt.minutes(time.minutes());
           event.set('endsAt', endsAt.toDate());

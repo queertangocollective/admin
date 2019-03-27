@@ -5,8 +5,8 @@
       <div class='grid-column'>
         {{f.text 'title'}}
         <div class='grid-row'>
-          {{f.time 'startTime' timezone=session.currentGroup.timezone}}
-          {{f.time 'endTime' timezone=session.currentGroup.timezone}}
+          {{f.time 'startTime' timezone=timezone}}
+          {{f.time 'endTime' timezone=timezone}}
         </div>
         {{#f.form-for 'guests' class='grid-row' as |g|}}
           {{g.text 'role'}}

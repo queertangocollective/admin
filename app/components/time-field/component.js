@@ -3,13 +3,11 @@ import Component from '@ember/component';
 import { set } from '@ember/object';
 import { tryInvoke, isBlank } from '@ember/utils';
 import moment from 'moment';
-import layout from './template';
 
 const UP = 38;
 const DOWN = 40;
 
 export default Component.extend(Autoresize, {
-  layout,
   classNames: ['date-field'],
 
   /**

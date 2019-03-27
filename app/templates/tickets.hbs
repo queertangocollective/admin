@@ -7,6 +7,7 @@
     {{action-bar 'addTicket'
       for='tickets'
       addTicket=(component 'new-ticket-dialog'
+            timezone=session.currentGroup.timezone
             onsubmit=(route-action 'createTicket'))
       addTicketIcon='ticket'}}
       <br>

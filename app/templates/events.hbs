@@ -10,7 +10,7 @@
       {{#link-to (query-params as='calendar') class='button icon'}}
         {{icon 'calendar'}}{{#if (media '(min-width: 500px)')}} Calendar{{/if}}
       {{/link-to}}
-      {{#dialog-button (component 'new-event-dialog' onsubmit=(route-action 'createEvent') onquery=(route-action 'query')) group='add-event'}}
+      {{#dialog-button (component 'new-event-dialog' timezone=session.currentGroup.timezone onsubmit=(route-action 'createEvent') onquery=(route-action 'query')) group='add-event'}}
         {{icon "calendar"}} Add Event
       {{/dialog-button}}
       {{check-box inputId='upcoming' value=upcoming onchange=(route-action 'filterUpcoming')}}
@@ -22,7 +22,7 @@
       {{#animated-if hasSelection use=fadeIn duration=250}}
         {{action-bar 'edit' 'deleteAll' 'clearSelection'
           for='events'
-          edit=(route-action 'bulkEdit' (component 'edit-event-dialog' onquery=(route-action 'query') events=selection) selection)
+          edit=(route-action 'bulkEdit' (component 'edit-event-dialog' timezone=session.currentGroup.timezone onquery=(route-action 'query') events=selection) selection)
           editIcon='pencil'
           deleteAll=(route-action 'deleteAll' selection)
           deleteAllIcon='trash'
