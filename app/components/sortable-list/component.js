@@ -57,9 +57,9 @@ export default Component.extend({
     }
   }),
 
-  hasMore: computed('total', 'model.length', {
+  hasMore: computed('total', 'rows.length', {
     get() {
-      return this.total > this.model ? this.model.length : 0;
+      return this.total > this.rows ? this.rows.length : 0;
     }
   }),
 
