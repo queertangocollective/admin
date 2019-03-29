@@ -29,6 +29,14 @@ module.exports = function(defaults) {
     },
     svgJar: {
       strategy: 'inline',
+      optimizer : {
+        plugins: [
+          { removeUselessStrokeAndFill: false },
+          { removeEditorsNSData: true },
+          { removeTitle: true },
+          { cleanupIDs: true }
+        ]
+      },
       sourceDirs: [
         'node_modules/@queertangocollective/ui/public/assets/images/icons',
         'public/assets/images/icons'
@@ -53,6 +61,11 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
   app.import('node_modules/raven-js/dist/raven.js');
   app.import('node_modules/raven-js/dist/plugins/ember.js');
+  app.import('node_modules/resize-observer-polyfill/dist/ResizeObserver.js', {
+    exports: ['default']
+  });
+
+  app.import('node_modules/intersection-observer/intersection-observer.js');
 
   return app.toTree();
 };

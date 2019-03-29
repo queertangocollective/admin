@@ -1,11 +1,9 @@
-{{#each rows as |row|}}
+{{#each rows key="@index" as |row|}}
   <div class="photo-grid-row">
-    {{~#each row.photos as |cell|~}}
-      {{#animated-container class='photo'}}
-        {{#animated-value cell.photo duration=duration use=transition as |p|}}
-          {{~yield p cell.width row.height~}}
-        {{/animated-value}}
-      {{/animated-container}}
+    {{~#each row.photos key="photo.id" as |cell|~}}
+      <div class="photo">
+        {{~yield cell.photo cell.width row.height~}}
+      </div>
     {{~/each~}}
   </div>
 {{/each}}

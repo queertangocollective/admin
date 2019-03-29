@@ -26,28 +26,26 @@
     </div>
   </header>
 {{/if}}
-{{#animated-container}}
-  {{#animated-if rows.length use=fade duration=duration}}
-    <ol>
-      {{#each rows as |row|}}
-        <li>
-          <div class='item {{if (media '(max-width: 500px)') 'mobile'}}'>
-            {{~yield (hash item=(component 'sortable-list/list-item' item=row list=this listName=name sort=sort tagName='')) row~}}
-          </div>
-        </li>
-      {{/each}}
-    </ol>
-  {{else}}
-    <div class='no-items'>
-      {{icon this.icon}}
-      {{#if query}}
-        {{t (concat name '.notFound') query=query}}
-      {{else}}
-        {{t (concat name '.none')}}
-      {{/if}}
-    </div>
-  {{/animated-if}}
-{{/animated-container}}
+{{#if rows.length use=fade duration=duration}}
+  <ol>
+    {{#each rows as |row|}}
+      <li>
+        <div class='item {{if (media '(max-width: 500px)') 'mobile'}}'>
+          {{~yield (hash item=(component 'sortable-list/list-item' item=row sort=sort list=this listName=name tagName='')) row~}}
+        </div>
+      </li>
+    {{/each}}
+  </ol>
+{{else}}
+  <div class='no-items'>
+    {{icon this.icon}}
+    {{#if query}}
+      {{t (concat name '.notFound') query=query}}
+    {{else}}
+      {{t (concat name '.none')}}
+    {{/if}}
+  </div>
+{{/if}}
 {{#if hasMore}}
   <div class='container'>
     {{#submit-button onsubmit=(action 'loadMore' rows.length)}}

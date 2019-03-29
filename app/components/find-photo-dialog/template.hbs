@@ -8,7 +8,7 @@
   <div class='photo-grid'>
     {{#photo-grid photos=results as |photo width height|~}}
       {{check-box inputId=(concat "photo-" photo.id) value=(contains selection photo) onchange=(action 'select' photo)~}}
-      <label for="photo-{{photo.id}}"><img src="{{photo.url}}" width="{{width}}" height="{{height}}"></label>
+      <label for="photo-{{photo.id}}">{{lazy-image src=photo.url alt=photo.title width=width height=height}}</label>
     {{~/photo-grid}}
   </div>
 </div>

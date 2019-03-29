@@ -1,16 +1,9 @@
 import Component from '@ember/component';
 import { set, computed } from '@ember/object';
-import RSVP from 'rsvp';
-import layout from './template';
-import move from 'ember-animated/motions/move';
-import opacity from 'ember-animated/motions/opacity';
-import { easeInOut as easing } from 'ember-animated/easings/cosine';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
-
-  layout,
 
   router: service(),
 
@@ -60,35 +53,6 @@ export default Component.extend({
   hasMore: computed('total', 'rows.length', function () {
     return this.total > this.rows.length ? this.rows.length : 0;
   }),
-
-  duration: 250,
-
-  fade: function* ({ insertedSprites, removedSprites }) {
-    yield RSVP.all([
-      ...insertedSprites.map(sprite => opacity(sprite, { from: 0, to: 1 })),
-      ...removedSprites.map(sprite => opacity(sprite, { from: 1, to : 0 }))
-    ]);
-  },
-
-  shuffle: function* ({ insertedSprites, keptSprites, removedSprites }) {
-    if (removedSprites.length) {
-      yield RSVP.all(removedSprites.map(sprite => {
-        return opacity(sprite, { from: 1, to: 0, easing });
-      }));
-    }
-    if (keptSprites.length) {
-      yield RSVP.all(keptSprites.map(sprite => {
-        sprite.applyStyles({ zIndex: 1 });
-        return move(sprite);
-      }));
-    }
-    if (insertedSprites.length) {
-      yield RSVP.all(insertedSprites.map(sprite => {
-        sprite.scale(0.8);
-        return opacity(sprite, { from: 0, to: 1, easing });
-      }));
-    }
-  },
 
   actions: {
     loadMore(offset) {

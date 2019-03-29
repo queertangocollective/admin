@@ -1,19 +1,17 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import { bind, debounce } from '@ember/runloop';
-import move from 'ember-animated/motions/move';
-import scale from 'ember-animated/motions/scale';
-import opacity from 'ember-animated/motions/opacity';
-import { parallel } from 'ember-animated';
+import { bind } from '@ember/runloop';
 
 export default Component.extend({
   classNames: ['photo-grid'],
   viewportWidth: 0,
-  duration: 300,
   gutter: 8,
+  singleRow: false,
 
   getMinAspectRatio(lastWindowWidth) {
     if (lastWindowWidth <= 640) {
+      return 2;
+    } else if (lastWindowWidth <= 800) {
       return 2;
     } else if (lastWindowWidth <= 1280) {
       return 4;
@@ -23,45 +21,19 @@ export default Component.extend({
     return 6;
   },
 
-  *transition({ insertedSprites, receivedSprites, sentSprites }) {
-    if (sentSprites.length === 0 && receivedSprites.length === 0) {
-      return;
-    }
-    // received and sent sprites are flying above all the others
-    receivedSprites.concat(sentSprites).forEach(sprite => {
-      sprite.applyStyles({
-        'z-index': 1,
-        'overflow': 'visible'
-      });
-    });
-
-    receivedSprites.forEach(parallel(move, scale));
-    sentSprites.forEach(parallel(move, scale));
-
-    insertedSprites.forEach(sprite => {
-      opacity(sprite, { from: 0, to: 1 });
-    });
-    yield;
-  },
-
   didInsertElement() {
-    let duration = this.duration;
     this.set('viewportWidth', this.element.clientWidth + this.gutter);
-    this.resize = bind(this, () => {
-      let width = this.element.clientWidth + this.gutter;
+    this.observer = new ResizeObserver(bind(this, ([entry]) => {
+      let width = entry.contentRect.width + this.gutter;
       if (this.viewportWidth !== width) {
-        this.set('duration', 0);
         this.set('viewportWidth', width);
-        debounce(() => {
-          this.set('duration', duration);
-        }, 100);
       }
-    });
-    window.addEventListener('resize', this.resize);
+    }));
+    this.observer.observe(this.element);
   },
 
   willDestroyElement() {
-    window.removeEventListener('resize', this.resize);
+    this.observer.unobserve(this.element);
   },
 
   rows: computed('viewportWidth', 'photos', function () {
@@ -70,7 +42,9 @@ export default Component.extend({
     }
 
     let viewportWidth = this.viewportWidth;
-    let minAspectRatio = this.getMinAspectRatio(viewportWidth);
+    let minAspectRatio = this.singleRow ?
+      Infinity :
+      this.getMinAspectRatio(viewportWidth);
     let rows = [];
     let row = {
       aspectRatio: 0,
@@ -83,7 +57,9 @@ export default Component.extend({
       row.photos.push(photo);
 
       if (row.aspectRatio >= minAspectRatio || index + 1 === this.photos.length) {
-        row.aspectRatio = Math.max(row.aspectRatio, minAspectRatio);
+        if (minAspectRatio !== Infinity) {
+          row.aspectRatio = Math.max(row.aspectRatio, minAspectRatio);
+        }
 
         let width = viewportWidth - (row.photos.length * this.gutter);
         let height = width / row.aspectRatio;
