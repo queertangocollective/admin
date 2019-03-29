@@ -57,10 +57,8 @@ export default Component.extend({
     }
   }),
 
-  hasMore: computed('total', 'rows.length', {
-    get() {
-      return this.total > this.rows ? this.rows.length : 0;
-    }
+  hasMore: computed('total', 'rows.length', function () {
+    return this.total > this.rows.length ? this.rows.length : 0;
   }),
 
   duration: 250,
