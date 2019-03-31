@@ -10,5 +10,6 @@ export default Model.extend({
   live: attr('boolean'),
   post: belongsTo('post'),
   publishedBy: belongsTo('person'),
+  publishedAt: attr('date'),
   channel: belongsTo('channel')
 });

@@ -16,5 +16,5 @@ export default Model.extend({
     return this.publishedPosts.find(post => post.live);
   }),
   isPublished: bool('livePost'),
-  publishedAt: reads('livePost.createdAt')
+  publishedAt: reads('livePost.publishedAt')
 });
