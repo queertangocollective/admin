@@ -8,20 +8,31 @@ export default Component.extend({
   multiple: false,
   sort: '-createdAt',
 
-  query() {
+  query(params) {
     return this.store.query('photo', {
       sort: this.sort,
       page: {
-        limit: 50
+        limit: 15,
+        offset: params ? params.offset : 0
       }
     }).then((results) => {
-      this.set('results', results);
-    });
+      return {
+        model: results,
+        meta: results.meta
+      };
+    })
+  },
+
+  load(offset) {
+    return this.query({ offset });
   },
 
   init() {
     this._super();
-    this.query();
+    this.query().then(({ model, meta }) => {
+      this.set('meta', meta);
+      this.set('results', model);
+    });
     if (this.selection == null) {
       this.set('selection', []);
     }

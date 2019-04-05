@@ -1,6 +1,3 @@
 {{#if isInView}}
   <img src={{src}} alt={{alt}} width={{width}} height={{height}} class={{if isLoaded "loaded"}} onload={{action (mut isLoaded) true}}>
 {{/if}}
-{{#if (not isLoaded)}}
-  {{icon 'ellipsis' class='bounce'}}
-{{/if}}

@@ -1,0 +1,212 @@
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0
+  }
+  100% {
+    background-position: 100% 0
+  }
+}
+
+.sortable-list {
+  display: grid;
+  margin-bottom: 1rem;
+  width: 100%;
+
+  .filters {
+    position: sticky;
+    top: 0;
+    background: $accent;
+    color: $white;
+    z-index: 2;
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+
+    li {
+      text-decoration: none;
+      border-bottom: 1px solid $heather;
+      display: block;
+      line-height: 2.5rem;
+      height: 2.5rem;
+      white-space: nowrap;
+      padding: 0 1rem;
+
+      .loading-bar {
+        animation-duration: 1.25s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: shimmer;
+        animation-timing-function: linear;
+        background: #f6f7f8;
+        background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);        background-size: 800px 100%;
+        position: relative;
+        height: 12px;
+        width: calc(100% - 10px);
+        display: inline-block;
+      }
+
+      & > .item {
+        display: grid;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      span {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      @media(max-width: 500px) {
+        & {
+          height: auto;
+          justify-content: start;
+          padding: 1rem;
+          line-height: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .item .check-box {
+    position: relative;
+    overflow: visible;
+    top: 0.35rem;
+  }
+
+  .no-items {
+    font-size: 1.2rem;
+    text-align: center;
+
+    svg {
+      display: block;
+      width: auto;
+      height: 2rem;
+      margin: 1rem auto; 
+    }
+  }
+
+  .sortings {
+    background: $black;
+    box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+    background: $black;
+
+    a {
+      color: $white;
+      display: block;
+      padding: 0.5rem;
+    }
+
+    &.visible {
+      visibility: visible;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      opacity: 1;
+    }
+
+    &.hidden {
+      visibility: hidden;
+      height: 0;
+      opacity: 0;
+    }
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    transition: top 200ms;
+    z-index: 2;
+
+    &.and-filtering {
+      top: 3rem;
+    }
+
+    & > .item {
+      display: grid;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.5rem;
+    }
+
+    button.filter {
+      border-radius: 0;
+      height: 2rem;
+      padding: 0.25rem 0.5rem;
+
+      svg {
+        padding: 0;
+      }
+    }
+
+    &:not(.mobile) {
+      padding: 0.3rem 1rem;
+      box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+      background: $black;
+      color: $white;
+
+      button.filter {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+
+    &.mobile {
+      &.has-filters .buttons {
+        grid-template-columns: 1fr 3rem 3rem;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: 1fr 3rem;
+
+        select, a, button {
+          border-radius: 0;
+        }
+
+        a, button {
+          height: 2rem;
+          padding: 0.25rem 0.5rem;
+        }
+      }
+    }
+
+    a {
+      display: inline-grid;
+      grid-template-columns: auto 1fr;
+      color: inherit;
+      line-height: 1.5rem;
+      text-decoration: none;
+
+      .sort {
+        pointer-events: none;
+        height: 1.5rem;
+        width: 1.5rem;
+        margin-left: 0.125rem;
+      }
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        transition: all 200ms;
+        fill: $white;
+      }
+
+      &.active svg {
+        opacity: 1;
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+
+      &.active.desc {
+        svg {
+          transform: rotateX(180deg);
+        }
+      }
+    }
+  }
+}

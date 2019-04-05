@@ -36,6 +36,9 @@ export default Component.extend({
         this.sortable) {
       this.list.set('sortings', [...this.list.sortings, this._sortDescriptor]);
     }
+    if (this.list.cells.indexOf(this._sortDescriptor.name) === -1) {
+      this.list.set('cells', [...this.list.cells, this._sortDescriptor.name]);
+    }
   }
 }).reopenClass({
   positionalParams: ['sortAsc', 'sortDesc']

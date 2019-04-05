@@ -2,7 +2,11 @@
   <div class="photo-grid-row">
     {{~#each row.photos key="photo.id" as |cell|~}}
       <div class="photo">
-        {{~yield cell.photo cell.width row.height~}}
+        {{#if cell.isPlaceholder}}
+          <div class="lazy-image loading" style="width: {{cell.width}}px; height: {{row.height}}px;"></div>
+        {{else}}
+          {{~yield cell.photo cell.width row.height~}}
+        {{/if}}
       </div>
     {{~/each~}}
   </div>

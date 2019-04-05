@@ -26,7 +26,7 @@
     </div>
   </header>
 {{/if}}
-{{#if rows.length use=fade duration=duration}}
+{{#if rows.length}}
   <ol>
     {{#each rows as |row|}}
       <li>
@@ -35,6 +35,17 @@
         </div>
       </li>
     {{/each}}
+    {{#if isLoading}}
+      {{#each loadingTemplates}}
+        <li>
+          <div class='item {{if (media '(max-width: 500px)') 'mobile'}}'>
+            {{#each cells as |cellName|}}
+              <span class="{{cellName}}"><span class="loading-bar"></span></span>
+            {{/each}}
+          </div>
+        </li>
+      {{/each}}
+    {{/if}}
   </ol>
 {{else}}
   <div class='no-items'>
@@ -44,12 +55,5 @@
     {{else}}
       {{t (concat name '.none')}}
     {{/if}}
-  </div>
-{{/if}}
-{{#if hasMore}}
-  <div class='container'>
-    {{#submit-button onsubmit=(action 'loadMore' rows.length)}}
-      {{t 'More'}}
-    {{/submit-button}}
   </div>
 {{/if}}

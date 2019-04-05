@@ -6,7 +6,7 @@
 </header>
 <div class="body grid-column">
   <div class='photo-grid'>
-    {{#photo-grid photos=results as |photo width height|~}}
+    {{#photo-grid photos=results total=meta.page.total load=(action load) as |photo width height|~}}
       {{check-box inputId=(concat "photo-" photo.id) value=(contains selection photo) onchange=(action 'select' photo)~}}
       <label for="photo-{{photo.id}}">{{lazy-image src=photo.url alt=photo.title width=width height=height}}</label>
     {{~/photo-grid}}

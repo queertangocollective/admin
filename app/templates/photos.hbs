@@ -16,7 +16,7 @@
         <span>{{t 'photos.actions.upload' icon=(icon 'photo') htmlSafe=true}}</span>
       </div>
     {{/if}}
-    {{#photo-grid name='photo' photos=model.model total=model.meta.page.total icon='photo' sort=sort load=(route-action 'load') as |photo width height|}}
+    {{#photo-grid name='photo' photos=model.model load=(route-action 'load') total=model.meta.page.total icon='photo' sort=sort load=(route-action 'load') as |photo width height|}}
       {{#link-to 'photo' photo~}}
         {{lazy-image src=photo.url alt=photo.title width=width height=height}}
       {{~/link-to}}

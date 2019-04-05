@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { set, computed } from '@ember/object';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
+import { bind } from '@ember/runloop';
 
 export default Component.extend({
 
@@ -16,6 +17,45 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.set('sortings', A([]));
+    this.set('cells', A([]));
+  },
+
+  didInsertElement() {
+    this._observer = new IntersectionObserver(bind(this, entries => {
+      let isInView = entries[entries.length - 1].isIntersecting;
+      if (!this.isLoading && isInView && this.hasMore) {
+        this.set('isLoading', true);
+        this.set('loadingTemplates', new Array(Math.min(this.total - this.rows.length, 50)));
+        this.load(this.rows.length).then(({ model, meta }) => {
+          this.set('rows', [...this.rows.toArray(), ...model.toArray()]);
+          this.set('total', meta.page.total);
+        }).finally(() => {
+          this.set('isLoading', false);
+        });
+      }
+    }));
+  },
+
+  didRender() {
+    let lastItem = this.element.querySelector('li:last-child');
+    if (lastItem === this._lastItem) return;
+
+    if (this._lastItem) {
+      this._observer.unobserve(this._lastItem);
+      this._lastItem = null;
+    }
+
+    if (lastItem) {
+      this._observer.observe(lastItem);
+      this._lastItem = lastItem;
+    }
+  },
+
+  willDestroyElement() {
+    if (this._lastItem) {
+      this._observer.unobserve(this._lastItem);
+      this._lastItem = null;
+    }
   },
 
   isShowingSorting: computed('sort', {
@@ -55,13 +95,6 @@ export default Component.extend({
   }),
 
   actions: {
-    loadMore(offset) {
-      return this.load(offset).then(({ model, meta }) => {
-        set(this, 'rows', [...this.rows.toArray(), ...model.toArray()]);
-        set(this, 'total', meta.page.total);
-      });
-    },
-
     sortMobile(value) {
       if (value == null) return;
 
