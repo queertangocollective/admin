@@ -767,30 +767,6 @@ opacity: 1.0;
   z-index: 9;
 }
 
-@media (max-width: 500px) {
-  .koenig-card .kg-action-bar,
-  .kg-action-bar,
-  .kg-input-bar,
-  .kg-link-toolbar {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0;
-    width: auto;
-    margin: 0;
-    border-radius: 0;
-    z-index: 3;
-
-    &:after {
-      display: none;
-    }
-
-    .url-field {
-      width: 100%;
-    }
-  }
-}
-
 .kg-action-bar a {
   min-height: 34px;
 }
