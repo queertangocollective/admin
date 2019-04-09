@@ -40,7 +40,6 @@ export default Component.extend({
     _isMouseDown: false,
     _hasSelectedRange: false,
     _onMousedownHandler: null,
-    _onMousemoveHandler: null,
     _onMouseupHandler: null,
     _onResizeHandler: null,
 
@@ -106,7 +105,6 @@ export default Component.extend({
         this._removeStyleElement();
         run.cancel(this._throttleResize);
         window.removeEventListener('mousedown', this._onMousedownHandler);
-        window.removeEventListener('mousemove', this._onMousemoveHandler);
         window.removeEventListener('mouseup', this._onMouseupHandler);
         window.removeEventListener('resize', this._onResizeHandler);
     },
@@ -143,14 +141,7 @@ export default Component.extend({
 
     /* private methods ------------------------------------------------------ */
 
-    _toggleVisibility: task(function* (skipMousemove = false) {
-        // double-taps will often trigger before the selection change event so
-        // we want to keep the truthy mousemove skip around so that re-triggers
-        // within the 50ms timeout do not reset it
-        if (skipMousemove) {
-            this._skipMousemove = true;
-        }
-
+    _toggleVisibility: task(function* () {
         // debounce for 50ms to account for "click to deselect" otherwise we
         // run twice and the fade out animation jumps position
         yield timeout(50);
@@ -163,14 +154,12 @@ export default Component.extend({
             return;
         }
 
-        // if we have a range, show the toolbnar once the mouse is lifted
+        // if we have a range, show the toolbar once the mouse is lifted
         if (this._hasSelectedRange && !this._isMouseDown) {
-            this._showToolbar(this._skipMousemove);
+            this._showToolbar();
         } else {
             this._hideToolbar();
         }
-
-        this._skipMousemove = false;
     }).restartable(),
 
     _handleMousedown(event) {
@@ -180,26 +169,10 @@ export default Component.extend({
         }
     },
 
-    _handleMousemove() {
-        if (this._hasSelectedRange && !this.showToolbar) {
-            this.set('showToolbar', true);
-        }
-
-        this._removeMousemoveHandler();
-    },
-
-    _removeMousemoveHandler() {
-        window.removeEventListener('mousemove', this._onMousemoveHandler);
-        this._onMousemoveHandler = null;
-    },
-
     _handleMouseup(event) {
         if (event.which === 1) {
             this._isMouseDown = false;
-            // we want to skip the mousemove handler here because we know the
-            // selection (if there was one) was via the mouse and we don't want
-            // to wait for another mousemove before showing the toolbar
-            this._toggleVisibility.perform(true);
+            this._toggleVisibility.perform();
         }
     },
 
@@ -209,17 +182,10 @@ export default Component.extend({
         }
     },
 
-    _showToolbar(skipMousemove) {
+    _showToolbar() {
         this._positionToolbar();
+        this.set('showToolbar', true);
 
-        if (skipMousemove) {
-            this.set('showToolbar', true);
-        }
-
-        if (!this.showToolbar && !this._onMousemoveHandler) {
-            this._onMousemoveHandler = run.bind(this, this._handleMousemove);
-            window.addEventListener('mousemove', this._onMousemoveHandler);
-        }
 
         // track displayed range so that we don't re-position unnecessarily
         this._lastRange = this.editorRange;
@@ -230,7 +196,6 @@ export default Component.extend({
             this.set('showToolbar', false);
         }
         this._lastRange = null;
-        this._removeMousemoveHandler();
     },
 
     _positionToolbar() {
@@ -242,11 +207,19 @@ export default Component.extend({
 
         // rangeRect is relative to the viewport so we need to subtract the
         // container measurements to get a position relative to the container
-        newPosition = {
-            top: rangeRect.top - containerRect.top - height - TOOLBAR_MARGIN,
-            left: rangeRect.left - containerRect.left + rangeRect.width / 2 - width / 2,
-            right: null
-        };
+        if (window.clientWidth > 500) {
+            newPosition = {
+                top: rangeRect.top - containerRect.top - height - TOOLBAR_MARGIN,
+                left: rangeRect.left - containerRect.left + rangeRect.width / 2 - width / 2,
+                right: null
+            };
+        } else {
+            newPosition = {
+                top: rangeRect.top - containerRect.top + height - TOOLBAR_MARGIN,
+                left: rangeRect.left - containerRect.left + rangeRect.width / 2 - width / 2,
+                right: null
+            };
+        }
 
         let tickPosition = 50;
         // don't overflow left boundary

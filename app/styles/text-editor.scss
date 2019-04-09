@@ -785,6 +785,16 @@ opacity: 1.0;
   transition: left ease 0.06s;
 }
 
+@media (max-width: 500px) {
+  .kg-action-bar:after {
+    top: -16px;
+    border-bottom: 8px solid $black;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+    border-top: 8px solid transparent;
+  }
+}
+
 .kg-action-bar-divider {
   width: 1px;
 }
