@@ -4,7 +4,8 @@ import { fadeIn, fadeOut } from 'ember-animated/motions/opacity';
 
 export default Controller.extend({
   queryParams: ['as'],
-  sort: '-ends-at',
+  sort: 'ends-at',
+  upcoming: true,
   as: 'list',
 
   init() {

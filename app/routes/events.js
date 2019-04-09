@@ -32,7 +32,7 @@ export default Collection.extend({
 
   actions: {
     filterUpcoming(upcoming) {
-      this.controller.set('upcoming', upcoming ? true : null);
+      this.controller.set('upcoming', upcoming);
     },
     deleteAll(records) {
       return RSVP.all(records.map(record => record.destroyRecord())).then(() => {
