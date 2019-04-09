@@ -773,14 +773,17 @@ opacity: 1.0;
   .kg-input-bar,
   .kg-link-toolbar {
     position: fixed !important;
-    bottom: 0;
+    top: 0 !important;
     left: 0 !important;
     right: 0;
-    top: auto !important;
     width: auto;
     margin: 0;
     border-radius: 0;
     z-index: 3;
+
+    &:after {
+      display: none;
+    }
 
     .url-field {
       width: 100%;
