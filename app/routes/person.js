@@ -1,8 +1,15 @@
 import Resource from './resource';
+import method from 'ember-service-methods/inject';
 import RSVP from 'rsvp';
 
 export default Resource.extend({
+  uploadPhoto: method(),
+
   actions: {
+    addPhoto(file) {
+      return this.uploadPhoto(file);
+    },
+
     addLogin(model, attributes) {
       attributes.person = model;
 

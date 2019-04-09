@@ -29,7 +29,7 @@
         {{icon 'photo'}} Choose Photo
       </button>
       <p>or</p>
-      {{#file-upload class='submit-button' onfileadd=onupload name="embeds"}}
+      {{#file-upload class='submit-button' onfileadd=(action 'upload') name="embeds"}}
         {{t 'findPhotos.actions.upload' icon=(icon 'add-photo') htmlSafe=true}}
       {{/file-upload}}
     </div>

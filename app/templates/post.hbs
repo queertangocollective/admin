@@ -20,7 +20,11 @@
       {{f.checkbox 'pinned' checkedIcon='star' uncheckedIcon='star_border'}}
       <div class='grid-row'>
         {{f.autocomplete 'channel' key='name' onquery=(route-action 'query' 'channel')}}
-        {{f.text 'slug' autocomplete=(concat f.changeset.channel.slug '/' year '/' month '/' (slugify f.changeset.title))}}
+        {{#if f.changeset.channel}}
+          {{f.text 'slug' autocomplete=(concat f.changeset.channel.slug '/' year '/' month '/' (slugify f.changeset.title))}}
+        {{else}}
+          {{f.text 'slug' autocomplete=(slugify f.changeset.title)}}
+        {{/if}}
       </div>
       {{f.textarea 'title' hasLabel=false class='title' placeholder="Add Title..."}}
       {{f.editor 'body' hasLabel=false onupload=(route-action 'addPhoto') rows=6

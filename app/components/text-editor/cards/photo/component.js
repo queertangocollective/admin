@@ -123,6 +123,18 @@ export default Component.extend({
   },
 
   actions: {
+    upload(file) {
+      this.onupload(file).then(photo => {
+        this.set('photo', photo);
+        this._updatePayloadAttr("photoId", photo.id);
+        this._updatePayloadAttr("url", photo.url);
+        this._updatePayloadAttr("width", photo.width);
+        this._updatePayloadAttr("height", photo.height);
+        this._updatePayloadAttr("size", "small");
+        this._updatePayloadAttr("align", "center");
+      });
+    },
+
     stopEvent(evt) {
       evt.stopPropagation();
       evt.preventDefault();

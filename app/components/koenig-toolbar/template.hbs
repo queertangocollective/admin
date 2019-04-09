@@ -30,40 +30,53 @@
         </button>
     </li>
     {{#unless basicOnly}}
+      {{#if activeSectionTagNames.isH2}}
         <li class="ma0 lh-solid">
             <button
                 type="button"
-                title="Heading One"
-                class="icon {{if activeSectionTagNames.isH2 "active"}}"
+                title="Small Heading"
+                class="icon active"
+                {{action "toggleHeaderSection" "h3"}}
+            >
+                {{icon "format_size"}}
+            </button>
+        </li>
+      {{else if activeSectionTagNames.isH3}}
+        <li class="ma0 lh-solid">
+            <button
+                type="button"
+                title="Footnote"
+                class="icon active"
+                {{action "toggleSection" "small"}}
+            >
+                {{icon "format_size"}}
+            </button>
+        </li>
+      {{else if activeSectionTagNames.isSmall}}
+        <li class="ma0 lh-solid">
+            <button
+                type="button"
+                title="Normal Size"
+                class="icon active"
+                {{action "toggleSection" "small"}}
+            >
+                {{icon "format_size"}}
+            </button>
+        </li>
+      {{else}}
+        <li class="ma0 lh-solid">
+            <button
+                type="button"
+                title="Heading"
+                class="icon"
                 {{action "toggleHeaderSection" "h2"}}
             >
                 {{icon "format_size"}}
             </button>
         </li>
-        <li class="ma0 lh-solid">
-            <button
-                type="button"
-                class="icon {{if activeSectionTagNames.isH3 "active"}}"
-                title="Heading Two"
-                {{action "toggleHeaderSection" "h3"}}
-            >
-                {{icon "heading-2"}}
-            </button>
-        </li>
+      {{/if}}
     {{/unless}}
 
-    {{#unless basicOnly}}
-        <li class="ma0 lh-solid">
-            <button
-                type="button"
-                class="icon {{if activeSectionTagNames.isSmall "active"}}"
-                title="Footnote"
-                {{action "toggleSection" "small"}}
-            >
-                {{icon "footnote"}}
-            </button>
-        </li>
-    {{/unless}}
 
     {{#unless basicOnly}}
         <li class="ma0 lh-solid">

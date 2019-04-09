@@ -26,7 +26,7 @@
       {{f.text 'name'}}
       {{f.text 'email'}}
       {{f.url 'website'}}
-      {{f.editor 'biography' rows=5 hostname=session.currentGroup.hostname embeds=(list 'photo' 'gallery')}}
+      {{f.editor 'biography' rows=5 onupload=(route-action 'addPhoto') hostname=session.currentGroup.hostname embeds=(list 'photo' 'gallery')}}
     </div>
   {{/form-for}}
 </section>
