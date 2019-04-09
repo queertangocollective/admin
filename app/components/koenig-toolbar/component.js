@@ -207,7 +207,7 @@ export default Component.extend({
 
         // rangeRect is relative to the viewport so we need to subtract the
         // container measurements to get a position relative to the container
-        if (window.clientWidth > 500) {
+        if (document.body.clientWidth > 500) {
             newPosition = {
                 top: rangeRect.top - containerRect.top - height - TOOLBAR_MARGIN,
                 left: rangeRect.left - containerRect.left + rangeRect.width / 2 - width / 2,
