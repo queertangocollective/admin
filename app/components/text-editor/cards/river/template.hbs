@@ -16,7 +16,7 @@
         {{item.title}}
       {{/l.item}}
       {{#l.item 'publishedAt' sortable=false as |item|}}
-        {{l 'date' item.publishedAt}}
+        {{l 'date' item.publishedAt timezone=timezone}}
       {{/l.item}}
     {{/sortable-list}}
   {{else}}
@@ -38,7 +38,7 @@
   {{/if}}
   {{#if isSelectingPosts}}
     {{dialog-box
-      (component 'find-post-dialog' selection=selection multiple=true onsubmit=(action 'setPosts'))
+      (component 'find-post-dialog' selection=selection timezone=timezone multiple=true onsubmit=(action 'setPosts'))
       ondismiss=(action (mut isSelectingPosts) false)
     }}
   {{/if}}

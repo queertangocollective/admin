@@ -11,6 +11,7 @@
   manageLoginsIcon='lock'
   addDeployKey=(if (equals model.role 'staff') (component 'public-key-dialog'
     publicKeys=model.publicKeys
+    timezone=session.currentGroup.timezone
     oncreate=(route-action 'addPublicKey')
     ondelete=(route-action 'deletePublicKey')))
   addDeployKeyIcon='key'

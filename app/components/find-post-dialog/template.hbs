@@ -11,7 +11,7 @@
       {{item.title}}
     {{/l.item}}
     {{#l.item 'publishedAt' as |item|}}
-      {{l 'date' item.publishedAt}}
+      {{l 'date' item.publishedAt timezone=timezone}}
     {{/l.item}}
   {{/sortable-list}}
 </div>

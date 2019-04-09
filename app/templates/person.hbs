@@ -13,6 +13,7 @@
   manageLoginsIcon='lock'
   addDeployKey=(if (equals model.role 'staff') (component 'public-key-dialog'
     publicKeys=model.publicKeys
+    timezone=session.currentGroup.timezone
     oncreate=(route-action 'addPublicKey')
     ondelete=(route-action 'deletePublicKey')))
   addDeployKeyIcon='key'
@@ -26,7 +27,11 @@
       {{f.text 'name'}}
       {{f.text 'email'}}
       {{f.url 'website'}}
-      {{f.editor 'biography' rows=5 onupload=(route-action 'addPhoto') hostname=session.currentGroup.hostname embeds=(list 'photo' 'gallery')}}
+      {{f.editor 'biography' rows=5
+        onupload=(route-action 'addPhoto')
+        timezone=session.currentGroup.timezone
+        hostname=session.currentGroup.hostname
+        embeds=(list 'photo' 'gallery')}}
     </div>
   {{/form-for}}
 </section>

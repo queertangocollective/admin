@@ -16,7 +16,7 @@
         {{item.title}}
       {{/l.item}}
       {{#l.item 'startsAt' '-endsAt' sortable=false as |item|}}
-        {{{format-date-range item.startsAt item.endsAt timezone=session.currentGroup.timezone}}}
+        {{{format-date-range item.startsAt item.endsAt timezone=timezone}}}
       {{/l.item}}
     {{/sortable-list}}
   {{else}}
@@ -27,7 +27,7 @@
 
   {{#if isAddingEvents}}
     {{dialog-box
-      (component 'find-event-dialog' onsubmit=(action 'addEvents') selection=selection timezone=session.currentGroup.timezone)
+      (component 'find-event-dialog' onsubmit=(action 'addEvents') selection=selection timezone=timezone)
       ondismiss=(action (mut isAddingEvents) false)
     }}
   {{/if}}

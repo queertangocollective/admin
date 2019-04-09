@@ -29,6 +29,7 @@
       {{f.textarea 'title' hasLabel=false class='title' placeholder="Add Title..."}}
       {{f.editor 'body' hasLabel=false onupload=(route-action 'addPhoto') rows=6
           hostname=session.currentGroup.hostname
+          timezone=session.currentGroup.timezone
           embeds=(list 'ticket' 'itinerary' 'photo' 'youtube' 'location' 'person' 'gallery' 'river')}}
     </div>
   {{/form-for}}
