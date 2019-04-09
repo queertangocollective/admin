@@ -1,0 +1,15 @@
+.progress-bar {
+  position: relative;
+  height: 2px;
+  border-radius: 0px;
+  width: 100%;
+
+  .inner {
+    transition: width 50ms cubic-bezier(0.79, 0.14, 0.15, 0.86);
+    position: absolute;
+    left: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: $accent;
+  }
+}

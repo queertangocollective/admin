@@ -17,7 +17,7 @@
     {{#each (await model.eventPhotos) as |photos|}}
       {{#photo-grid name='photo' photos=photos icon='photo' as |photo width height|}}
         {{#link-to 'photo' photo~}}
-          <img src="{{photo.url}}" alt="{{photo.title}}" width="{{width}}" height="{{height}}">
+          {{lazy-image src=photo.url alt=photo.title width=width height=height}}
         {{~/link-to}}
       {{/photo-grid}}
     {{/each}}

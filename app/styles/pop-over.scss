@@ -1,0 +1,21 @@
+.pop-over {
+  background: #050505;
+  z-index: 10;
+}
+
+.pop-over-compass {
+  font-size: 1rem;
+  color: $white;
+  line-height: 20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 1px rgba($black, 0.5);
+  overflow: hidden;
+}
+
+.pop-over-container {
+  padding: 0.5rem 1rem;
+}
+
+.pop-over-pointer {
+  border-width: 0;
+}

@@ -44,6 +44,10 @@ let formatters = {
   },
 
   currency(value, hash) {
+    if (hash.currency == null) {
+      return '';
+    }
+
     return new Intl.NumberFormat(hash.locale, {
       style: 'currency',
       currency: hash.currency,

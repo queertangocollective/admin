@@ -10,19 +10,10 @@
       {{else}}
         {{icon 'add'}}
       {{/create-button}}
-      {{check-box inputId='pinned' value=pinned onchange=(route-action 'filterPinned')}}
-      <label for='pinned'>
-        {{icon 'pin'}} Show Pinned
-      </label>
     </nav>
   </header>
 
   {{#sortable-list name='posts' rows=model.model load=(route-action 'load') total=model.meta.page.total query=q sort=sort icon='edit' as |l|}}
-    {{#l.item 'pinned' sortable=false as |item|}}
-      <button onclick={{route-action 'pin' item (not item.pinned)}}>{{icon 'pin' class=(if item.pinned 'pin active' 'pin')}}</button>
-    {{else~}}
-      <span class='pinned'>&nbsp;</span>
-    {{~/l.item}}
     {{#l.item 'title' as |item|}}
       {{#link-to 'post' item}}{{item.title}}{{/link-to}}
     {{/l.item}}
@@ -39,5 +30,4 @@
       No posts found
     </div>
   {{/sortable-list}}
-
 </div>

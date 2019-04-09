@@ -7,7 +7,7 @@
     <header class='container'>
       <nav class='row'>
         {{#file-upload name='photos' multiple=true class='submit-button' onfileadd=(route-action 'upload')}}
-          {{t 'photos.actions.upload' icon=(icon 'photo') htmlSafe=true}}
+          {{t 'photos.actions.upload' icon=(icon 'add-photo') htmlSafe=true}}
         {{/file-upload}}
       </nav>
     </header>

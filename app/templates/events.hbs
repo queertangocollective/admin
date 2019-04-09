@@ -4,13 +4,7 @@
 <section id="events">
   <header class='container'>
     <nav class='row'>
-      {{#link-to (query-params as='list') class='button icon'}}
-        {{icon 'list'}}{{#if (media '(min-width: 500px)')}} List{{/if}}
-      {{/link-to}}
-      {{#link-to (query-params as='calendar') class='button icon'}}
-        {{icon 'calendar'}}{{#if (media '(min-width: 500px)')}} Calendar{{/if}}
-      {{/link-to}}
-      {{#dialog-button (component 'new-event-dialog' timezone=session.currentGroup.timezone onsubmit=(route-action 'createEvent') onquery=(route-action 'query')) group='add-event'}}
+      {{#dialog-button (component 'new-event-dialog' onsubmit=(route-action 'createEvent') onquery=(route-action 'query')) group='add-event'}}
         {{icon "calendar"}} Add Event
       {{/dialog-button}}
       {{check-box inputId='upcoming' value=upcoming onchange=(route-action 'filterUpcoming')}}
@@ -18,23 +12,20 @@
     </nav>
   </header>
   {{#if (equals as 'list')}}
-    {{#animated-container class=(concat 'bulk-actions ' (if hasSelection 'open'))}}
-      {{#animated-if hasSelection use=fadeIn duration=250}}
+    <div class="bulk-actions {{if hasSelection 'open'}}">
+      {{#if hasSelection}}
         {{action-bar 'edit' 'deleteAll' 'clearSelection'
           for='events'
           edit=(route-action 'bulkEdit' (component 'edit-event-dialog' timezone=session.currentGroup.timezone onquery=(route-action 'query') events=selection) selection)
-          editIcon='pencil'
           deleteAll=(route-action 'deleteAll' selection)
-          deleteAllIcon='trash'
           clearSelection=(action 'clearSelection')
-          clearSelectionIcon='cancel'
         }}
-      {{/animated-if}}
-    {{/animated-container}}
+      {{/if}}
+    </div>
     
     {{#sortable-list name='events' load=(route-action 'load') rows=model.model total=model.meta.page.total sort=sort query=q icon='calendar' as |l|}}
       {{#l.item 'checkbox' sortable=false as |item|}}
-        {{check-box value=(contains selection item) onchange=(action 'select' item)}}
+        {{check-box value=(contains selection item) onchange=(action 'select' item) tabindex=0}}
       {{else}}
         {{check-box value=areAllSelected onchange=(action 'toggleSelectAll')}}
       {{/l.item}}

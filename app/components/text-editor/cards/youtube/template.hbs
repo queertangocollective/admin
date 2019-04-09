@@ -1,3 +1,23 @@
-<iframe id="ytplayer" type="text/html" width={{payload.width}} height={{payload.height}}
-        src="https://www.youtube-nocookie.com/embed/{{videoId}}?{{if payload.autoplay 'autoplay=1&'}}origin={{origin}}"
-        frameborder="0"></iframe>
+{{#koenig-card
+  class=(concat "align-" payload.align " " (if (equals payload.size "large") "koenig-breakout-full") (if (equals payload.size "medium") "koenig-breakout-wide"))
+  isSelected=isSelected
+  isEditing=isEditing
+  selectCard=(action selectCard)
+  deselectCard=(action deselectCard)
+  editCard=(action editCard)
+  toolbar=toolbar
+  hasEditMode=false
+  editor=editor
+  as |card|
+}}
+  {{#if payload.url}}
+    <div class="video-wrapper" style={{style}}>
+      <iframe id="ytplayer" type="text/html"
+              src="https://www.youtube-nocookie.com/embed/{{videoId}}?{{if payload.autoplay 'autoplay=1&'}}origin={{origin}}"
+              frameborder="0"></iframe>
+    </div>
+  {{else}}
+    {{url-field autofocus=true value=url onchange=(action (mut url)) oncancel=(action 'deleteCard') onsubmit=(action 'setUrl' url) placeholder='Enter YouTube URL'}}
+  {{/if}}
+{{/koenig-card}}
+

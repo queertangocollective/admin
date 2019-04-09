@@ -1,13 +1,43 @@
-<figure onclick={{action editCard}}>
-  {{#animated-beacon group=(concat "photo-" payload.photoId)}}
-    <img src="{{payload.url}}" alt="{{payload.title}}" class="size-{{payload.size}}">
-  {{/animated-beacon}}
-  {{#unless (equals payload.align 'center')}}
-    <button disabled=true class='icon' type='submit'>
-      {{icon (concat 'align-' payload.align)}}
-    </button>
-  {{/unless}}
-</figure>
-<figcaption>
-  {{payload.caption}}
-</figcaption>
+{{#koenig-card
+    tagName="figure"
+    class=(concat "align-" payload.align " " (if (equals payload.size "large") "koenig-breakout-full") (if (equals payload.size "medium") "koenig-breakout-wide"))
+    isSelected=isSelected
+    isEditing=isEditing
+    selectCard=(action selectCard)
+    deselectCard=(action deselectCard)
+    editCard=(action editCard)
+    toolbar=toolbar
+    hasEditMode=false
+    addParagraphAfterCard=addParagraphAfterCard
+    moveCursorToPrevSection=moveCursorToPrevSection
+    moveCursorToNextSection=moveCursorToNextSection
+    editor=editor
+    as |card|
+}}
+  {{#if payload.url}}
+    {{#if isLoading}}
+      {{lazy-image resize=true width=payload.width height=payload.height}}
+    {{else}}
+      {{lazy-image resize=true src=payload.url alt=photo.title width=payload.width height=payload.height}}
+    {{/if}}
+    <figcaption>
+      {{text-area autoresize=true value=payload.caption onchange=(action 'updateCaption') onsubmit=(action 'stopEvent') placeholder='Add caption...'}}
+    </figcaption>
+  {{else}}
+    <div class="prompt">
+      <button type='button' class='submit' onclick={{action (mut isFindingPhoto) true}}>
+        {{icon 'photo'}} Choose Photo
+      </button>
+      <p>or</p>
+      {{#file-upload class='submit-button' onfileadd=onupload name="embeds"}}
+        {{t 'findPhotos.actions.upload' icon=(icon 'add-photo') htmlSafe=true}}
+      {{/file-upload}}
+    </div>
+  {{/if}}
+  {{#if isFindingPhoto}}
+    {{dialog-box
+      (component 'find-photo-dialog' onsubmit=(action 'setPhoto'))
+      ondismiss=(action (mut isFindingPhoto) false)
+    }}
+  {{/if}}
+{{/koenig-card}}

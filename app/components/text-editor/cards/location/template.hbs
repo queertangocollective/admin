@@ -1,6 +1,40 @@
-<img src="{{location.photo.url}}" alt="{{location.name}}">
-<div class='location-info'>
-  <strong>{{location.name}}</strong><br>
-  {{location.addressLine}} {{payload.extendedAddress}}<br>
-  {{location.city}}, {{location.regionCode}}
-</div>
+{{#koenig-card
+  isSelected=isSelected
+  isEditing=isEditing
+  selectCard=(action selectCard)
+  deselectCard=(action deselectCard)
+  editCard=(action editCard)
+  toolbar=toolbar
+  inlineEdit=(if isChangingExtendedAddress
+    (component 'text-field'
+      autofocus=true
+      value=payload.extendedAddress
+      onchange=(action (mut extendedAddress))
+      oncancel=(action 'cancel')
+      onsubmit=(action 'updateExtendedAddress' extendedAddress)
+      placeholder='Change Address Detail...'
+    )
+  )
+  hasEditMode=false
+  editor=editor
+  as |card|
+}}
+  {{#if payload.locationId}}
+    <p>
+      <strong>{{location.name}}</strong><br>
+      {{location.addressLine}} {{or payload.extendedAddress location.extendedAddress}}<br>
+      {{location.city}}, {{location.regionCode}}
+    </p>
+  {{else}}
+    <div class="prompt">
+      <button type='button' class='submit' onclick={{action (mut isChoosingLocation) true}}>Choose Location</button>
+    </div>
+  {{/if}}
+
+  {{#if isChoosingLocation}}
+    {{dialog-box
+      (component 'find-location-dialog' onsubmit=(action 'addLocation'))
+      ondismiss=(action (mut isChoosingLocation) false)
+    }}
+  {{/if}}
+{{/koenig-card}}

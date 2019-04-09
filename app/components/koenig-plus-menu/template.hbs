@@ -1,0 +1,14 @@
+{{#if showButton}}
+  <button class="icon" onclick={{action "openMenu"}} type='reset'>{{icon "add"}}</button>
+{{/if}}
+
+{{#if showMenu}}
+  <div class="koenig-cardmenu">
+    {{koenig-menu-content itemSections=itemSections itemClicked=(action "itemClicked")}}
+    {{#if (media '(max-width: 500px)')}}
+      <footer>
+        <button type='reset' onclick={{action "closeMenu"}}>Close</button>
+      </footer>
+    {{/if}}
+  </div>
+{{/if}}

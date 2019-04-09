@@ -1,0 +1,28 @@
+{{yield}}
+
+{{#if toolbar}}
+  {{#if inlineEdit}}
+    <ul data-toolbar="true" class="kg-action-bar inline {{if showToolbar "" "o-0 pop-down"}}" style={{toolbarStyle}}>
+      {{component inlineEdit}}
+    </ul>
+  {{else}}
+    <ul data-toolbar="true" class="kg-action-bar {{if showToolbar "" "o-0 pop-down"}}" style={{toolbarStyle}}>
+      {{#each toolbar.items as |item|}}
+        {{#if item.divider}}
+          <li class="kg-action-bar-divider"></li>
+        {{else}}
+          <li>
+            <button
+                type="button"
+                title={{item.title}}
+                class="{{if item.icon 'icon'}} {{if item.active "active"}}"
+                onmousedown={{action item.action}}
+            >
+              {{#if item.icon}}{{icon item.icon}} {{/if}}{{item.text}}
+            </button>
+          </li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  {{/if}}
+{{/if}}

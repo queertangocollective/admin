@@ -1,0 +1,8 @@
+.tool-tip {
+  @extend .sans-serif;
+  .pop-over-container {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+}

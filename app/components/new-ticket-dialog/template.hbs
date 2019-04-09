@@ -1,4 +1,4 @@
-{{#form-for name='ticket' onsubmit=(action 'submit') as |f|}}
+{{#form-for class='new-ticket-dialog' name='ticket' onsubmit=(action 'submit') as |f|}}
   <header>{{t 'ticket.create.title' icon=(icon 'ticket') htmlSafe=true}}</header>
   <div class="body grid-column">
     {{f.text 'description'}}

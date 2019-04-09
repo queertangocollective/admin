@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { set, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import { bind } from '@ember/runloop';

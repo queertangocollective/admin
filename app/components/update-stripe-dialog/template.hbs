@@ -1,4 +1,4 @@
-{{#form-for model name='stripe' onsubmit=(action 'submit') as |f|}}
+{{#form-for model class='update-stripe-dialog' name='stripe' onsubmit=(action 'submit') as |f|}}
   <header>{{icon 'stripe'}} Update Stripe</header>
   <div class='body grid-column'>
     {{f.text 'stripePublishableKey'}}

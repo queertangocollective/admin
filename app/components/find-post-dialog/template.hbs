@@ -1,0 +1,21 @@
+<header>{{icon "edit"}} Select Post</header>
+<div class="body">
+  {{search-field query=q onquery=(action 'query') placeholder="Search posts by name"}}
+  {{#sortable-list name='findPosts' rows=results sort=sort onsort=(action 'sort') load=(action load) query=q icon='edit' as |l|}}
+    {{#l.item 'checkbox' sortable=false as |item|}}
+      {{check-box value=(contains selection item) onchange=(action 'select' item)}}
+    {{else}}
+      <span></span>
+    {{/l.item}}
+    {{#l.item 'title' as |item|}}
+      {{item.title}}
+    {{/l.item}}
+    {{#l.item 'publishedAt' as |item|}}
+      {{l 'date' item.publishedAt}}
+    {{/l.item}}
+  {{/sortable-list}}
+</div>
+<footer>
+  <button type='submit' onclick={{action onsubmit selection}}>Add {{selection.length}} Posts</button>
+  <button type='reset' onclick={{action dismiss}}>Cancel</button>
+</footer>

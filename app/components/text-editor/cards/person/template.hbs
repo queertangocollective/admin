@@ -1,5 +1,29 @@
-<h3><strong>{{person.name}}</strong></h3>
-{{#if person}}
-  {{post-body mobiledoc=person.mobiledoc tagName='' cardNames=(list 'youtube' 'photo' 'ticke\
-t' 'itinerary' 'person' 'location') atomNames=(list 'line-break')}}
-{{/if}}
+{{#koenig-card
+    isSelected=isSelected
+    isEditing=isEditing
+    selectCard=(action selectCard)
+    deselectCard=(action deselectCard)
+    editCard=(action editCard)
+    toolbar=toolbar
+    hasEditMode=false
+    editor=editor
+    as |card|
+}}
+  {{#if payload.personId}}
+    <h3>{{person.name}}</h3>
+    {{#if person}}
+      {{post-body mobiledoc=person.mobiledoc tagName='' cardNames=(list 'photo' 'gallery') atomNames=(list 'line-break')}}
+    {{/if}}
+  {{else}}
+    <div class="prompt">
+      <button type='button' class='submit' onclick={{action (mut isChoosingPerson) true}}>Choose Person</button>
+    </div>
+  {{/if}}
+
+  {{#if isChoosingPerson}}
+    {{dialog-box
+      (component 'find-person-dialog' onsubmit=(action 'setPerson'))
+      ondismiss=(action (mut isChoosingPerson) false)
+    }}
+  {{/if}}
+{{/koenig-card}}

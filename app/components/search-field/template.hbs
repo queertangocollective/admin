@@ -1,0 +1,35 @@
+<div class="search-field {{if hasBlock 'has-filters'}}">
+  <fieldset class="{{if icon 'has-icon'}}">
+    {{#animated-container class='search-icon'}}
+      {{#animated-if this.icon use=fade duration=duration}}
+        {{#if this.link}}
+          <a href={{this.link}}>
+            {{icon this.icon class='search'}}
+          </a>
+        {{else}}
+          {{icon this.icon class='search'}}
+        {{/if}}
+      {{/animated-if}}
+    {{/animated-container}}
+    {{text-field
+      inputId=inputId
+      value=value
+      onchange=(action 'change')
+      name=name
+      placeholder=placeholder
+      disabled=disabled}}
+    {{#animated-container class='clear'}}
+      {{#animated-if value use=fade duration=duration}}
+        <span onclick={{action clear}}>
+          {{icon 'cancel'}}
+        </span>
+      {{/animated-if}}
+    {{/animated-container}}
+  </fieldset>
+  {{#if hasBlock}}
+    <button class='filter icon {{if isFiltering "active"}}' type='submit' onclick={{action (mut isFiltering) (not isFiltering)}}>
+      {{icon 'filter'}}
+    </button>
+  {{/if}}
+</div>
+{{#if isFiltering}}{{yield}}{{/if}}

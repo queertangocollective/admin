@@ -29,7 +29,7 @@
       {{f.text 'name'}}
       {{f.text 'email'}}
       {{f.url 'website'}}
-      {{f.editor 'biography' rows=5 onembed=null}}
+      {{f.editor 'biography' rows=5 hostname=session.currentGroup.hostname embeds=(list 'photo' 'gallery')}}
       {{f.photos 'photos'}}
     </div>
   {{/form-for}}

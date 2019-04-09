@@ -1,0 +1,12 @@
+<textarea type='text'
+          id={{inputId}}
+          name={{name}}
+          rows={{rows}}
+          placeholder={{placeholder}}
+          autocomplete="off"
+          onpaste={{action 'reformat'}}
+          onchange={{action 'reformat'}}
+          oninput={{action 'reformat'}}
+          onfocus={{action (mut isFocused) true}}
+          onblur={{action (mut isFocused) false}}
+          disabled={{disabled}}></textarea>

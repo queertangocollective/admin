@@ -1,0 +1,11 @@
+button[type=submit].submit-button {
+  text-align: left;
+  white-space: nowrap;
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+
+  .bounce {
+    margin: 0 auto;
+    padding-right: 0;
+  }
+}

@@ -17,12 +17,14 @@
   {{#form-for model name='post' autosave=true onsubmit=(route-action 'save') as |f|}}
     {{f.save-status}}
     <div class="grid-column">
-      {{f.text 'title'}}
+      {{f.checkbox 'pinned' checkedIcon='star' uncheckedIcon='star_border'}}
       <div class='grid-row'>
         {{f.autocomplete 'channel' key='name' onquery=(route-action 'query' 'channel')}}
-        {{f.text 'slug'}}
+        {{f.text 'slug' autocomplete=(concat f.changeset.channel.slug '/' year '/' month '/' (slugify f.changeset.title))}}
       </div>
-      {{f.editor 'body' rows=6 onembed=(route-action 'embed' (component 'add-embed-dialog' onupload=(route-action 'addPhoto')))
+      {{f.textarea 'title' hasLabel=false class='title' placeholder="Add Title..."}}
+      {{f.editor 'body' hasLabel=false onupload=(route-action 'addPhoto') rows=6
+          hostname=session.currentGroup.hostname
           embeds=(list 'ticket' 'itinerary' 'photo' 'youtube' 'location' 'person' 'gallery' 'river')}}
     </div>
   {{/form-for}}

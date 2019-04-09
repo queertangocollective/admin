@@ -1,3 +1,36 @@
-{{#animated-beacon group=(concat "ticket-" payload.ticketId)}}
-  <button type='submit' onclick={{action editCard}}>{{payload.callToAction}}</button>
-{{/animated-beacon}}
+{{#koenig-card
+  isSelected=isSelected
+  isEditing=isEditing
+  selectCard=(action selectCard)
+  deselectCard=(action deselectCard)
+  editCard=(action editCard)
+  toolbar=toolbar
+  inlineEdit=(if isChangingButtonText
+    (component 'text-field'
+      autofocus=true
+      value=payload.callToAction
+      onchange=(action (mut callToAction))
+      oncancel=(action 'cancel')
+      onsubmit=(action 'updateCallToAction' callToAction)
+      placeholder='Add Button Text...'
+    )
+  )
+  hasEditMode=false
+  editor=editor
+  as |card|
+}}
+  {{#if payload.ticketId}}
+    <button type="submit">{{payload.callToAction}}</button>
+  {{else}}
+    <div class="prompt">
+      <button type='button' class='submit' onclick={{action (mut isAddingTicket) true}}>Choose Ticket</button>
+    </div>
+  {{/if}}
+
+  {{#if isAddingTicket}}
+    {{dialog-box
+      (component 'find-ticket-dialog' onsubmit=(action 'addTicket'))
+      ondismiss=(action (mut isAddingTicket) false)
+    }}
+  {{/if}}
+{{/koenig-card}}

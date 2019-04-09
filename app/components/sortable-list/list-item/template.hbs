@@ -18,6 +18,6 @@
   {{#if (has-block 'inverse')}}
     {{yield to='inverse'}}
   {{else}}
-    {{t (concat listName '.' sortAsc)}}
+    <span class="{{dasherize sortAsc}} {{class}}">{{t (concat listName '.' sortAsc)}}</span>
   {{/if}}
 {{~/if}}

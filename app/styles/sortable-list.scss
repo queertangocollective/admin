@@ -40,11 +40,18 @@
         animation-name: shimmer;
         animation-timing-function: linear;
         background: #f6f7f8;
-        background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);        background-size: 800px 100%;
+        background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+        background-size: 800px 100%;
         position: relative;
         height: 12px;
         width: calc(100% - 10px);
         display: inline-block;
+      }
+
+      .check-box {
+        position: relative;
+        overflow: visible;
+        top: 0.35rem;
       }
 
       & > .item {
@@ -68,12 +75,6 @@
         }
       }
     }
-  }
-
-  .item .check-box {
-    position: relative;
-    overflow: visible;
-    top: 0.35rem;
   }
 
   .no-items {
@@ -123,6 +124,11 @@
       top: 3rem;
     }
 
+    .check-box {
+      position: relative;
+      height: 1rem;
+    }
+
     & > .item {
       display: grid;
       max-width: 800px;
@@ -167,7 +173,7 @@
         }
 
         a, button {
-          height: 2rem;
+          height: 2.25rem;
           padding: 0.25rem 0.5rem;
         }
       }

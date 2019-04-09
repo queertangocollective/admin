@@ -27,6 +27,13 @@ export default Component.extend({
     sort(sort) {
       this.set('sort', sort);
       this.query();
+    },
+    select(item) {
+      if (this.selected === item) {
+        this.set('selected', null);
+      } else {
+        this.set('selected', item);
+      }
     }
   }
 });

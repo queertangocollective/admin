@@ -1,4 +1,4 @@
-{{#form-for model name='purchase' onsubmit=(action 'submit') as |f|}}
+{{#form-for model class='add-purchase-dialog' name='purchase' onsubmit=(action 'submit') as |f|}}
   <header>{{icon 'coin'}} Add Purchase</header>
   <div class='body grid-column'>
     {{#f.buttons 'paymentMethod' name='purchase.methods' as |b|}}

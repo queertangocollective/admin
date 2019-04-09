@@ -1,0 +1,73 @@
+{{#animated-container}}
+  <nav class='container'>
+    {{#animated-value currentPage rules=rules duration=displayDuration as |page|}}
+      <div class='page'>
+        {{#if page.hasLess}}
+          <button class='previous-page' onclick={{action 'previousPage'}}>
+            {{icon 'chevron'}}
+          </button>
+        {{/if}}
+        <div class='actions'>
+          {{#each page.actions as |action|}}
+            {{#if action.isExternalLink}}
+              <a href={{action.link}} target="__blank" rel="nofollow noreferrer" class="submit-button">
+                {{#if action.icon}}
+                  {{t action.label icon=(icon action.icon) htmlSafe=true}}
+                {{else}}
+                  {{t action.label}}
+                {{/if}}
+              </a>
+            {{else if action.isMailTo}}
+              <a href={{action.link}} rel="nofollow noreferrer" class="submit-button">
+                {{#if action.icon}}
+                  {{t action.label icon=(icon action.icon) htmlSafe=true}}
+                {{else}}
+                  {{t action.label}}
+                {{/if}}
+              </a>
+            {{else if action.isLink}}
+              {{#link-to params=action.routeParams class='submit-button'}}
+                {{#if action.icon}}
+                  {{t action.label icon=(icon action.icon) htmlSafe=true}}
+                {{else}}
+                  {{t action.label}}
+                {{/if}}
+              {{/link-to}}
+            {{else if action.isDelete}}
+              {{#confirm-button onsubmit=action.submit}}
+                {{#if action.icon}}
+                  {{t action.label icon=(icon action.icon) htmlSafe=true}}
+                {{else}}
+                  {{t action.label}}
+                {{/if}}
+              {{else}}
+                {{t action.confirm htmlSafe=true}}
+              {{/confirm-button}}
+            {{else if action.isAction}}
+              {{#submit-button onsubmit=action.submit}}
+                {{#if action.icon}}
+                  {{t action.label icon=(icon action.icon) htmlSafe=true}}
+                {{else}}
+                  {{t action.label}}
+                {{/if}}
+              {{/submit-button}}
+            {{else if action.isDialog}}
+              {{#dialog-button action.component group=action.label}}
+                {{#if action.icon}}
+                  {{t action.label icon=(icon action.icon) htmlSafe=true}}
+                {{else}}
+                  {{t action.label}}
+                {{/if}}
+              {{/dialog-button}}
+            {{/if}}
+          {{/each}}
+        </div>
+        {{#if (and page.hasMore)}}
+          <button class='next-page {{if isMeasuring 'invisible'}}' onclick={{action 'nextPage'}}>
+            {{icon 'chevron'}}
+          </button>
+        {{/if}}
+      </div>
+    {{/animated-value}}
+  </nav>
+{{/animated-container}}

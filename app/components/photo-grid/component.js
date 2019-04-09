@@ -21,6 +21,13 @@ export default Component.extend({
     return 6;
   },
 
+  init() {
+    this._super(...arguments);
+    if (this.selection == null) {
+      this.set('selection', []);
+    }
+  },
+
   didRender() {
     let lastItem = this.element.querySelector('.photo-grid-row:last-child');
     if (lastItem === this._lastItem) return;
@@ -103,6 +110,7 @@ export default Component.extend({
         row.photos = row.photos.map(photo => {
           return {
             photo,
+            isPlaceholder: false,
             width: (photo.width / photo.height) * height
           }
         });
@@ -147,6 +155,20 @@ export default Component.extend({
     }
 
     if (row.photos.length) {
+      if (minAspectRatio !== Infinity) {
+        row.aspectRatio = Math.max(row.aspectRatio, minAspectRatio);
+      }
+
+      let width = viewportWidth - (row.photos.length * this.gutter);
+      let height = width / row.aspectRatio;
+      row.height = height;
+      row.photos = row.photos.map(photo => {
+        return {
+          photo,
+          isPlaceholder: !!photo.isPlaceholder,
+          width: (photo.width / photo.height) * height
+        }
+      });
       rows.push(row);
     }
 

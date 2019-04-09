@@ -1,0 +1,12 @@
+.copy-field {
+  position: relative;
+
+  button {
+    position: absolute;
+    top: calc(0.1rem + 2px);
+    right: calc(0.1rem + 2px);
+    height: calc(1.8rem - 2px);
+    line-height: 1rem;
+    padding: 0.1rem 0.4rem;
+  }
+}

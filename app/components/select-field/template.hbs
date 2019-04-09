@@ -1,0 +1,6 @@
+<select id={{inputId}} value={{selected.id}} name={{name}} disabled={{disabled}} onchange={{action selectIndex}}>
+  {{#each arrangedOptions as |o|}}
+    <option value={{o.id}} selected={{if (equals o.id selected.id) true}}>{{yield o.value}}</option>
+  {{/each}}
+</select>
+{{icon 'chevron'}}

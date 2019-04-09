@@ -1,7 +1,0 @@
-{{text-editor/cards/photo payload=payload editCard=editCard}}
-{{dialog-box (component 'edit-photo-dialog'
-    payload=payload
-    photo=photo
-    onsubmit=(action saveCard))
-  group=(concat 'photo-' photo.id)
-  ondismiss=(action cancelCard)}}

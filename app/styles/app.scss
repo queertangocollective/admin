@@ -1,5 +1,105 @@
-@import '@queertangocollective/ui';
+@import 'reset';
+@import 'colors';
+@import 'grid';
+@import 'typography';
+@import 'button';
+@import 'action-bar';
+@import 'button-group';
+@import 'auto-complete';
+@import 'confirm-button';
+@import 'copy-field';
+@import 'check-box';
+@import 'create-button';
+@import 'currency-field';
+@import 'text-field';
+@import 'dialog-box';
 @import 'lazy-image';
+@import 'date-field';
+@import 'form-for';
+@import 'map-dialog';
+@import 'navigation-bar';
+@import 'pop-over';
+@import 'progress-bar';
+@import 'password-field';
+@import 'search-field';
+@import 'sortable-list';
+@import 'select-field';
+@import 'spinner';
+@import 'snack-bar';
+@import 'submit-button';
+@import 'tabular-list';
+@import 'text-editor';
+@import 'tool-tip';
+@import 'upload-field';
+@import 'url-field';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  @extend .serif;
+  font-size: 16px;
+  line-height: 1.25rem;
+}
+
+.noscroll {
+  overflow: hidden;
+}
+
+.text-area {
+  @extend .text-field;
+}
+
+.number-field {
+  @extend .text-field;
+}
+
+.datetime-field {
+  @extend .date-field;
+}
+
+a {
+  color: $accent;
+  touch-action: manipulation;
+}
+
+.liquid-container:not(.liquid-animating) {
+  &,
+  .liquid-child {
+    overflow: visible;
+  }
+}
+
+@keyframes hop {
+  0% {
+    transform: translateY(0);
+  }
+
+  20% {
+    transform: translateY(3px);
+  }
+
+  40% {
+    transform: translateY(-3px);
+  }
+
+  60% {
+    transform: translateY(0);
+  }
+}
+
+.bounce circle {
+  animation: hop 1s ease infinite;
+
+  &:nth-of-type(1) {
+    animation-delay: .1s;
+  }
+
+  &:nth-of-type(2) {
+    animation-delay: .2s;
+  }
+}
 
 $green: #00D925;
 $red: #FF0052;
@@ -18,12 +118,6 @@ h2 {
 h3 {
   font-size: 1.2rem;
   font-weight: 800;
-}
-
-:not(.mobiledoc-editor__editor) > p {
-  font-size: 1.15rem;
-  margin: 1.4rem 0;
-  line-height: 1.5rem;
 }
 
 .dialog-box {
@@ -73,15 +167,6 @@ header nav {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-}
-
-h4 {
-  font-weight: 600;
-  letter-spacing: 0.1rem;
-  font-variant-caps: all-small-caps;
-  border-bottom: 2px solid $black;
-  padding: 1rem 0;
-  margin-bottom: 1rem;
 }
 
 #login {
@@ -246,41 +331,6 @@ figcaption {
 }
 
 #posts {
-  header .pinned {
-    display: inline-block;
-  }
-
-  .pinned {
-    width: 2rem;
-
-    button {
-      -webkit-appearance: none;
-              appearance: none;
-      background: $white;
-      border: 0;
-      padding: 0;
-
-      &:hover .pin path {
-        fill: $black;
-      }
-    }
-
-    .pin {
-      position: relative;
-      top: 0.25rem;
-
-      svg {
-        transition: all 120ms;
-      }
-    }
-    .pin path {
-      fill: $heather;
-    }
-    .pin.active path {
-      fill: $accent;
-    }
-  }
-
   li .item:not(.mobile) .channel-name > span {
     display: inline;
   }
@@ -293,18 +343,17 @@ figcaption {
   }
 
   .item {
-    grid-template-columns: 2rem 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     
     &.mobile {
-      grid-template-columns: 2rem 1fr;
+      grid-template-columns: 1fr;
 
       .channel-name {
-        margin-left: 2rem;
+        margin-top: 0.25rem;
         grid-column: span 2;
       }
 
       .published-at {
-        margin-left: 2rem;
         grid-column: span 2;
       }
     }
@@ -544,11 +593,12 @@ nav .create-button,
 
   .delete {
     position: relative;
-    top: -0.75rem;
     overflow: visible;
 
     button {
-      padding: 0.5rem 0.75rem;
+      position: relative;
+      top: -0.75rem;
+      padding: 0 0.75rem;
     }
   }
 }
@@ -657,37 +707,14 @@ nav .create-button,
   }
 }
 
-.itinerary {
-  @extend .serif;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
-
-  .item {
-    grid-template-columns: 1fr 1fr;
-
-    .title {
-      padding-right: 1rem;
-    }
-
-    &.mobile {
-      grid-template-columns: 1fr;
-
-      .title {
-        padding-right: 0;
-      }
-    }
-  }
-}
-
-.findTickets, .findEvents, .findPeople, .changeGroup, .findChannels {
+.findTickets, .findEvents, .findPeople, .changeGroup, .findChannels, .findPosts {
   .item {
     grid-template-columns: 2rem 1fr 1fr;
 
     &.mobile {
       grid-template-columns: 2rem 1fr;
     
-      .cost, .starts-at, .email {
+      .cost, .starts-at, .email, .published-at, .slug {
         grid-column: span 2;
         margin-left: 2rem;
       }
@@ -804,31 +831,6 @@ nav .create-button,
   }
 }
 
-.location-card {
-  box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
-  display: flex;
-  border-radius: 2px;
-  overflow: hidden;
-  margin: 1rem 0;
-
-  img {
-    width: auto;
-    height: 100px;
-  }
-
-  .location-info {
-    padding: 0.5rem;
-  }
-}
-
-.person-card {
-  box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
-  border-radius: 2px;
-  padding: 1rem 1rem 0.5rem;
-  margin-bottom: 1rem;
-  overflow: hidden;
-}
-
 .dialog-box header > .submit-button {
   line-height: 1.25rem;
   position: absolute;
@@ -882,14 +884,12 @@ nav .create-button,
     width: calc(100vw - 2rem);
   }
 
-  .photo:hover img {
-    box-shadow: 0 2px 4px 2px rgba(5, 5, 5, 0.2);
+  .photo img {
+    box-shadow: 0 0 0 2px $white;
   }
 
-  .photo:active img {
-    transition-duration: 80ms;
-    transform: translateY(1px);
-    box-shadow: 0 0 0 0 rgba(5, 5, 5, 0.2);
+  .photo:hover img {
+    box-shadow: 0 0 0 2px $accent;
   }
 }
 
@@ -921,26 +921,20 @@ nav .create-button,
   .photo {
     display: flex;
     position: relative;
-
-    img {
-      border-radius: 2px;
-      transition: all 200ms;
-      box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
-    }
   
     a, label {
       display: grid;
     }
 
-    .animated-container {
-      display: grid;
-      grid-template-columns: 0 1fr 0;
+    &.selected img {
+      outline: 2px solid rgba($accent, 0.5);
     }
 
     .check-box {
       position: absolute;
       top: 0.5rem;
       left: 0.5rem;
+      z-index: 2;
     }
   }
 }
@@ -957,17 +951,28 @@ nav .create-button,
 
   svg {
     position: absolute;
-    left: 0.4rem;
-    top: 0.4rem;
-    transform: rotate(180deg);
+    left: 0.3rem;
+    top: 0.3rem;
+    transform: rotate(90deg);
   }
 }
 
-.form-for_field label .check-box {
-  position: relative;
-  top: 0.15rem;
-  left: 0rem;
-  margin-right: 0.25rem;
+.text-block {
+  background: white;
+  display: block;
+  font-weight: bold;
+  color: $black;
+  padding-left: 1rem;
+  line-height: 2rem;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 2;
+}
+
+.form-for_field .check-box {
+  margin: 0;
 
   label {
     margin-bottom: 0;

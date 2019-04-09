@@ -1,0 +1,112 @@
+.date-field {
+  @extend .text-field;
+  position: relative;
+
+  input[type="text"] {
+    padding-right: 2.5rem;
+  }
+
+  input {
+    height: calc(2rem + 2px);
+  }
+
+  input + a {
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    z-index: 2;
+    width: 2.125rem;
+    height: 2.125rem;
+
+    svg {
+      position: relative;
+      top: 0.3rem;
+      left: 0.25rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      pointer-events: none;
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  hr {
+    border: 0;
+    border-bottom: 1px solid $heather;
+  }
+
+  .liquid-container.calendar {
+    .ember-power-calendar {
+      background: $black;
+      color: $white;
+      border-radius: 4px;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      box-shadow: 0 2px 4px 2px rgba(5, 5, 5, 0.2);
+    }
+
+    .ember-power-calendar-row > * {
+      width: calc((100% / 7) - 0.25rem);
+      height: 2rem;
+    }
+  }
+
+  .ember-power-calendar-row {
+    white-space: nowrap;
+
+    & > * {
+      width: 2rem;
+      height: 1.5rem;
+      display: inline-block;
+      text-align: center;
+    }
+  }
+
+  .ember-power-calendar-day {
+    background: transparent;
+    font-size: 0.7rem;
+    color: $white;
+    border: 1px solid rgba($grey, 0);
+    border-radius: 4px;
+  }
+
+  .ember-power-calendar-day:hover {
+    background: transparent;
+    border: 1px solid $grey;
+  }
+
+  .ember-power-calendar-day:active,
+  .ember-power-calendar-day--selected {
+    background: $grey;
+    border: 1px solid $grey;
+  }
+
+  .ember-power-calendar-day--other-month {
+    color: #999;
+  }
+
+  .ember-power-calendar-nav {
+    display: grid;
+    grid-template-columns: 2rem 1fr 2rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+  }
+
+  .ember-power-calendar-nav button {
+    background: #444;
+    color: #FFFFFF;
+    border-radius: 4px;
+    border: 0;
+  }
+
+  .ember-power-calendar-nav button:hover {
+    background: rgb(66, 66, 66);
+  }
+
+  .ember-power-calendar-nav button:active {
+    background: #222;
+  }
+}

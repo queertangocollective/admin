@@ -1,21 +1,19 @@
-{{#file-dropzone name='new-location-photo' class='new-location-dialog'}}
-  {{#form-for name='location' onsubmit=(action 'submit') as |f|}}
-    <header>{{icon 'location'}} Add Location</header>
-    <div class='body grid-column'>
-      <div class='grid-row'>
-        {{f.text 'name'}}
-        {{f.text 'website'}}
-      </div>
-      {{f.textarea 'address' rows=2}}
-      {{f.text 'postalCode' onblur=(action 'hydrateLocation' f)}}
-      <div class='grid-row'>
-        {{f.text 'city'}}
-        {{f.text 'regionCode'}}
-      </div>
+{{#form-for name='location' class='new-location-dialog' onsubmit=(action 'submit') as |f|}}
+  <header>{{icon 'location'}} Add Location</header>
+  <div class='body grid-column'>
+    <div class='grid-row'>
+      {{f.text 'name'}}
+      {{f.text 'website'}}
     </div>
-    <footer>
-      {{f.submit 'Add Location'}}
-      <button type='reset' onclick={{dismiss}}>Cancel</button>
-    </footer>
-  {{/form-for}}
-{{/file-dropzone}}
+    {{f.textarea 'address' rows=2}}
+    {{f.text 'postalCode' onblur=(action 'hydrateLocation' f)}}
+    <div class='grid-row'>
+      {{f.text 'city'}}
+      {{f.text 'regionCode'}}
+    </div>
+  </div>
+  <footer>
+    {{f.submit 'Add Location'}}
+    <button type='reset' onclick={{dismiss}}>Cancel</button>
+  </footer>
+{{/form-for}}

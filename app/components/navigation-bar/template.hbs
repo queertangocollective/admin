@@ -1,0 +1,39 @@
+{{#if (media '(max-width: 500px)')}}
+  <div class='mobile-nav'>
+    {{yield}}
+    <button type='submit' class='icon' onclick={{action (mut isActive) (not isActive)}}>
+      {{icon 'menu'}}
+    </button>
+    {{progress-bar value=progress}}
+  </div>
+  {{#animated-container}}
+    {{#animated-if isActive use=slide duration=displayDuration}}
+      <nav class='mobile'>
+        {{~#each mobileRoutes as |route|~}}
+          {{#link-to route}}{{t (concat 'navigation.' route)}}{{/link-to}}
+        {{~/each}}
+      </nav>
+    {{/animated-if}}
+  {{/animated-container}}
+{{else}}
+  {{progress-bar value=progress}}
+  <nav class='desktop container'>
+    {{~#each visibleRoutes as |route|~}}
+      {{#link-to route tabindex='0'}}{{t (concat 'navigation.' route)}}{{/link-to}}
+    {{~/each}}
+    {{#if hiddenRoutes.length}}
+      <label id='nav-more' tabindex="0">{{t (concat 'navigation.more')}}</label>
+      {{#pop-over for='nav-more' on='focus hover hold' gravity='s'}}
+        {{~#each hiddenRoutes as |route|~}}
+          {{#link-to route tabindex='0'}}{{t (concat 'navigation.' route)}}{{/link-to}}
+        {{~/each}}
+      {{/pop-over}}
+    {{/if}}
+    {{#if onlogout}}
+      {{#submit-button onsubmit=onlogout}}{{t 'navigation.logout'}}{{/submit-button}}
+    {{/if}}
+  </nav>
+  <div class='container'>
+    {{yield}}
+  </div>
+{{/if}}

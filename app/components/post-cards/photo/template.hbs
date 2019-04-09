@@ -1,13 +1,4 @@
-{{#if (equals payload.size 'large')}}
-  <figure class="align-{{payload.align}} size-{{payload.size}}">
-    <img src={{payload.url}} title="{{payload.caption}}">
-    <figcaption>{{payload.caption}}</figcaption>
-  </figure>
-{{else}}
-  <div class="container">
-    <figure class="align-{{payload.align}} size-{{payload.size}}">
-      <img src={{payload.url}} title="{{payload.caption}}">
-      <figcaption>{{payload.caption}}</figcaption>
-    </figure>
-  </div>
-{{/if}}
+<figure class="{{if (equals payload.size 'large') 'koenig-breakout-full'}} {{if (equals payload.size 'medium') 'koenig-breakout-wide'}} align-{{payload.align}}">
+  <img src={{payload.url}} title="{{payload.caption}}">
+  <figcaption>{{payload.caption}}</figcaption>
+</figure>

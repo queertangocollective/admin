@@ -1,0 +1,16 @@
+<input type="checkbox"
+  id={{inputId}}
+  checked={{value}}
+  tabindex={{tabindex}}
+  disabled={{disabled}}
+  indeterminate={{indeterminate}}
+  onchange={{action 'onchange'}}>
+<label for={{inputId}}>
+  {{~#if value~}}
+    {{icon checkedIcon}}
+  {{~else if indeterminate~}}
+    {{icon 'check_box_indeterminate'}}
+  {{~else~}}
+    {{icon uncheckedIcon}}
+  {{~/if~}}
+</label>

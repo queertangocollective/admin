@@ -79,10 +79,10 @@ events:
   title: 'Name'
   startsAt: 'Time'
   actions:
-    edit: '{icon} Edit Events'
-    createTicket: '{icon} Create Ticket'
-    deleteAll: '{icon} Delete Selected'
-    clearSelection: '{icon} Clear Selection'
+    edit: 'Edit Events'
+    createTicket: 'Create Ticket'
+    deleteAll: 'Delete Selected'
+    clearSelection: 'Clear Selection'
 
 event:
   title: 'Name'
@@ -206,6 +206,7 @@ posts:
 
 post:
   title: 'Title'
+  pinned: 'Featured'
   channel: 'Section'
   slug: 'Pretty URL'
   body: 'Body'

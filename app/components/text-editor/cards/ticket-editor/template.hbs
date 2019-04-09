@@ -1,6 +1,0 @@
-{{text-editor/cards/ticket payload=payload editCard=editCard}}
-{{dialog-box (component 'edit-ticket-dialog'
-    payload=payload
-    onsubmit=(action saveCard))
-  group=(concat 'ticket-' payload.ticketId)
-  ondismiss=(action cancelCard)}}

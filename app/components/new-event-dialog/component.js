@@ -20,7 +20,7 @@ const Guest = EmberObject.extend({
 });
 
 export default Component.extend({
-  classNames: ['new-event-dialog'],
+  tagName: '',
 
   store: service(),
 

@@ -1,0 +1,119 @@
+a.button,
+a.reset-button,
+a.submit-button,
+button.submit,
+button[type=submit],
+button.reset,
+button[type=reset] {
+  @extend .serif;
+  appearance: none;
+  display: inline-flex;
+  box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+  border-radius: 4px;
+  height: calc(2rem + 2px);
+  border-width: 2px;
+  border-style: solid;
+  padding: 0 0.6rem;
+  line-height: 1.9rem;
+  font-size: 1rem;
+  transition-property: background, padding, box-shadow, color, border, border-color, transform;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
+  white-space: nowrap;
+  overflow: hidden;
+  text-decoration: none;
+  margin: 0;
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 2px 4px 2px rgba($black, 0.2);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+    transition-duration: 80ms;
+    box-shadow: 0 0 0 0 rgba($black, 0.2);
+  }
+
+  &:disabled {
+    background: $white;
+    color: $black;
+    border: 1px solid #EEEEEE;
+  }
+
+  svg {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.2rem;
+
+    &:first-child {
+      margin-right: 0.25rem;
+    }
+
+    &:last-child:not(:first-child) {
+      margin-left: 0.25rem;
+    }
+  }
+
+  & > span {
+    display: flex;
+  }
+
+  &.icon {
+    padding: 0 0.25rem;
+
+    svg {
+      position: relative;
+      top: 2px;
+      margin: 0;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.button.active,
+  &.submit,
+  &.submit-button,
+  &[type=submit] {
+    background: $black;
+    color: $white;
+    border-color: $black;
+
+    &:focus:not(:active) {
+      background: $accent;
+      border-color: $accent;
+    }
+
+    svg {
+      fill: $white;
+    }
+  }
+
+  &.button:not(.active),
+  &.reset,
+  &.reset-button,
+  &[type=reset] {
+    background: $white;
+    color: $black;
+    border-color: $white;
+    height: 2rem;
+
+    &:active {
+      border-color: $heather;
+    }
+
+    &:focus:not(:active) {
+      border-color: $accent;
+    }
+
+    svg {
+      fill: $black;
+    }
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}

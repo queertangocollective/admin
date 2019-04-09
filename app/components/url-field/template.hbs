@@ -1,0 +1,17 @@
+<span onclick={{action (mut isSecure) (not isSecure)}}>
+  {{#if isSecure}}
+    {{icon 'lock' class='secure'}}
+  {{else}}
+    {{icon 'unlock'}}
+  {{/if}}
+</span>
+{{text-field
+  inputId=inputId
+  value=value
+  onchange=onchange
+  name=name
+  type='url'
+  placeholder=placeholder
+  disabled=disabled
+  onsubmit=onsubmit
+  oncancel=oncancel}}

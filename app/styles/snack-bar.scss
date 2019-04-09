@@ -1,0 +1,18 @@
+.snack-bar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: visible;
+  z-index: 200;
+
+  .contents {
+    background: $black;
+    font-size: 1rem;
+    color: $white;
+    line-height: 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px 1px rgba($black, 0.5);
+    padding: 0.5rem 1rem;
+  }
+}

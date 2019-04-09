@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { computed, get } from '@ember/object';
 
 export default Component.extend({
-  classNames: ['add-purchase-dialog'],
+  tagName: '',
 
   model: computed('ticket', function () {
     return {

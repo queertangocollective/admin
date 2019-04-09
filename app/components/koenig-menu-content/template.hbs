@@ -1,0 +1,11 @@
+{{#each itemSections as |section sectionIndex|}}
+    <div class="kg-cardmenu-header">
+        {{section.title}}
+    </div>
+    {{#each section.items as |item|~}}
+        <div class="kg-cardmenu-card {{if item.selected "kg-cardmenu-card-selected"}}" onclick={{action itemClicked item}} data-kg="cardmenu-card">
+            <div>{{icon item.icon}}</div>
+            <div>{{item.label}}</div>
+        </div>
+    {{~/each}}
+{{/each}}

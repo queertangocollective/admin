@@ -1,9 +1,9 @@
-<header>{{icon "edit"}} Add Posts</header>
+<header>{{icon "edit"}} Select Section</header>
 <div class="body">
-  {{search-field query=q onquery=(action 'query') placeholder="Search channels by title"}}
+  {{search-field query=q onquery=(action 'query') placeholder="Search sections by name"}}
   {{#sortable-list name='findChannels' rows=results sort=sort onsort=(action 'sort') query=q icon='edit' as |l|}}
     {{#l.item 'checkbox' sortable=false as |item|}}
-      {{check-box value=(equals selected item) onchange=(action (mut selected) item)}}
+      {{check-box value=(equals selected item) onchange=(action 'select' item)}}
     {{else}}
       <span></span>
     {{/l.item}}

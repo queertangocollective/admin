@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['new-ticket-dialog'],
+  tagName: '',
 
   actions: {
     submit(model, changes) {

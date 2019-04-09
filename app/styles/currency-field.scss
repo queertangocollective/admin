@@ -1,0 +1,28 @@
+.currency.field {
+  display: flex;
+
+  &.symbol-lhs {
+    flex-direction: row;
+
+    select {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &.symbol-rhs {
+    flex-direction: row-reverse;
+
+    select {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .currency-field {
+    flex: 1;
+  }
+
+  select {
+    width: auto;
+    padding-right: 1.5rem;
+  }
+}

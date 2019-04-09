@@ -26,8 +26,7 @@
       {{f.text 'name'}}
       {{f.text 'email'}}
       {{f.url 'website'}}
-      {{f.editor 'biography' rows=5 onembed=null}}
-      {{f.photos 'photos'}}
+      {{f.editor 'biography' rows=5 hostname=session.currentGroup.hostname embeds=(list 'photo' 'gallery')}}
     </div>
   {{/form-for}}
 </section>

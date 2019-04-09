@@ -1,6 +1,0 @@
-{{text-editor/cards/location payload=payload editCard=editCard}}
-{{dialog-box (component 'edit-location-dialog'
-    payload=payload
-    onsubmit=(action saveCard))
-  group=(concat 'location-' payload.locationId)
-  ondismiss=(action cancelCard)}}

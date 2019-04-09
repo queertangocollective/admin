@@ -7,8 +7,10 @@ export default Route.extend({
       transactions: this.store.query('transaction', {
         sort: '-created-at',
         page: {
+          offset: 0,
           limit: 10
-        }
+        },
+        include: 'paid-by'
       }),
       events: this.store.query('event', {
         sort: 'ends-at',
@@ -16,6 +18,7 @@ export default Route.extend({
           upcoming: true
         },
         page: {
+          offset: 0,
           limit: 10
         }
       })

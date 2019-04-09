@@ -1,3 +1,42 @@
-{{#photo-grid photos=photos minimumShrink=120 idealHeight=200 maxiumumStretch=280 click=editCard as |photo width height|}}
-  <img src={{photo.url}} alt={{photo.title}} width={{width}} height={{height}}>
-{{/photo-grid}}
+{{#koenig-card
+    tagName="figure"
+    class=(concat "align-" payload.align " " (if (equals payload.size "large") "koenig-breakout-full") (if (equals payload.size "medium") "koenig-breakout-wide"))
+    isSelected=isSelected
+    isEditing=isEditing
+    selectCard=(action selectCard)
+    deselectCard=(action deselectCard)
+    editCard=(action editCard)
+    toolbar=toolbar
+    hasEditMode=false
+    addParagraphAfterCard=addParagraphAfterCard
+    moveCursorToPrevSection=moveCursorToPrevSection
+    moveCursorToNextSection=moveCursorToNextSection
+    editor=editor
+    as |card|
+}}
+  {{#if photos.length}}
+    {{#photo-grid photos=photos size=payload.size singleRow=true as |photo width height|}}
+      {{lazy-image src=photo.url alt=photo.title width=width height=height}}
+    {{/photo-grid}}
+    <figcaption>
+      {{text-area autoresize=true value=payload.caption onchange=(action 'updateCaption') onsubmit=(action (mut isEditingCaption) false) placeholder='Add caption...'}}
+    </figcaption>
+  {{else if (not isLoading)}}
+    <div class="prompt">
+      <button type='button' class='submit' onclick={{action (mut isFindingPhoto) true}}>
+        {{icon 'photo'}} Choose Photos
+      </button>
+      <p>or</p>
+      {{#file-upload class='submit-button' onfileadd=onupload name="embeds"}}
+        {{t 'findPhotos.actions.upload' icon=(icon 'add-photo') htmlSafe=true}}
+      {{/file-upload}}
+    </div>
+  {{/if}}
+  {{#if isFindingPhoto}}
+    {{dialog-box
+      (component 'find-photo-dialog' selection=selection multiple=true onsubmit=(action 'setPhotos'))
+      ondismiss=(action (mut isFindingPhoto) false)
+    }}
+  {{/if}}
+{{/koenig-card}}
+

@@ -1,0 +1,97 @@
+.upload-field {
+  .files {
+    height: 20vh;
+    margin-bottom: 0.5rem;
+    overflow: visible;
+    max-width: 100vw;
+  }
+
+  ul {
+    position: absolute;
+    left: 0;
+    width: 100vw;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    li {
+      display: inline-block;
+      position: relative;
+
+      img {
+        width: auto;
+        height: 20vh;
+      }
+
+      button {
+        position: absolute;
+        left: 0.5rem;
+        top: 0.5rem;
+        padding: 0 0.5rem;
+      }
+    }
+  }
+
+  label.file-upload {
+    @extend .serif;
+    appearance: none;
+    display: inline-flex;
+    box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+    border-radius: 4px;
+    height: calc(2rem + 1px);
+    border-width: 1px;
+    border-style: solid;
+    padding: 0rem 0.6rem;
+    line-height: 1.9rem;
+    font-size: 1rem;
+    transition-property: background, padding, box-shadow, color, border, border-color, transform;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
+    white-space: nowrap;
+    overflow: hidden;
+    text-decoration: none;
+
+    &:hover:not(:disabled) {
+      box-shadow: 0 2px 4px 2px rgba($black, 0.2);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+      transition-duration: 80ms;
+      box-shadow: 0 0 0 0 rgba($black, 0.2);
+    }
+
+    &:disabled {
+      background: $white;
+      color: $black;
+      border: 1px solid #EEEEEE;
+    }
+
+    svg {
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-top: 0.2rem;
+      margin-right: 0.25rem;
+      fill: $white;
+    }
+
+    &.icon svg {
+      padding-right: 0;
+    }
+
+    background: $black;
+    color: $white;
+    border-color: $black;
+
+    &:focus {
+      outline: none;
+      background: $accent;
+      border-color: $accent;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+  }
+}

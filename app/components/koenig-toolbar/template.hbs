@@ -1,0 +1,90 @@
+<ul class="kg-action-bar {{unless showToolbar 'o-0'}}">
+    <li>
+        <button
+            type="button"
+            class="icon {{if activeMarkupTagNames.isStrong "active"}}"
+            title="Bold"
+            {{action "toggleMarkup" "strong"}}
+        >
+            {{icon "bold"}}
+        </button>
+    </li>
+    <li>
+        <button
+            type="button"
+            class="icon {{if (or activeMarkupTagNames.isEm activeMarkupTagNames.isI) "active"}}"
+            title="Italic"
+            {{action "toggleMarkup" "em"}}
+        >
+            {{icon "italic"}}
+        </button>
+    </li>
+    <li>
+        <button
+            type="button"
+            class="icon {{if (or activeMarkupTagNames.isU) "active"}}"
+            title="Underline"
+            {{action "toggleMarkup" "u"}}
+        >
+            {{icon "underline"}}
+        </button>
+    </li>
+    {{#unless basicOnly}}
+        <li class="ma0 lh-solid">
+            <button
+                type="button"
+                title="Heading One"
+                class="icon {{if activeSectionTagNames.isH2 "active"}}"
+                {{action "toggleHeaderSection" "h2"}}
+            >
+                {{icon "format_size"}}
+            </button>
+        </li>
+        <li class="ma0 lh-solid">
+            <button
+                type="button"
+                class="icon {{if activeSectionTagNames.isH3 "active"}}"
+                title="Heading Two"
+                {{action "toggleHeaderSection" "h3"}}
+            >
+                {{icon "heading-2"}}
+            </button>
+        </li>
+    {{/unless}}
+
+    {{#unless basicOnly}}
+        <li class="ma0 lh-solid">
+            <button
+                type="button"
+                class="icon {{if activeSectionTagNames.isSmall "active"}}"
+                title="Footnote"
+                {{action "toggleSection" "small"}}
+            >
+                {{icon "footnote"}}
+            </button>
+        </li>
+    {{/unless}}
+
+    {{#unless basicOnly}}
+        <li class="ma0 lh-solid">
+            <button
+                type="button"
+                class="icon {{if activeSectionTagNames.isBlockquote "active"}}"
+                title="Quote"
+                {{action "toggleSection" "blockquote"}}
+            >
+                {{icon "format_quote"}}
+            </button>
+        </li>
+    {{/unless}}
+    <li class="ma0 lh-solid">
+        <button
+            type="button"
+            class="icon {{if activeMarkupTagNames.isA "active"}}"
+            title="Link"
+            {{action "editLink"}}
+        >
+            {{icon "link"}}
+        </button>
+    </li>
+</ul>

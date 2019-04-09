@@ -15,7 +15,7 @@
     <div class='grid-column'>
       <div class='grid-row'>
         {{f.text 'name'}}
-        {{f.text 'website'}}
+        {{f.url 'website'}}
       </div>
       {{f.textarea 'address' rows=2}}
       {{f.text 'postalCode' onblur=(route-action 'hydrateLocation' f)}}

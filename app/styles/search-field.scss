@@ -1,0 +1,77 @@
+.search-field {
+  &.has-filters {
+    display: grid;
+    grid-template-columns: 1fr 2.5rem;
+
+    fieldset input {
+      border-radius: 4px 0 0 4px;
+    }
+
+    fieldset + button {
+      border-radius: 0 4px 4px 0;
+    }
+  }
+
+  fieldset {
+    position: relative;
+
+    a:hover svg {
+      fill: $accent;
+    }
+
+    input {
+      padding-right: 1.5rem;
+    }
+
+    &.has-icon input {
+      padding-left: 2rem;
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 0.3rem;
+      left: 0.5rem;
+      z-index: 2;
+      overflow: hidden;
+
+      &, svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        transition: fill 120ms;
+      }
+    }
+
+    .clear {
+      position: absolute;
+      top: 0rem;
+      right: 0rem;
+      z-index: 2;
+
+      & {
+        width: 2.125rem;
+        height: 2.125rem;
+
+        span {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 2.125rem;
+          height: 2.125rem;
+        }
+
+        svg {
+          pointer-events: none;
+          position: absolute;
+          top: 0.25rem;
+          left: 0.25rem;
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+    }
+  }
+}

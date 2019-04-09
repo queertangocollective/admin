@@ -1,0 +1,91 @@
+.button-group {
+  display: inline-flex;
+  flex-direction: row;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+
+  button:first-child {
+    border-radius: 4px 0 0 4px;
+  }
+  button:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+  button + button {
+    border-left: 1px solid $heather;
+  }
+
+  button {
+    @extend .serif;
+    appearance: none;
+    display: inline-flex;
+    border-radius: 0;
+    height: calc(2rem + 1px);
+    border-width: 1px;
+    border-style: solid;
+    padding: 0 0.6rem 0 0.4rem;
+    line-height: 2rem;
+    font-size: 1rem;
+    transition-property: background, padding, box-shadow, color, border, border-color, transform;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
+    white-space: nowrap;
+    overflow: hidden;
+    text-decoration: none;
+
+    &:hover:not(:disabled) {
+      box-shadow: 0 2px 4px 2px rgba($black, 0.1);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+      transition-duration: 80ms;
+      box-shadow: 0 0 0 0 rgba($black, 0.2);
+    }
+
+    svg {
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-top: 0.2rem;
+  
+      &:first-child {
+        margin-right: 0.25rem;
+      }
+  
+      &:last-child:not(:first-child) {
+        margin-left: 0.25rem;
+      }
+    }
+
+    & > span {
+      display: flex;
+    }
+
+    &.active {
+      background: $black;
+      color: $white;
+      border-color: $black;
+      fill: $white;
+    }
+
+    & {
+      background: $white;
+      color: $black;
+      border-color: $white;
+      height: 2rem;
+      fill: $black;
+
+      &:focus {
+        outline: none;
+        color: $white;
+        background: $accent;
+        border-color: $accent;
+        fill: $white;
+      }
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+  }
+}

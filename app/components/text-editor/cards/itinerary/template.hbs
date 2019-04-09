@@ -1,12 +1,34 @@
-{{#sortable-list name='itinerary' rows=events click=editCard sort='startsAt' onsort=(action 'nothing') icon='calendar' as |l|}}
-  {{#l.item 'title' sortable=false as |item|}}
-    {{item.title}}
+{{#koenig-card
+  isSelected=isSelected
+  isEditing=isEditing
+  selectCard=(action selectCard)
+  deselectCard=(action deselectCard)
+  editCard=(action editCard)
+  toolbar=toolbar
+  hasEditMode=false
+  editor=editor
+  as |card|
+}}
+  {{#if events.length}}
+    <h4>Schedule</h4>
+    {{#sortable-list name='findEvents' rows=events sort='startsAt' onsort=(action 'nothing') icon='calendar' as |l|}}
+      {{#l.item 'title' sortable=false as |item|}}
+        {{item.title}}
+      {{/l.item}}
+      {{#l.item 'startsAt' '-endsAt' sortable=false as |item|}}
+        {{{format-date-range item.startsAt item.endsAt timezone=session.currentGroup.timezone}}}
+      {{/l.item}}
+    {{/sortable-list}}
   {{else}}
-    <span>{{t 'itinerary.title'}}</span>
-  {{/l.item}}
-  {{#l.item 'startsAt' '-endsAt' sortable=false as |item|}}
-    {{{format-date-range item.startsAt item.endsAt timezone=session.currentGroup.timezone}}}
-  {{else}}
-    <span>{{t 'itinerary.startsAt'}}</span>
-  {{/l.item}}
-{{/sortable-list}}
+    <div class="prompt">
+      <button type='button' class='submit' onclick={{action (mut isAddingEvents) true}}>Add Events</button>
+    </div>
+  {{/if}}
+
+  {{#if isAddingEvents}}
+    {{dialog-box
+      (component 'find-event-dialog' onsubmit=(action 'addEvents') selection=selection timezone=session.currentGroup.timezone)
+      ondismiss=(action (mut isAddingEvents) false)
+    }}
+  {{/if}}
+{{/koenig-card}}

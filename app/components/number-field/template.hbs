@@ -1,0 +1,13 @@
+<input type='text'
+       id={{inputId}}
+       name={{name}}
+       autocomplete="off"
+       pattern="[0-9]*"
+       onkeydown={{action 'handleArrowKeys'}}
+       onkeypress={{action 'restrict'}}
+       onpaste={{action 'reformat'}}
+       onchange={{action 'reformat'}}
+       oninput={{action 'reformat'}}
+       onfocus={{action 'focus'}}
+       onblur={{action 'blur'}}
+       disabled={{disabled}}>

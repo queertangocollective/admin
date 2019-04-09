@@ -1,0 +1,26 @@
+{{#if showToolbar}}
+    <ul class="kg-link-toolbar">
+        <li>
+            <a href="{{url}}" target="_blank" rel="noopener noreferrer">{{url}}</a>
+        </li>
+        <li>
+            <button type="button"
+                class="icon"
+                title="Edit"
+                {{action "edit"}}
+            >
+                {{icon "edit"}}
+            </button>
+        </li>
+        <li>
+            <button
+                type="button"
+                class="icon"
+                title="Remove"
+                {{action "remove"}}
+            >
+                {{icon "trash"}}
+            </button>
+        </li>
+    </ul>
+{{/if}}

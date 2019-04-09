@@ -1,7 +1,45 @@
-{{#sortable-list name='posts' rows=posts click=editCard onsort=(action 'nothing') icon='edit' as |l|}}
-  {{#l.item 'title' sortable=false as |item|}}
-    {{item.title}}
+{{#koenig-card
+  isSelected=isSelected
+  isEditing=isEditing
+  selectCard=(action selectCard)
+  deselectCard=(action deselectCard)
+  editCard=(action editCard)
+  toolbar=toolbar
+  hasEditMode=false
+  editor=editor
+  as |card|
+}}
+  {{#if (or payload.channelId payload.featured payload.postIds.length)}}
+    <h4>Posts</h4>
+    {{#sortable-list name='findPosts' rows=posts onsort=(action 'nothing') icon='edit' as |l|}}
+      {{#l.item 'title' sortable=false as |item|}}
+        {{item.title}}
+      {{/l.item}}
+      {{#l.item 'publishedAt' sortable=false as |item|}}
+        {{l 'date' item.publishedAt}}
+      {{/l.item}}
+    {{/sortable-list}}
   {{else}}
-    <span>{{t 'itinerary.title'}}</span>
-  {{/l.item}}
-{{/sortable-list}}
+    <div class="prompt">
+      <button type='button' class='submit' onclick={{action (mut isSelectingSection) true}}>
+        Choose Section
+      </button>
+      <p>or</p>
+      <button type='button' class='submit' onclick={{action (mut isSelectingPosts) true}}>
+        Choose Posts
+      </button>
+    </div>
+  {{/if}}
+  {{#if isSelectingSection}}
+    {{dialog-box
+      (component 'find-section-dialog' selected=section onsubmit=(action 'setChannel'))
+      ondismiss=(action (mut isSelectingSection) false)
+    }}
+  {{/if}}
+  {{#if isSelectingPosts}}
+    {{dialog-box
+      (component 'find-post-dialog' selection=selection multiple=true onsubmit=(action 'setPosts'))
+      ondismiss=(action (mut isSelectingPosts) false)
+    }}
+  {{/if}}
+{{/koenig-card}}

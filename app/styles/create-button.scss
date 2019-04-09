@@ -1,0 +1,27 @@
+.create-button {
+  position: relative;
+  width: 100%;
+  height: 2rem;
+  margin: 1rem 0;
+
+  .text-field input {
+    padding-right: 3.5rem;
+  }
+
+  .submit-button {
+    position: absolute;
+    top: calc(0.1rem + 2px);
+    right: calc(0.1rem + 2px);
+    height: calc(1.8rem - 2px);
+    line-height: 1rem;
+    padding: 0.1rem 0.1rem;
+
+    &.icon svg {
+      top: 0;
+    }
+  }
+
+  .dialog-box & .text-field {
+    max-width: 100%;
+  }
+}

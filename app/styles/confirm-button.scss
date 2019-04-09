@@ -1,0 +1,8 @@
+button[type=submit].confirm-button {
+  background: $black;
+
+  &.is-confirming, &.is-processing {
+    background: $error;
+    border-color: $error;
+  }
+}

@@ -1,0 +1,47 @@
+.select-field {
+  position: relative;
+
+  select {
+    @extend .sans-serif;
+    display: block;
+    background: $black;
+    box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+    border-radius: 4px;
+    height: calc(2rem + 4px);
+    font-size: 1rem;
+    appearance: none;
+    border: 0;
+    padding: 0.2rem 0.5rem;
+    width: 100%;
+    color: $white;
+    line-height: 1.5rem;
+
+    transition-property: padding, box-shadow, color, border, transform;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
+    touch-action: manipulation;
+
+    &:hover:not(:disabled) {
+      box-shadow: 0 2px 4px 2px rgba($black, 0.2);
+    }
+
+    &:focus {
+      background: $accent;
+    }
+
+    &:disabled {
+      background: $white;
+      color: $black;
+      border: 1px solid $heather;
+      box-shadow: none;
+    }
+  }
+
+  svg {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.5rem;
+    fill: $white;
+    pointer-events: none;
+  }
+}

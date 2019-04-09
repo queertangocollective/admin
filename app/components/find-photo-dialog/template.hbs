@@ -1,12 +1,9 @@
 <header>
   {{t 'findPhotos.header' icon=(icon (if multiple 'gallery' 'photo')) htmlSafe=true}}
-  {{#file-upload class='submit-button' onfileadd=(action 'upload') name="embeds"}}
-    {{t 'findPhotos.actions.upload' icon=(icon 'add') htmlSafe=true}}
-  {{/file-upload}}
 </header>
 <div class="body grid-column">
   <div class='photo-grid'>
-    {{#photo-grid photos=results total=meta.page.total load=(action load) as |photo width height|~}}
+    {{#photo-grid photos=results total=meta.page.total selection=selection load=(action load) as |photo width height|~}}
       {{check-box inputId=(concat "photo-" photo.id) value=(contains selection photo) onchange=(action 'select' photo)~}}
       <label for="photo-{{photo.id}}">{{lazy-image src=photo.url alt=photo.title width=width height=height}}</label>
     {{~/photo-grid}}
